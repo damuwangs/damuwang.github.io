@@ -3,8 +3,8 @@ markdown:         redcarpet
 highlighter:      pygments
 
 # Permalinks
-permalink:        pretty
-relative_permalinks: false
+#permalink:        pretty
+#relative_permalinks: false
 
 # Setup
 title:            DaMuWang
