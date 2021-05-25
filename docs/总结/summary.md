@@ -4,124 +4,179 @@ title: 总结
 nav_order: 7
 ---
 
-# 总结
-{: .no_toc }
+## 租户管理
 
-## Table of contents
-{: .no_toc .text-delta }
+### 列表
 
-1. TOC
-{:toc}
+- ###### 查看、编辑、添加按钮放入列表最右侧
 
----
+- ###### 去掉租户域名字段
 
-Just the Docs uses [lunr.js](http://lunrjs.com) to add a client-side search interface powered by a JSON index that Jekyll generates.
-All search results are shown in an auto-complete style interface (there is no search results page).
-By default, all generated HTML pages are indexed using the following data points:
+- ###### 租户的添加按钮租户按照树结构显示，点击公司名称右侧下拉图标，展示下一层级公司信息
 
-- Page title
-- Page content
-- Page URL
+- ###### 禁用时下级账号也禁用，启用同理
 
-## Enable search in configuration
+- ###### 第一二级租户列表页面屏蔽三级租户添加按钮
 
-In your site's `_config.yml`, enable search:
+- ###### 第三级租户屏蔽租户管理菜单
 
-```yaml
-# Enable or disable the site search
-# Supports true (default) or false
-search_enabled: true
-```
+### 编辑
 
-### Search granularity
+- ###### 第一级第二级公司不显示上级公司，第三级子租户显示上级公司，且不可编辑
 
-Pages are split into sections that can be searched individually.
-The sections are defined by the headings on the page.
-Each section is displayed in a separate search result.
+- ###### 增加创建时间、创建人、最后修改时间、最后修改人信息
 
-```yaml
-# Split pages into sections that can be searched individually
-# Supports 1 - 6, default: 2
-search.heading_level: 2
-```
+  创建人、最后修改人下级公司查看时，默认显示System，上级公司查看时显示对应的实际操作人
 
-### Search previews
+### 查看
 
-A search result can contain previews that show where the search words are found in the specific section.
+- ###### 二级以下公司显示上级公司名称，一级和二级不显示上级公司
 
-```yaml
-# Maximum amount of previews per search result
-# Default: 3
-search.previews: 3
+### 说明
 
-# Maximum amount of words to display before a matched word in the preview
-# Default: 5
-search.preview_words_before: 5
+- ###### 树形列表参考：https://element.eleme.cn/#/zh-CN/component/table
 
-# Maximum amount of words to display after a matched word in the preview
-# Default: 10
-search.preview_words_after: 10
-```
+------
 
-### Search tokenizer
+## 角色管理
 
-The default is for hyphens to separate tokens in search terms:
-`gem-based` is equivalent to `gem based`, matching either word.
-To allow search for hyphenated words:
+### 列表
 
-```yaml
-# Set the search token separator
-# Default: /[\s\-/]+/
-# Example: enable support for hyphenated search words
-search.tokenizer_separator: /[\s/]+/
-```
+- ###### 查看、编辑、删除按钮放入列表最右端
 
-### Display URL in search results 
+- ###### 增加公司名称列
 
-```yaml
-# Display the relative url in search results
-# Supports true (default) or false
-search.rel_url: false
-```
+- ###### 公司名称查询
 
-### Display search button
+  有下级公司：以树的形式下拉显示平台-公司-子公司，支持模糊搜索
+  无下级公司：下拉只显示当前账户所属公司
 
-The search button displays in the bottom right corner of the screen and triggers the search input when clicked.
+- ###### <u>新建租户，分配管理员以后，进入角色列表，角色列表默认生成一条，名称默认为管理员，创建人默认显示为System</u>
 
-```yaml
-# Enable or disable the search button that appears in the bottom right corner of every page
-# Supports true or false (default)
-search.button: true
-```
+  ###### <u>新建租户分配管理员这一步是如何操作的？</u>
+  
+  该默认的管理员角色公司和子公司不能编辑和删除，需屏蔽编辑和删除按钮
 
+### 表单
 
-## Hiding pages from search
+- ###### 添加新角色时，默认公司为当前账号所属公司
 
-Sometimes you might have a page that you don't want to be indexed for the search nor to show up in search results, e.g, a 404 page.
-To exclude a page from search, add the `search_exclude: true` parameter to the page's YAML front matter:
+  有下级公司的账号可以选择自己以外的其它公司创建角色
 
-#### Example
-{: .no_toc }
+  无下级公司的账户公司信息显示账户所属公司
 
-```yaml
----
-layout: default
-title: Page not found
-nav_exclude: true
-search_exclude: true
----
-```
+- ###### 添加和编辑下级公司角色时，列表默认显示的是下级公司分配的管理员的权限
 
+- ###### 下级公司查看上级公司创建和修改的角色，操作人显示为System，上级公司可以查看实际操作人.
 
-## Generate search index when used as a gem
+### 说明
 
-If you use Just the Docs as a remote theme, you do not need the following steps.
+- ###### 公司名称树形下拉组件：https://element.eleme.cn/#/zh-CN/component/tree
 
-If you use the theme as a gem, you must initialize the search by running this `rake` command that comes with `just-the-docs`:
+  兼容部门联动下拉
 
-```bash
-$ bundle exec just-the-docs rake search:init
-```
+- ###### 角色权限树形列表组件：将原有实现封装成组件
 
-This command creates the `assets/js/zzzz-search-data.json` file that Jekyll uses to create your search index.
-Alternatively, you can create the file manually with [this content]({{ site.github.repository_url }}/blob/master/assets/js/zzzz-search-data.json).
+------
+
+## 部门管理
+
+### 列表
+
+- ###### 编辑、删除按钮放入列表最右端
+
+- ###### 增加公司名称、创建人列
+
+- ###### 增加公司名称查询条件
+
+  有下级公司：下拉选择对应的公司，然后输入公司对应的部门名称
+
+  无下级公司：下拉选择当前账户所属公司，只能查询到自己配置的部门
+
+- ###### 新建的子公司，分配管理员以后，进入部门列表，部门为空
+
+### 表单
+
+- ###### 公司名称默认显示自己，有下属公司可以选择下属公司
+
+- ###### 下级公司查看上级公司创建和修改的角色，操作人显示为System。上级公司可以查看实际操作人
+
+------
+
+## 员工管理
+
+### 列表
+
+- ###### 编辑、删除按钮放入列表最右端
+
+- ###### 增加公司名称列
+
+- ###### 一级公司的员工显示二维码，其余租户不显示
+
+- ###### 如果员工为租户管理员，用户旁边加图标，做特殊处理
+
+- ###### 查询条件新增所属公司、所属部门，联动下拉
+
+  有下级公司：所属公司和所属部门联动选择，先选择公司，再部门下拉框显示对应租户的部门
+
+  无下级公司：所属公司只显示自己，所属部门只显示当前公司配置的部门
+
+- ###### <u>新建下级公司时，上级公司分配管理员时，在下级公司的员工列表中默认显示该员工信息，创建人默认显示为System</u>
+
+- ###### 下级公司的管理员不能编辑该信息，上级公司显示实际的操作人。上级公司可以百年祭下级公司管理员信息
+
+- ###### 只要分配了员工的添加和编辑菜单，其它角色都可以为员工添加和编辑部门
+
+### 添加
+
+- ###### 新增字段：所属公司、所属部门、选择用户组
+
+- ###### 有下级公司
+
+  当选择的所属公司为当前公司时，所属部门下拉框显示对应公司设置的部门，显示当前公司的角色组和数据组
+
+  当选择的所属公司为下级公司时，所属部门下拉框显示选择下级公司对应的部门，选择公司后，显示对应租户设置的角色和数据组
+
+  当选择公司为下级公司且当前下级公司没有员工信息时，当前用户默认配置为该下级公司的管理员，同时角色显示选中下级公司的上级公司的权限，数据组不显示
+
+  提交保存后，为选中下级公司创建管理员，并在下级公司的角色列表里新增管理员的角色，用户无法编辑和删除
+
+- ###### 无下级公司
+
+  所属公司只显示自己，所属部门默认为该公司配置的部门，选择角色和用户组为该公司配置的信息
+
+### 编辑
+
+- ###### 有下级公司
+
+  用户名和所属公司不能修改
+
+  编辑用户为下级公司管理员，标注当前账户为管理员，显示该子公司上级公司的权限，隐藏数据组
+
+  编辑用户为下级公司普通员工，角色组和用户组显示该下级公司配置的信息
+
+  编辑用户为当前账户的员工，显示当前用户所属公司配置的角色和用户组
+
+- ###### 无下级公司
+
+  新增的子公司，上级公司给分配管理员后，管理员可以查看自己的信息，不能编辑和删除
+
+  如果是管理员编辑其他员工信息，可以正常编辑
+
+## 员工登录日志
+
+### 列表
+
+- ######  列表所属租户改为所属公司
+
+- ###### 请选择所属租户改为请选择所属公司
+
+- ###### 无下级公司的员工所属公司只显示自己公司
+
+## 账户信息
+
+### 表单
+
+- ###### 管理员可以查看、编辑公司信息
+
+  管理员以外的账号只能看到员工信息，不显示公司信息
