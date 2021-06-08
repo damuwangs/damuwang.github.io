@@ -2,6 +2,7 @@
 layout: default
 title: 总结
 nav_order: 7
+parent: 总结
 ---
 
 ## 租户管理
