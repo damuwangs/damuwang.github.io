@@ -5,30 +5,10 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 11 Jun 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
-    
-        <item>
-        <title>GitHub Pages&#43;Hugo构建个人博客</title>
-        <link>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
-        <pubDate>Fri, 11 Jun 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/ -&lt;h1 id=&#34;环境搭建&#34;&gt;环境搭建&lt;/h1&gt;
-&lt;h2 id=&#34;github配置&#34;&gt;GitHub配置&lt;/h2&gt;
-&lt;h3 id=&#34;创建仓库&#34;&gt;创建仓库&lt;/h3&gt;
-&lt;h2 id=&#34;hugo配置&#34;&gt;hugo配置&lt;/h2&gt;
-&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
-&lt;h3 id=&#34;配置环境变量&#34;&gt;配置环境变量&lt;/h3&gt;
-&lt;h3 id=&#34;项目创建&#34;&gt;项目创建&lt;/h3&gt;
-&lt;h3 id=&#34;主题配置&#34;&gt;主题配置&lt;/h3&gt;
-&lt;h3 id=&#34;项目编译和博客发布&#34;&gt;项目编译和博客发布&lt;/h3&gt;
-&lt;h2 id=&#34;heading&#34;&gt;&lt;/h2&gt;
-- https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/ - </description>
-        </item>
     
     
   </channel>
