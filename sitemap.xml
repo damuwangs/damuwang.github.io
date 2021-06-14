@@ -1,37 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://damuwangs.github.io/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://damuwangs.github.io/tags/chinese/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://damuwangs.github.io/categories/chinese/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://damuwangs.github.io/</loc>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
+  </url><url>
     <loc>https://damuwangs.github.io/posts/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://damuwangs.github.io/tags/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://damuwangs.github.io/tags/text/</loc>
   </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
-  </url>
-  
 </urlset>
