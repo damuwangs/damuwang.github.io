@@ -6,7 +6,7 @@
     <description>Recent content in Posts on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Jun 2021 18:20:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 15 Jun 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>GitHub Pages&#43;Hugo构建个人博客</title>
       <link>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
-      <pubDate>Mon, 14 Jun 2021 18:20:00 +0000</pubDate>
+      <pubDate>Tue, 15 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
       <description>hugo配置 1、安装   下载地址：https://github.com/gohugoio/hugo/releases
@@ -33,6 +33,15 @@ hugo new site hugo-blogcd hugo-blog目录结构如下，此时如果运行的�
   5、本地预览   启动 Hugo 预览服务器，构建站点内容到内存中并在检测到文件更改后重新渲染
 hugo server  6、内容发布   在站点目录下有一个content文件夹，在该文件夹下创建一个posts，posts下创建.md格式的文章就可以自动识别发布了
   同理图片静态资源需要放在站点根目录static下，内容中图片引用也是以static为根目录进行读取的</description>
+    </item>
+    
+    <item>
+      <title>这是一个测试文档</title>
+      <link>https://damuwangs.github.io/posts/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E6%96%87%E6%A1%A3/</link>
+      <pubDate>Tue, 15 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E6%96%87%E6%A1%A3/</guid>
+      <description></description>
     </item>
     
   </channel>
