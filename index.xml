@@ -5,7 +5,7 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 May 2019 23:20:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 14 Jun 2021 18:20:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
         <item>
         <title>GitHub Pages&#43;Hugo构建个人博客</title>
         <link>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
-        <pubDate>Sun, 12 May 2019 23:20:00 +0000</pubDate>
+        <pubDate>Mon, 14 Jun 2021 18:20:00 +0000</pubDate>
         
         <guid>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
         <description>DaMuWang https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/ -&lt;h1 id=&#34;hugo配置&#34;&gt;hugo配置&lt;/h1&gt;
@@ -69,7 +69,7 @@ cd hugo-blog
 &lt;p&gt;&lt;code&gt;具体hugo的配置还没仔细研究，本篇就简单介绍一下大体的搭建流程，以后可能会写一篇hugo配置/开发相关的&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;5本地编译&#34;&gt;5、本地编译&lt;/h3&gt;
+&lt;h3 id=&#34;5本地预览&#34;&gt;5、本地预览&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;启动 Hugo 预览服务器，构建站点内容到内存中并在检测到文件更改后重新渲染&lt;/p&gt;
@@ -88,7 +88,7 @@ cd hugo-blog
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;github配置&#34;&gt;GitHub配置&lt;/h1&gt;
-&lt;h3 id=&#34;1仓库配置&#34;&gt;1、仓库配置&lt;/h3&gt;
+&lt;h3 id=&#34;1创建仓库&#34;&gt;1、创建仓库&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;创建一个新仓库，仓库需要命名为xxx.github.io，一个账户只能创建一个GitHub Pages&lt;/p&gt;
@@ -99,11 +99,37 @@ cd hugo-blog
 &lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/GitHubPages+Hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE2.png&#34; alt=&#34;创建博客项目2&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;选择完主题后，访问仓库名就可以访问GitHub Pages主页了哈哈哈哈&lt;/p&gt;
+&lt;p&gt;选择完主题后，访问仓库名就可以访问GitHub Pages主页了&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;2github加速&#34;&gt;2、GitHub加速&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;因为同步GitHub经常会出现网络超时的错误，所以在谷歌找了个GitHub加速插件&lt;/p&gt;
+&lt;p&gt;这个插件就是在GitHub仓库下载旁边新增了一个加速的按钮，选择国内镜像的仓库地址就不会出现网络超时的问题了&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;插件地址：&lt;a href=&#34;https://chrome.google.com/webstore/detail/github%E5%8A%A0%E9%80%9F/mfnkflidjnladnkldfonnaicljppahpg&#34;&gt;https://chrome.google.com/webstore/detail/github%E5%8A%A0%E9%80%9F/mfnkflidjnladnkldfonnaicljppahpg&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;GitHub地址：&lt;a href=&#34;https://github.com/fhefh2015/Fast-GitHub&#34;&gt;https://github.com/fhefh2015/Fast-GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;3提交和版本同步&#34;&gt;3、提交和版本同步&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;进入站点根目录执行命令执行编译，创建public目录生成静态html项目&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 默认在当前文件夹下生成public文件夹
+hugo
+# 参数d可以自定义生成路径
+hugo -d ../damuwangs.github.io
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将生成后的静态html项目提交到xxx.github.io仓库，访问xxx.github.io就可以看到更新好的网页了&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.waynerv.com/posts/setup-blog-with-hugo-and-github-pages&#34;&gt;https://www.waynerv.com/posts/setup-blog-with-hugo-and-github-pages&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/ - </description>
         </item>
     
