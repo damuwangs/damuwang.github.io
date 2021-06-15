@@ -5,10 +5,44 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 12 May 2019 23:20:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
+    
+        <item>
+        <title>GitHub Pages&#43;Hugo构建个人博客</title>
+        <link>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+        <pubDate>Sun, 12 May 2019 23:20:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/ -&lt;h1 id=&#34;hugo配置&#34;&gt;hugo配置&lt;/h1&gt;
+&lt;h3 id=&#34;1安装&#34;&gt;1、安装&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;下载地址：&lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;https://github.com/gohugoio/hugo/releases&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;我使用的版本：&lt;img src=&#34;https://damuwangs.github.io/img/GitHubPages+Hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/1.png&#34; alt=&#34;下载版本&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解压后即可使用hugo命令，不过只能在当前文件夹下使用，所以需要配置环境变量&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2配置环境变量&#34;&gt;2、配置环境变量&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;​	333333&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3项目创建&#34;&gt;3、项目创建&lt;/h3&gt;
+&lt;h3 id=&#34;4主题配置&#34;&gt;4、主题配置&lt;/h3&gt;
+&lt;h3 id=&#34;5本地项目编译和博客发布&#34;&gt;5、本地项目编译和博客发布&lt;/h3&gt;
+&lt;h1 id=&#34;github配置&#34;&gt;GitHub配置&lt;/h1&gt;
+&lt;h3 id=&#34;1仓库配置&#34;&gt;1、仓库配置&lt;/h3&gt;
+&lt;h3 id=&#34;2github加速&#34;&gt;2、GitHub加速&lt;/h3&gt;
+&lt;h3 id=&#34;3提交和版本同步&#34;&gt;3、提交和版本同步&lt;/h3&gt;
+- https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/ - </description>
+        </item>
     
     
   </channel>

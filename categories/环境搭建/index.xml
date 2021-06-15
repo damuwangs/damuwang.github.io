@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on DaMuWang</title>
-    <link>https://damuwangs.github.io/posts/</link>
-    <description>Recent content in Posts on DaMuWang</description>
+    <title>环境搭建 on DaMuWang</title>
+    <link>https://damuwangs.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+    <description>Recent content in 环境搭建 on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 12 May 2019 23:20:00 +0000</lastBuildDate>
     
-	<atom:link href="https://damuwangs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://damuwangs.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
