@@ -5,9 +5,87 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Javascript - 闭包</title>
+        <link>https://damuwangs.github.io/posts/%E9%97%AD%E5%8C%85/</link>
+        <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E9%97%AD%E5%8C%85/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E9%97%AD%E5%8C%85/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;变量的作用域&#34;&gt;变量的作用域&lt;/h2&gt;
+&lt;p&gt;要理解闭包，首先必须理解Javascript特殊的变量作用域&lt;/p&gt;
+&lt;p&gt;变量的作用域无非就是两种：全局变量和局部变量&lt;/p&gt;
+&lt;p&gt;Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var n=999
+function f1(){
+  alert(n)
+}
+f1() // 999
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在函数外部无法读取函数内的局部变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function f1(){
+  var n=999
+}
+alert(n); // error
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;闭包的描述&#34;&gt;闭包的描述&lt;/h2&gt;
+&lt;p&gt;闭包就是能够读取其他函数内部变量的函数&lt;/p&gt;
+&lt;p&gt;由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成&amp;quot;定义在一个函数内部的函数&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁，f2函数，就是闭包&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function f1(){
+  var n=999
+  function f2(){
+      alert(n)
+    }
+　　return f2
+}
+var result = f1()
+result() // 999
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;闭包优缺点&#34;&gt;闭包优缺点&lt;/h2&gt;
+&lt;p&gt;优点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;希望一个变量长期驻扎在内存中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;避免全局变量的污染&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;私有成员的存在&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;缺点：闭包会使变量始终保存在内存中，如果不当使用会增大内存消耗&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;应用场景&#34;&gt;应用场景&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;匿名自执行函数&lt;/li&gt;
+&lt;li&gt;结果缓存&lt;/li&gt;
+&lt;li&gt;模块化代码，减少全局变量的污染&lt;/li&gt;
+&lt;li&gt;封装&lt;/li&gt;
+&lt;li&gt;实现类和继承&lt;/li&gt;
+&lt;li&gt;setTimeout传参&lt;/li&gt;
+&lt;li&gt;为节点循环绑定click事件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html&#34;&gt;http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000000652891&#34;&gt;https://segmentfault.com/a/1190000000652891&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/yunfeifei/p/4019504.html&#34;&gt;https://www.cnblogs.com/yunfeifei/p/4019504.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903910902087688&#34;&gt;https://juejin.cn/post/6844903910902087688&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E9%97%AD%E5%8C%85/ - </description>
+        </item>
     
     
     

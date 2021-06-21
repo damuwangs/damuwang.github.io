@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Categories</title>
+<title>Javascript - 闭包</title>
 
 
 
@@ -50,6 +50,10 @@
 
 
 
+  
+    <script src="/js/toc.js"></script>
+  
+
 
 
 
@@ -87,9 +91,11 @@
             
             
             
+                
             
             
-            <a class="a-block nav-link-item false" href="/posts">
+            
+            <a class="a-block nav-link-item active" href="/posts">
                 博客
             </a>
             
@@ -97,11 +103,9 @@
             
             
             
-                
             
             
-            
-            <a class="a-block nav-link-item active" href="/categories">
+            <a class="a-block nav-link-item false" href="/categories">
                 分类
             </a>
             
@@ -137,6 +141,142 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </div><div ref="extraContainer" class="extra-container">
     
     
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%8f%98%e9%87%8f%e7%9a%84%e4%bd%9c%e7%94%a8%e5%9f%9f" onclick="onNavClick(`#变量的作用域-nav`)" id="变量的作用域-nav">
+									变量的作用域
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%97%ad%e5%8c%85%e7%9a%84%e6%8f%8f%e8%bf%b0" onclick="onNavClick(`#闭包的描述-nav`)" id="闭包的描述-nav">
+									闭包的描述
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%97%ad%e5%8c%85%e4%bc%98%e7%bc%ba%e7%82%b9" onclick="onNavClick(`#闭包优缺点-nav`)" id="闭包优缺点-nav">
+									闭包优缺点
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" onclick="onNavClick(`#应用场景-nav`)" id="应用场景-nav">
+									应用场景
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -154,8 +294,6 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
         </a>
         
         
-        
-        
     </div>
 </div>
 <div class="single-column-drawer-container" ref="drawer"
@@ -168,9 +306,11 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 
                 
+                    
                 
                 
-                <a class="a-block drawer-menu-item false" href="/posts">
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
                     博客
                 </a>
                 
@@ -178,11 +318,9 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 
                 
-                    
                 
                 
-                
-                <a class="a-block drawer-menu-item active" href="/categories">
+                <a class="a-block drawer-menu-item false" href="/categories">
                     分类
                 </a>
                 
@@ -197,6 +335,142 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 </a>
                 
             
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%8f%98%e9%87%8f%e7%9a%84%e4%bd%9c%e7%94%a8%e5%9f%9f" onclick="onNavClick(`#变量的作用域-nav`)" id="变量的作用域-nav">
+									变量的作用域
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%97%ad%e5%8c%85%e7%9a%84%e6%8f%8f%e8%bf%b0" onclick="onNavClick(`#闭包的描述-nav`)" id="闭包的描述-nav">
+									闭包的描述
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%97%ad%e5%8c%85%e4%bc%98%e7%bc%ba%e7%82%b9" onclick="onNavClick(`#闭包优缺点-nav`)" id="闭包优缺点-nav">
+									闭包优缺点
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" onclick="onNavClick(`#应用场景-nav`)" id="应用场景-nav">
+									应用场景
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
             
         </div>
     </div>
@@ -241,51 +515,154 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
             <div id="content">
 <div ref="streamContainer" class="stream-container">
     <div class="post-list-container post-list-container-shadow">
-        <a class="a-block">
-            <div class="post-item-wrapper post-item-wrapper-no-hover">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title post-item-title-small">
-                            Categories
-                        </div>
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Javascript - 闭包
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-06-21
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B">编程</a>
+                                &nbsp;
+                            
+                        
+                        
                     </div>
                 </div>
             </div>
-        </a>
-        
-        
-                <a href="https://damuwangs.github.io/categories/%E5%89%8D%E7%AB%AF/" class="a-block">
-                    <div class="post-item-wrapper">
-                        <div class="post-item post-item-no-gaps">
-                            <div class="post-item-info-wrapper"> 
-                                <div class="post-item-title">
-                                    前端
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="概念">概念</h1>
+<ul>
+<li>
+<h2 id="变量的作用域">变量的作用域</h2>
+<p>要理解闭包，首先必须理解Javascript特殊的变量作用域</p>
+<p>变量的作用域无非就是两种：全局变量和局部变量</p>
+<p>Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量</p>
+<pre><code>var n=999
+function f1(){
+  alert(n)
+}
+f1() // 999
+</code></pre><p>在函数外部无法读取函数内的局部变量</p>
+<pre><code>function f1(){
+  var n=999
+}
+alert(n); // error
+</code></pre></li>
+<li>
+<h2 id="闭包的描述">闭包的描述</h2>
+<p>闭包就是能够读取其他函数内部变量的函数</p>
+<p>由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成&quot;定义在一个函数内部的函数&rdquo;</p>
+<p>所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁，f2函数，就是闭包</p>
+<pre><code>function f1(){
+  var n=999
+  function f2(){
+      alert(n)
+    }
+　　return f2
+}
+var result = f1()
+result() // 999
+</code></pre></li>
+<li>
+<h2 id="闭包优缺点">闭包优缺点</h2>
+<p>优点：</p>
+<ol>
+<li>
+<p>希望一个变量长期驻扎在内存中</p>
+</li>
+<li>
+<p>避免全局变量的污染</p>
+</li>
+<li>
+<p>私有成员的存在</p>
+</li>
+</ol>
+<p>缺点：闭包会使变量始终保存在内存中，如果不当使用会增大内存消耗</p>
+</li>
+</ul>
+<h1 id="应用场景">应用场景</h1>
+<ul>
+<li>匿名自执行函数</li>
+<li>结果缓存</li>
+<li>模块化代码，减少全局变量的污染</li>
+<li>封装</li>
+<li>实现类和继承</li>
+<li>setTimeout传参</li>
+<li>为节点循环绑定click事件</li>
+</ul>
+<h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html">http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html</a></p>
+<p><a href="https://segmentfault.com/a/1190000000652891">https://segmentfault.com/a/1190000000652891</a></p>
+<p><a href="https://www.cnblogs.com/yunfeifei/p/4019504.html">https://www.cnblogs.com/yunfeifei/p/4019504.html</a></p>
+<p><a href="https://juejin.cn/post/6844903910902087688">https://juejin.cn/post/6844903910902087688</a></p>
+</blockquote>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-06-21</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
                 </a>
-        
-                <a href="https://damuwangs.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="a-block">
-                    <div class="post-item-wrapper">
-                        <div class="post-item post-item-no-gaps">
-                            <div class="post-item-info-wrapper"> 
-                                <div class="post-item-title">
-                                    环境搭建
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
+                
+                
+                <a class="older-posts" href="https://damuwangs.github.io/posts/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">
+			Previous<br>面试总结
                 </a>
-        
-    </div>
-</div>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
 
 
             </div>
+        </div>
+    </div>
+</div>
 
-
-<div id="single-column-footer">
+            </div><div id="single-column-footer">
 Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
 <br>
 Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
@@ -552,6 +929,9 @@ app = new Vue({
             elem.classList.add("table-hover");
         })
 
+        
+        spy();
+        window.addEventListener('scroll', this.debounce(spy, 250, { 'maxWait': 250 }), false);
         
         
     },

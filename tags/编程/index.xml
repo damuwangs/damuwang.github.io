@@ -6,7 +6,32 @@
     <description>Recent content in 编程 on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Javascript - 闭包</title>
+      <link>https://damuwangs.github.io/posts/%E9%97%AD%E5%8C%85/</link>
+      <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E9%97%AD%E5%8C%85/</guid>
+      <description>概念   变量的作用域 要理解闭包，首先必须理解Javascript特殊的变量作用域
+变量的作用域无非就是两种：全局变量和局部变量
+Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量
+var n=999function f1(){alert(n)}f1() // 999在函数外部无法读取函数内的局部变量
+function f1(){var n=999}alert(n); // error  闭包的描述 闭包就是能够读取其他函数内部变量的函数
+由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成&amp;quot;定义在一个函数内部的函数&amp;rdquo;
+所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁，f2函数，就是闭包
+function f1(){var n=999function f2(){alert(n)}return f2}var result = f1()result() // 999  闭包优缺点 优点：
+  希望一个变量长期驻扎在内存中
+  避免全局变量的污染
+  私有成员的存在
+  缺点：闭包会使变量始终保存在内存中，如果不当使用会增大内存消耗
+  应用场景  匿名自执行函数 结果缓存 模块化代码，减少全局变量的污染 封装 实现类和继承 setTimeout传参 为节点循环绑定click事件  参考资料  http://www.</description>
+    </item>
+    
     <item>
       <title>面试总结</title>
       <link>https://damuwangs.github.io/posts/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/</link>
