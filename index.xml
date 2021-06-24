@@ -69,13 +69,183 @@ result() // 999
 &lt;/ul&gt;
 &lt;h1 id=&#34;应用场景&#34;&gt;应用场景&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;匿名自执行函数&lt;/li&gt;
-&lt;li&gt;结果缓存&lt;/li&gt;
-&lt;li&gt;模块化代码，减少全局变量的污染&lt;/li&gt;
-&lt;li&gt;封装&lt;/li&gt;
-&lt;li&gt;实现类和继承&lt;/li&gt;
-&lt;li&gt;setTimeout传参&lt;/li&gt;
-&lt;li&gt;为节点循环绑定click事件&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;匿名自执行函数&#34;&gt;匿名自执行函数&lt;/h2&gt;
+&lt;p&gt;我们知道所有的变量，如果不加上var关键字，则默认的会添加到全局对象的属性上去，这样的临时变量加入全局对象有很多坏处，比如：别的函数可能误用这些变量；造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链上遍历的)。除了每次使用变量都是用var关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，比如UI的初始化，那么我们可以使用闭包&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var data= {    
+    table : [],    
+    tree : {}    
+};    
+       
+(function(dm){    
+    for(var i = 0; i &amp;lt; dm.table.rows; i++){    
+       var row = dm.table.rows[i]  
+       for(var j = 0; j &amp;lt; row.cells; i++){    
+           drawCell(i, j)
+       }    
+    }    
+         
+})(data);   
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们创建了一个匿名的函数，并立即执行它，由于外部无法引用它内部的变量，因此在函数执行完后会立刻释放资源，关键是不污染全局对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;结果缓存&#34;&gt;结果缓存&lt;/h2&gt;
+&lt;p&gt;我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象，每次调用都会花费很长时间，那么我们就需要将计算出来的值存储起来，当调用这个函数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var CachedSearchBox = (function(){    
+    var cache = {},count = [];    
+    return {    
+       attachSearchBox : function(dsid){    
+         //如果结果在缓存中
+           if(dsid in cache){   
+              //直接返回缓存中的对象
+              return cache[dsid]    
+           }    
+           //新建 
+           var fsb = new uikit.webctrl.SearchBox(dsid)   
+        //更新缓存
+           cache[dsid] = fsb
+           return fsb     
+       }  
+    }
+})()
+CachedSearchBox.attachSearchBox(&amp;quot;input&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样我们在第二次调用的时候，就会从缓存中读取到该对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;减少全局变量的污染&#34;&gt;减少全局变量的污染&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;//abc为外部匿名函数的返回值
+var abc = (function(){      
+    var a = 1
+    return function(){
+        a++
+        alert(a)
+    }
+})()
+//2 调用一次abc函数，其实是调用里面内部函数的返回值  
+abc()  
+//3
+abc() 
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;封装&#34;&gt;封装&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;var person = function(){    
+    //变量作用域为函数内部，外部无法访问    
+    var name = &amp;quot;default&amp;quot;;              
+    return {    
+       getName : function(){    
+           return name;    
+       },    
+       setName : function(newName){    
+           name = newName  
+       }    
+    }    
+}() 
+// 直接访问，结果为undefined         
+print(person.name) 
+print(person.getName())  
+person.setName(&amp;quot;abruzzi&amp;quot;)   
+print(person.getName()) 
+     
+得到结果如下：  
+undefined  
+default  
+abruzzi  
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;实现类和继承&#34;&gt;实现类和继承&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;function Person(){    
+    var name = &amp;quot;default&amp;quot;       
+    return {    
+       getName : function(){    
+           return name;    
+       },    
+       setName : function(newName){    
+           name = newName;    
+       }    
+    }    
+}   
+  
+var p = new Person()
+p.setName(&amp;quot;Tom&amp;quot;)
+alert(p.getName())
+  
+var Jack = function(){}
+//继承自Person
+Jack.prototype = new Person()
+//添加私有方法
+Jack.prototype.Say = function(){
+  alert(&amp;quot;Hello,my name is Jack&amp;quot;)
+}
+var j = new Jack()
+j.setName(&amp;quot;Jack&amp;quot;)
+j.Say()
+alert(j.getName())
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们定义了Person，它就像一个类，我们new一个Person对象，访问它的方法。下面我们定义了Jack，继承Person，并添加自己的方法。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;settimeout传参&#34;&gt;setTimeout传参&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;setTimeout(function(param){
+    alert(param)
+},1000)
+  
+//通过闭包可以实现传参效果
+function func(param){
+  return function(){
+      alert(param)
+  }
+}
+var f1 = func(1)
+setTimeout(f1,1000)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;为节点循环绑定click事件&#34;&gt;为节点循环绑定click事件&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;function count() {
+    var arr = []
+    for (var i=1; i&amp;lt;=3; i++) {
+        arr.push(function () {
+            return i * i
+        })
+    }
+    return arr
+}
+  
+var results = count()
+var f1 = results[0]
+var f2 = results[1]
+var f3 = results[2]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在上面的例子中，每次循环，都创建了一个新的函数，然后，把创建的3个函数都添加到一个Array中返回了。&lt;/p&gt;
+&lt;p&gt;你可能认为调用f1()，f2()和f3()结果应该是 &lt;code&gt;1 4 9&lt;/code&gt;， 但实际结果是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;f1() // 16
+f2() // 16
+f3() // 16
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;全部都是16！原因就在于返回的函数引用了变量i，但它并非立刻执行。等到3个函数都返回时，它们所引用的变量i已经变成了4，因此最终结果为16&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果一定要引用循环变量怎么办？方法是再创建一个函数，用该函数的参数绑定循环变量当前的值，无论该循环变量后续如何更改，已绑定到函数参数的值不变：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function count() {
+    var arr = []
+    for (var i=1; i&amp;lt;=3; i++) {
+        arr.push((function (n) {
+            return function () {
+                return n * n
+            }
+        })(i))
+    }
+    return arr
+}
+  
+var results = count()
+var f1 = results[0]
+var f2 = results[1]
+var f3 = results[2]
+  
+f1() // 1
+f2() // 4
+f3() // 9
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意这里用了一个“创建一个匿名函数并立刻执行”的语法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(function (x) {
+    return x * x
+})(3) // 9
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -83,6 +253,8 @@ result() // 999
 &lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000000652891&#34;&gt;https://segmentfault.com/a/1190000000652891&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/yunfeifei/p/4019504.html&#34;&gt;https://www.cnblogs.com/yunfeifei/p/4019504.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903910902087688&#34;&gt;https://juejin.cn/post/6844903910902087688&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903841888993287&#34;&gt;https://juejin.cn/post/6844903841888993287&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/qq_21132509/article/details/80694517&#34;&gt;https://blog.csdn.net/qq_21132509/article/details/80694517&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E9%97%AD%E5%8C%85/ - </description>
         </item>
