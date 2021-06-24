@@ -5,9 +5,44 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 24 Jun 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Javascript - 原型链</title>
+        <link>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</link>
+        <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;图示&#34;&gt;图示&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%9B%BE%E7%A4%BA.png&#34; alt=&#34;hugo下载版本&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;原型原型链相等关系理解&#34;&gt;原型、原型链相等关系理解&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;js分为函数对象和普通对象，每个对象都有____proto____属性，但是只有函数对象才有prototype属性&lt;/li&gt;
+&lt;li&gt;____proto____是任何对象的属性，指向该对象的构造函数的原型对象&lt;/li&gt;
+&lt;li&gt;prototype是构造函数的属性，指向属于该构造函数的原型对象&lt;/li&gt;
+&lt;li&gt;属性____proto____是一个对象，它有两个属性，constructor和____proto____&lt;/li&gt;
+&lt;li&gt;原型对象prototype有一个默认的constructor属性，用于记录实例是由哪个构造函数创建&lt;/li&gt;
+&lt;li&gt;Object、Function都是js内置的函数, 类似的还有我们常用到的Array、RegExp、Date、Boolean、Number、String&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903989088092174&#34;&gt;https://juejin.cn/post/6844903989088092174&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/ - </description>
+        </item>
     
     
     

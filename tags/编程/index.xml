@@ -6,10 +6,20 @@
     <description>Recent content in 编程 on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 24 Jun 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Javascript - 原型链</title>
+      <link>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</link>
+      <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</guid>
+      <description>概念   图示     原型、原型链相等关系理解  js分为函数对象和普通对象，每个对象都有____proto____属性，但是只有函数对象才有prototype属性 ____proto____是任何对象的属性，指向该对象的构造函数的原型对象 prototype是构造函数的属性，指向属于该构造函数的原型对象 属性____proto____是一个对象，它有两个属性，constructor和____proto____ 原型对象prototype有一个默认的constructor属性，用于记录实例是由哪个构造函数创建 Object、Function都是js内置的函数, 类似的还有我们常用到的Array、RegExp、Date、Boolean、Number、String    参考资料  https://juejin.cn/post/6844903989088092174
+ </description>
+    </item>
     
     <item>
       <title>Javascript - 闭包</title>
