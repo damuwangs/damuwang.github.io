@@ -12,7 +12,7 @@
     
     
         <item>
-        <title>Javascript - 原型链</title>
+        <title>JavaScript-原型链</title>
         <link>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</link>
         <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
         
@@ -211,7 +211,7 @@ console.log(instance2.color) // 输出：[ &#39;red&#39;, &#39;blue&#39;, &#39;g
     
     
         <item>
-        <title>Javascript-闭包</title>
+        <title>JavaScript-闭包</title>
         <link>https://damuwangs.github.io/posts/javascript-%E9%97%AD%E5%8C%85/</link>
         <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
         
