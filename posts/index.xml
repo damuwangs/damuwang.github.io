@@ -17,12 +17,18 @@
       <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</guid>
-      <description>概念   图示     原型、原型链相等关系理解  js分为函数对象和普通对象，每个对象都有____proto____属性，但是只有函数对象才有prototype属性 ____proto____是任何对象的属性，指向该对象的构造函数的原型对象 prototype是构造函数的属性，指向属于该构造函数的原型对象 属性____proto____是一个对象，它有两个属性，constructor和____proto____ 原型对象prototype有一个默认的constructor属性，用于记录实例是由哪个构造函数创建 Object、Function都是js内置的函数, 类似的还有我们常用到的Array、RegExp、Date、Boolean、Number、String    参考资料  https://juejin.cn/post/6844903989088092174
- </description>
+      <description>原型   理解原型对象 无论什么时候，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。在默认情况下，所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。
+使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。换句话说不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型对象中
+function Person() {}Person.prototype.name = &#39;Nicholas&#39;Person.prototype.age = 19Person.prototype.sayName = function () {console.log(this.name)}let person1 = new Person()person1.sayName() // 输出：Nicholaslet person2 = new Person()person2.sayName() // 输出：Nicholasconsole.log(person1.sayName == person2.sayName) // 输出：true我们将sayName()方法和所有属性直接添加到Person的prototype属性中，构造函数变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说，person1和person2访问的都是同一组属性和同一个sayName()函数
+创建了自定义构造函数之后，其原型对象默认只会取得constructor属性，至于其它方法，则都是从Object继承而来。当调用构造函数创建一个新实例后，该实例内部将包含一个指针（内部属性）____proto____指向构造函数的原型对象，需要明确的是，这个连接存在与实例和构造函数的原型之间，而不是存在与实例与构造函数之间
+上图展示了Person构造函数、Person的原型属性以及Person现有两个实例之间的关系。在此，Person.prototype指向了原型对象，而Person.prototype.constructor又指回了Person。原型对象中除了包含constructor属性之外，还包括后来添加的其它属性。Person的每个实例person1和person2都包含一个内部属性____proto____，该属性仅仅指向了Person.prototype，换句话说，它们与构造函数没有直接关系。此外，要格外注意的是，虽然这两个实例都不包含属性和方法，但我们却可以调用person1.sayName。这是通过查找对象属性的过程来实现的
+  原型搜索机制 每当代码读取某个对象的某个属性时，都会执行一次搜索，目标是具有给定名字的属性。搜索首先从对象的实例本身开始。如果在实例中找到了具有给定名字的实现，则返回该属性的值，如果没有找到，则继续搜索指针指向的原型对象，在原型对象中查找给定名字的属性。如果在原型对象中找到了这个属性，则返回该属性的值。也就是说，在我们调用person.sayName()的时候，会先后执行两次搜索。首先，解析器会问：&amp;ldquo;实例person1有sayName属性吗？&amp;ldquo;答：&amp;ldquo;没有。&amp;ldquo;然后，它继续搜索，再问：&amp;ldquo;person1的原型有sayName属性吗？&amp;ldquo;答：&amp;ldquo;有。&amp;ldquo;于是，他就读取那个保存在原型对象中的函数。当我们调用person2.sayName()时，将会重现相同的搜索过程，得到相同的结果。而正是多个对象实例共享原型所保存的属性和方法的基本原理
+  注意事项 虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型的值。如果我们在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性，该属性将会屏蔽原型中的那个属性
+function Person() {}Person.prototype.name = &#39;Nicholas&#39;Person.prototype.age = 19Person.prototype.sayName = function () {console.</description>
     </item>
     
     <item>
-      <title>Javascript - 闭包</title>
+      <title>Javascript-闭包</title>
       <link>https://damuwangs.github.io/posts/javascript-%E9%97%AD%E5%8C%85/</link>
       <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
       
