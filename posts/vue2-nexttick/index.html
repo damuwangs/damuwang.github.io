@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html><head>
-	<meta name="generator" content="Hugo 0.69.2" />
-<title>DaMuWang</title>
+<title>Vue2-nextTick</title>
 
 
-
-  
 
 
 <meta charset="utf-8">
@@ -13,7 +10,7 @@
 <meta name="google-site-verification" content="">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 <meta content="telephone=no" name="format-detection">
-<meta name="description" content="My HomePage Description">
+<meta name="description" content="">
 <meta name="renderer" content="webkit">
 <meta name="theme-color" content="#ffffff">
 
@@ -53,6 +50,10 @@
 
 
 
+  
+    <script src="/js/toc.js"></script>
+  
+
 
 
 
@@ -72,7 +73,7 @@
 <body>
     	<div id="app"><div ref="sideContainer" class="side-container">
     
-    <a class="a-block nav-head active" href="https://damuwangs.github.io">
+    <a class="a-block nav-head false" href="https://damuwangs.github.io">
     
         <div class="nav-title">
             DaMuWang
@@ -90,9 +91,11 @@
             
             
             
+                
             
             
-            <a class="a-block nav-link-item false" href="/posts">
+            
+            <a class="a-block nav-link-item active" href="/posts">
                 博客
             </a>
             
@@ -138,6 +141,142 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </div><div ref="extraContainer" class="extra-container">
     
     
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%bc%82%e6%ad%a5%e8%a7%a3%e6%9e%90" onclick="onNavClick(`#异步解析-nav`)" id="异步解析-nav">
+									异步解析
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8b%e4%bb%b6%e5%be%aa%e7%8e%af%e8%af%b4%e6%98%8e" onclick="onNavClick(`#事件循环说明-nav`)" id="事件循环说明-nav">
+									事件循环说明
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" onclick="onNavClick(`#应用场景-nav`)" id="应用场景-nav">
+									应用场景
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%80%9a%e8%bf%87%e4%b8%80%e4%b8%aa%e5%ae%9e%e4%be%8b%e7%90%86%e8%a7%a3nexttick" onclick="onNavClick(`#通过一个实例理解nexttick-nav`)" id="通过一个实例理解nexttick-nav">
+									通过一个实例理解nextTick
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -155,8 +294,6 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
         </a>
         
         
-        
-        
     </div>
 </div>
 <div class="single-column-drawer-container" ref="drawer"
@@ -169,9 +306,11 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 
                 
+                    
                 
                 
-                <a class="a-block drawer-menu-item false" href="/posts">
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
                     博客
                 </a>
                 
@@ -196,6 +335,142 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 </a>
                 
             
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%bc%82%e6%ad%a5%e8%a7%a3%e6%9e%90" onclick="onNavClick(`#异步解析-nav`)" id="异步解析-nav">
+									异步解析
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8b%e4%bb%b6%e5%be%aa%e7%8e%af%e8%af%b4%e6%98%8e" onclick="onNavClick(`#事件循环说明-nav`)" id="事件循环说明-nav">
+									事件循环说明
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" onclick="onNavClick(`#应用场景-nav`)" id="应用场景-nav">
+									应用场景
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%80%9a%e8%bf%87%e4%b8%80%e4%b8%aa%e5%ae%9e%e4%be%8b%e7%90%86%e8%a7%a3nexttick" onclick="onNavClick(`#通过一个实例理解nexttick-nav`)" id="通过一个实例理解nexttick-nav">
+									通过一个实例理解nextTick
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
             
         </div>
     </div>
@@ -238,158 +513,329 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </div>
 
             <div id="content">
-
 <div ref="streamContainer" class="stream-container">
-    <div class="post-list-container post-list-container-no-background">
-        
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
             
-            <a href="https://damuwangs.github.io/posts/vue2-nexttick/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Vue2-nextTick
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-28
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            
+            
 
-                        </div>
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Vue2-nextTick
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-06-28
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B">编程</a>
+                                &nbsp;
+                            
                         
                         
                     </div>
                 </div>
+            </div>
             
-        
-            
-            <a href="https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                JavaScript-原型链
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-24
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="概念">概念</h1>
+<blockquote>
+<p>官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM</p>
+</blockquote>
+<h2 id="异步解析">异步解析</h2>
+<blockquote>
+<p>Vue 实现响应式并不是数据发生变化之后 DOM 立即变化，而是按一定的策略进行 DOM 的更新</p>
+</blockquote>
+<p>​	简而言之，异步接信息的运行机制如下</p>
+<ol>
+<li>所有同步任务都在主线程上执行，形成一个<a href="https://www.ruanyifeng.com/blog/2013/11/stack.html">执行栈</a>（execution context stack）</li>
+<li>主线程之外，还存在一个&quot;任务队列&rdquo;（task queue）。只要异步任务有了运行结果，就在&quot;任务队列&quot;之中放置一个事件</li>
+<li>一旦&quot;执行栈&quot;中的所有同步任务执行完毕，系统就会读取&quot;任务队列&rdquo;，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行</li>
+<li>主线程不断重复上面的第三步</li>
+</ol>
+<h2 id="事件循环说明">事件循环说明</h2>
+<p>简单来说，Vue 在修改数据后，视图不会立刻更新，而是等<strong>同一事件循环</strong>中的所有数据变化完成之后，再统一进行视图更新</p>
+<pre><code>//改变数据
+vm.message = 'changed'
 
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            
-        
-            
-            <a href="https://damuwangs.github.io/posts/javascript-%E9%97%AD%E5%8C%85/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                JavaScript-闭包
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-21
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+//想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新
+console.log(vm.$el.textContent) // 并不会得到'changed'
 
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            
-        
-            
-            <a href="https://damuwangs.github.io/posts/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                面试总结
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-16
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+//这样可以，nextTick里面的代码会在DOM更新后执行
+Vue.nextTick(function(){
+    console.log(vm.$el.textContent) // 可以得到'changed'
+})
+</code></pre><p><img src="/img/Vue2-nextTick/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF.png" alt=""></p>
+<ol>
+<li>
+<p>本次更新循环</p>
+<ul>
+<li>首先修改数据，这是同步任务。同一事件循环的所有同步任务都在主线程上执行，形成一个执行栈，此时还未设计DOM</li>
+<li>Vue开启一个异步队列，并缓冲再次事件循环中发生的所有数据改变。如果同一个watcher被多次执行，只会被推入到队列中一次</li>
+</ul>
+</li>
+<li>
+<p>下次更新循环</p>
+<ul>
+<li>同步任务执行完毕，开始执行异步watcher队列的任务，更新DOM。Vue在内部尝试对异步队列使用原生的Promise.then和messageChannel方法，如果执行环境不支持，会采用setTimeOut(fn,0)代替</li>
+</ul>
+</li>
+<li>
+<p>下次更新循环结束之后</p>
+<p>此时通过Vue.nextTick获取到改变后的DOM。通过setTimeOut(fn,0)也可以同样获取到</p>
+</li>
+</ol>
+<p>简单总结事件循环：</p>
+<ul>
+<li>同步代码执行</li>
+<li>查找异步队列，推入执行栈，执行Vue.nextTick[事件1]</li>
+<li>查找异步队列，推入执行栈，执行Vue.nextTick[事件2]</li>
+</ul>
+<p>总之，异步是单独的一个tick，不会和同步在同一个tick里发生，也是DOM不会马上改变的原有</p>
+<h1 id="应用场景">应用场景</h1>
+<ol>
+<li>在 created 和 mounted 阶段，如果需要操作渲染后的试图，也要使用 nextTick 方法。</li>
+</ol>
+<blockquote>
+<p>官方文档说明：注意 mounted 不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用 vm.$nextTick 替换掉 mounted</p>
+</blockquote>
+<pre><code>created(){
+    let that=this
+    that.$nextTick(
+    	function(){  
+    		//不使用this.$nextTick()方法会报错
+        	that.$refs.aa.innerHTML = &quot;created中更改了按钮内容&quot; // 写入到DOM元素
+        }
+    })
+}
+</code></pre><ol start="2">
+<li>当项目中你想在改变 DOM 元素的数据后基于新的 dom 做点什么，对新 DOM 一系列的 js 操作都需要放进 Vue.nextTick()的回调函数中；通俗的理解是：更改数据后当你想立即使用 js 操作新的视图的时候需要使用它</li>
+</ol>
+<pre><code>&lt;template&gt;
+    &lt;div class=&quot;app&quot;&gt;
+    	&lt;div ref=&quot;msgDiv&quot;&gt;{{msg}}&lt;/div&gt;
+      	&lt;div v-if=&quot;msg1&quot;&gt;Message got outside $nextTick: {{msg1}}&lt;/div&gt;
+      	&lt;div v-if=&quot;msg2&quot;&gt;Message got inside $nextTick: {{msg2}}&lt;/div&gt;
+      	&lt;div v-if=&quot;msg3&quot;&gt;Message got outside $nextTick: {{msg3}}&lt;/div&gt;
+      	&lt;button @click=&quot;changeMsg&quot;&gt;Change the Message&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+ 
+&lt;script&gt;
+export default {
+  	data () {
+    	return {
+      		msg: 'Hello Vue.',
+    		msg1: '',
+    		msg2: '',
+    		msg3: ''
+    	}
+  	},
+  	methods:{
+        changeMsg() {
+        	this.msg = &quot;Hello world.&quot;
+        	this.msg1 = this.$refs.msgDiv.innerHTML
+    		this.$nextTick(() =&gt; {
+				this.msg2 = this.$refs.msgDiv.innerHTML
+			})
+			this.msg3 = this.$refs.msgDiv.innerHTML
+    	}
+    }
+</code></pre><p>点击前</p>
+<p><img src="/img/Vue2-nextTick/%E7%82%B9%E5%87%BB%E5%89%8D.png" alt=""></p>
+<p>点击后</p>
+<p><img src="/img/Vue2-nextTick/%E7%82%B9%E5%87%BB%E5%90%8E.png" alt=""></p>
+<p>从图中可以得知：msg1和msg3显示的内容还是变换之前的，而msg2显示的内容是变换之后的</p>
+<h1 id="通过一个实例理解nexttick">通过一个实例理解nextTick</h1>
+<pre><code>&lt;template&gt;
+    &lt;div class=&quot;content&quot;&gt;
+        &lt;ul&gt;
+            &lt;li v-for=&quot;item in list1&quot; :key=&quot;item&quot;&gt;{{item}}&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;ul&gt;
+            &lt;li v-for=&quot;item in list2&quot; :key=&quot;item&quot;&gt;{{item}}&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;ol&gt;
+            &lt;li v-for=&quot;item in list3&quot; :key=&quot;item&quot;&gt;{{item}}&lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;ol&gt;
+            &lt;li v-for=&quot;item in list4&quot; :key=&quot;item&quot;&gt;{{item}}&lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;ol&gt;
+            &lt;li v-for=&quot;item in list5&quot; :key=&quot;item&quot;&gt;{{item}}&lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
 
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            
-        
-            
-            <a href="https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                GitHub Pages&#43;Hugo构建个人博客
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-15
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+&lt;script&gt;
+import {dateFormat} from '@/components/JS方法库/util/common.js'
+export default {
+  data () {
+        return {
+            list1: [],
+            list2: [],
+            list3: [],
+            list4: [],
+            list5: []
+        }
+    },
+    created(){
+        this.composeList12()
+        this.composeList34()
+        this.composeList5()
+        this.$nextTick(function() {
+            // DOM 更新了
+            console.log('[7]同步视图更新 - ' + dateFormat(new Date() ,'yyyy-MM-dd hh:mm:ss'),document.querySelectorAll('li').length)
+            console.log('——————————同步视图更新完成——————————')
+        })
+    },
+ 
+    methods: {
+        composeList12() {
+            for (let i = 0; i &lt; 10000; i++) {
+                this.$set(this.list1, i, 'I am a 测试信息～～啦啦啦' + i)
+            }
+            console.log('——————————开始更新同步数据——————————')
+            console.log('[1]同步数据更新 - ' + dateFormat(new Date() ,'yyyy-MM-dd hh:mm:ss'),document.querySelectorAll('li').length)
 
-                        </div>
-                        
-                        
-                    </div>
+            for (let i = 0; i &lt; 10000; i++) {
+                this.$set(this.list2, i, 'I am a 测试信息～～啦啦啦' + i)
+            }
+            console.log('[2]同步数据更新 - ' + dateFormat(new Date() ,'yyyy-MM-dd hh:mm:ss'),document.querySelectorAll('li').length)
+
+            this.$nextTick(function() {
+                // DOM 更新了
+                console.log('[1][2]同步视图更新 - ' + dateFormat(new Date() ,'yyyy-MM-dd hh:mm:ss'),document.querySelectorAll('li').length)
+            })
+        },
+        composeList34() {
+            for (let i = 0; i &lt; 10000; i++) {
+                this.$set(this.list3, i, 'I am a 测试信息～～啦啦啦' + i)
+            }
+            console.log('[3]同步数据更新 - ' + dateFormat(new Date() ,'yyyy-MM-dd hh:mm:ss'),document.querySelectorAll('li').length)
+
+            this.$nextTick(function() {
+                // DOM 更新了
+                console.log('[3]同步视图更新 - ' + dateFormat(new Date() ,'yyyy-MM-dd hh:mm:ss'),document.querySelectorAll('li').length)
+            })
+
+            setTimeout(this.setTimeout1, 0)
+        },
+        setTimeout1() {
+            for (let i = 0; i &lt; 10000; i++) {
+                this.$set(this.list4, i, 'I am a 测试信息～～啦啦啦' + i)
+            }
+            console.log('——————————开始更新异步数据——————————')
+            console.log('[4]异步数据更新 - ' + dateFormat(new Date() ,'yyyy-MM-dd hh:mm:ss'),document.querySelectorAll('li').length)
+
+            this.$nextTick(function() {
+                // DOM 更新了
+                console.log('[4]异步视图更新 - ' + dateFormat(new Date() ,'yyyy-MM-dd hh:mm:ss'),document.querySelectorAll('li').length)
+            })
+        },
+        composeList5() {
+            this.$nextTick(function() {
+                // DOM 更新了
+                console.log('[5]同步视图更新 - ' + dateFormat(new Date() ,'yyyy-MM-dd hh:mm:ss'),document.querySelectorAll('li').length)
+            })
+
+            setTimeout(this.setTimeout2, 0)
+        },
+        setTimeout2() {
+            for (let i = 0; i &lt; 10000; i++) {
+                this.$set(this.list5, i, 'I am a 测试信息～～啦啦啦' + i)
+            }
+            console.log('[6]异步数据更新 - ' + dateFormat(new Date() ,'yyyy-MM-dd hh:mm:ss'),document.querySelectorAll('li').length)
+
+            this.$nextTick(function() {
+                // DOM 更新了
+                console.log('[6]异步视图更新 - ' + dateFormat(new Date() ,'yyyy-MM-dd hh:mm:ss'),document.querySelectorAll('li').length)
+                console.log('——————————异步视图更新完成——————————')
+            })
+        },
+    }
+}
+&lt;/script&gt;
+</code></pre><p>运行结果如下：</p>
+<p><img src="/img/Vue2-nextTick/%E5%AE%9E%E4%BE%8B.png" alt=""></p>
+<ul>
+<li>
+<p>通过list1、2、3验证，处在同步代码中的DOM更新情况及nextTick的触发时机</p>
+</li>
+<li>
+<p>通过list3、list4验证，同步代码及异步代码中Dom更新及nextTick触发的区别</p>
+</li>
+<li>
+<p>list4、list5对比验证，多个异步代码中nextTick触发的区别</p>
+</li>
+<li>
+<p>通过在视图更新后获取DOM中<!-- raw HTML omitted -->的数量，判断nextTick序列渲染的时间点</p>
+</li>
+</ul>
+<h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="https://segmentfault.com/a/1190000012861862">https://segmentfault.com/a/1190000012861862</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html">http://www.ruanyifeng.com/blog/2014/10/event-loop.html</a></p>
+<p><a href="https://segmentfault.com/a/1190000017204460">https://segmentfault.com/a/1190000017204460</a></p>
+</blockquote>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-06-28</p>
+                    
                 </div>
+            </div>
             
-        
-        </a>
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+			Previous<br>JavaScript-原型链
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
     </div>
 </div>
 
-            </div>
-
-
-<div id="single-column-footer">
+            </div><div id="single-column-footer">
 Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
 <br>
 Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
@@ -656,6 +1102,9 @@ app = new Vue({
             elem.classList.add("table-hover");
         })
 
+        
+        spy();
+        window.addEventListener('scroll', this.debounce(spy, 250, { 'maxWait': 250 }), false);
         
         
     },
