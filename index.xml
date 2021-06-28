@@ -254,9 +254,9 @@ export default {
 &lt;/ul&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000012861862&#34;&gt;https://segmentfault.com/a/1190000012861862&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2014/10/event-loop.html&#34;&gt;http://www.ruanyifeng.com/blog/2014/10/event-loop.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000017204460&#34;&gt;https://segmentfault.com/a/1190000017204460&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000012861862&#34;&gt;Vue.nextTick 的原理和用途&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2014/10/event-loop.html&#34;&gt;JavaScript 运行机制详解：再谈Event Loop&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000017204460&#34;&gt;浏览器进程线程、Web Workers、Event Loop 图解&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/vue2-nexttick/ - </description>
         </item>
@@ -700,12 +700,12 @@ f3() // 9
 &lt;/ul&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html&#34;&gt;http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000000652891&#34;&gt;https://segmentfault.com/a/1190000000652891&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/yunfeifei/p/4019504.html&#34;&gt;https://www.cnblogs.com/yunfeifei/p/4019504.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903910902087688&#34;&gt;https://juejin.cn/post/6844903910902087688&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903841888993287&#34;&gt;https://juejin.cn/post/6844903841888993287&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/qq_21132509/article/details/80694517&#34;&gt;https://blog.csdn.net/qq_21132509/article/details/80694517&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html&#34;&gt;学习Javascript闭包（Closure）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000000652891&#34;&gt;详解JS闭包&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/yunfeifei/p/4019504.html&#34;&gt;全面理解Javascript闭包和闭包的几种写法及用途&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903910902087688&#34;&gt;javascript之闭包七（闭包的应用场景）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903841888993287&#34;&gt;闭包与setTimeout&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/qq_21132509/article/details/80694517&#34;&gt;对JS闭包的理解及常见应用场景&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/javascript-%E9%97%AD%E5%8C%85/ - </description>
         </item>
