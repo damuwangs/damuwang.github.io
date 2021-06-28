@@ -92,7 +92,7 @@ Vue.nextTick(function(){
 &lt;/ol&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
     &amp;lt;div class=&amp;quot;app&amp;quot;&amp;gt;
-    	&amp;lt;div ref=&amp;quot;msgDiv&amp;quot;&amp;gt;{{msg}}&amp;lt;/div&amp;gt;
+        &amp;lt;div ref=&amp;quot;msgDiv&amp;quot;&amp;gt;{{msg}}&amp;lt;/div&amp;gt;
       	&amp;lt;div v-if=&amp;quot;msg1&amp;quot;&amp;gt;Message got outside $nextTick: {{msg1}}&amp;lt;/div&amp;gt;
       	&amp;lt;div v-if=&amp;quot;msg2&amp;quot;&amp;gt;Message got inside $nextTick: {{msg2}}&amp;lt;/div&amp;gt;
       	&amp;lt;div v-if=&amp;quot;msg3&amp;quot;&amp;gt;Message got outside $nextTick: {{msg3}}&amp;lt;/div&amp;gt;
@@ -102,24 +102,25 @@ Vue.nextTick(function(){
  
 &amp;lt;script&amp;gt;
 export default {
-  	data () {
-    	return {
-      		msg: &#39;Hello Vue.&#39;,
-    		msg1: &#39;&#39;,
-    		msg2: &#39;&#39;,
-    		msg3: &#39;&#39;
-    	}
-  	},
-  	methods:{
+    data () {
+        return {
+            msg: &#39;Hello Vue.&#39;,
+            msg1: &#39;&#39;,
+            msg2: &#39;&#39;,
+            msg3: &#39;&#39;
+        }
+    },
+    methods:{
         changeMsg() {
-        	this.msg = &amp;quot;Hello world.&amp;quot;
-        	this.msg1 = this.$refs.msgDiv.innerHTML
-    		this.$nextTick(() =&amp;gt; {
-				this.msg2 = this.$refs.msgDiv.innerHTML
-			})
-			this.msg3 = this.$refs.msgDiv.innerHTML
-    	}
+            this.msg = &amp;quot;Hello world.&amp;quot;
+            this.msg1 = this.$refs.msgDiv.innerHTML
+            this.$nextTick(() =&amp;gt; {
+                this.msg2 = this.$refs.msgDiv.innerHTML
+            })
+            this.msg3 = this.$refs.msgDiv.innerHTML
+        }
     }
+}    
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;点击前&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue2-nextTick/%E7%82%B9%E5%87%BB%E5%89%8D.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;点击后&lt;/p&gt;
@@ -132,7 +133,7 @@ export default {
             &amp;lt;li v-for=&amp;quot;item in list1&amp;quot; :key=&amp;quot;item&amp;quot;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
         &amp;lt;/ul&amp;gt;
         &amp;lt;ul&amp;gt;
-            &amp;lt;li v-for=&amp;quot;item in list2&amp;quot; :key=&amp;quot;item&amp;quot;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
+       	    &amp;lt;li v-for=&amp;quot;item in list2&amp;quot; :key=&amp;quot;item&amp;quot;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
         &amp;lt;/ul&amp;gt;
         &amp;lt;ol&amp;gt;
             &amp;lt;li v-for=&amp;quot;item in list3&amp;quot; :key=&amp;quot;item&amp;quot;&amp;gt;{{item}}&amp;lt;/li&amp;gt;

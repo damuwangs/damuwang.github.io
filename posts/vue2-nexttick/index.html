@@ -630,7 +630,7 @@ Vue.nextTick(function(){
 </ol>
 <pre><code>&lt;template&gt;
     &lt;div class=&quot;app&quot;&gt;
-    	&lt;div ref=&quot;msgDiv&quot;&gt;{{msg}}&lt;/div&gt;
+        &lt;div ref=&quot;msgDiv&quot;&gt;{{msg}}&lt;/div&gt;
       	&lt;div v-if=&quot;msg1&quot;&gt;Message got outside $nextTick: {{msg1}}&lt;/div&gt;
       	&lt;div v-if=&quot;msg2&quot;&gt;Message got inside $nextTick: {{msg2}}&lt;/div&gt;
       	&lt;div v-if=&quot;msg3&quot;&gt;Message got outside $nextTick: {{msg3}}&lt;/div&gt;
@@ -640,24 +640,25 @@ Vue.nextTick(function(){
  
 &lt;script&gt;
 export default {
-  	data () {
-    	return {
-      		msg: 'Hello Vue.',
-    		msg1: '',
-    		msg2: '',
-    		msg3: ''
-    	}
-  	},
-  	methods:{
+    data () {
+        return {
+            msg: 'Hello Vue.',
+            msg1: '',
+            msg2: '',
+            msg3: ''
+        }
+    },
+    methods:{
         changeMsg() {
-        	this.msg = &quot;Hello world.&quot;
-        	this.msg1 = this.$refs.msgDiv.innerHTML
-    		this.$nextTick(() =&gt; {
-				this.msg2 = this.$refs.msgDiv.innerHTML
-			})
-			this.msg3 = this.$refs.msgDiv.innerHTML
-    	}
+            this.msg = &quot;Hello world.&quot;
+            this.msg1 = this.$refs.msgDiv.innerHTML
+            this.$nextTick(() =&gt; {
+                this.msg2 = this.$refs.msgDiv.innerHTML
+            })
+            this.msg3 = this.$refs.msgDiv.innerHTML
+        }
     }
+}    
 </code></pre><p>点击前</p>
 <p><img src="/img/Vue2-nextTick/%E7%82%B9%E5%87%BB%E5%89%8D.png" alt=""></p>
 <p>点击后</p>
@@ -670,7 +671,7 @@ export default {
             &lt;li v-for=&quot;item in list1&quot; :key=&quot;item&quot;&gt;{{item}}&lt;/li&gt;
         &lt;/ul&gt;
         &lt;ul&gt;
-            &lt;li v-for=&quot;item in list2&quot; :key=&quot;item&quot;&gt;{{item}}&lt;/li&gt;
+       	    &lt;li v-for=&quot;item in list2&quot; :key=&quot;item&quot;&gt;{{item}}&lt;/li&gt;
         &lt;/ul&gt;
         &lt;ol&gt;
             &lt;li v-for=&quot;item in list3&quot; :key=&quot;item&quot;&gt;{{item}}&lt;/li&gt;
