@@ -6,10 +6,26 @@
     <description>Recent content in 编程 on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Jul 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue3-组合式API</title>
+      <link>https://damuwangs.github.io/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/</link>
+      <pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/</guid>
+      <description>概念  通过创建 Vue 组件，我们可以将界面中重复的部分连同其功能一起提取为可重用的代码段。仅此一项就可以使我们的应用在可维护性和灵活性方面走得相当远。然而随着项目的扩大，功能越来越复杂，定义的数据以及对其数据的操作被放在不同的地方，如methods，watch，碎片化使得理解和维护复杂组件变得困难。选项的分离掩盖了潜在的逻辑问题。此外，在处理单个逻辑关注点时，我们必须不断地“跳转”相关代码的选项块，于是出现了组合式api
+ 组合式api主要解决的问题就是单业务逻辑代码单文件处理，将一个巨大无比的组件分成无数小的文件模块每个模块只处理很少的业务，通过定义setUp选项，将单逻辑的变量、生命周期以及方法独立成JS，再通过export的方式将需要使用的暴漏出来。Vue3提供的响应式API基本上可以保证我们在JS中实现响应式变量、父子组件传值、生命周期等所有操作，这是其它方式所不具备的
+为什么要使用组合式 API   组件化的缺点 使用 (data、computed、methods、watch) 组件选项来组织逻辑通常都很有效。然而，当我们的组件开始变得更大时，逻辑关注点的列表也会增长。尤其对于那些一开始没有编写这些组件的人来说，这会导致组件难以阅读和理解
+这种碎片化使得理解和维护复杂组件变得困难。选项的分离掩盖了潜在的逻辑问题。此外，在处理单个逻辑关注点时，我们必须不断地“跳转”相关代码的选项块
+  提取公共JS方式的缺点 因为无法获取vue对象，只能编写非业务代码，例如工具方法
+  插槽的缺点  配置最终出现在模板中，理想情况下，模板应仅包含我们要呈现的内容 公开的属性仅在模板中可用    mixin方式的缺点 mixin的解决方案是将vue页面的js部分提取成公共的以供多个相似模块的共用。这种方式的缺点主要由以下几点
+ 如methods,components等，选项会被合并，键冲突的组件会覆盖混入对象的，比如混入对象里有个方法A，组件里也有方法A，这时候在组件里调用的话，执行的是组件里的A方法 不可知，不易维护因为你可以在mixins里几乎可以加任何代码，props、data、methods、各种东西，就导致如果不了解mixins封装的代码的话，是很难维护的    样例 说明 实现了一个简单的列表功能，包括：列表展示、查看更多、关键字搜索
+   文件名称 功能描述     app.vue 主页，引入列表和搜索组件   app.js 主页面逻辑，包含：1、初始化列表2、加载更多（接收子组件事件）3、关键字搜索（接收子组件事件）   panel.vue 列表组件：接收列表数据渲染数据   panel.js 列表组件逻辑：1、加载更多（emit发送事件）   search.vue 搜索组件：点击搜索框切换选中样式，输入关键字刷新列表数据   search.js 搜索组件逻辑：1、点击搜索框样式切换，自动聚集2、搜索值监听(emit发送事件)    代码 app.</description>
+    </item>
     
     <item>
       <title>Vue2-nextTick</title>

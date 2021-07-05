@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html><head>
+<title>Vue3-组合式API</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="https://damuwangs.github.io/scss/journal.min.4dabc90cf94657415a747e8400223bb3c4d11654d1279feff37fd6a11089fe77.css" integrity="sha256-TavJDPlGV0FadH6EACI7s8TRFlTRJ5/v83/WoRCJ/nc=" media="screen">
+
+
+
+<link rel="stylesheet" href="https://damuwangs.github.io/scss/dark-mode.min.83b57d3d51352700a502fbe45536227cf28ce7e56fedacaf14b7fe499db0f186.css" integrity="sha256-g7V9PVE1JwClAvvkVTYifPKM5&#43;Vv7ayvFLf&#43;SZ2w8YY=" media="screen">
+
+
+<script src="/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Fira+Mono|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="/js/toc.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://damuwangs.github.io">
+    
+        <div class="nav-title">
+            DaMuWang
+        </div>
+        
+        <div class="nav-subtitle">
+            damuwang&#39;s blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/posts">
+                博客
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                分类
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags">
+                标签
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2021 DaMuWang
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e4%bd%bf%e7%94%a8%e7%bb%84%e5%90%88%e5%bc%8f-api" onclick="onNavClick(`#为什么要使用组合式-api-nav`)" id="为什么要使用组合式-api-nav">
+									为什么要使用组合式 API
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e7%bb%84%e4%bb%b6%e5%8c%96%e7%9a%84%e7%bc%ba%e7%82%b9" onclick="onNavClick(`#组件化的缺点-nav`)" id="组件化的缺点-nav">
+									组件化的缺点
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%8f%90%e5%8f%96%e5%85%ac%e5%85%b1js%e6%96%b9%e5%bc%8f%e7%9a%84%e7%bc%ba%e7%82%b9" onclick="onNavClick(`#提取公共js方式的缺点-nav`)" id="提取公共js方式的缺点-nav">
+									提取公共JS方式的缺点
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%8f%92%e6%a7%bd%e7%9a%84%e7%bc%ba%e7%82%b9" onclick="onNavClick(`#插槽的缺点-nav`)" id="插槽的缺点-nav">
+									插槽的缺点
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#mixin%e6%96%b9%e5%bc%8f%e7%9a%84%e7%bc%ba%e7%82%b9" onclick="onNavClick(`#mixin方式的缺点-nav`)" id="mixin方式的缺点-nav">
+									mixin方式的缺点
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%a0%b7%e4%be%8b" onclick="onNavClick(`#样例-nav`)" id="样例-nav">
+									样例
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e8%af%b4%e6%98%8e" onclick="onNavClick(`#说明-nav`)" id="说明-nav">
+									说明
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bb%a3%e7%a0%81" onclick="onNavClick(`#代码-nav`)" id="代码-nav">
+									代码
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#appvue" onclick="onNavClick(`#appvue-nav`)" id="appvue-nav">
+									app.vue
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#appjs" onclick="onNavClick(`#appjs-nav`)" id="appjs-nav">
+									app.js
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#panelvue" onclick="onNavClick(`#panelvue-nav`)" id="panelvue-nav">
+									panel.vue
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#paneljs" onclick="onNavClick(`#paneljs-nav`)" id="paneljs-nav">
+									panel.js
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#searchvue" onclick="onNavClick(`#searchvue-nav`)" id="searchvue-nav">
+									search.vue
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#searchjs" onclick="onNavClick(`#searchjs-nav`)" id="searchjs-nav">
+									search.js
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%93%8d%e5%ba%94%e5%bc%8f" onclick="onNavClick(`#响应式-nav`)" id="响应式-nav">
+									响应式
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#setup" onclick="onNavClick(`#setup-nav`)" id="setup-nav">
+									setup
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ref" onclick="onNavClick(`#ref-nav`)" id="ref-nav">
+									ref
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#torefs" onclick="onNavClick(`#torefs-nav`)" id="torefs-nav">
+									toRefs
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+<div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
+                    博客
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    分类
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags">
+                    标签
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e4%bd%bf%e7%94%a8%e7%bb%84%e5%90%88%e5%bc%8f-api" onclick="onNavClick(`#为什么要使用组合式-api-nav`)" id="为什么要使用组合式-api-nav">
+									为什么要使用组合式 API
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e7%bb%84%e4%bb%b6%e5%8c%96%e7%9a%84%e7%bc%ba%e7%82%b9" onclick="onNavClick(`#组件化的缺点-nav`)" id="组件化的缺点-nav">
+									组件化的缺点
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%8f%90%e5%8f%96%e5%85%ac%e5%85%b1js%e6%96%b9%e5%bc%8f%e7%9a%84%e7%bc%ba%e7%82%b9" onclick="onNavClick(`#提取公共js方式的缺点-nav`)" id="提取公共js方式的缺点-nav">
+									提取公共JS方式的缺点
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%8f%92%e6%a7%bd%e7%9a%84%e7%bc%ba%e7%82%b9" onclick="onNavClick(`#插槽的缺点-nav`)" id="插槽的缺点-nav">
+									插槽的缺点
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#mixin%e6%96%b9%e5%bc%8f%e7%9a%84%e7%bc%ba%e7%82%b9" onclick="onNavClick(`#mixin方式的缺点-nav`)" id="mixin方式的缺点-nav">
+									mixin方式的缺点
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%a0%b7%e4%be%8b" onclick="onNavClick(`#样例-nav`)" id="样例-nav">
+									样例
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e8%af%b4%e6%98%8e" onclick="onNavClick(`#说明-nav`)" id="说明-nav">
+									说明
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bb%a3%e7%a0%81" onclick="onNavClick(`#代码-nav`)" id="代码-nav">
+									代码
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#appvue" onclick="onNavClick(`#appvue-nav`)" id="appvue-nav">
+									app.vue
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#appjs" onclick="onNavClick(`#appjs-nav`)" id="appjs-nav">
+									app.js
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#panelvue" onclick="onNavClick(`#panelvue-nav`)" id="panelvue-nav">
+									panel.vue
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#paneljs" onclick="onNavClick(`#paneljs-nav`)" id="paneljs-nav">
+									panel.js
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#searchvue" onclick="onNavClick(`#searchvue-nav`)" id="searchvue-nav">
+									search.vue
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#searchjs" onclick="onNavClick(`#searchjs-nav`)" id="searchjs-nav">
+									search.js
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%93%8d%e5%ba%94%e5%bc%8f" onclick="onNavClick(`#响应式-nav`)" id="响应式-nav">
+									响应式
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#setup" onclick="onNavClick(`#setup-nav`)" id="setup-nav">
+									setup
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ref" onclick="onNavClick(`#ref-nav`)" id="ref-nav">
+									ref
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#torefs" onclick="onNavClick(`#torefs-nav`)" id="torefs-nav">
+									toRefs
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://damuwangs.github.io">
+            DaMuWang
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://damuwangs.github.io">
+        <div class="single-column-header-title">DaMuWang</div>
+        
+        <div class="single-column-header-subtitle">damuwang&#39;s blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Vue3-组合式API
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-07-05
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B">编程</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="概念">概念</h1>
+<blockquote>
+<p>通过创建 Vue 组件，我们可以将界面中重复的部分连同其功能一起提取为可重用的代码段。仅此一项就可以使我们的应用在可维护性和灵活性方面走得相当远。然而随着项目的扩大，功能越来越复杂，定义的数据以及对其数据的操作被放在不同的地方，如methods，watch，碎片化使得理解和维护复杂组件变得困难。选项的分离掩盖了潜在的逻辑问题。此外，在处理单个逻辑关注点时，我们必须不断地“跳转”相关代码的选项块，于是出现了组合式api</p>
+</blockquote>
+<p>组合式api主要解决的问题就是单业务逻辑代码单文件处理，将一个巨大无比的组件分成无数小的文件模块每个模块只处理很少的业务，通过定义setUp选项，将单逻辑的变量、生命周期以及方法独立成JS，再通过export的方式将需要使用的暴漏出来。Vue3提供的响应式API基本上可以保证我们在JS中实现响应式变量、父子组件传值、生命周期等所有操作，这是其它方式所不具备的</p>
+<h1 id="为什么要使用组合式-api">为什么要使用组合式 API</h1>
+<ol>
+<li>
+<h2 id="组件化的缺点">组件化的缺点</h2>
+<p>使用 (<code>data</code>、<code>computed</code>、<code>methods</code>、<code>watch</code>) 组件选项来组织逻辑通常都很有效。然而，当我们的组件开始变得更大时，逻辑关注点的列表也会增长。尤其对于那些一开始没有编写这些组件的人来说，这会导致组件难以阅读和理解</p>
+<p>这种碎片化使得理解和维护复杂组件变得困难。选项的分离掩盖了潜在的逻辑问题。此外，在处理单个逻辑关注点时，我们必须不断地“跳转”相关代码的选项块</p>
+</li>
+<li>
+<h2 id="提取公共js方式的缺点">提取公共JS方式的缺点</h2>
+<p>因为无法获取vue对象，只能编写非业务代码，例如工具方法</p>
+</li>
+<li>
+<h2 id="插槽的缺点">插槽的缺点</h2>
+<ul>
+<li>配置最终出现在模板中，理想情况下，模板应仅包含我们要呈现的内容</li>
+<li>公开的属性仅在模板中可用</li>
+</ul>
+</li>
+<li>
+<h2 id="mixin方式的缺点">mixin方式的缺点</h2>
+<p>mixin的解决方案是将vue页面的js部分提取成公共的以供多个相似模块的共用。这种方式的缺点主要由以下几点</p>
+<ul>
+<li>如methods,components等，选项会被合并，键冲突的组件会覆盖混入对象的，比如混入对象里有个方法A，组件里也有方法A，这时候在组件里调用的话，执行的是组件里的A方法</li>
+<li>不可知，不易维护因为你可以在mixins里几乎可以加任何代码，props、data、methods、各种东西，就导致如果不了解mixins封装的代码的话，是很难维护的</li>
+</ul>
+</li>
+</ol>
+<h1 id="样例">样例</h1>
+<h2 id="说明">说明</h2>
+<p>实现了一个简单的列表功能，包括：列表展示、查看更多、关键字搜索</p>
+<table>
+<thead>
+<tr>
+<th>文件名称</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.vue</td>
+<td>主页，引入列表和搜索组件</td>
+</tr>
+<tr>
+<td>app.js</td>
+<td>主页面逻辑，包含：1、初始化列表2、加载更多（接收子组件事件）3、关键字搜索（接收子组件事件）</td>
+</tr>
+<tr>
+<td>panel.vue</td>
+<td>列表组件：接收列表数据渲染数据</td>
+</tr>
+<tr>
+<td>panel.js</td>
+<td>列表组件逻辑：1、加载更多（emit发送事件）</td>
+</tr>
+<tr>
+<td>search.vue</td>
+<td>搜索组件：点击搜索框切换选中样式，输入关键字刷新列表数据</td>
+</tr>
+<tr>
+<td>search.js</td>
+<td>搜索组件逻辑：1、点击搜索框样式切换，自动聚集2、搜索值监听(emit发送事件)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="代码">代码</h2>
+<h3 id="appvue">app.vue</h3>
+<pre><code>&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;    
+    &lt;Search @search=&quot;search&quot;/&gt;
+    &lt;Panel :listData='listData' @loadMore=&quot;loadMore&quot;/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import app from &quot;./app.js&quot;;
+import Search from &quot;./components/Search.vue&quot;;
+import Panel from &quot;./components/Panel.vue&quot;;
+export default {
+  name: &quot;app&quot;,
+  components: {
+    Search,
+    Panel
+  },   
+  setup(props, context){
+    const {search, loadMore, listData} = app(props, context)
+    return {
+      search,
+      loadMore,
+      listData
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre><h3 id="appjs">app.js</h3>
+<pre><code>import { ref} from &quot;@vue/composition-api&quot;;
+export default function app(props, context) {
+  let listData = ref([]) // 定义响应式变量,切记下方赋值/取值时修改的是.value属性！
+  // 初始化列表
+  const loadData = () =&gt; {      
+    return [{title:'标题一', author: '作者一'},{title:'标题二', author: '作者二'},{title:'标题三', author: '作者三'},{title:'标题四', author: '作者四'},{title:'标题五', author: '作者五'}]
+  }
+  // 加载更多
+  const loadMore = () =&gt; {   
+    listData.value = [...listData.value, ...[{title:'标题X', author: '作者X'}]]
+  }
+  // 搜索
+  const search = (searchVal) =&gt; {
+    if (searchVal) {
+      listData.value = listData.value.filter(item =&gt; {
+        if (item.title.indexOf(searchVal) &gt;= 0) {
+          return item
+        } 
+      })         
+    } else {
+      listData.value = loadData()
+    }
+  }
+  return {
+    listData,
+    loadMore,
+    search
+  }
+}
+</code></pre><h3 id="panelvue">panel.vue</h3>
+<pre><code>&lt;template&gt;
+  &lt;div class=&quot;weui-panel weui-panel_access&quot;&gt;
+    &lt;div v-for=&quot;(n,index) in listData&quot; :key=&quot;index&quot; class=&quot;weui-panel__bd&quot;&gt;
+      &lt;a href=&quot;javascript:void(0);&quot; class=&quot;weui-media-box weui-media-box_appmsg&quot;&gt;
+        &lt;div class=&quot;weui-media-box__bd&quot;&gt;
+          &lt;h4 class=&quot;weui-media-box__title&quot; v-text=&quot;n.title&quot;&gt;&lt;/h4&gt;
+          &lt;p class=&quot;weui-media-box__desc&quot; v-text=&quot;n.author&quot;&gt;&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div @click=&quot;loadMore&quot; class=&quot;weui-panel__ft&quot;&gt;
+      &lt;a href=&quot;javascript:void(0);&quot; class=&quot;weui-cell weui-cell_access weui-cell_link&quot;&gt;
+        &lt;div class=&quot;weui-cell__bd&quot;&gt;查看更多&lt;/div&gt;
+        &lt;span class=&quot;weui-cell__ft&quot;&gt;&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import { reactive, toRefs} from &quot;@vue/composition-api&quot;;
+import pane from &quot;./pane.js&quot;;
+export default {
+  props:['listData'],
+  setup(props, context) {
+    const {loadMore} = pane(props, context)
+    const state = reactive({
+    })     
+    return {
+      ...toRefs(state),
+      loadMore
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre><h3 id="paneljs">panel.js</h3>
+<pre><code>export default function pane(props, context) {
+  const loadMore = () =&gt; {
+    context.emit(&quot;loadMore&quot;)
+  }
+  return {
+    loadMore
+  }
+}
+</code></pre><h3 id="searchvue">search.vue</h3>
+<pre><code>&lt;template&gt;
+  &lt;div :class=&quot;['weui-search-bar', {'weui-search-bar_focusing':isFocus}]&quot; id=&quot;searchBar&quot;&gt;
+    &lt;form class=&quot;weui-search-bar__form&quot;&gt;
+      &lt;div class=&quot;weui-search-bar__box&quot;&gt;
+        &lt;i class=&quot;weui-icon-search&quot;&gt;&lt;/i&gt;
+        &lt;input
+          v-model=&quot;searchValue&quot;
+          ref=&quot;inputElement&quot;
+          type=&quot;search&quot;
+          class=&quot;weui-search-bar__input&quot;
+          id=&quot;searchInput&quot;
+          placeholder=&quot;搜索&quot;
+          required
+        /&gt;
+        &lt;a href=&quot;javascript:&quot; class=&quot;weui-icon-clear&quot; id=&quot;searchClear&quot;&gt;&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;label @click=&quot;toggle&quot; class=&quot;weui-search-bar__label&quot; id=&quot;searchText&quot;&gt;
+        &lt;i class=&quot;weui-icon-search&quot;&gt;&lt;/i&gt;
+        &lt;span&gt;搜索&lt;/span&gt;
+      &lt;/label&gt;
+    &lt;/form&gt;
+    &lt;a @click=&quot;toggle&quot; href=&quot;javascript:&quot; class=&quot;weui-search-bar__cancel-btn&quot; id=&quot;searchCancel&quot;&gt;取消&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+import search from &quot;./search.js&quot;;
+export default {
+  setup(props, context) {
+    const {searchValue, isFocus, inputElement,  toggle} = search(props, context)
+    return {
+      toggle,
+      searchValue, 
+      isFocus, 
+      inputElement
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre><h3 id="searchjs">search.js</h3>
+<pre><code>import {reactive, toRefs, watch} from &quot;@vue/composition-api&quot;;
+export default function search(props, context) {
+  const search = reactive({
+    searchValue: &quot;&quot;,
+    isFocus: false,
+    inputElement: null
+  })
+  const searchRefs = toRefs(search); // 定义一个新的对象，它本身不具备响应性，但是它的字段全部是ref变量
+  // 切换搜索框状态的方法
+  const toggle = () =&gt; {
+    search.inputElement.focus() // 让点击搜索后出现的输入框自动聚焦
+    search.isFocus = !search.isFocus
+  }
+  // 监听搜索框的值
+  watch(
+    () =&gt; {
+      return search.searchValue
+    },
+    () =&gt; {
+      context.emit(&quot;search&quot;, search.searchValue)
+    }
+  )
+  return {
+    ...searchRefs, // 在这里结构toRefs对象才能继续保持响应式
+    toggle
+  }
+}
+</code></pre><h1 id="响应式">响应式</h1>
+<ul>
+<li>
+<h2 id="setup">setup</h2>
+<p>概念：在组件创建之前执行，一旦 <code>props</code> 被解析，就将作为组合式 API 的入口</p>
+<p>参数：</p>
+<p>1、props</p>
+<p>响应式的，当传入新的 prop 时，它将被更新</p>
+<pre><code>export default {
+  props: {
+    title: String
+  },
+  setup(props) {
+    console.log(props.title)
+  }
+}
+</code></pre><p>2、context</p>
+<p>context是一个普通的 JavaScript 对象，它暴露组件的三个 property</p>
+<pre><code>export default {
+  setup(props, context) {
+    // Attribute (非响应式对象)
+    console.log(context.attrs)
+  
+    // 插槽 (非响应式对象)
+    console.log(context.slots)
+  
+    // 触发事件 (方法)
+    console.log(context.emit)
+  }
+}
+</code></pre><p>attrs和slots是有状态的对象，它们总是会随组件本身的更新而更新。这意味着你应该避免对它们进行解构，并始终以 attrs.x或slots.x的方式引用 property。请注意，与props不同，attrs和slots是非响应式的。如果你打算根据attrs或slots更改应用副作用，那么应该在onUpdated生命周期钩子中执行此操作</p>
+<p>setup注册生命周期钩子</p>
+<pre><code>import {onMounted} from &quot;@vue/composition-api&quot;;
+export default function pane(props, context) {
+  onMounted(() =&gt; {
+      // 业务逻辑
+  })
+  return {    
+  }
+}
+</code></pre><p>watch响应式更改</p>
+<pre><code>import {watch} from &quot;@vue/composition-api&quot;;
+export default function search(props, context) {
+  watch(
+    () =&gt; {
+      // 监听的值	
+      return search.searchValue
+    },
+    () =&gt; {
+      // 业务逻辑
+      context.emit(&quot;search&quot;, search.searchValue)
+    }
+  )
+  return {
+  }
+}
+</code></pre><p>独立的computed属性</p>
+<pre><code>import {computed} from &quot;@vue/composition-api&quot;;
+export default function search(props, context) {
+  newsComputed: computed(() =&gt; {
+      // 业务逻辑
+  })
+  return {  
+  }
+}
+</code></pre></li>
+<li>
+<h2 id="ref">ref</h2>
+<p>创建单个对象的响应对象，取值/赋值时需要使用.value</p>
+<pre><code>const count = ref(0)
+console.log(count.value) // 0
+count.value++
+console.log(count.value) // 1
+
+</code></pre></li>
+<li>
+<h2 id="torefs">toRefs</h2>
+<p>从组合式函数返回响应式对象</p>
+<pre><code>const state = reactive({
+  foo: 1,
+  bar: 2
+})
+const stateAsRefs = toRefs(state)
+// ref 和原始 property 已经“链接”起来了
+state.foo++
+console.log(stateAsRefs.foo.value) // 2
+stateAsRefs.foo.value++
+console.log(state.foo) // 3
+</code></pre></li>
+</ul>
+<h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="https://github.com/Wscats/vue-cli">组合式API的使用示例</a></p>
+<p><a href="https://vue3.chengpeiquan.com/">Vue3.0学习教程与实战案例</a></p>
+</blockquote>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-07-05</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://damuwangs.github.io/posts/vue2-nexttick/">
+			Previous<br>Vue2-nextTick
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2021 DaMuWang
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            },
+            debounce(func, wait, options) {
+                let lastArgs,
+                    lastThis,
+                    maxWait,
+                    result,
+                    timerId,
+                    lastCallTime
+
+                let lastInvokeTime = 0
+                let leading = false
+                let maxing = false
+                let trailing = true
+
+                
+                const useRAF = (!wait && wait !== 0 && typeof root.requestAnimationFrame === 'function')
+
+                if (typeof func !== 'function') {
+                    throw new TypeError('Expected a function')
+                }
+                function isObject(value) {
+                    const type = typeof value
+                    return value != null && (type === 'object' || type === 'function')
+                }
+
+                wait = +wait || 0
+                if (isObject(options)) {
+                    leading = !!options.leading
+                    maxing = 'maxWait' in options
+                    maxWait = maxing ? Math.max(+options.maxWait || 0, wait) : maxWait
+                    trailing = 'trailing' in options ? !!options.trailing : trailing
+                }
+
+                function invokeFunc(time) {
+                    const args = lastArgs
+                    const thisArg = lastThis
+
+                    lastArgs = lastThis = undefined
+                    lastInvokeTime = time
+                    result = func.apply(thisArg, args)
+                    return result
+                }
+
+                function startTimer(pendingFunc, wait) {
+                    if (useRAF) {
+                    root.cancelAnimationFrame(timerId)
+                    return root.requestAnimationFrame(pendingFunc)
+                    }
+                    return setTimeout(pendingFunc, wait)
+                }
+
+                function cancelTimer(id) {
+                    if (useRAF) {
+                    return root.cancelAnimationFrame(id)
+                    }
+                    clearTimeout(id)
+                }
+
+                function leadingEdge(time) {
+                    
+                    lastInvokeTime = time
+                    
+                    timerId = startTimer(timerExpired, wait)
+                    
+                    return leading ? invokeFunc(time) : result
+                }
+
+                function remainingWait(time) {
+                    const timeSinceLastCall = time - lastCallTime
+                    const timeSinceLastInvoke = time - lastInvokeTime
+                    const timeWaiting = wait - timeSinceLastCall
+
+                    return maxing
+                    ? Math.min(timeWaiting, maxWait - timeSinceLastInvoke)
+                    : timeWaiting
+                }
+
+                function shouldInvoke(time) {
+                    const timeSinceLastCall = time - lastCallTime
+                    const timeSinceLastInvoke = time - lastInvokeTime
+
+                    
+                    
+                    
+                    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+                    (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait))
+                }
+
+                function timerExpired() {
+                    const time = Date.now()
+                    if (shouldInvoke(time)) {
+                    return trailingEdge(time)
+                    }
+                    
+                    timerId = startTimer(timerExpired, remainingWait(time))
+                }
+
+                function trailingEdge(time) {
+                    timerId = undefined
+
+                    
+                    
+                    if (trailing && lastArgs) {
+                    return invokeFunc(time)
+                    }
+                    lastArgs = lastThis = undefined
+                    return result
+                }
+
+                function cancel() {
+                    if (timerId !== undefined) {
+                    cancelTimer(timerId)
+                    }
+                    lastInvokeTime = 0
+                    lastArgs = lastCallTime = lastThis = timerId = undefined
+                }
+
+                function flush() {
+                    return timerId === undefined ? result : trailingEdge(Date.now())
+                }
+
+                function pending() {
+                    return timerId !== undefined
+                }
+
+                function debounced(...args) {
+                    const time = Date.now()
+                    const isInvoking = shouldInvoke(time)
+
+                    lastArgs = args
+                    lastThis = this
+                    lastCallTime = time
+
+                    if (isInvoking) {
+                    if (timerId === undefined) {
+                        return leadingEdge(lastCallTime)
+                    }
+                    if (maxing) {
+                        
+                        timerId = startTimer(timerExpired, wait)
+                        return invokeFunc(lastCallTime)
+                    }
+                    }
+                    if (timerId === undefined) {
+                    timerId = startTimer(timerExpired, wait)
+                    }
+                    return result
+                }
+                debounced.cancel = cancel
+                debounced.flush = flush
+                debounced.pending = pending
+                return debounced
+                }
+
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+        
+        
+
+        document.querySelectorAll("table").forEach(function(elem){
+            elem.classList.add("table-striped");
+            elem.classList.add("table");
+            elem.classList.add("table-responsive");
+            elem.classList.add("table-hover");
+        })
+
+        
+        spy();
+        window.addEventListener('scroll', this.debounce(spy, 250, { 'maxWait': 250 }), false);
+        
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+
+
+
+</script>
+    </body>
+</html>
