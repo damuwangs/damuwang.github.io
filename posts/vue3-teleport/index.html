@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Posts</title>
+<title>Vue3-Teleport</title>
 
 
 
@@ -49,6 +49,10 @@
 
 
 
+
+  
+    <script src="/js/toc.js"></script>
+  
 
 
 
@@ -137,6 +141,96 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </div><div ref="extraContainer" class="extra-container">
     
     
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#teleport-%e7%9a%84%e4%bd%bf%e7%94%a8" onclick="onNavClick(`#teleport-的使用-nav`)" id="teleport-的使用-nav">
+									Teleport 的使用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%8e-vue%e7%bb%84%e4%bb%b6-%e4%b8%80%e8%b5%b7%e4%bd%bf%e7%94%a8modal" onclick="onNavClick(`#与-vue组件-一起使用modal-nav`)" id="与-vue组件-一起使用modal-nav">
+									与 Vue组件 一起使用modal
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -152,8 +246,6 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 brightness_7
             </i>
         </a>
-        
-        
         
         
     </div>
@@ -198,6 +290,96 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
             
             
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#teleport-%e7%9a%84%e4%bd%bf%e7%94%a8" onclick="onNavClick(`#teleport-的使用-nav`)" id="teleport-的使用-nav">
+									Teleport 的使用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%8e-vue%e7%bb%84%e4%bb%b6-%e4%b8%80%e8%b5%b7%e4%bd%bf%e7%94%a8modal" onclick="onNavClick(`#与-vue组件-一起使用modal-nav`)" id="与-vue组件-一起使用modal-nav">
+									与 Vue组件 一起使用modal
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
         </div>
     </div>
 </div>
@@ -241,204 +423,167 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
             <div id="content">
 <div ref="streamContainer" class="stream-container">
     <div class="post-list-container post-list-container-shadow">
-        
-            <a class="a-block">
-                <div class="post-item-wrapper post-item-wrapper-no-hover">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title post-item-title-small year">
-                                2021
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+        <div class="post">
             
-            <a href="/posts/vue3-teleport/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Vue3-Teleport
-                            </div>
-                            <div class="post-item-meta">
-    2021-07-06
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            
+            
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Vue3-组合式API
-                            </div>
-                            <div class="post-item-meta">
-    2021-07-05
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Vue3-Teleport
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-07-06
+                        </time>
+                        
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Vue2-刷新组件
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-28
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
+                                &nbsp;
+                        
 
-                        </div>
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B">编程</a>
+                                &nbsp;
+                            
+                        
+                        
                     </div>
                 </div>
-            </a>
+            </div>
             
-            <a href="/posts/vue2-nexttick/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Vue2-nextTick
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-28
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="概念">概念</h1>
+<blockquote>
+<p>Teleport 是一种能够将我们的模板移动到 DOM中Vue app之外的其他位置的技术，就有点像哆啦A梦的“任意门”</p>
+<p>场景：像 modals,toast 等这样的元素，很多情况下，我们将它完全的和我们的 Vue 应用的 DOM完全剥离，管理起来反而会方便容易很多</p>
+<p>原因在于如果我们嵌套在Vue的某个组件内部，那么处理嵌套组件的定位、z-index和样式就会变得很困难</p>
+<p>另外，像 modals，toast等这样的元素需要使用到 Vue组件的状态（data或者props）的值</p>
+<p>这就是Teleport派上用场的地方。我们可以在组件的逻辑位置写模板代码，这意味着我们可以使用组件的data或props。然后在Vue应用的范围之外渲染它</p>
+</blockquote>
+<h1 id="teleport-的使用">Teleport 的使用</h1>
+<p>index.html中</p>
+<pre><code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+  &lt;div id=&quot;teleport-target&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;module&quot; src=&quot;/src/main.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>src/components/HelloWorld.vue中，添加如下，留意to属性跟上面的id选择器一致</p>
+<pre><code> &lt;button @click=&quot;showToast&quot; class=&quot;btn&quot;&gt;打开 toast&lt;/button&gt;
+  &lt;!-- to 属性就是目标位置 --&gt;
+  &lt;teleport to=&quot;#teleport-target&quot;&gt;
+    &lt;div v-if=&quot;visible&quot; class=&quot;toast-wrap&quot;&gt;
+      &lt;div class=&quot;toast-msg&quot;&gt;我是一个 Toast 文案&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/teleport&gt;
+</code></pre><pre><code>import { ref } from 'vue';
+export default {
+  setup() {
+    // toast 的封装
+    const visible = ref(false);
+    let timer;
+    const showToast = () =&gt; {
+      visible.value = true;
+      clearTimeout(timer);
+      timer = setTimeout(() =&gt; {
+        visible.value = false;
+      }, 2000);
+    }
+    return {
+      visible,
+      showToast
+    }
+  }
+}
+</code></pre><p>效果展示：</p>
+<p><img src="/img/Vue3-Teleport/%E6%95%88%E6%9E%9C%E4%B8%80.gif" alt=""></p>
+<p>可以看到，我们使用teleport组件，通过to属性，指定该组件渲染的位置与<!-- raw HTML omitted --><!-- raw HTML omitted -->同级，也就是在body下，但是teleport的状态visible又是完全由内部Vue组件控制</p>
+<h1 id="与-vue组件-一起使用modal">与 Vue组件 一起使用modal</h1>
+<p>如果<!-- raw HTML omitted -->包含Vue组件，则它仍将是<!-- raw HTML omitted -->父组件的逻辑子组件</p>
+<p>接下来我们以一个modal组件为例</p>
+<pre><code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;modal-container&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;module&quot; src=&quot;/src/main.js&quot;&gt;&lt;/script&gt;
+</code></pre><pre><code>&lt;teleport to=&quot;#modal-container&quot;&gt;
+  &lt;!-- use the modal component, pass in the prop --&gt;
+  &lt;modal :show=&quot;showModal&quot; @close=&quot;showModal = false&quot;&gt;
+    &lt;template #header&gt;
+      &lt;h3&gt;custom header&lt;/h3&gt;
+    &lt;/template&gt;
+  &lt;/modal&gt;
+&lt;/teleport&gt;
+</code></pre><pre><code>import { ref } from 'vue';
+import Modal from './Modal.vue';
+export default {
+  components: {
+    Modal
+  },
+  setup() {
+    // modal 的封装
+    const showModal = ref(false);
+    return {
+      showModal
+    }
+  }
+}
+</code></pre><p>在这种情况下，即使在不同的地方渲染 <code>Modal</code>，它仍将是当前组件（调用 <code>Modal</code> 的组件）的子级，并将从中接收 <code>show </code> prop</p>
+<p>这也意味着来自父组件的注入按预期工作，并且子组件将嵌套在 <code>Vue Devtools</code> 中的父组件之下，而不是放在实际内容移动到的位置</p>
+<p>看实际效果以及在 <code>Vue Devtool</code> 中</p>
+<p><img src="/img/Vue3-Teleport/%E6%95%88%E6%9E%9C%E4%BA%8C.gif" alt=""></p>
+<h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="https://juejin.cn/post/6874720017863147527">Vue 3 任意传送门——Teleport</a></p>
+<p><a href="https://juejin.cn/post/6910100912367206414">vue3.0新特性teleport是啥，用起来真香</a></p>
+</blockquote>
 
-                        </div>
-                    </div>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-07-06</p>
+                    
                 </div>
-            </a>
+            </div>
             
-            <a href="/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                JavaScript-原型链
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-24
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            
+            <nav class="post-pagination">
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/javascript-%E9%97%AD%E5%8C%85/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                JavaScript-闭包
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-21
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://damuwangs.github.io/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/">
+			Previous<br>Vue3-组合式API
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                面试总结
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-16
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                GitHub Pages&#43;Hugo构建个人博客
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-15
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-        
-    </div>
-</div>
+
+
+
+
+
 
 
             </div>
+        </div>
+    </div>
+</div>
 
-
-<div id="single-column-footer">
+            </div><div id="single-column-footer">
 Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
 <br>
 Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
@@ -705,6 +850,9 @@ app = new Vue({
             elem.classList.add("table-hover");
         })
 
+        
+        spy();
+        window.addEventListener('scroll', this.debounce(spy, 250, { 'maxWait': 250 }), false);
         
         
     },

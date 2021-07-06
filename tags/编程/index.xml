@@ -6,10 +6,26 @@
     <description>Recent content in 编程 on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 06 Jul 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue3-Teleport</title>
+      <link>https://damuwangs.github.io/posts/vue3-teleport/</link>
+      <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/vue3-teleport/</guid>
+      <description>概念  Teleport 是一种能够将我们的模板移动到 DOM中Vue app之外的其他位置的技术，就有点像哆啦A梦的“任意门”
+场景：像 modals,toast 等这样的元素，很多情况下，我们将它完全的和我们的 Vue 应用的 DOM完全剥离，管理起来反而会方便容易很多
+原因在于如果我们嵌套在Vue的某个组件内部，那么处理嵌套组件的定位、z-index和样式就会变得很困难
+另外，像 modals，toast等这样的元素需要使用到 Vue组件的状态（data或者props）的值
+这就是Teleport派上用场的地方。我们可以在组件的逻辑位置写模板代码，这意味着我们可以使用组件的data或props。然后在Vue应用的范围之外渲染它
+ Teleport 的使用 index.html中
+&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div id=&amp;quot;teleport-target&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;script type=&amp;quot;module&amp;quot; src=&amp;quot;/src/main.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;src/components/HelloWorld.vue中，添加如下，留意to属性跟上面的id选择器一致
+ &amp;lt;button @click=&amp;quot;showToast&amp;quot; class=&amp;quot;btn&amp;quot;&amp;gt;打开 toast&amp;lt;/button&amp;gt;&amp;lt;!-- to 属性就是目标位置 --&amp;gt;&amp;lt;teleport to=&amp;quot;#teleport-target&amp;quot;&amp;gt;&amp;lt;div v-if=&amp;quot;visible&amp;quot; class=&amp;quot;toast-wrap&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;toast-msg&amp;quot;&amp;gt;我是一个 Toast 文案&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/teleport&amp;gt;import { ref } from &#39;vue&#39;;export default {setup() {// toast 的封装const visible = ref(false);let timer;const showToast = () =&amp;gt; {visible.</description>
+    </item>
     
     <item>
       <title>Vue3-组合式API</title>
