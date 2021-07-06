@@ -88,9 +88,9 @@ export default {
     }
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在这种情况下，即使在不同的地方渲染 &lt;code&gt;Modal&lt;/code&gt;，它仍将是当前组件（调用 &lt;code&gt;Modal&lt;/code&gt; 的组件）的子级，并将从中接收 &lt;code&gt;show &lt;/code&gt; prop&lt;/p&gt;
-&lt;p&gt;这也意味着来自父组件的注入按预期工作，并且子组件将嵌套在 &lt;code&gt;Vue Devtools&lt;/code&gt; 中的父组件之下，而不是放在实际内容移动到的位置&lt;/p&gt;
-&lt;p&gt;看实际效果以及在 &lt;code&gt;Vue Devtool&lt;/code&gt; 中&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在这种情况下，即使在不同的地方渲染Modal，它仍将是当前组件（调用Modal的组件）的子级，并将从中接收show prop&lt;/p&gt;
+&lt;p&gt;这也意味着来自父组件的注入按预期工作，并且子组件将嵌套在Vue Devtools中的父组件之下，而不是放在实际内容移动到的位置&lt;/p&gt;
+&lt;p&gt;看实际效果以及在Vue Devtool中&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue3-Teleport/%E6%95%88%E6%9E%9C%E4%BA%8C.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
