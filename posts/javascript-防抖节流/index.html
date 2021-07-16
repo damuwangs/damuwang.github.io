@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Posts</title>
+<title>JavaScript-防抖、节流</title>
 
 
 
@@ -49,6 +49,10 @@
 
 
 
+
+  
+    <script src="/js/toc.js"></script>
+  
 
 
 
@@ -137,6 +141,250 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </div><div ref="extraContainer" class="extra-container">
     
     
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%98%b2%e6%8a%96" onclick="onNavClick(`#防抖-nav`)" id="防抖-nav">
+									防抖
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" onclick="onNavClick(`#应用场景-nav`)" id="应用场景-nav">
+									应用场景
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%9e%e4%be%8b" onclick="onNavClick(`#实例-nav`)" id="实例-nav">
+									实例
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e9%9d%9e%e7%ab%8b%e5%8d%b3%e6%89%a7%e8%a1%8c%e7%89%88" onclick="onNavClick(`#非立即执行版-nav`)" id="非立即执行版-nav">
+									非立即执行版
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%ab%8b%e5%8d%b3%e6%89%a7%e8%a1%8c%e7%89%88" onclick="onNavClick(`#立即执行版-nav`)" id="立即执行版-nav">
+									立即执行版
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%8a%82%e6%b5%81" onclick="onNavClick(`#节流-nav`)" id="节流-nav">
+									节流
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5-1" onclick="onNavClick(`#概念-1-nav`)" id="概念-1-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af-1" onclick="onNavClick(`#应用场景-1-nav`)" id="应用场景-1-nav">
+									应用场景
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%9e%e4%be%8b-1" onclick="onNavClick(`#实例-1-nav`)" id="实例-1-nav">
+									实例
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -152,8 +400,6 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 brightness_7
             </i>
         </a>
-        
-        
         
         
     </div>
@@ -198,6 +444,250 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
             
             
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%98%b2%e6%8a%96" onclick="onNavClick(`#防抖-nav`)" id="防抖-nav">
+									防抖
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" onclick="onNavClick(`#应用场景-nav`)" id="应用场景-nav">
+									应用场景
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%9e%e4%be%8b" onclick="onNavClick(`#实例-nav`)" id="实例-nav">
+									实例
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e9%9d%9e%e7%ab%8b%e5%8d%b3%e6%89%a7%e8%a1%8c%e7%89%88" onclick="onNavClick(`#非立即执行版-nav`)" id="非立即执行版-nav">
+									非立即执行版
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%ab%8b%e5%8d%b3%e6%89%a7%e8%a1%8c%e7%89%88" onclick="onNavClick(`#立即执行版-nav`)" id="立即执行版-nav">
+									立即执行版
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%8a%82%e6%b5%81" onclick="onNavClick(`#节流-nav`)" id="节流-nav">
+									节流
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5-1" onclick="onNavClick(`#概念-1-nav`)" id="概念-1-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af-1" onclick="onNavClick(`#应用场景-1-nav`)" id="应用场景-1-nav">
+									应用场景
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%9e%e4%be%8b-1" onclick="onNavClick(`#实例-1-nav`)" id="实例-1-nav">
+									实例
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
         </div>
     </div>
 </div>
@@ -241,226 +731,269 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
             <div id="content">
 <div ref="streamContainer" class="stream-container">
     <div class="post-list-container post-list-container-shadow">
-        
-            <a class="a-block">
-                <div class="post-item-wrapper post-item-wrapper-no-hover">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title post-item-title-small year">
-                                2021
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+        <div class="post">
             
-            <a href="/posts/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                JavaScript-防抖、节流
-                            </div>
-                            <div class="post-item-meta">
-    2021-07-16
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            
+            
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/vue3-teleport/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Vue3-Teleport
-                            </div>
-                            <div class="post-item-meta">
-    2021-07-06
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    JavaScript-防抖、节流
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-07-16
+                        </time>
+                        
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Vue3-组合式API
-                            </div>
-                            <div class="post-item-meta">
-    2021-07-05
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
+                                &nbsp;
+                        
 
-                        </div>
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B">编程</a>
+                                &nbsp;
+                            
+                        
+                        
                     </div>
                 </div>
-            </a>
+            </div>
             
-            <a href="/posts/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Vue2-刷新组件
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-28
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="防抖">防抖</h1>
+<h2 id="概念">概念</h2>
+<p>任务频繁触发的情况下，只有任务触发的间隔超过制定的时间间隔的时候，任务才会被执行</p>
+<p>将一段时间内连续的多次触发转化为一次触发。</p>
+<h2 id="应用场景">应用场景</h2>
+<ul>
+<li>
+<p>用户在输入框中连续输入一串字符后，只会在输入完后去执行最后一次的查询ajax请求，这样可以有效减少请求次数，节约请求资源；</p>
+</li>
+<li>
+<p>window的resize、scroll事件，不断地调整浏览器的窗口大小、或者滚动时会触发对应事件，防抖让其只触发一次；</p>
+</li>
+</ul>
+<h2 id="实例">实例</h2>
+<ul>
+<li>
+<h3 id="非立即执行版">非立即执行版</h3>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+  &lt;title&gt;防抖&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id=&quot;debounce&quot;&gt;点我防抖！&lt;/button&gt;
+  
+  &lt;script&gt;
+    window.onload = function() {
+      // 1、获取这个按钮，并绑定事件
+      var myDebounce = document.getElementById(&quot;debounce&quot;);
+      myDebounce.addEventListener(&quot;click&quot;, debounce(sayDebounce));
+    }
+  
+    // 2、防抖功能函数，接受传参
+    function debounce(fn) {
+      // 4、创建一个标记用来存放定时器的返回值
+      let timeout = null;
+      return function() {
+        // 5、每次当用户点击/输入的时候，把前一个定时器清除
+        clearTimeout(timeout);
+        // 6、然后创建一个新的 setTimeout，
+        // 这样就能保证点击按钮后的 interval 间隔内
+        // 如果用户还点击了的话，就不会执行 fn 函数
+        timeout = setTimeout(() =&gt; {
+          fn.call(this, arguments);
+        }, 1000);
+      };
+    }
+  
+    // 3、需要进行防抖的事件处理
+    function sayDebounce() {
+      // ... 有些需要防抖的工作，在这里执行
+      console.log(&quot;防抖成功！&quot;);
+    }
+  
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>创建一个定时器，如果在规定时间内重复触发该事件，就会调用clearTimeout清除掉上一个定时器，重置定时器</p>
+<p>也就是说，这件事本来就是需要等待的，并非立即执行的，如果用户反复点击，那只好重新等待了</p>
+</li>
+<li>
+<h3 id="立即执行版">立即执行版</h3>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+  &lt;title&gt;防抖&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id=&quot;debounce&quot;&gt;点我防抖！&lt;/button&gt;
+  
+  &lt;script&gt;
+    window.onload = function() {
+      // 1、获取这个按钮，并绑定事件
+      var myDebounce = document.getElementById(&quot;debounce&quot;);
+      myDebounce.addEventListener(&quot;click&quot;, debounce(sayDebounce));
+    }
+  
+    // 2、防抖功能函数，接受传参
+    function debounce(fn) {
+      // 4、创建一个标记用来存放定时器的返回值
+      let timeout = null;
+      //5.创建一个判断是否可点击值
+      let doit = true;
+      return function() {
+        // 5、当doit为真，既用户重复点击时，清除定时器
+        if(doit)clearTimeout(timeout);
+        //6.当doit为false时，既用户可点击，再将doit设为true，防止用户重复点击
+        else{
+            fn();
+            doit = true;
+        }
+        //7.设置定时器，这样就能保证点击按钮后的 interval 间隔内
+        // 如果用户还点击了的话，就不会执行 将doit设为false函数
+        timeout = setTimeout(() =&gt; {
+          doit = false;
+        }, 1000);
+      };
+    }
+  
+    // 3、需要进行防抖的事件处理
+    function sayDebounce() {
+      // ... 有些需要防抖的工作，在这里执行
+      console.log(&quot;防抖成功！&quot;);
+    }
+  
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/vue2-nexttick/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Vue2-nextTick
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-28
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+</code></pre></li>
+</ul>
+<h1 id="节流">节流</h1>
+<h2 id="概念-1">概念</h2>
+<p>指定时间间隔内只会执行一次任务</p>
+<h2 id="应用场景-1">应用场景</h2>
+<ul>
+<li>这有点像我们刷抢购一样，当我们在某段时间间隔内触发了多次事件，其实，它只执行一次请求</li>
+<li>鼠标连续不断地触发某事件（如点击），只在单位时间内只触发一次</li>
+<li>在页面的无限加载场景下，需要用户在滚动页面时，每隔一段时间发一次 ajax 请求，而不是在用户停下滚动页面操作时才去请求数据</li>
+<li>监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断；</li>
+</ul>
+<h2 id="实例-1">实例</h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+  &lt;title&gt;节流&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                JavaScript-原型链
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-24
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+  &lt;button id=&quot;throttle&quot;&gt;点我节流！&lt;/button&gt;
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/javascript-%E9%97%AD%E5%8C%85/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                JavaScript-闭包
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-21
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+  &lt;script&gt;
+    window.onload = function() {
+      // 1、获取按钮，绑定点击事件
+      var myThrottle = document.getElementById(&quot;throttle&quot;);
+      myThrottle.addEventListener(&quot;click&quot;, throttle(sayThrottle));
+    }
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                面试总结
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-16
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+    // 2、节流函数体
+    function throttle(fn) {
+      // 4、通过闭包保存一个标记
+      let canRun = true;
+      return function() {
+        // 5、在函数开头判断标志是否为 true，不为 true 则中断函数
+        if(!canRun) {
+          return;
+        }
+        // 6、将 canRun 设置为 false，防止执行之前再被执行
+        canRun = false;
+        // 7、定时器
+        setTimeout( () =&gt; {
+          fn.call(this, arguments);
+          // 8、执行完事件（比如调用完接口）之后，重新将这个标志设置为 true
+          canRun = true;
+        }, 1000);
+      };
+    }
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                GitHub Pages&#43;Hugo构建个人博客
-                            </div>
-                            <div class="post-item-meta">
-    2021-06-15
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+    // 3、需要节流的事件
+    function sayThrottle() {
+      console.log(&quot;节流成功！&quot;);
+    }
 
-                        </div>
-                    </div>
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>从这个例子可以看出，节流可以防止在某时间间隔内重复发送请求！其和防抖有点相似，但其有本质的区别，虽然都是防止重复触发事件！</p>
+<p><strong>防抖是需要等待多久时间才能再触发一次事件！</strong></p>
+<p><strong>节流是多久时间内只能触发一次事件！</strong></p>
+<h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="https://www.cnblogs.com/binguo666/p/10535948.html">闲聊前端性能&mdash;-防抖、节流、重绘与回流。</a></p>
+</blockquote>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-07-16</p>
+                    
                 </div>
-            </a>
+            </div>
             
-        
-    </div>
-</div>
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://damuwangs.github.io/posts/vue3-teleport/">
+			Previous<br>Vue3-Teleport
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
 
 
             </div>
+        </div>
+    </div>
+</div>
 
-
-<div id="single-column-footer">
+            </div><div id="single-column-footer">
 Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
 <br>
 Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
@@ -727,6 +1260,9 @@ app = new Vue({
             elem.classList.add("table-hover");
         })
 
+        
+        spy();
+        window.addEventListener('scroll', this.debounce(spy, 250, { 'maxWait': 250 }), false);
         
         
     },
