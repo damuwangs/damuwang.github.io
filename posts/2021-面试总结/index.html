@@ -1,0 +1,2688 @@
+<!DOCTYPE html>
+<html><head>
+<title>2021-面试总结</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="https://damuwangs.github.io/scss/journal.min.4dabc90cf94657415a747e8400223bb3c4d11654d1279feff37fd6a11089fe77.css" integrity="sha256-TavJDPlGV0FadH6EACI7s8TRFlTRJ5/v83/WoRCJ/nc=" media="screen">
+
+
+
+<link rel="stylesheet" href="https://damuwangs.github.io/scss/dark-mode.min.83b57d3d51352700a502fbe45536227cf28ce7e56fedacaf14b7fe499db0f186.css" integrity="sha256-g7V9PVE1JwClAvvkVTYifPKM5&#43;Vv7ayvFLf&#43;SZ2w8YY=" media="screen">
+
+
+<script src="/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Fira+Mono|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="/js/toc.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://damuwangs.github.io">
+    
+        <div class="nav-title">
+            DaMuWang
+        </div>
+        
+        <div class="nav-subtitle">
+            damuwang&#39;s blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/posts">
+                博客
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                分类
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags">
+                标签
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2021 DaMuWang
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#javascript" onclick="onNavClick(`#javascript-nav`)" id="javascript-nav">
+									JavaScript
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e8%b7%a8%e5%9f%9f" onclick="onNavClick(`#跨域-nav`)" id="跨域-nav">
+									跨域
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#getpost%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#getpost区别-nav`)" id="getpost区别-nav">
+									get、post区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" onclick="onNavClick(`#数据类型-nav`)" id="数据类型-nav">
+									数据类型
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%80%bc%e4%bc%a0%e9%80%92%e5%92%8c%e5%bc%95%e7%94%a8%e4%bc%a0%e9%80%92" onclick="onNavClick(`#值传递和引用传递-nav`)" id="值传递和引用传递-nav">
+									值传递和引用传递
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%97%ad%e5%8c%85" onclick="onNavClick(`#闭包-nav`)" id="闭包-nav">
+									闭包
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%ae%ad%e5%a4%b4%e5%87%bd%e6%95%b0%e7%9a%84%e5%a5%bd%e5%a4%84" onclick="onNavClick(`#箭头函数的好处-nav`)" id="箭头函数的好处-nav">
+									箭头函数的好处
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8b%e4%bb%b6%e7%9a%84%e5%86%92%e6%b3%a1%e5%92%8c%e6%8d%95%e8%8e%b7" onclick="onNavClick(`#事件的冒泡和捕获-nav`)" id="事件的冒泡和捕获-nav">
+									事件的冒泡和捕获
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%8a%82%e6%b5%81%e5%92%8c%e9%98%b2%e6%8a%96" onclick="onNavClick(`#节流和防抖-nav`)" id="节流和防抖-nav">
+									节流和防抖
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#dom%e5%8a%a0%e8%bd%bd%e8%bf%87%e7%a8%8b%e4%b8%adready%e5%92%8cload%e7%9a%84%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#dom加载过程中ready和load的区别-nav`)" id="dom加载过程中ready和load的区别-nav">
+									dom加载过程中ready和load的区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%8f%8d%e8%bd%ac" onclick="onNavClick(`#字符串反转-nav`)" id="字符串反转-nav">
+									字符串反转
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#slicesplice%e7%9a%84%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#slicesplice的区别-nav`)" id="slicesplice的区别-nav">
+									slice、splice的区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%b7%b1%e6%8b%b7%e8%b4%9d%e5%92%8c%e6%b5%85%e6%8b%b7%e8%b4%9d" onclick="onNavClick(`#深拷贝和浅拷贝-nav`)" id="深拷贝和浅拷贝-nav">
+									深拷贝和浅拷贝
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%90%8c%e6%ad%a5%e5%92%8c%e5%bc%82%e6%ad%a5" onclick="onNavClick(`#同步和异步-nav`)" id="同步和异步-nav">
+									同步和异步
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%bc%93%e5%ad%98" onclick="onNavClick(`#缓存-nav`)" id="缓存-nav">
+									缓存
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%bb%9f%e8%ae%a1%e5%87%ba%e7%8e%b0%e6%9c%80%e5%a4%9a%e5%ad%97%e7%ac%a6" onclick="onNavClick(`#统计出现最多字符-nav`)" id="统计出现最多字符-nav">
+									统计出现最多字符
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%88%a4%e6%96%ad%e6%98%af%e4%b8%8d%e6%98%af%e6%95%b0%e7%bb%84" onclick="onNavClick(`#判断是不是数组-nav`)" id="判断是不是数组-nav">
+									判断是不是数组
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#promise" onclick="onNavClick(`#promise-nav`)" id="promise-nav">
+									Promise
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8e%9f%e5%9e%8b%e9%93%be" onclick="onNavClick(`#原型链-nav`)" id="原型链-nav">
+									原型链
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#this%e6%8c%87%e5%90%91" onclick="onNavClick(`#this指向-nav`)" id="this指向-nav">
+									this指向
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ajax" onclick="onNavClick(`#ajax-nav`)" id="ajax-nav">
+									ajax
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%b0%8f%e7%a8%8b%e5%ba%8fapi" onclick="onNavClick(`#小程序api-nav`)" id="小程序api-nav">
+									小程序API
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#jquery%e9%80%89%e6%8b%a9%e5%99%a8" onclick="onNavClick(`#jquery选择器-nav`)" id="jquery选择器-nav">
+									Jquery选择器
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%80%92%e5%bd%92%e8%ae%a1%e7%ae%971100%e6%b1%82%e5%92%8c" onclick="onNavClick(`#递归计算1100求和-nav`)" id="递归计算1100求和-nav">
+									递归计算1~100求和
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#css" onclick="onNavClick(`#css-nav`)" id="css-nav">
+									Css
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#pxrememvwvh%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#pxrememvwvh区别-nav`)" id="pxrememvwvh区别-nav">
+									px,rem,em,vw,vh区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#box-sizing%e5%b1%9e%e6%80%a7" onclick="onNavClick(`#box-sizing属性-nav`)" id="box-sizing属性-nav">
+									box-sizing属性
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%85%83%e7%b4%a0%e5%b1%85%e4%b8%ad" onclick="onNavClick(`#元素居中-nav`)" id="元素居中-nav">
+									元素居中
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%87%aa%e9%80%82%e5%ba%94%e6%96%b9%e6%a1%88" onclick="onNavClick(`#自适应方案-nav`)" id="自适应方案-nav">
+									自适应方案
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#vue" onclick="onNavClick(`#vue-nav`)" id="vue-nav">
+									Vue
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e8%ae%a1%e7%ae%97%e5%b1%9e%e6%80%a7%e4%be%a6%e5%90%ac%e5%99%a8%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#计算属性侦听器区别-nav`)" id="计算属性侦听器区别-nav">
+									计算属性,侦听器区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#keep-live" onclick="onNavClick(`#keep-live-nav`)" id="keep-live-nav">
+									keep-live
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#v-if%e5%92%8cv-show%e7%9a%84%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#v-if和v-show的区别-nav`)" id="v-if和v-show的区别-nav">
+									v-if和v-show的区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#route%e5%92%8crouter%e7%9a%84%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#route和router的区别-nav`)" id="route和router的区别-nav">
+									route和router的区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#hashhistory%e8%b7%af%e7%94%b1%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#hashhistory路由区别-nav`)" id="hashhistory路由区别-nav">
+									hash,history路由区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%bb%84%e4%bb%b6%e4%bc%a0%e5%8f%82%e6%96%b9%e5%bc%8f" onclick="onNavClick(`#组件传参方式-nav`)" id="组件传参方式-nav">
+									组件传参方式
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#vuex" onclick="onNavClick(`#vuex-nav`)" id="vuex-nav">
+									vuex
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%bf%87%e6%bb%a4%e5%99%a8" onclick="onNavClick(`#过滤器-nav`)" id="过滤器-nav">
+									过滤器
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%81%bf%e5%85%8dv-ifv-for%e5%90%8c%e6%97%b6%e7%94%a8" onclick="onNavClick(`#避免v-ifv-for同时用-nav`)" id="避免v-ifv-for同时用-nav">
+									避免v-if,v-for同时用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#vue%e5%8f%8c%e5%90%91%e7%bb%91%e5%ae%9a%e5%8e%9f%e7%90%86" onclick="onNavClick(`#vue双向绑定原理-nav`)" id="vue双向绑定原理-nav">
+									Vue双向绑定原理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bf%ae%e6%94%b9%e6%95%b0%e6%8d%ae%e4%b8%8d%e9%87%8d%e5%8f%91%e8%af%b7%e6%b1%82" onclick="onNavClick(`#修改数据不重发请求-nav`)" id="修改数据不重发请求-nav">
+									修改数据不重发请求
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+<div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
+                    博客
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    分类
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags">
+                    标签
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#javascript" onclick="onNavClick(`#javascript-nav`)" id="javascript-nav">
+									JavaScript
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e8%b7%a8%e5%9f%9f" onclick="onNavClick(`#跨域-nav`)" id="跨域-nav">
+									跨域
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#getpost%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#getpost区别-nav`)" id="getpost区别-nav">
+									get、post区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" onclick="onNavClick(`#数据类型-nav`)" id="数据类型-nav">
+									数据类型
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%80%bc%e4%bc%a0%e9%80%92%e5%92%8c%e5%bc%95%e7%94%a8%e4%bc%a0%e9%80%92" onclick="onNavClick(`#值传递和引用传递-nav`)" id="值传递和引用传递-nav">
+									值传递和引用传递
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%97%ad%e5%8c%85" onclick="onNavClick(`#闭包-nav`)" id="闭包-nav">
+									闭包
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%ae%ad%e5%a4%b4%e5%87%bd%e6%95%b0%e7%9a%84%e5%a5%bd%e5%a4%84" onclick="onNavClick(`#箭头函数的好处-nav`)" id="箭头函数的好处-nav">
+									箭头函数的好处
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8b%e4%bb%b6%e7%9a%84%e5%86%92%e6%b3%a1%e5%92%8c%e6%8d%95%e8%8e%b7" onclick="onNavClick(`#事件的冒泡和捕获-nav`)" id="事件的冒泡和捕获-nav">
+									事件的冒泡和捕获
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%8a%82%e6%b5%81%e5%92%8c%e9%98%b2%e6%8a%96" onclick="onNavClick(`#节流和防抖-nav`)" id="节流和防抖-nav">
+									节流和防抖
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#dom%e5%8a%a0%e8%bd%bd%e8%bf%87%e7%a8%8b%e4%b8%adready%e5%92%8cload%e7%9a%84%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#dom加载过程中ready和load的区别-nav`)" id="dom加载过程中ready和load的区别-nav">
+									dom加载过程中ready和load的区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%8f%8d%e8%bd%ac" onclick="onNavClick(`#字符串反转-nav`)" id="字符串反转-nav">
+									字符串反转
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#slicesplice%e7%9a%84%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#slicesplice的区别-nav`)" id="slicesplice的区别-nav">
+									slice、splice的区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%b7%b1%e6%8b%b7%e8%b4%9d%e5%92%8c%e6%b5%85%e6%8b%b7%e8%b4%9d" onclick="onNavClick(`#深拷贝和浅拷贝-nav`)" id="深拷贝和浅拷贝-nav">
+									深拷贝和浅拷贝
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%90%8c%e6%ad%a5%e5%92%8c%e5%bc%82%e6%ad%a5" onclick="onNavClick(`#同步和异步-nav`)" id="同步和异步-nav">
+									同步和异步
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%bc%93%e5%ad%98" onclick="onNavClick(`#缓存-nav`)" id="缓存-nav">
+									缓存
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%bb%9f%e8%ae%a1%e5%87%ba%e7%8e%b0%e6%9c%80%e5%a4%9a%e5%ad%97%e7%ac%a6" onclick="onNavClick(`#统计出现最多字符-nav`)" id="统计出现最多字符-nav">
+									统计出现最多字符
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%88%a4%e6%96%ad%e6%98%af%e4%b8%8d%e6%98%af%e6%95%b0%e7%bb%84" onclick="onNavClick(`#判断是不是数组-nav`)" id="判断是不是数组-nav">
+									判断是不是数组
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#promise" onclick="onNavClick(`#promise-nav`)" id="promise-nav">
+									Promise
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8e%9f%e5%9e%8b%e9%93%be" onclick="onNavClick(`#原型链-nav`)" id="原型链-nav">
+									原型链
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#this%e6%8c%87%e5%90%91" onclick="onNavClick(`#this指向-nav`)" id="this指向-nav">
+									this指向
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ajax" onclick="onNavClick(`#ajax-nav`)" id="ajax-nav">
+									ajax
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%b0%8f%e7%a8%8b%e5%ba%8fapi" onclick="onNavClick(`#小程序api-nav`)" id="小程序api-nav">
+									小程序API
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#jquery%e9%80%89%e6%8b%a9%e5%99%a8" onclick="onNavClick(`#jquery选择器-nav`)" id="jquery选择器-nav">
+									Jquery选择器
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%80%92%e5%bd%92%e8%ae%a1%e7%ae%971100%e6%b1%82%e5%92%8c" onclick="onNavClick(`#递归计算1100求和-nav`)" id="递归计算1100求和-nav">
+									递归计算1~100求和
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#css" onclick="onNavClick(`#css-nav`)" id="css-nav">
+									Css
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#pxrememvwvh%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#pxrememvwvh区别-nav`)" id="pxrememvwvh区别-nav">
+									px,rem,em,vw,vh区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#box-sizing%e5%b1%9e%e6%80%a7" onclick="onNavClick(`#box-sizing属性-nav`)" id="box-sizing属性-nav">
+									box-sizing属性
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%85%83%e7%b4%a0%e5%b1%85%e4%b8%ad" onclick="onNavClick(`#元素居中-nav`)" id="元素居中-nav">
+									元素居中
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%87%aa%e9%80%82%e5%ba%94%e6%96%b9%e6%a1%88" onclick="onNavClick(`#自适应方案-nav`)" id="自适应方案-nav">
+									自适应方案
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#vue" onclick="onNavClick(`#vue-nav`)" id="vue-nav">
+									Vue
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e8%ae%a1%e7%ae%97%e5%b1%9e%e6%80%a7%e4%be%a6%e5%90%ac%e5%99%a8%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#计算属性侦听器区别-nav`)" id="计算属性侦听器区别-nav">
+									计算属性,侦听器区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#keep-live" onclick="onNavClick(`#keep-live-nav`)" id="keep-live-nav">
+									keep-live
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#v-if%e5%92%8cv-show%e7%9a%84%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#v-if和v-show的区别-nav`)" id="v-if和v-show的区别-nav">
+									v-if和v-show的区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#route%e5%92%8crouter%e7%9a%84%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#route和router的区别-nav`)" id="route和router的区别-nav">
+									route和router的区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#hashhistory%e8%b7%af%e7%94%b1%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#hashhistory路由区别-nav`)" id="hashhistory路由区别-nav">
+									hash,history路由区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%bb%84%e4%bb%b6%e4%bc%a0%e5%8f%82%e6%96%b9%e5%bc%8f" onclick="onNavClick(`#组件传参方式-nav`)" id="组件传参方式-nav">
+									组件传参方式
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#vuex" onclick="onNavClick(`#vuex-nav`)" id="vuex-nav">
+									vuex
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e8%bf%87%e6%bb%a4%e5%99%a8" onclick="onNavClick(`#过滤器-nav`)" id="过滤器-nav">
+									过滤器
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%81%bf%e5%85%8dv-ifv-for%e5%90%8c%e6%97%b6%e7%94%a8" onclick="onNavClick(`#避免v-ifv-for同时用-nav`)" id="避免v-ifv-for同时用-nav">
+									避免v-if,v-for同时用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#vue%e5%8f%8c%e5%90%91%e7%bb%91%e5%ae%9a%e5%8e%9f%e7%90%86" onclick="onNavClick(`#vue双向绑定原理-nav`)" id="vue双向绑定原理-nav">
+									Vue双向绑定原理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%bf%ae%e6%94%b9%e6%95%b0%e6%8d%ae%e4%b8%8d%e9%87%8d%e5%8f%91%e8%af%b7%e6%b1%82" onclick="onNavClick(`#修改数据不重发请求-nav`)" id="修改数据不重发请求-nav">
+									修改数据不重发请求
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://damuwangs.github.io">
+            DaMuWang
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://damuwangs.github.io">
+        <div class="single-column-header-title">DaMuWang</div>
+        
+        <div class="single-column-header-subtitle">damuwang&#39;s blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    2021-面试总结
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-06-16
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/%E9%9D%A2%E8%AF%95">面试</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B">编程</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="javascript">JavaScript</h1>
+<ul>
+<li>
+<h2 id="跨域">跨域</h2>
+<p>概念：跨域指浏览器同源策略不允许当前页面所在的源去请求另一个源的数据只要协议，端口，域名中有一个不同就是跨域</p>
+<p>解决：</p>
+<ol>
+<li>服务端更改header，允许跨域</li>
+<li>设置代理服务器
+因为客户端请求服务端的数据是存在跨域问题的，而服务器和服务器之间 可以相互请求数据，是没有跨域的概念（如果服务器没有设置禁止跨域的权限问题），也就是说，可以配置一个代理的服务器请求另一个服务器中的数据，然后把请求出来的数据返回到代理服务器中，代理服务器再返回数据给客户端，这样就可以实现跨域访问数据</li>
+<li>jsonp
+利用script标签的src属性来实现跨域。 通过将前端方法作为参数传递到服务器端，然后由服务器端注入参数之后再返回，实现服务器端向客户端通信。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="getpost区别">get、post区别</h2>
+<ol>
+<li>get参数url可见，post参数url不可见</li>
+<li>通过拼接url进行传递参数，post通过body体传递参数</li>
+<li>get请求可以缓存，post请求不可以缓存</li>
+<li>get请求页面后退时不产生影响、post请求页面后退时会重新提交请求</li>
+<li>get一般传输数据大小不超过2k-4k，post请求传输数据的大小可配置</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="数据类型">数据类型</h2>
+<ul>
+<li>
+<p>单类型：String、Number、boolean、null、undefined</p>
+</li>
+<li>
+<p>引用类型：object、function、array、Date、RegExp</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="值传递和引用传递">值传递和引用传递</h2>
+<ul>
+<li>
+<p>基本类型复制后两个变量完全独立，一方改变都不会影响另一方</p>
+</li>
+<li>
+<p>引用类型复制的时引用，之后的任何一方改变都会映射到另一方</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="闭包">闭包</h2>
+<p>定义：当一个函数的返回值是另外一个函数，而返回的那个函数如果调用了父函数内部的变量，且返回的这个函数在外部被执行，就产生了闭包。说白了就是一个函数，能够读取其它函数的内部变量</p>
+<p>优点：</p>
+<ol>
+<li>读取函数内部的变量</li>
+<li>变量长期保存在内存中，不会再外层函数调用后被自动清除</li>
+<li>避免全局变量的污染</li>
+</ol>
+<p>缺点：常驻内存会增大内存使用量，使用不当会造成内存泄漏</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="箭头函数的好处">箭头函数的好处</h2>
+<ol>
+<li>
+<p>简洁</p>
+</li>
+<li>
+<p>不会改变this本来的绑定</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="事件的冒泡和捕获">事件的冒泡和捕获</h2>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="节流和防抖">节流和防抖</h2>
+<p>防抖：防抖就是将一段时间内连续的多次触发转化为一次触发。一般可以使用在用户输入停止一段时间过后再去获取数据，而不是每次输入都去获取</p>
+<p>节流：高频事件触发，但在n秒内只会执行一次，如验证码登录时利用setTimeout做的倒计时</p>
+<p>区别：防抖是将多次执行变为最后一次执行，节流是将多次执行变成每隔一段时间执行</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="dom加载过程中ready和load的区别">dom加载过程中ready和load的区别</h2>
+<p>Ready：页面HTML文档解析完成但图片等媒体文件加载完成之前执行
+load：完全加载完成之后执行</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="字符串反转">字符串反转</h2>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%8D%E8%BD%AC.jpg" alt=""></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="slicesplice的区别">slice、splice的区别</h2>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/slice.jpg" alt=""></p>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/splice.jpg" alt=""></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="深拷贝和浅拷贝">深拷贝和浅拷贝</h2>
+<p>概念：深拷贝和浅拷贝是只针对Object和Array这样的引用数据类型的。</p>
+<p>浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。</p>
+<p>浅拷贝：assign()、concat()、slice()</p>
+<p>深拷贝：</p>
+<ol>
+<li>
+<p>JSON.parse(JSON.stringify())</p>
+</li>
+<li>
+<p>手写递归方法</p>
+</li>
+<li>
+<p>递归方法实现深度克隆原理：遍历对象、数组直到里边都是基本数据类型，然后再去复制，就是深度拷贝</p>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E6%B7%B1%E6%8B%B7%E8%B4%9D.jpg" alt=""></p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="同步和异步">同步和异步</h2>
+<p>同步：所有的任务都处在同一队列中，不可以插队，一个任务执行完接着开始执行下一个，相对于浏览器而言，同步的效率过低，一些耗费时间比较长的任务应该用异步来执行。</p>
+<p>异步：将一个任务放入到异步队列中，当这个任务执行完成之后，再从异步队列中提取出来，插队到同步队列中，拿到异步任务的结果，可以提升代码执行的效率，不需要因为一个耗时长的代码而一直等待</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="缓存">缓存</h2>
+<p>cookie sessionStorage和localstorage</p>
+<ol>
+<li>
+<p>存储大小</p>
+<p>cookie数据大小不能超过4K</p>
+<p>sessionStorage和localStorage可以达到5M或更大</p>
+</li>
+<li>
+<p>有效时间</p>
+<p>localstorage：浏览器关闭后数据不丢失除非主动删除数据</p>
+<p>sessionStorage：数据在当前浏览器窗口关闭后自动删除</p>
+<p>cookie： 过期时间未到一直有效，即使窗口或浏览器关闭</p>
+</li>
+<li>
+<p>数据与服务器之间的交互方式</p>
+<p>cookie：数据会自动传递到服务器，服务器也可以写cookie到客户端</p>
+<p>sessionStorage和localstorage：仅本地保存，不会发给服务端</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="统计出现最多字符">统计出现最多字符</h2>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E7%BB%9F%E8%AE%A1%E6%9C%80%E5%A4%9A%E5%87%BA%E7%8E%B0%E7%9A%84%E5%AD%97%E7%AC%A6.jpg" alt=""></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="判断是不是数组">判断是不是数组</h2>
+<ol>
+<li>
+<p>instanceof</p>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/instanceof.jpg" alt=""></p>
+</li>
+<li>
+<p>constructor</p>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/constructor.jpg" alt=""></p>
+</li>
+<li>
+<p>Object.prototype.toString.call</p>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/prototype.jpg" alt=""></p>
+</li>
+<li>
+<p>Array.isArray</p>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/isArray.jpg" alt=""></p>
+</li>
+</ol>
+</li>
+<li>
+<h2 id="promise">Promise</h2>
+<ol>
+<li>
+<p>概念：解决异步编程的一种方法，替代多层嵌套的回调，Promise是一个构造函数，用域封装异步操作并可以获得成功或失败的结果</p>
+</li>
+<li>
+<p>Promise all：将多个Promise实例包装成一个新的Promise实例，当所有状态都变成成功时all的状态才变为成功，如果其中一个状态为失败则返回失败结果</p>
+</li>
+<li>
+<p>执行顺序问题</p>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/Promise.jpg" alt=""></p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="原型链">原型链</h2>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="this指向">this指向</h2>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="ajax">ajax</h2>
+<p>原理：</p>
+<p>好处：</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="小程序api">小程序API</h2>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="jquery选择器">Jquery选择器</h2>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="递归计算1100求和">递归计算1~100求和</h2>
+</li>
+</ul>
+<hr>
+<h1 id="css">Css</h1>
+<ul>
+<li>
+<h2 id="pxrememvwvh区别">px,rem,em,vw,vh区别</h2>
+<p>px：绝对单位，页面按精确像素展示</p>
+<p>em：相对单位，基准点为父节点字体的大小，如果自身定义了font-size按自身来计算</p>
+<p>rem：相对单位，可理解为“root em”相对根节点html的字体大小来计算</p>
+<p>vw：视窗宽度，1vw等于视窗宽度的1%</p>
+<p>vh：视窗高度，1vh相当于视窗高度的1%</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="box-sizing属性">box-sizing属性</h2>
+<p>在标准模式下的盒模型下，盒子总宽度/高度 = width/height+padding+border+margin</p>
+<p>在怪异模式下的盒模型下，盒子的总宽度和高度是包含内边距padding和边框border宽度在内的，盒子总宽度/高度=width/height + margin = 内容区宽度/高度 + padding + border + margin;</p>
+<p>box-sizing有两个值一个是content-box，另一个是border-box</p>
+<p>当设置为box-sizing:content-box时，将采用标准模式解析计算</p>
+<p>当设置为box-sizing:border-box时，将采用怪异模式解析计算</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="元素居中">元素居中</h2>
+<ol>
+<li>
+<p>margin和width实现
+在容器上定义一个固定的宽度，然后配合margin左右的值为auto</p>
+</li>
+<li>
+<p>inline-block和父元素text-align</p>
+<p>仅inline-block属性是无法让元素水平居中，他的关键之处要在元素的父容器中设置text-align的属性为“center”，这样才能达到效果：</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="自适应方案">自适应方案</h2>
+<ol>
+<li>固定一个某些宽度，使用一个模式，加上少许的媒体查询</li>
+<li>使用flexbox</li>
+<li>使用百分比加媒体查询</li>
+<li>使用rem</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h1 id="vue">Vue</h1>
+<ul>
+<li>
+<h2 id="计算属性侦听器区别">计算属性,侦听器区别</h2>
+<p>【计算属性】
+概念：计算属性是一个函数，最后函数返回的结果就是计算属性得到的结果
+当我们第一次使用计算属性的时候，会执行计算属性并进行计算，然后将计算的结果缓存起来，后续当外面再去使用计算属性的时候，如果计算属性中使用到的数据没有发生变化，那么就直接读取缓存的结果，不会重新计算</p>
+<p>场景：计算的内容需要依赖多个属性，如果一个数据反复会被使用，但它计算以来的内容很少发生变化时</p>
+<p>【侦听器】
+概念：侦听器与data中的属性同名，当属性值发生改变的时候侦听器触发执行</p>
+<p>场景：在计算开销比较大（计算多次数或者异步处理）的时候</p>
+<p>补充：immediate: true 刷新加载 立马触发一次handler</p>
+<p>deep: true 可以深度检测到 person 对象的属性值的变化</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="keep-live">keep-live</h2>
+<p>概念：缓存某个组件，或者某个路由。所有在keep-alive标签下的路由都会被缓存。当组件在 <!-- raw HTML omitted --> 内被切换，它的 activated 和 deactivated 这两个生命周期钩子函数将会被对应执行</p>
+<p>用法：</p>
+<ol>
+<li>
+<p>在路由meta配置isKeepAlive:true</p>
+</li>
+<li>
+<p>inlcude/exclude</p>
+<p>inlcude包含该组件就缓存，exclude不包含该组件就缓存</p>
+</li>
+</ol>
+<p>场景：</p>
+<ol>
+<li>
+<p>节省性能消耗，避免一个组件频繁重新渲染，节省开支</p>
+</li>
+<li>
+<p>保存用户状态</p>
+<p>比如说：我们在填写收货地址的页面，需要跳转到另一个页面通过定位选择地址信息再返回继续填写，这时候需要缓存收货地址页面，避免跳转页面导致用户数据丢失</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="v-if和v-show的区别">v-if和v-show的区别</h2>
+<ol>
+<li>v-show 只是简单的控制元素的 display 属性，v-if 条件为真，元素将会被渲染，条件为假，元素会被销毁</li>
+<li>v-show 有更高的首次渲染开销，而 v-if 的首次渲染开销要小的多</li>
+<li>v-if 有更高的切换开销，v-show 切换开销小</li>
+<li>v-if 有配套的 v-else-if 和 v-else，而 v-show 没有</li>
+<li>v-if 可以搭配 template 使用，而 v-show 不行</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="route和router的区别">route和router的区别</h2>
+<p>route相当于当前正在跳转的路由对象，可以从里面获取name,path,params,query等</p>
+<p>router为VueRouter的实例，相当于一个全局的路由器对象，里面含有很多属性和子对象，例如history对象，经常用的跳转链接就可以用this.$router.push</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="hashhistory路由区别">hash,history路由区别</h2>
+<ol>
+<li>hash路由在地址栏URL上有#，而history路由没有会好看一点</li>
+<li>我们进行回车刷新操作，hash路由会加载到地址栏对应的页面，而history路由一般就404报错了（刷新是网络请求，没有后端准备时会报错）。</li>
+<li>hash路由支持低版本的浏览器，而history路由是HTML5新增的API。</li>
+<li>hash的特点在于它虽然出现在了URL中，但是不包括在http请求中，所以对于后端是没有一点影响的，所以改变hash不会重新加载页面，所以这也是单页面应用的必备。</li>
+<li>history运用了浏览器的历史记录栈，之前有back,forward,go方法</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="组件传参方式">组件传参方式</h2>
+<ol>
+<li>
+<p>父传子：父组件把数据绑定在引用子组件处的自定义属性上，在子组件中通过props引用</p>
+</li>
+<li>
+<p>子传父：在父组件标签处定义自定义事件，在子组件中通过$emit发送自定义事件</p>
+</li>
+<li>
+<p>$ref</p>
+</li>
+<li>
+<p>vuex</p>
+</li>
+<li>
+<p>provider inject</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="vuex">vuex</h2>
+<p>概念描述：vuex是vue框架的状态管理器，单页面应用组件之间的状态</p>
+<ol>
+<li>
+<p>state：对应vue的data，数据是响应式的，组件从store中读取数据，若store发生改变，依赖这个数据的组件也会更新，通过mapState把全局的state和getter映射到当前组件的computed中</p>
+</li>
+<li>
+<p>getter：对state进行计算操作，他就是store的计算属性。防止多次计算降低性能。可以在多组件之间复用，若一个状态只在一个组件内使用就可以不用getters</p>
+</li>
+<li>
+<p>Mutation：更改store中状态的唯一方法且必须是同步函数。在组件中使用 this.$store.commit(&lsquo;xxx&rsquo;) 提交 mutation，或者使用 mapMutations 辅助函数将组件中的 methods 映射为 store.commit 调用</p>
+</li>
+<li>
+<p>Action：提交的是 mutation，可以包含任意异步操作。在组件中使用 this.$store.dispatch(&lsquo;xxx&rsquo;) 分发 action，或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用</p>
+</li>
+<li>
+<p>Module：将 store 分割成模块，每个模块拥有自己的 state、mutation、action、getter</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="过滤器">过滤器</h2>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E8%BF%87%E6%BB%A4%E5%99%A8.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="避免v-ifv-for同时用">避免v-if,v-for同时用</h2>
+<p>v-for 比 v-if 具有更高的优先级，哪怕我们只渲染出一小部分用户的元素,也得在每次重渲染的时候遍历整个列表。</p>
+<p>因此倾向于将v-if放在容器元素上，先判断再循环</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="vue双向绑定原理">Vue双向绑定原理</h2>
+<p>Vue采用数据劫持结合发布者-订阅者模式的方式来实现数据的响应式，vue在初始化的时候，在initState方法中会调取initData方法初始化data数据，对data对象进行遍历，在这个方法中会调observe（监听器，观察者）对用户的数据进行监听，在observe中会对对象new Observe实例化创建监听，在observe中对数据进行判断，如果是数组执行observeArray深度进行监听，继续执行observe方法，如果当前传入的是对象则执行this.walk，对对象进行循环，重新定义对象的属性，这时使用的就是defineReactive，它是vue中的一个核心方法，用来定义响应式。在defineReactive方法中实例化了一个Dep（发布者），通过Object.defineProperty对数据进行拦截，把这些 property 全部转为 getter/setter。get数据的时候，通过dep.depend触发Watcher（订阅者）的依赖收集，收集订阅者，如果数据是数组，执行dependArray，对数组中的每个值通过depend都添加到依赖。set时，会对数据进行比较，如果数据发生了变化会通过dep.notify发布通知，通知watcher，更新视图</p>
+<p><img src="/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>
+<h2 id="修改数据不重发请求">修改数据不重发请求</h2>
+</li>
+</ul>
+<hr>
+<h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/143929973">CSS3面试题2020 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-06-16</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://damuwangs.github.io/posts/javascript-%E9%97%AD%E5%8C%85/">
+			Next<br>JavaScript-闭包
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+			Previous<br>GitHub Pages&#43;Hugo构建个人博客
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2021 DaMuWang
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            },
+            debounce(func, wait, options) {
+                let lastArgs,
+                    lastThis,
+                    maxWait,
+                    result,
+                    timerId,
+                    lastCallTime
+
+                let lastInvokeTime = 0
+                let leading = false
+                let maxing = false
+                let trailing = true
+
+                
+                const useRAF = (!wait && wait !== 0 && typeof root.requestAnimationFrame === 'function')
+
+                if (typeof func !== 'function') {
+                    throw new TypeError('Expected a function')
+                }
+                function isObject(value) {
+                    const type = typeof value
+                    return value != null && (type === 'object' || type === 'function')
+                }
+
+                wait = +wait || 0
+                if (isObject(options)) {
+                    leading = !!options.leading
+                    maxing = 'maxWait' in options
+                    maxWait = maxing ? Math.max(+options.maxWait || 0, wait) : maxWait
+                    trailing = 'trailing' in options ? !!options.trailing : trailing
+                }
+
+                function invokeFunc(time) {
+                    const args = lastArgs
+                    const thisArg = lastThis
+
+                    lastArgs = lastThis = undefined
+                    lastInvokeTime = time
+                    result = func.apply(thisArg, args)
+                    return result
+                }
+
+                function startTimer(pendingFunc, wait) {
+                    if (useRAF) {
+                    root.cancelAnimationFrame(timerId)
+                    return root.requestAnimationFrame(pendingFunc)
+                    }
+                    return setTimeout(pendingFunc, wait)
+                }
+
+                function cancelTimer(id) {
+                    if (useRAF) {
+                    return root.cancelAnimationFrame(id)
+                    }
+                    clearTimeout(id)
+                }
+
+                function leadingEdge(time) {
+                    
+                    lastInvokeTime = time
+                    
+                    timerId = startTimer(timerExpired, wait)
+                    
+                    return leading ? invokeFunc(time) : result
+                }
+
+                function remainingWait(time) {
+                    const timeSinceLastCall = time - lastCallTime
+                    const timeSinceLastInvoke = time - lastInvokeTime
+                    const timeWaiting = wait - timeSinceLastCall
+
+                    return maxing
+                    ? Math.min(timeWaiting, maxWait - timeSinceLastInvoke)
+                    : timeWaiting
+                }
+
+                function shouldInvoke(time) {
+                    const timeSinceLastCall = time - lastCallTime
+                    const timeSinceLastInvoke = time - lastInvokeTime
+
+                    
+                    
+                    
+                    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+                    (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait))
+                }
+
+                function timerExpired() {
+                    const time = Date.now()
+                    if (shouldInvoke(time)) {
+                    return trailingEdge(time)
+                    }
+                    
+                    timerId = startTimer(timerExpired, remainingWait(time))
+                }
+
+                function trailingEdge(time) {
+                    timerId = undefined
+
+                    
+                    
+                    if (trailing && lastArgs) {
+                    return invokeFunc(time)
+                    }
+                    lastArgs = lastThis = undefined
+                    return result
+                }
+
+                function cancel() {
+                    if (timerId !== undefined) {
+                    cancelTimer(timerId)
+                    }
+                    lastInvokeTime = 0
+                    lastArgs = lastCallTime = lastThis = timerId = undefined
+                }
+
+                function flush() {
+                    return timerId === undefined ? result : trailingEdge(Date.now())
+                }
+
+                function pending() {
+                    return timerId !== undefined
+                }
+
+                function debounced(...args) {
+                    const time = Date.now()
+                    const isInvoking = shouldInvoke(time)
+
+                    lastArgs = args
+                    lastThis = this
+                    lastCallTime = time
+
+                    if (isInvoking) {
+                    if (timerId === undefined) {
+                        return leadingEdge(lastCallTime)
+                    }
+                    if (maxing) {
+                        
+                        timerId = startTimer(timerExpired, wait)
+                        return invokeFunc(lastCallTime)
+                    }
+                    }
+                    if (timerId === undefined) {
+                    timerId = startTimer(timerExpired, wait)
+                    }
+                    return result
+                }
+                debounced.cancel = cancel
+                debounced.flush = flush
+                debounced.pending = pending
+                return debounced
+                }
+
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+        
+        
+
+        document.querySelectorAll("table").forEach(function(elem){
+            elem.classList.add("table-striped");
+            elem.classList.add("table");
+            elem.classList.add("table-responsive");
+            elem.classList.add("table-hover");
+        })
+
+        
+        spy();
+        window.addEventListener('scroll', this.debounce(spy, 250, { 'maxWait': 250 }), false);
+        
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+
+
+
+</script>
+    </body>
+</html>

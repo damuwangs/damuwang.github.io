@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaScript on DaMuWang</title>
+    <link>https://damuwangs.github.io/categories/javascript/</link>
+    <description>Recent content in JavaScript on DaMuWang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Jul 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://damuwangs.github.io/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>JavaScript-防抖、节流</title>
+      <link>https://damuwangs.github.io/posts/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/</link>
+      <pubDate>Fri, 16 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/</guid>
+      <description>防抖 概念 任务频繁触发的情况下，只有任务触发的间隔超过制定的时间间隔的时候，任务才会被执行
+将一段时间内连续的多次触发转化为一次触发。
+应用场景   用户在输入框中连续输入一串字符后，只会在输入完后去执行最后一次的查询ajax请求，这样可以有效减少请求次数，节约请求资源；
+  window的resize、scroll事件，不断地调整浏览器的窗口大小、或者滚动时会触发对应事件，防抖让其只触发一次；
+  实例   非立即执行版 &amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;&amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&amp;quot;&amp;gt;&amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;ie=edge&amp;quot;&amp;gt;&amp;lt;title&amp;gt;防抖&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;button id=&amp;quot;debounce&amp;quot;&amp;gt;点我防抖！&amp;lt;/button&amp;gt;&amp;lt;script&amp;gt;window.onload = function() {// 1、获取这个按钮，并绑定事件var myDebounce = document.getElementById(&amp;quot;debounce&amp;quot;);myDebounce.addEventListener(&amp;quot;click&amp;quot;, debounce(sayDebounce));}// 2、防抖功能函数，接受传参function debounce(fn) {// 4、创建一个标记用来存放定时器的返回值let timeout = null;return function() {// 5、每次当用户点击/输入的时候，把前一个定时器清除clearTimeout(timeout);// 6、然后创建一个新的 setTimeout，// 这样就能保证点击按钮后的 interval 间隔内// 如果用户还点击了的话，就不会执行 fn 函数timeout = setTimeout(() =&amp;gt; {fn.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript-原型链</title>
+      <link>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</link>
+      <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</guid>
+      <description>原型   理解原型对象 无论什么时候，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。在默认情况下，所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。
+使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。换句话说不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型对象中
+function Person() {}Person.prototype.name = &#39;Nicholas&#39;Person.prototype.age = 19Person.prototype.sayName = function () {console.log(this.name)}let person1 = new Person()person1.sayName() // 输出：Nicholaslet person2 = new Person()person2.sayName() // 输出：Nicholasconsole.log(person1.sayName == person2.sayName) // 输出：true我们将sayName()方法和所有属性直接添加到Person的prototype属性中，构造函数变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说，person1和person2访问的都是同一组属性和同一个sayName()函数
+创建了自定义构造函数之后，其原型对象默认只会取得constructor属性，至于其它方法，则都是从Object继承而来。当调用构造函数创建一个新实例后，该实例内部将包含一个指针（内部属性）____proto____指向构造函数的原型对象，需要明确的是，这个连接存在与实例和构造函数的原型之间，而不是存在与实例与构造函数之间
+上图展示了Person构造函数、Person的原型属性以及Person现有两个实例之间的关系。在此，Person.prototype指向了原型对象，而Person.prototype.constructor又指回了Person。原型对象中除了包含constructor属性之外，还包括后来添加的其它属性。Person的每个实例person1和person2都包含一个内部属性____proto____，该属性仅仅指向了Person.prototype，换句话说，它们与构造函数没有直接关系。此外，要格外注意的是，虽然这两个实例都不包含属性和方法，但我们却可以调用person1.sayName。这是通过查找对象属性的过程来实现的
+  原型搜索机制 每当代码读取某个对象的某个属性时，都会执行一次搜索，目标是具有给定名字的属性。搜索首先从对象的实例本身开始。如果在实例中找到了具有给定名字的实现，则返回该属性的值，如果没有找到，则继续搜索指针指向的原型对象，在原型对象中查找给定名字的属性。如果在原型对象中找到了这个属性，则返回该属性的值。也就是说，在我们调用person.sayName()的时候，会先后执行两次搜索。首先，解析器会问：&amp;ldquo;实例person1有sayName属性吗？&amp;ldquo;答：&amp;ldquo;没有。&amp;ldquo;然后，它继续搜索，再问：&amp;ldquo;person1的原型有sayName属性吗？&amp;ldquo;答：&amp;ldquo;有。&amp;ldquo;于是，他就读取那个保存在原型对象中的函数。当我们调用person2.sayName()时，将会重现相同的搜索过程，得到相同的结果。而正是多个对象实例共享原型所保存的属性和方法的基本原理
+  注意事项 虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型的值。如果我们在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性，该属性将会屏蔽原型中的那个属性
+function Person() {}Person.prototype.name = &#39;Nicholas&#39;Person.prototype.age = 19Person.prototype.sayName = function () {console.</description>
+    </item>
+    
+    <item>
+      <title>JavaScript-闭包</title>
+      <link>https://damuwangs.github.io/posts/javascript-%E9%97%AD%E5%8C%85/</link>
+      <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/javascript-%E9%97%AD%E5%8C%85/</guid>
+      <description>概念   变量的作用域 要理解闭包，首先必须理解Javascript特殊的变量作用域
+变量的作用域无非就是两种：全局变量和局部变量
+Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量
+var n=999function f1(){alert(n)}f1() // 999在函数外部无法读取函数内的局部变量
+function f1(){var n=999}alert(n); // error  闭包的描述 闭包就是能够读取其他函数内部变量的函数
+由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成&amp;quot;定义在一个函数内部的函数&amp;rdquo;
+所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁，f2函数，就是闭包
+function f1(){var n=999function f2(){alert(n)}return f2}var result = f1()result() // 999  闭包优缺点 优点：
+  希望一个变量长期驻扎在内存中
+  避免全局变量的污染
+  私有成员的存在
+  缺点：闭包会使变量始终保存在内存中，如果不当使用会增大内存消耗
+  应用场景   匿名自执行函数 我们知道所有的变量，如果不加上var关键字，则默认的会添加到全局对象的属性上去，这样的临时变量加入全局对象有很多坏处，比如：别的函数可能误用这些变量；造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链上遍历的)。除了每次使用变量都是用var关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，比如UI的初始化，那么我们可以使用闭包</description>
+    </item>
+    
+  </channel>
+</rss>
