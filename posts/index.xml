@@ -6,10 +6,20 @@
     <description>Recent content in Posts on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 Aug 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaScript-Demo</title>
+      <link>https://damuwangs.github.io/posts/javascript-demo/</link>
+      <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/javascript-demo/</guid>
+      <description>  日期、时间 -日期格式化 -日期计算   校验 -身份证校验 -邮箱校验 -电话校验   字符串   数字 -数字转汉字大写   数组 -数组去重 -计算数组重复元素 -深拷贝   算法   参考资料  如何理解animation-fill-mode及其使用？
+ </description>
+    </item>
     
     <item>
       <title>CSS3动画</title>
