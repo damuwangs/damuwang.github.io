@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>CSS3响应式布局</title>
+      <link>https://damuwangs.github.io/posts/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</link>
+      <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>JavaScript-跨域</title>
       <link>https://damuwangs.github.io/posts/javascript-%E8%B7%A8%E5%9F%9F/</link>
       <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
@@ -30,6 +39,15 @@
 cors.html
 let xhr = new XMLHttpRequest() xhr.open(&amp;#39;GET&amp;#39;, &amp;#39;http://localhost:8002/request&amp;#39;) xhr.send(null) server.js
 const express = require(&amp;#39;express&amp;#39;) const app = express() app.use((req, res, next) =&amp;gt; { res.</description>
+    </item>
+    
+    <item>
+      <title>Less和Sass</title>
+      <link>https://damuwangs.github.io/posts/less%E5%92%8Csass/</link>
+      <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/less%E5%92%8Csass/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -236,24 +254,6 @@ hugo new site hugo-blog cd hugo-blog 目录结构如下，此时如果运行的�
   5、本地预览   启动 Hugo 预览服务器，构建站点内容到内存中并在检测到文件更改后重新渲染
 hugo server   6、内容发布   在站点目录下有一个content文件夹，在该文件夹下创建一个posts，posts下创建.md格式的文章就可以自动识别发布了
   同理图片静态资源需要放在站点根目录static下，内容中图片引用也是以static为根目录进行读取的</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://damuwangs.github.io/posts/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://damuwangs.github.io/posts/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://damuwangs.github.io/posts/less%E5%92%8Csass/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://damuwangs.github.io/posts/less%E5%92%8Csass/</guid>
-      <description></description>
     </item>
     
   </channel>

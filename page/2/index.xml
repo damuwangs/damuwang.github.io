@@ -12,6 +12,394 @@
     
     
         <item>
+        <title>Vue2-nextTick</title>
+        <link>https://damuwangs.github.io/posts/vue2-nexttick/</link>
+        <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/vue2-nexttick/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/vue2-nexttick/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;异步解析&#34;&gt;异步解析&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Vue 实现响应式并不是数据发生变化之后 DOM 立即变化，而是按一定的策略进行 DOM 的更新&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;​	简而言之，异步接信息的运行机制如下&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;所有同步任务都在主线程上执行，形成一个&lt;a href=&#34;https://www.ruanyifeng.com/blog/2013/11/stack.html&#34;&gt;执行栈&lt;/a&gt;（execution context stack）&lt;/li&gt;
+&lt;li&gt;主线程之外，还存在一个&amp;quot;任务队列&amp;rdquo;（task queue）。只要异步任务有了运行结果，就在&amp;quot;任务队列&amp;quot;之中放置一个事件&lt;/li&gt;
+&lt;li&gt;一旦&amp;quot;执行栈&amp;quot;中的所有同步任务执行完毕，系统就会读取&amp;quot;任务队列&amp;rdquo;，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行&lt;/li&gt;
+&lt;li&gt;主线程不断重复上面的第三步&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;事件循环说明&#34;&gt;事件循环说明&lt;/h2&gt;
+&lt;p&gt;简单来说，Vue 在修改数据后，视图不会立刻更新，而是等&lt;strong&gt;同一事件循环&lt;/strong&gt;中的所有数据变化完成之后，再统一进行视图更新&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//改变数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;vm.message &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;changed&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#6272a4&#34;&gt;//想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(vm.$el.textContent) &lt;span style=&#34;color:#6272a4&#34;&gt;// 并不会得到&amp;#39;changed&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#6272a4&#34;&gt;//这样可以，nextTick里面的代码会在DOM更新后执行
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;Vue.nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+    console.log(vm.$el.textContent) &lt;span style=&#34;color:#6272a4&#34;&gt;// 可以得到&amp;#39;changed&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue2-nextTick/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;本次更新循环&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首先修改数据，这是同步任务。同一事件循环的所有同步任务都在主线程上执行，形成一个执行栈，此时还未设计DOM&lt;/li&gt;
+&lt;li&gt;Vue开启一个异步队列，并缓冲再次事件循环中发生的所有数据改变。如果同一个watcher被多次执行，只会被推入到队列中一次&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下次更新循环&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;同步任务执行完毕，开始执行异步watcher队列的任务，更新DOM。Vue在内部尝试对异步队列使用原生的Promise.then和messageChannel方法，如果执行环境不支持，会采用setTimeOut(fn,0)代替&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下次更新循环结束之后&lt;/p&gt;
+&lt;p&gt;此时通过Vue.nextTick获取到改变后的DOM。通过setTimeOut(fn,0)也可以同样获取到&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;简单总结事件循环：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;同步代码执行&lt;/li&gt;
+&lt;li&gt;查找异步队列，推入执行栈，执行Vue.nextTick[事件1]&lt;/li&gt;
+&lt;li&gt;查找异步队列，推入执行栈，执行Vue.nextTick[事件2]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;总之，异步是单独的一个tick，不会和同步在同一个tick里发生，也是DOM不会马上改变的原有&lt;/p&gt;
+&lt;h1 id=&#34;应用场景&#34;&gt;应用场景&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;在 created 和 mounted 阶段，如果需要操作渲染后的试图，也要使用 nextTick 方法。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;官方文档说明：注意 mounted 不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用 vm.$nextTick 替换掉 mounted&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;created(){
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; that&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;
+    that.$nextTick(
+    	&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){  
+    		&lt;span style=&#34;color:#6272a4&#34;&gt;//不使用this.$nextTick()方法会报错
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        	that.$refs.aa.innerHTML &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;created中更改了按钮内容&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#6272a4&#34;&gt;// 写入到DOM元素
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        }
+    })
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;当项目中你想在改变 DOM 元素的数据后基于新的 dom 做点什么，对新 DOM 一系列的 js 操作都需要放进 Vue.nextTick()的回调函数中；通俗的理解是：更改数据后当你想立即使用 js 操作新的视图的时候需要使用它&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;ref&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;msgDiv&amp;#34;&lt;/span&gt;&amp;gt;{{msg}}&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+      	&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-if&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;msg1&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;Message&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;got&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;outside&lt;/span&gt; $&lt;span style=&#34;color:#50fa7b&#34;&gt;nextTick&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {{&lt;span style=&#34;color:#50fa7b&#34;&gt;msg1&lt;/span&gt;}}&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+      	&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-if&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;msg2&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;Message&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;got&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;inside&lt;/span&gt; $&lt;span style=&#34;color:#50fa7b&#34;&gt;nextTick&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {{&lt;span style=&#34;color:#50fa7b&#34;&gt;msg2&lt;/span&gt;}}&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+      	&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-if&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;msg3&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;Message&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;got&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;outside&lt;/span&gt; $&lt;span style=&#34;color:#50fa7b&#34;&gt;nextTick&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {{&lt;span style=&#34;color:#50fa7b&#34;&gt;msg3&lt;/span&gt;}}&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+      	&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;@click&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;changeMsg&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;Change&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;the&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;Message&lt;/span&gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+ 
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+    data () {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+            msg&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Hello Vue.&amp;#39;&lt;/span&gt;,
+            msg1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;,
+            msg2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;,
+            msg3&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+        }
+    },
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;{
+        changeMsg() {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.msg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Hello world.&amp;#34;&lt;/span&gt;
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.msg1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$refs.msgDiv.innerHTML
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(() =&amp;gt; {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.msg2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$refs.msgDiv.innerHTML
+            })
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.msg3 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$refs.msgDiv.innerHTML
+        }
+    }
+}    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;点击前&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue2-nextTick/%E7%82%B9%E5%87%BB%E5%89%8D.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;点击后&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue2-nextTick/%E7%82%B9%E5%87%BB%E5%90%8E.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;从图中可以得知：msg1和msg3显示的内容还是变换之前的，而msg2显示的内容是变换之后的&lt;/p&gt;
+&lt;h1 id=&#34;通过一个实例理解nexttick&#34;&gt;通过一个实例理解nextTick&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;ul&lt;/span&gt;&amp;gt;
+            &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;li&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-for&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;item in list1&amp;#34; :key=&amp;#34;item&amp;#34;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;/ul&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;ul&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;       	    &amp;lt;li v-for=&amp;#34;item in list2&amp;#34; :key=&amp;#34;item&amp;#34;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;/ul&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;ol&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;            &amp;lt;li v-for=&amp;#34;item in list3&amp;#34; :key=&amp;#34;item&amp;#34;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;/ol&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;ol&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;            &amp;lt;li v-for=&amp;#34;item in list4&amp;#34; :key=&amp;#34;item&amp;#34;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;/ol&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;ol&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;            &amp;lt;li v-for=&amp;#34;item in list5&amp;#34; &lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:key&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;item&amp;#34;&lt;/span&gt;&amp;gt;{{&lt;span style=&#34;color:#50fa7b&#34;&gt;item&lt;/span&gt;}}&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;li&lt;/span&gt;&amp;gt;
+        &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;ol&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {dateFormat} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/components/JS方法库/util/common.js&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  data () {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+            list1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [],
+            list2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [],
+            list3&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [],
+            list4&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [],
+            list5&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; []
+        }
+    },
+    created(){
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.composeList12()
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.composeList34()
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.composeList5()
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+            &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[7]同步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;——————————同步视图更新完成——————————&amp;#39;&lt;/span&gt;)
+        })
+    },
+ 
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+        composeList12() {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10000&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$set(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.list1, i, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I am a 测试信息～～啦啦啦&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; i)
+            }
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;——————————开始更新同步数据——————————&amp;#39;&lt;/span&gt;)
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[1]同步数据更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10000&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$set(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.list2, i, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I am a 测试信息～～啦啦啦&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; i)
+            }
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[2]同步数据更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[1][2]同步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+            })
+        },
+        composeList34() {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10000&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$set(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.list3, i, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I am a 测试信息～～啦啦啦&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; i)
+            }
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[3]同步数据更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[3]同步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+            })
+
+            setTimeout(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.setTimeout1, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
+        },
+        setTimeout1() {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10000&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$set(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.list4, i, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I am a 测试信息～～啦啦啦&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; i)
+            }
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;——————————开始更新异步数据——————————&amp;#39;&lt;/span&gt;)
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[4]异步数据更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[4]异步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+            })
+        },
+        composeList5() {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[5]同步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+            })
+
+            setTimeout(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.setTimeout2, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
+        },
+        setTimeout2() {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10000&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$set(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.list5, i, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I am a 测试信息～～啦啦啦&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; i)
+            }
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[6]异步数据更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[6]异步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;——————————异步视图更新完成——————————&amp;#39;&lt;/span&gt;)
+            })
+        },
+    }
+}
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行结果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue2-nextTick/%E5%AE%9E%E4%BE%8B.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;通过list1、2、3验证，处在同步代码中的DOM更新情况及nextTick的触发时机&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过list3、list4验证，同步代码及异步代码中Dom更新及nextTick触发的区别&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;list4、list5对比验证，多个异步代码中nextTick触发的区别&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过在视图更新后获取DOM中&lt;!-- raw HTML omitted --&gt;的数量，判断nextTick序列渲染的时间点&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000012861862&#34;&gt;Vue.nextTick 的原理和用途&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2014/10/event-loop.html&#34;&gt;JavaScript 运行机制详解：再谈Event Loop&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000017204460&#34;&gt;浏览器进程线程、Web Workers、Event Loop 图解&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/vue2-nexttick/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Vue2-刷新组件</title>
+        <link>https://damuwangs.github.io/posts/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/</link>
+        <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/ -&lt;h1 id=&#34;刷新组件&#34;&gt;刷新组件&lt;/h1&gt;
+&lt;h2 id=&#34;provideinject-结合-v-if&#34;&gt;provide、inject 结合 v-if&lt;/h2&gt;
+&lt;p&gt;这对选项需要一起使用，以允许一个根组件向其所有子组件注入一个依赖，实现原理就是通过控制router-view 的显示与隐藏，来重渲染路由区域，重而达到页面刷新的效果，show -&amp;gt; false -&amp;gt; show&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;修改app.vue，利用 v-if 可以刷新页面的属性，同时使用 provide 和 inject 将祖先节点的数据传递给子代节点&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;router-view&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-if&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;isRouterAlive&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#50fa7b&#34;&gt;router&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;-view&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+    
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+    name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;App&amp;#39;&lt;/span&gt;,
+    provide (){
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+            reload&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.reload
+        }
+    },
+    data(){
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+            isRouterAlive&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
+        }
+    },
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;{
+        reload (){
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.isRouterAlive &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.isRouterAlive &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
+            })
+        }
+   }
+}
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在要刷新的子路由页面引入inject,然后执行reload事件即可刷新页面&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {    
+    inject&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;[&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;reload&amp;#39;&lt;/span&gt;],
+    data() {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {}
+    },
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+        reflesh(){
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.reload()
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;forceupdate&#34;&gt;forceUpdate&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+        handleUpdateClick() {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$forceUpdate()
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;由于一些嵌套特别深的数据，导致数据更新了，但是页面却没有重新渲染。我遇到的一个情况是，v-for遍历数据渲染，当方法中处理相应数组数据时，数组改变了，但是页面却没有重新渲染&lt;/p&gt;
+&lt;p&gt;解决方法：运用 &lt;code&gt;this.$forceUpdate()&lt;/code&gt;强制刷新，解决v-for更新数据不重新渲染页面&lt;/p&gt;
+&lt;p&gt;官方解释：迫使 Vue 实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件&lt;/p&gt;
+&lt;h2 id=&#34;修改组件key值&#34;&gt;修改组件key值&lt;/h2&gt;
+&lt;p&gt;key-changing的原理很简单，vue使用&lt;code&gt;key&lt;/code&gt;标记组件身份，当&lt;code&gt;key&lt;/code&gt;改变时就是释放原始组件，重新加载新的组件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+        &lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!--&lt;/span&gt; 父组件 &lt;span style=&#34;color:#ff79c6&#34;&gt;--&amp;gt;&lt;/span&gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+            &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;@click&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;reLoad&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;点击重新渲染子组件&lt;/span&gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt;&amp;gt;
+        &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+        &amp;lt;!-- &lt;span style=&#34;color:#50fa7b&#34;&gt;内容库子组件&lt;/span&gt; --&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;lib-window&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:key&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;time&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:channelCode&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;searchChannelCode&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;/lib-window&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+ 
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; children from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/components/parent/children&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+    name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;contentLib&amp;#39;&lt;/span&gt;,
+    components&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; { libWindow },
+    data () {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+            time&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+        }
+    },
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+        reLoad () {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.time &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;().getTime()
+        }
+    }
+}
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;eventhub&#34;&gt;eventHub&lt;/h2&gt;
+&lt;p&gt;一般比较适合毫无关系的页面之间的刷新，如页面添加了keep-alive缓存，但是又需要在特定操作下重新初始化数据&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;main.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 给Vue函数添加一个原型属性$eventHub
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;Vue.prototype.$eventHub &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; Vue.prototype.$eventHub &lt;span style=&#34;color:#ff79c6&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Vue()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;页面A&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 一般情况下为了避免重名需要给事件名后面加唯一标记
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; timestamp &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;.parse(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;())
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 通过路由传参将timestamp传给目标页面
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$router.push({path&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/xxx&amp;#39;&lt;/span&gt;, query&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {timestamp&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; timestamp}})
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 父组件发送一个全局事件
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$eventHub.$emit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;refresh&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; timestamp)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;页面B&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 接受路由参数
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; timestamp &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$route.query.timestamp
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 接收全局事件
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$eventHub.$on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;refresh&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; timestamp, (params) =&amp;gt; {
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 初始化数据方法
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.fetchData()
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/goloving/p/13941836.html&#34;&gt;vue项目刷新当前页面的几种解决方案对比：如何优雅的强制重新渲染子组件&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://cloud.tencent.com/developer/article/1637749&#34;&gt;Vue 数据更新了但页面没有更新的 7 种情况汇总及延伸&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/ - </description>
+        </item>
+    
+    
+    
+        <item>
         <title>JavaScript-原型链</title>
         <link>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</link>
         <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
@@ -1063,10 +1451,6 @@ hugo -d ../damuwangs.github.io
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/ - </description>
         </item>
-    
-    
-    
-    
     
     
   </channel>
