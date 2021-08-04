@@ -4,16 +4,41 @@
   
   <url>
     <loc>https://damuwangs.github.io/categories/</loc>
-    <lastmod>2021-08-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/posts/css-demo/</loc>
-    <lastmod>2021-08-03T00:00:00+00:00</lastmod>
+    <lastmod>2021-08-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://damuwangs.github.io/</loc>
+    <lastmod>2021-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/categories/javascript/</loc>
+    <lastmod>2021-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/javascript-%E8%B7%A8%E5%9F%9F/</loc>
+    <lastmod>2021-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/</loc>
+    <lastmod>2021-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/tags/</loc>
+    <lastmod>2021-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2021-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/css-demo/</loc>
     <lastmod>2021-08-03T00:00:00+00:00</lastmod>
   </url>
   
@@ -23,22 +48,7 @@
   </url>
   
   <url>
-    <loc>https://damuwangs.github.io/posts/</loc>
-    <lastmod>2021-08-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/tags/</loc>
-    <lastmod>2021-08-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://damuwangs.github.io/posts/vue-demo/</loc>
-    <lastmod>2021-08-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2021-08-03T00:00:00+00:00</lastmod>
   </url>
   
@@ -55,11 +65,6 @@
   <url>
     <loc>https://damuwangs.github.io/posts/css3%E5%8A%A8%E7%94%BB/</loc>
     <lastmod>2021-07-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/categories/javascript/</loc>
-    <lastmod>2021-07-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>

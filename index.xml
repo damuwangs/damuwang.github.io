@@ -5,9 +5,397 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Aug 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>JavaScript-跨域</title>
+        <link>https://damuwangs.github.io/posts/javascript-%E8%B7%A8%E5%9F%9F/</link>
+        <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/javascript-%E8%B7%A8%E5%9F%9F/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/javascript-%E8%B7%A8%E5%9F%9F/ -&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;
+&lt;h2 id=&#34;含义&#34;&gt;含义&lt;/h2&gt;
+&lt;p&gt;1995年，同源政策由 Netscape 公司引入浏览器。目前，所有浏览器都实行这个政策&lt;/p&gt;
+&lt;p&gt;最初，它的含义是指，A网页设置的 Cookie，B网页不能打开，除非这两个网页&amp;quot;同源&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;所谓&amp;quot;同源&amp;quot;指的是&amp;quot;三个相同&amp;rdquo;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;协议相同&lt;/li&gt;
+&lt;li&gt;域名相同&lt;/li&gt;
+&lt;li&gt;端口相同&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;常见跨域场景&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-%E8%B7%A8%E5%9F%9F/%E5%9C%BA%E6%99%AF.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;
+&lt;p&gt;同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。&lt;/p&gt;
+&lt;p&gt;设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。如果其他网站可以读取A网站的 Cookie，会发生什么？&lt;/p&gt;
+&lt;p&gt;很显然，如果 Cookie 包含隐私（比如存款总额），这些信息就会泄漏。更可怕的是，Cookie 往往用来保存用户的登录状态，如果用户没有退出登录，其他网站就可以冒充用户，为所欲为。因为浏览器同时还规定，提交表单不受同源政策的限制&lt;/p&gt;
+&lt;p&gt;由此可见，&amp;ldquo;同源政策&amp;quot;是必需的，否则 Cookie 可以共享，互联网就毫无安全可言了&lt;/p&gt;
+&lt;h2 id=&#34;限制范围&#34;&gt;限制范围&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Cookie、LocalStorage 和 IndexDB 无法读取&lt;/li&gt;
+&lt;li&gt;DOM 无法获得&lt;/li&gt;
+&lt;li&gt;AJAX 请求不能发送&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
+&lt;h2 id=&#34;cors&#34;&gt;CORS&lt;/h2&gt;
+&lt;p&gt;CORS 即是指跨域资源共享。它允许浏览器向非同源服务器，发出 Ajax 请求，从而克服了 Ajax 只能同源使用的限制。这种方式的跨域主要是在后端进行设置&lt;/p&gt;
+&lt;p&gt;这种方式的关键是后端进行设置，即是后端开启 Access-Control-Allow-Origin 为*或对应的origin就可以实现跨域&lt;/p&gt;
+&lt;p&gt;cors.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; xhr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; XMLHttpRequest() xhr.open(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:8002/request&amp;#39;&lt;/span&gt;)
+xhr.send(&lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;server.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
+
+app.use((req, res, next) =&amp;gt; {
+  res.header(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Access-Control-Allow-Origin&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://127.0.0.1:5500&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#6272a4&#34;&gt;// 设置允许哪个域访问
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  next()
+})
+
+app.get(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/request&amp;#39;&lt;/span&gt;, (req, res) =&amp;gt; {
+  res.end(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;server ok&amp;#39;&lt;/span&gt;)
+})
+
+app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8002&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;jsonp&#34;&gt;Jsonp&lt;/h2&gt;
+&lt;p&gt;说明：利用了 script 标签可跨域的特性，在客户端定义一个回调函数（全局函数），请求服务端返回该回调函数的调用，并将服务端的数据以该回调函数参数的形式传递过来，然后该函数就被执行了。该方法需要服务端配合完成&lt;/p&gt;
+&lt;p&gt;优点：兼容性好&lt;/p&gt;
+&lt;p&gt;缺点：由于 script 本身的限制，该跨域方式仅支持 get 请求，且不安全可能遭受 XSS 攻击&lt;/p&gt;
+&lt;p&gt;实现步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;声明一个全局回调函数，参数为服务端返回的 data。&lt;/li&gt;
+&lt;li&gt;创建一个 script 标签，拼接整个请求 api 的地址（要传入回调函数名称如 ?callback=getInfo ），赋值给 script 的 src 属性&lt;/li&gt;
+&lt;li&gt;服务端接受到请求后处理数据，然后将函数名和需要返回的数据拼接成字符串，拼装完成是执行函数的形式。（getInfo(&amp;lsquo;server data&amp;rsquo;)）&lt;/li&gt;
+&lt;li&gt;浏览器接收到服务端的返回结果，调用了声明的回调函数&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;jsonp.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; getInfo(data) {
+  console.log(data) &lt;span style=&#34;color:#6272a4&#34;&gt;// 告诉你一声， jsonp跨域成功
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;}
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; script &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;script&amp;#39;&lt;/span&gt;)
+script.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:3000?callback=getInfo&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.appendChild(script)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;server.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
+
+app.get(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;, (req, res) =&amp;gt; {
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; { callback } &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; req.query
+  res.end(&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;callback&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;(&amp;#39;告诉你一声， jsonp跨域成功&amp;#39;)`&lt;/span&gt;)
+})
+
+app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;3000&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;封装了一个 jsonp 函数&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; jsonp({ url, params, callback }) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;((resolve, reject) =&amp;gt; {
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; script &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;script&amp;#39;&lt;/span&gt;)
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 定义全局回调函数
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;[callback] &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (data) {
+      resolve(data)
+      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.removeChild(script) &lt;span style=&#34;color:#6272a4&#34;&gt;// 调用完毕即删除
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    }
+
+    params &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; { callback, ...params } &lt;span style=&#34;color:#6272a4&#34;&gt;// {callback: &amp;#34;getInfo&amp;#34;, name: &amp;#34;jacky&amp;#34;}
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; paramsArr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; []
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; key &lt;span style=&#34;color:#ff79c6&#34;&gt;in&lt;/span&gt; params) {
+      paramsArr.push(&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;key&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;params[key]&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;)
+    }
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// http://localhost:3000/?callback=getInfo&amp;amp;name=jacky
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    script.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;url&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;?&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;paramsArr.join(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;amp;&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt; 
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.appendChild(script)
+  })
+}
+
+jsonp({
+  url&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:3000&amp;#39;&lt;/span&gt;,
+  params&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+    name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;jacky&amp;#39;&lt;/span&gt;,
+  },
+  callback&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;getInfo&amp;#39;&lt;/span&gt;,
+}).then(res =&amp;gt; {
+  console.log(res) &lt;span style=&#34;color:#6272a4&#34;&gt;// 告诉你一声， jsonp跨域成功
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;node-中间件代理&#34;&gt;Node 中间件代理&lt;/h2&gt;
+&lt;p&gt;说明：同源策略是浏览器需要遵循的标准，而如果是服务器向服务器请求就没有跨域一说。&lt;/p&gt;
+&lt;p&gt;这次我们使用 express 中间件 http-proxy-middleware 来代理跨域, 转发请求和响应&lt;/p&gt;
+&lt;p&gt;实现步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;接受客户端请求&lt;/li&gt;
+&lt;li&gt;将请求转发给服务器&lt;/li&gt;
+&lt;li&gt;拿到服务器响应数据&lt;/li&gt;
+&lt;li&gt;将响应转发给客户端&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;index.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; xhr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; XMLHttpRequest()
+xhr.open(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/api/request&amp;#39;&lt;/span&gt;)
+xhr.onreadystatechange &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (xhr.readyState &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; xhr.status &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;) {
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;请求成功，结果是：&amp;#39;&lt;/span&gt;, xhr.responseText) &lt;span style=&#34;color:#6272a4&#34;&gt;// request success
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  }
+}
+xhr.send(&lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;nodeMdServer.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; { createProxyMiddleware } &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http-proxy-middleware&amp;#39;&lt;/span&gt;)
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
+
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 设置静态资源
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;app.use(express.&lt;span style=&#34;color:#ff79c6&#34;&gt;static&lt;/span&gt;(__dirname))
+
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 使用代理
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;app.use(
+  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/api&amp;#39;&lt;/span&gt;,
+  createProxyMiddleware({
+    target&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:8002&amp;#39;&lt;/span&gt;,
+    pathRewrite&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+      &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;^/api&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#6272a4&#34;&gt;// 重写路径
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    },
+    changeOrigin&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;,
+  })
+)
+
+app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8001&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;nodeServer.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
+
+app.get(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/request&amp;#39;&lt;/span&gt;, (req, res) =&amp;gt; {
+  res.end(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;request success&amp;#39;&lt;/span&gt;)
+})
+
+app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8002&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;nginx-反向代理&#34;&gt;Nginx 反向代理&lt;/h2&gt;
+&lt;p&gt;说明：实现原理类似于 Node 中间件代理，需要你搭建一个中转 nginx 服务器，用于转发请求。这种方式只需修改 Nginx 的配置即可解决跨域问题，前端除了接口换成对应形式，然后前后端不需要修改作其他修改。&lt;/p&gt;
+&lt;p&gt;实现思路：通过 nginx 配置一个代理服务器（同域不同端口）做跳板机，反向代理要跨域的域名，这样可以修改 cookie 中 domain 信息，方便当前域 cookie 写入，实现跨域登录&lt;/p&gt;
+&lt;p&gt;nginx 目录下修改 nginx.conf&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;// proxy服务器
+server {
+    listen &lt;span style=&#34;color:#bd93f9&#34;&gt;80&lt;/span&gt;;
+    server_name  www.domain1.com;
+    location / {
+        proxy_pass   http://www.domain2.com:&lt;span style=&#34;color:#bd93f9&#34;&gt;8080&lt;/span&gt;;  &lt;span style=&#34;color:#6272a4&#34;&gt;# 反向代理&lt;/span&gt;
+        proxy_cookie_domain www.domain2.com www.domain1.com; &lt;span style=&#34;color:#6272a4&#34;&gt;# 修改cookie里域名&lt;/span&gt;
+        index  index.html index.htm;
+
+        &lt;span style=&#34;color:#6272a4&#34;&gt;# 当用webpack-dev-server等中间件代理接口访问nignx时，此时无浏览器参与，故没有同源限制，下面的跨域配置可不启用&lt;/span&gt;
+        add_header Access-Control-Allow-Origin http://www.domain1.com;  &lt;span style=&#34;color:#6272a4&#34;&gt;# 当前端只跨域不带cookie时，可为*&lt;/span&gt;
+        add_header Access-Control-Allow-Credentials &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;启动 Nginx&lt;/p&gt;
+&lt;p&gt;index.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; xhr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; XMLHttpRequest()
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 前端开关：浏览器是否读写cookie
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;xhr.withCredentials &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 访问nginx中的代理服务器
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;xhr.open(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;get&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://www.domain1.com:81/?user=admin&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;)
+xhr.send()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;server.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; http &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; server &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; http.createServer()
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; qs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;querystring&amp;#39;&lt;/span&gt;)
+server.on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;request&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (req, res) {
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; params &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; qs.parse(req.url.substring(&lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;))
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 向前台写cookie
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  res.writeHead(&lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;, {
+    &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Set-Cookie&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;l=123456;Path=/;Domain=www.domain2.com;HttpOnly&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#6272a4&#34;&gt;// HttpOnly:脚本无法读取
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  })
+  res.write(JSON.stringify(params))
+  res.end()
+})
+server.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8080&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;postmessage&#34;&gt;PostMessage&lt;/h2&gt;
+&lt;p&gt;postMessage 是 HTML5 XMLHttpRequest Level 2 中的 API，且是为数不多可以跨域操作的 window 属性之一，它可用于解决以下方面的问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;页面和其打开的新窗口的数据传递&lt;/li&gt;
+&lt;li&gt;多窗口之间消息传递&lt;/li&gt;
+&lt;li&gt;页面与嵌套的 iframe 消息传递&lt;/li&gt;
+&lt;li&gt;上面三个场景的跨域数据传递&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总之，它可以允许来自不同源的脚本采用异步方式进行有限的通信，可以实现跨文本档、多窗口、跨域消息传递。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;otherWindow.postMessage(message, targetOrigin, [transfer])&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;otherWindow：其他窗口的一个引用，比如 iframe 的 contentWindow 属性、执行 window.open 返回的窗口对象、或者是命名过或数值索引的 window.frames。&lt;/li&gt;
+&lt;li&gt;message: 将要发送到其他 window 的数据。&lt;/li&gt;
+&lt;li&gt;targetOrigin:通过窗口的 origin 属性来指定哪些窗口能接收到消息事件，其值可以是字符串&amp;rdquo;*&amp;quot;（表示无限制）或者一个 URI。在发送消息的时候，如果目标窗口的协议、主机地址或端口这三者的任意一项不匹配 targetOrigin 提供的值，那么消息就不会被发送；只有三者完全匹配，消息才会被发送。&lt;/li&gt;
+&lt;li&gt;transfer(可选)：是一串和 message 同时传递的 Transferable 对象. 这些对象的所有权将被转移给消息的接收方，而发送一方将不再保有所有权。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这次我们把两个 html 文件挂到两个 server 下，采取 fs 读取的方式引入，运行两个 js 文件&lt;/p&gt;
+&lt;p&gt;postMessage1.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://localhost:8002&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;frameborder&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;frame&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;onLoad&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;load()&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; load() {
+      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; frame &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.getElementById(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;frame&amp;#39;&lt;/span&gt;)
+      frame.contentWindow.postMessage(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;你好，我是postMessage1&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:8002&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#6272a4&#34;&gt;//发送数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.onmessage &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (e) {
+        &lt;span style=&#34;color:#6272a4&#34;&gt;//接受返回数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        console.log(e.data) &lt;span style=&#34;color:#6272a4&#34;&gt;// 你好，我是postMessage2
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      }
+    }
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;postMsgServer1.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; fs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
+
+app.get(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;, (req, res) =&amp;gt; {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; html &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; fs.readFileSync(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./postMessage1.html&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;)
+  res.end(html)
+})
+
+app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8001&lt;/span&gt;, (req, res) =&amp;gt; {
+  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;server listening on 8001&amp;#39;&lt;/span&gt;)
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;postMessage2.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.onmessage &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (e) {
+      console.log(e.data) &lt;span style=&#34;color:#6272a4&#34;&gt;// 你好，我是postMessage1
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      e.source.postMessage(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;你好，我是postMessage2&amp;#39;&lt;/span&gt;, e.origin)
+    }
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;postMsgServer2.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; fs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
+
+app.get(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;, (req, res) =&amp;gt; {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; html &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; fs.readFileSync(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./postMessage2.html&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;)
+  res.end(html)
+})
+
+app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8002&lt;/span&gt;, (req, res) =&amp;gt; {
+  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;server listening on 8002&amp;#39;&lt;/span&gt;)
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;websocket&#34;&gt;WebSocket&lt;/h2&gt;
+&lt;p&gt;说明：WebSocket 是一种网络通信协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯，长连接方式不受跨域影响&lt;/p&gt;
+&lt;p&gt;由于原生 WebSocket API 使用起来不太方便，我们一般都会使用第三方库如 ws&lt;/p&gt;
+&lt;p&gt;Web 浏览器和服务器都必须实现 WebSockets 协议来建立和维护连接。由于 WebSockets 连接长期存在，与典型的 HTTP 连接不同，对服务器有重要的影响&lt;/p&gt;
+&lt;p&gt;socket.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; socket &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; WebSocket(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ws://localhost:8001&amp;#39;&lt;/span&gt;)
+socket.onopen &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+  socket.send(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;向服务端发送数据&amp;#39;&lt;/span&gt;)
+}
+socket.onmessage &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (e) {
+  console.log(e.data) &lt;span style=&#34;color:#6272a4&#34;&gt;// 服务端传给你的数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Server.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; WebSocket &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ws&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; wsServer &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; WebSocket.Server({ port&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;8001&lt;/span&gt; })
+wsServer.on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;connection&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (ws) {
+  ws.on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;message&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (data) {
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; buf &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; Buffer.from(data);
+    console.log(buf.toString(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// 向服务端发送数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    ws.send(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;服务端传给你的数据&amp;#39;&lt;/span&gt;)
+  })
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;documentdomain--iframe&#34;&gt;document.domain + iframe&lt;/h2&gt;
+&lt;p&gt;说明：这种方式只能用于二级域名相同的情况下。&lt;/p&gt;
+&lt;p&gt;比如 a.test.com 和 b.test.com 就属于二级域名，它们都是 test.com 的子域&lt;/p&gt;
+&lt;p&gt;只需要给页面添加 document.domain =&#39;test.com&amp;rsquo; 表示二级域名都相同就可以实现跨域。&lt;/p&gt;
+&lt;p&gt;比如：页面 a.test.com:3000/test1.html 获取页面 b.test.com:3000/test2.html 中 a 的值&lt;/p&gt;
+&lt;p&gt;test1.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;
+    &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://b.test.com:3000/test2.html&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#50fa7b&#34;&gt;frameborder&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#50fa7b&#34;&gt;onload&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;load()&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;iframe&amp;#34;&lt;/span&gt;
+  &amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.domain &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;test.com&amp;#39;&lt;/span&gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; load() {
+      console.log(iframe.contentWindow.a)
+    }
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;test2.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.domain &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;test.com&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;windowname--iframe&#34;&gt;window.name + iframe&lt;/h2&gt;
+&lt;p&gt;浏览器具有这样一个特性：同一个标签页或者同一个 iframe 框架加载过的页面共享相同的 window.name 属性值。在同个标签页里，name 值在不同的页面加载后也依旧存在，这些页面上 window.name 属性值都是相同的&lt;/p&gt;
+&lt;p&gt;利用这些特性，就可以将这个属性作为在不同页面之间传递数据的介质&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由于安全原因，浏览器始终会保持 window.name 是 string 类型&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;a.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;
+    &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://localhost:8002/c.html&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#50fa7b&#34;&gt;frameborder&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#50fa7b&#34;&gt;onload&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;load()&amp;#34;&lt;/span&gt;
+    &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;iframe&amp;#34;&lt;/span&gt;
+  &amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; first &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; load() {
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (first) {
+        &lt;span style=&#34;color:#6272a4&#34;&gt;// 第1次onload(跨域页)成功后，切换到同域代理页面
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; iframe &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.getElementById(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;iframe&amp;#39;&lt;/span&gt;)
+        iframe.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:8001/b.html&amp;#39;&lt;/span&gt;
+        first &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;
+      } &lt;span style=&#34;color:#ff79c6&#34;&gt;else&lt;/span&gt; {
+        &lt;span style=&#34;color:#6272a4&#34;&gt;// 第2次onload(同域b.html页)成功后，读取同域window.name中数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        console.log(iframe.contentWindow.name) &lt;span style=&#34;color:#6272a4&#34;&gt;// 我是c.html里的数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      }
+    }
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;b.html（不需要往html加内容，默认html结构模板即可）&lt;/p&gt;
+&lt;p&gt;c.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;我是c.html里的数据&amp;#39;&lt;/span&gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;c 页面给 window.name 设置了值, 即便 c 页面销毁，但 name 值不会被销毁；a 页面依旧能够得到 window.name&lt;/p&gt;
+&lt;h2 id=&#34;locationhash--iframe&#34;&gt;location.hash + iframe&lt;/h2&gt;
+&lt;p&gt;说明：实现原理： a.html 欲与 c.html 跨域相互通信，通过中间页 b.html 来实现。 三个页面，不同域之间利用 iframe 的 location.hash 传值，相同域之间直接 js 访问来通信。&lt;/p&gt;
+&lt;p&gt;具体实现步骤：一开始 a.html 给 c.html 传一个 hash 值，然后 c.html 收到 hash 值后，再把 hash 值传递给 b.html，最后 b.html 将结果放到 a.html 的 hash 值中。&lt;/p&gt;
+&lt;p&gt;同样的，a.html 和 b.html 是同域的，都是http://localhost:8001，也就是说 b 的 hash 值可以直接复制给 a 的 hash。c.html 为http://localhost:8002下的&lt;/p&gt;
+&lt;p&gt;a.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://localhost:8002/c.html#jackylin&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;style&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;display: none;&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.onhashchange &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 检测hash的变化
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      console.log(&lt;span style=&#34;color:#bd93f9&#34;&gt;456&lt;/span&gt;, location.hash) &lt;span style=&#34;color:#6272a4&#34;&gt;// #monkey
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    }
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;b.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.parent.parent.location.hash &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; location.hash
+&lt;span style=&#34;color:#6272a4&#34;&gt;// b.html将结果放到a.html的hash值中，b.html可通过parent.parent访问a.html页面
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;c.html&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;console.log(location.hash) &lt;span style=&#34;color:#6272a4&#34;&gt;//  #jackylin
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; iframe &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;iframe&amp;#39;&lt;/span&gt;)
+iframe.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:8001/b.html#monkey&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.appendChild(iframe)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html&#34;&gt;浏览器同源政策及其规避方法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6861553339994374157#heading-5&#34;&gt;前端跨域解决方案归纳整理&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/javascript-%E8%B7%A8%E5%9F%9F/ - </description>
+        </item>
     
     
     
@@ -203,105 +591,105 @@
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h3 id=&#34;非立即执行版&#34;&gt;非立即执行版&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
-&amp;lt;head&amp;gt;
-  &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;
-  &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&amp;quot;&amp;gt;
-  &amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;ie=edge&amp;quot;&amp;gt;
-  &amp;lt;title&amp;gt;防抖&amp;lt;/title&amp;gt;
-&amp;lt;/head&amp;gt;
-&amp;lt;body&amp;gt;
-  &amp;lt;button id=&amp;quot;debounce&amp;quot;&amp;gt;点我防抖！&amp;lt;/button&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;html&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;lang&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;head&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;charset&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;UTF-8&amp;#34;&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;viewport&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&amp;#34;&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;X-UA-Compatible&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;ie=edge&amp;#34;&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;title&lt;/span&gt;&amp;gt;防抖&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;title&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;head&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;debounce&amp;#34;&lt;/span&gt;&amp;gt;点我防抖！&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt;&amp;gt;
   
-  &amp;lt;script&amp;gt;
-    window.onload = function() {
-      // 1、获取这个按钮，并绑定事件
-      var myDebounce = document.getElementById(&amp;quot;debounce&amp;quot;);
-      myDebounce.addEventListener(&amp;quot;click&amp;quot;, debounce(sayDebounce));
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.onload &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 1、获取这个按钮，并绑定事件
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; myDebounce &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.getElementById(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;debounce&amp;#34;&lt;/span&gt;);
+      myDebounce.addEventListener(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;click&amp;#34;&lt;/span&gt;, debounce(sayDebounce));
     }
   
-    // 2、防抖功能函数，接受传参
-    function debounce(fn) {
-      // 4、创建一个标记用来存放定时器的返回值
-      let timeout = null;
-      return function() {
-        // 5、每次当用户点击/输入的时候，把前一个定时器清除
-        clearTimeout(timeout);
-        // 6、然后创建一个新的 setTimeout，
-        // 这样就能保证点击按钮后的 interval 间隔内
-        // 如果用户还点击了的话，就不会执行 fn 函数
-        timeout = setTimeout(() =&amp;gt; {
-          fn.call(this, arguments);
-        }, 1000);
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 2、防抖功能函数，接受传参
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; debounce(fn) {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 4、创建一个标记用来存放定时器的返回值
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; timeout &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;;
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+        &lt;span style=&#34;color:#6272a4&#34;&gt;// 5、每次当用户点击/输入的时候，把前一个定时器清除
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        clearTimeout(timeout);
+        &lt;span style=&#34;color:#6272a4&#34;&gt;// 6、然后创建一个新的 setTimeout，
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#6272a4&#34;&gt;// 这样就能保证点击按钮后的 interval 间隔内
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#6272a4&#34;&gt;// 如果用户还点击了的话，就不会执行 fn 函数
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        timeout &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; setTimeout(() =&amp;gt; {
+          fn.call(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;, arguments);
+        }, &lt;span style=&#34;color:#bd93f9&#34;&gt;1000&lt;/span&gt;);
       };
     }
   
-    // 3、需要进行防抖的事件处理
-    function sayDebounce() {
-      // ... 有些需要防抖的工作，在这里执行
-      console.log(&amp;quot;防抖成功！&amp;quot;);
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 3、需要进行防抖的事件处理
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; sayDebounce() {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// ... 有些需要防抖的工作，在这里执行
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;防抖成功！&amp;#34;&lt;/span&gt;);
     }
   
-  &amp;lt;/script&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建一个定时器，如果在规定时间内重复触发该事件，就会调用clearTimeout清除掉上一个定时器，重置定时器&lt;/p&gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;创建一个定时器，如果在规定时间内重复触发该事件，就会调用clearTimeout清除掉上一个定时器，重置定时器&lt;/p&gt;
 &lt;p&gt;也就是说，这件事本来就是需要等待的，并非立即执行的，如果用户反复点击，那只好重新等待了&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;h3 id=&#34;立即执行版&#34;&gt;立即执行版&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
-&amp;lt;head&amp;gt;
-  &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;
-  &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&amp;quot;&amp;gt;
-  &amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;ie=edge&amp;quot;&amp;gt;
-  &amp;lt;title&amp;gt;防抖&amp;lt;/title&amp;gt;
-&amp;lt;/head&amp;gt;
-&amp;lt;body&amp;gt;
-  &amp;lt;button id=&amp;quot;debounce&amp;quot;&amp;gt;点我防抖！&amp;lt;/button&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;html&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;lang&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;head&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;charset&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;UTF-8&amp;#34;&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;viewport&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&amp;#34;&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;X-UA-Compatible&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;ie=edge&amp;#34;&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;title&lt;/span&gt;&amp;gt;防抖&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;title&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;head&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;debounce&amp;#34;&lt;/span&gt;&amp;gt;点我防抖！&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt;&amp;gt;
   
-  &amp;lt;script&amp;gt;
-    window.onload = function() {
-      // 1、获取这个按钮，并绑定事件
-      var myDebounce = document.getElementById(&amp;quot;debounce&amp;quot;);
-      myDebounce.addEventListener(&amp;quot;click&amp;quot;, debounce(sayDebounce));
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.onload &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 1、获取这个按钮，并绑定事件
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; myDebounce &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.getElementById(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;debounce&amp;#34;&lt;/span&gt;);
+      myDebounce.addEventListener(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;click&amp;#34;&lt;/span&gt;, debounce(sayDebounce));
     }
   
-    // 2、防抖功能函数，接受传参
-    function debounce(fn) {
-      // 4、创建一个标记用来存放定时器的返回值
-      let timeout = null;
-      //5.创建一个判断是否可点击值
-      let doit = true;
-      return function() {
-        // 5、当doit为真，既用户重复点击时，清除定时器
-        if(doit)clearTimeout(timeout);
-        //6.当doit为false时，既用户可点击，再将doit设为true，防止用户重复点击
-        else{
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 2、防抖功能函数，接受传参
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; debounce(fn) {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 4、创建一个标记用来存放定时器的返回值
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; timeout &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;;
+      &lt;span style=&#34;color:#6272a4&#34;&gt;//5.创建一个判断是否可点击值
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; doit &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;;
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+        &lt;span style=&#34;color:#6272a4&#34;&gt;// 5、当doit为真，既用户重复点击时，清除定时器
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt;(doit)clearTimeout(timeout);
+        &lt;span style=&#34;color:#6272a4&#34;&gt;//6.当doit为false时，既用户可点击，再将doit设为true，防止用户重复点击
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;else&lt;/span&gt;{
             fn();
-            doit = true;
+            doit &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;;
         }
-        //7.设置定时器，这样就能保证点击按钮后的 interval 间隔内
-        // 如果用户还点击了的话，就不会执行 将doit设为false函数
-        timeout = setTimeout(() =&amp;gt; {
-          doit = false;
-        }, 1000);
+        &lt;span style=&#34;color:#6272a4&#34;&gt;//7.设置定时器，这样就能保证点击按钮后的 interval 间隔内
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#6272a4&#34;&gt;// 如果用户还点击了的话，就不会执行 将doit设为false函数
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        timeout &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; setTimeout(() =&amp;gt; {
+          doit &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;;
+        }, &lt;span style=&#34;color:#bd93f9&#34;&gt;1000&lt;/span&gt;);
       };
     }
   
-    // 3、需要进行防抖的事件处理
-    function sayDebounce() {
-      // ... 有些需要防抖的工作，在这里执行
-      console.log(&amp;quot;防抖成功！&amp;quot;);
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 3、需要进行防抖的事件处理
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; sayDebounce() {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// ... 有些需要防抖的工作，在这里执行
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;防抖成功！&amp;#34;&lt;/span&gt;);
     }
   
-  &amp;lt;/script&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;html&lt;/span&gt;&amp;gt;
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;节流&#34;&gt;节流&lt;/h1&gt;
 &lt;h2 id=&#34;概念-1&#34;&gt;概念&lt;/h2&gt;
@@ -314,54 +702,54 @@
 &lt;li&gt;监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断；&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;实例-1&#34;&gt;实例&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
-&amp;lt;head&amp;gt;
-  &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;
-  &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&amp;quot;&amp;gt;
-  &amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;ie=edge&amp;quot;&amp;gt;
-  &amp;lt;title&amp;gt;节流&amp;lt;/title&amp;gt;
-&amp;lt;/head&amp;gt;
-&amp;lt;body&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;html&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;lang&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;head&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;charset&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;UTF-8&amp;#34;&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;viewport&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&amp;#34;&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;X-UA-Compatible&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;ie=edge&amp;#34;&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;title&lt;/span&gt;&amp;gt;节流&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;title&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;head&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
 
-  &amp;lt;button id=&amp;quot;throttle&amp;quot;&amp;gt;点我节流！&amp;lt;/button&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;throttle&amp;#34;&lt;/span&gt;&amp;gt;点我节流！&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt;&amp;gt;
 
-  &amp;lt;script&amp;gt;
-    window.onload = function() {
-      // 1、获取按钮，绑定点击事件
-      var myThrottle = document.getElementById(&amp;quot;throttle&amp;quot;);
-      myThrottle.addEventListener(&amp;quot;click&amp;quot;, throttle(sayThrottle));
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.onload &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 1、获取按钮，绑定点击事件
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; myThrottle &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.getElementById(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;throttle&amp;#34;&lt;/span&gt;);
+      myThrottle.addEventListener(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;click&amp;#34;&lt;/span&gt;, throttle(sayThrottle));
     }
 
-    // 2、节流函数体
-    function throttle(fn) {
-      // 4、通过闭包保存一个标记
-      let canRun = true;
-      return function() {
-        // 5、在函数开头判断标志是否为 true，不为 true 则中断函数
-        if(!canRun) {
-          return;
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 2、节流函数体
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; throttle(fn) {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 4、通过闭包保存一个标记
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; canRun &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;;
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+        &lt;span style=&#34;color:#6272a4&#34;&gt;// 5、在函数开头判断标志是否为 true，不为 true 则中断函数
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#ff79c6&#34;&gt;!&lt;/span&gt;canRun) {
+          &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt;;
         }
-        // 6、将 canRun 设置为 false，防止执行之前再被执行
-        canRun = false;
-        // 7、定时器
-        setTimeout( () =&amp;gt; {
-          fn.call(this, arguments);
-          // 8、执行完事件（比如调用完接口）之后，重新将这个标志设置为 true
-          canRun = true;
-        }, 1000);
+        &lt;span style=&#34;color:#6272a4&#34;&gt;// 6、将 canRun 设置为 false，防止执行之前再被执行
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        canRun &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;;
+        &lt;span style=&#34;color:#6272a4&#34;&gt;// 7、定时器
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        setTimeout( () =&amp;gt; {
+          fn.call(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;, arguments);
+          &lt;span style=&#34;color:#6272a4&#34;&gt;// 8、执行完事件（比如调用完接口）之后，重新将这个标志设置为 true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;          canRun &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;;
+        }, &lt;span style=&#34;color:#bd93f9&#34;&gt;1000&lt;/span&gt;);
       };
     }
 
-    // 3、需要节流的事件
-    function sayThrottle() {
-      console.log(&amp;quot;节流成功！&amp;quot;);
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 3、需要节流的事件
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; sayThrottle() {
+      console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;节流成功！&amp;#34;&lt;/span&gt;);
     }
 
-  &amp;lt;/script&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;从这个例子可以看出，节流可以防止在某时间间隔内重复发送请求！其和防抖有点相似，但其有本质的区别，虽然都是防止重复触发事件！&lt;/p&gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;html&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从这个例子可以看出，节流可以防止在某时间间隔内重复发送请求！其和防抖有点相似，但其有本质的区别，虽然都是防止重复触发事件！&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;防抖是需要等待多久时间才能再触发一次事件！&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;节流是多久时间内只能触发一次事件！&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
@@ -389,68 +777,68 @@
 &lt;/blockquote&gt;
 &lt;h1 id=&#34;teleport-的使用&#34;&gt;Teleport 的使用&lt;/h1&gt;
 &lt;p&gt;index.html中&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-  &amp;lt;div id=&amp;quot;teleport-target&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;script type=&amp;quot;module&amp;quot; src=&amp;quot;/src/main.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;src/components/HelloWorld.vue中，添加如下，留意to属性跟上面的id选择器一致&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; &amp;lt;button @click=&amp;quot;showToast&amp;quot; class=&amp;quot;btn&amp;quot;&amp;gt;打开 toast&amp;lt;/button&amp;gt;
-  &amp;lt;!-- to 属性就是目标位置 --&amp;gt;
-  &amp;lt;teleport to=&amp;quot;#teleport-target&amp;quot;&amp;gt;
-    &amp;lt;div v-if=&amp;quot;visible&amp;quot; class=&amp;quot;toast-wrap&amp;quot;&amp;gt;
-      &amp;lt;div class=&amp;quot;toast-msg&amp;quot;&amp;gt;我是一个 Toast 文案&amp;lt;/div&amp;gt;
-    &amp;lt;/div&amp;gt;
-  &amp;lt;/teleport&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;import { ref } from &#39;vue&#39;;
-export default {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;teleport-target&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/src/main.js&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;src/components/HelloWorld.vue中，添加如下，留意to属性跟上面的id选择器一致&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt; &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt; @&lt;span style=&#34;color:#50fa7b&#34;&gt;click&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;showToast&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;btn&amp;#34;&lt;/span&gt;&amp;gt;打开 toast&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt;&amp;gt;
+  &lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- to 属性就是目标位置 --&amp;gt;&lt;/span&gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;to&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;#teleport-target&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;v-if&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;visible&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;toast-wrap&amp;#34;&lt;/span&gt;&amp;gt;
+      &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;toast-msg&amp;#34;&lt;/span&gt;&amp;gt;我是一个 Toast 文案&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { ref } from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
   setup() {
-    // toast 的封装
-    const visible = ref(false);
-    let timer;
-    const showToast = () =&amp;gt; {
-      visible.value = true;
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// toast 的封装
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; visible &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref(&lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;);
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; timer;
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; showToast &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
+      visible.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;;
       clearTimeout(timer);
-      timer = setTimeout(() =&amp;gt; {
-        visible.value = false;
-      }, 2000);
+      timer &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; setTimeout(() =&amp;gt; {
+        visible.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;;
+      }, &lt;span style=&#34;color:#bd93f9&#34;&gt;2000&lt;/span&gt;);
     }
-    return {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
       visible,
       showToast
     }
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;效果展示：&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;效果展示：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue3-Teleport/%E6%95%88%E6%9E%9C%E4%B8%80.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;可以看到，我们使用teleport组件，通过to属性，指定该组件渲染的位置与&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;同级，也就是在body下，但是teleport的状态visible又是完全由内部Vue组件控制&lt;/p&gt;
 &lt;h1 id=&#34;与-vue组件-一起使用modal&#34;&gt;与 Vue组件 一起使用modal&lt;/h1&gt;
 &lt;p&gt;如果&lt;!-- raw HTML omitted --&gt;包含Vue组件，则它仍将是&lt;!-- raw HTML omitted --&gt;父组件的逻辑子组件&lt;/p&gt;
 &lt;p&gt;接下来我们以一个modal组件为例&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;div id=&amp;quot;modal-container&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&amp;lt;script type=&amp;quot;module&amp;quot; src=&amp;quot;/src/main.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;teleport to=&amp;quot;#modal-container&amp;quot;&amp;gt;
-  &amp;lt;!-- use the modal component, pass in the prop --&amp;gt;
-  &amp;lt;modal :show=&amp;quot;showModal&amp;quot; @close=&amp;quot;showModal = false&amp;quot;&amp;gt;
-    &amp;lt;template #header&amp;gt;
-      &amp;lt;h3&amp;gt;custom header&amp;lt;/h3&amp;gt;
-    &amp;lt;/template&amp;gt;
-  &amp;lt;/modal&amp;gt;
-&amp;lt;/teleport&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;import { ref } from &#39;vue&#39;;
-import Modal from &#39;./Modal.vue&#39;;
-export default {
-  components: {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;modal-container&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/src/main.js&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;to&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;#modal-container&amp;#34;&lt;/span&gt;&amp;gt;
+  &lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- use the modal component, pass in the prop --&amp;gt;&lt;/span&gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;modal&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;:show&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;showModal&amp;#34;&lt;/span&gt; @&lt;span style=&#34;color:#50fa7b&#34;&gt;close&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;showModal = false&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt; #&lt;span style=&#34;color:#50fa7b&#34;&gt;header&lt;/span&gt;&amp;gt;
+      &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;h3&lt;/span&gt;&amp;gt;custom header&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;h3&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;modal&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { ref } from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Modal from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./Modal.vue&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  components&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
     Modal
   },
   setup() {
-    // modal 的封装
-    const showModal = ref(false);
-    return {
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// modal 的封装
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; showModal &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref(&lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;);
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
       showModal
     }
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在这种情况下，即使在不同的地方渲染Modal，它仍将是当前组件（调用Modal的组件）的子级，并将从中接收show prop&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在这种情况下，即使在不同的地方渲染Modal，它仍将是当前组件（调用Modal的组件）的子级，并将从中接收show prop&lt;/p&gt;
 &lt;p&gt;这也意味着来自父组件的注入按预期工作，并且子组件将嵌套在Vue Devtools中的父组件之下，而不是放在实际内容移动到的位置&lt;/p&gt;
 &lt;p&gt;看实际效果以及在Vue Devtool中&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue3-Teleport/%E6%95%88%E6%9E%9C%E4%BA%8C.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -541,137 +929,137 @@ export default {
 &lt;/table&gt;
 &lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
 &lt;h3 id=&#34;appvue&#34;&gt;app.vue&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
-  &amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;    
-    &amp;lt;Search @search=&amp;quot;search&amp;quot;/&amp;gt;
-    &amp;lt;Panel :listData=&#39;listData&#39; @loadMore=&amp;quot;loadMore&amp;quot;/&amp;gt;
-  &amp;lt;/div&amp;gt;
-&amp;lt;/template&amp;gt;
-&amp;lt;script&amp;gt;
-import app from &amp;quot;./app.js&amp;quot;;
-import Search from &amp;quot;./components/Search.vue&amp;quot;;
-import Panel from &amp;quot;./components/Panel.vue&amp;quot;;
-export default {
-  name: &amp;quot;app&amp;quot;,
-  components: {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;    
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;Search&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;@search&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;search&amp;#34;&lt;/span&gt;/&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;Panel&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;listData&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;listData&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;@loadMore&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;loadMore&amp;#34;&lt;/span&gt;/&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; app from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./app.js&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Search from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./components/Search.vue&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Panel from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./components/Panel.vue&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;,
+  components&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
     Search,
     Panel
   },   
   setup(props, context){
-    const {search, loadMore, listData} = app(props, context)
-    return {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; {search, loadMore, listData} &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; app(props, context)
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
       search,
       loadMore,
       listData
     }
   }
 }
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;appjs&#34;&gt;app.js&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;import { ref} from &amp;quot;@vue/composition-api&amp;quot;;
-export default function app(props, context) {
-  let listData = ref([]) // 定义响应式变量,切记下方赋值/取值时修改的是.value属性！
-  // 初始化列表
-  const loadData = () =&amp;gt; {      
-    return [{title:&#39;标题一&#39;, author: &#39;作者一&#39;},{title:&#39;标题二&#39;, author: &#39;作者二&#39;},{title:&#39;标题三&#39;, author: &#39;作者三&#39;},{title:&#39;标题四&#39;, author: &#39;作者四&#39;},{title:&#39;标题五&#39;, author: &#39;作者五&#39;}]
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;appjs&#34;&gt;app.js&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { ref} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; app(props, context) {
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; listData &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref([]) &lt;span style=&#34;color:#6272a4&#34;&gt;// 定义响应式变量,切记下方赋值/取值时修改的是.value属性！
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#6272a4&#34;&gt;// 初始化列表
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; loadData &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {      
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; [{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题一&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者一&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题二&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者二&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题三&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者三&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题四&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者四&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题五&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者五&amp;#39;&lt;/span&gt;}]
   }
-  // 加载更多
-  const loadMore = () =&amp;gt; {   
-    listData.value = [...listData.value, ...[{title:&#39;标题X&#39;, author: &#39;作者X&#39;}]]
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 加载更多
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; loadMore &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {   
+    listData.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; [...listData.value, ...[{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题X&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者X&amp;#39;&lt;/span&gt;}]]
   }
-  // 搜索
-  const search = (searchVal) =&amp;gt; {
-    if (searchVal) {
-      listData.value = listData.value.filter(item =&amp;gt; {
-        if (item.title.indexOf(searchVal) &amp;gt;= 0) {
-          return item
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 搜索
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; search &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; (searchVal) =&amp;gt; {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (searchVal) {
+      listData.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; listData.value.filter(item =&amp;gt; {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (item.title.indexOf(searchVal) &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;) {
+          &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; item
         } 
       })         
-    } else {
-      listData.value = loadData()
+    } &lt;span style=&#34;color:#ff79c6&#34;&gt;else&lt;/span&gt; {
+      listData.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; loadData()
     }
   }
-  return {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
     listData,
     loadMore,
     search
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;panelvue&#34;&gt;panel.vue&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
-  &amp;lt;div class=&amp;quot;weui-panel weui-panel_access&amp;quot;&amp;gt;
-    &amp;lt;div v-for=&amp;quot;(n,index) in listData&amp;quot; :key=&amp;quot;index&amp;quot; class=&amp;quot;weui-panel__bd&amp;quot;&amp;gt;
-      &amp;lt;a href=&amp;quot;javascript:void(0);&amp;quot; class=&amp;quot;weui-media-box weui-media-box_appmsg&amp;quot;&amp;gt;
-        &amp;lt;div class=&amp;quot;weui-media-box__bd&amp;quot;&amp;gt;
-          &amp;lt;h4 class=&amp;quot;weui-media-box__title&amp;quot; v-text=&amp;quot;n.title&amp;quot;&amp;gt;&amp;lt;/h4&amp;gt;
-          &amp;lt;p class=&amp;quot;weui-media-box__desc&amp;quot; v-text=&amp;quot;n.author&amp;quot;&amp;gt;&amp;lt;/p&amp;gt;
-        &amp;lt;/div&amp;gt;
-      &amp;lt;/a&amp;gt;
-    &amp;lt;/div&amp;gt;
-    &amp;lt;div @click=&amp;quot;loadMore&amp;quot; class=&amp;quot;weui-panel__ft&amp;quot;&amp;gt;
-      &amp;lt;a href=&amp;quot;javascript:void(0);&amp;quot; class=&amp;quot;weui-cell weui-cell_access weui-cell_link&amp;quot;&amp;gt;
-        &amp;lt;div class=&amp;quot;weui-cell__bd&amp;quot;&amp;gt;查看更多&amp;lt;/div&amp;gt;
-        &amp;lt;span class=&amp;quot;weui-cell__ft&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
-      &amp;lt;/a&amp;gt;
-    &amp;lt;/div&amp;gt;
-  &amp;lt;/div&amp;gt;
-&amp;lt;/template&amp;gt;
-&amp;lt;script&amp;gt;
-import { reactive, toRefs} from &amp;quot;@vue/composition-api&amp;quot;;
-import pane from &amp;quot;./pane.js&amp;quot;;
-export default {
-  props:[&#39;listData&#39;],
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;panelvue&#34;&gt;panel.vue&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-panel weui-panel_access&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-for&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;(n,index) in listData&amp;#34; :key=&amp;#34;index&amp;#34; class=&amp;#34;weui-panel__bd&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;a href=&amp;#34;javascript:void(0);&amp;#34; class=&amp;#34;weui-media-box weui-media-box_appmsg&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;div class=&amp;#34;weui-media-box__bd&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          &amp;lt;h4 class=&amp;#34;weui-media-box__title&amp;#34; v-text=&amp;#34;n.title&amp;#34;&amp;gt;&amp;lt;/h4&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          &amp;lt;p class=&amp;#34;weui-media-box__desc&amp;#34; v-text=&amp;#34;n.author&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;/a&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;div @click=&amp;#34;loadMore&amp;#34; class=&amp;#34;weui-panel__ft&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;a href=&amp;#34;javascript:void(0);&amp;#34; class=&amp;#34;weui-cell weui-cell_access weui-cell_link&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;div class=&amp;#34;weui-cell__bd&amp;#34;&amp;gt;查看更多&amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;span class=&amp;#34;weui-cell__ft&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;span&lt;/span&gt;&amp;gt;
+      &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;a&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { reactive, toRefs} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; pane from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./pane.js&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  props&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;[&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;listData&amp;#39;&lt;/span&gt;],
   setup(props, context) {
-    const {loadMore} = pane(props, context)
-    const state = reactive({
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; {loadMore} &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; pane(props, context)
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; state &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; reactive({
     })     
-    return {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
       ...toRefs(state),
       loadMore
     }
   }
 }
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;paneljs&#34;&gt;panel.js&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;export default function pane(props, context) {
-  const loadMore = () =&amp;gt; {
-    context.emit(&amp;quot;loadMore&amp;quot;)
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;paneljs&#34;&gt;panel.js&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; pane(props, context) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; loadMore &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
+    context.emit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;loadMore&amp;#34;&lt;/span&gt;)
   }
-  return {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
     loadMore
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;searchvue&#34;&gt;search.vue&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
-  &amp;lt;div :class=&amp;quot;[&#39;weui-search-bar&#39;, {&#39;weui-search-bar_focusing&#39;:isFocus}]&amp;quot; id=&amp;quot;searchBar&amp;quot;&amp;gt;
-    &amp;lt;form class=&amp;quot;weui-search-bar__form&amp;quot;&amp;gt;
-      &amp;lt;div class=&amp;quot;weui-search-bar__box&amp;quot;&amp;gt;
-        &amp;lt;i class=&amp;quot;weui-icon-search&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
-        &amp;lt;input
-          v-model=&amp;quot;searchValue&amp;quot;
-          ref=&amp;quot;inputElement&amp;quot;
-          type=&amp;quot;search&amp;quot;
-          class=&amp;quot;weui-search-bar__input&amp;quot;
-          id=&amp;quot;searchInput&amp;quot;
-          placeholder=&amp;quot;搜索&amp;quot;
-          required
-        /&amp;gt;
-        &amp;lt;a href=&amp;quot;javascript:&amp;quot; class=&amp;quot;weui-icon-clear&amp;quot; id=&amp;quot;searchClear&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;
-      &amp;lt;/div&amp;gt;
-      &amp;lt;label @click=&amp;quot;toggle&amp;quot; class=&amp;quot;weui-search-bar__label&amp;quot; id=&amp;quot;searchText&amp;quot;&amp;gt;
-        &amp;lt;i class=&amp;quot;weui-icon-search&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;
-        &amp;lt;span&amp;gt;搜索&amp;lt;/span&amp;gt;
-      &amp;lt;/label&amp;gt;
-    &amp;lt;/form&amp;gt;
-    &amp;lt;a @click=&amp;quot;toggle&amp;quot; href=&amp;quot;javascript:&amp;quot; class=&amp;quot;weui-search-bar__cancel-btn&amp;quot; id=&amp;quot;searchCancel&amp;quot;&amp;gt;取消&amp;lt;/a&amp;gt;
-  &amp;lt;/div&amp;gt;
-&amp;lt;/template&amp;gt;
-&amp;lt;script&amp;gt;
-import search from &amp;quot;./search.js&amp;quot;;
-export default {
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;searchvue&#34;&gt;search.vue&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;[&amp;#39;weui-search-bar&amp;#39;, {&amp;#39;weui-search-bar_focusing&amp;#39;:isFocus}]&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;searchBar&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;form&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-search-bar__form&amp;#34;&lt;/span&gt;&amp;gt;
+      &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-search-bar__box&amp;#34;&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-icon-search&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;i&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;input&lt;/span&gt;
+          &lt;span style=&#34;color:#ff79c6&#34;&gt;v-model&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;searchValue&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          ref=&amp;#34;inputElement&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          type=&amp;#34;search&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          class=&amp;#34;weui-search-bar__input&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          id=&amp;#34;searchInput&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          placeholder=&amp;#34;搜索&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          required
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        /&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;a href=&amp;#34;javascript:&amp;#34; class=&amp;#34;weui-icon-clear&amp;#34; id=&amp;#34;searchClear&amp;#34;&amp;gt;&amp;lt;/a&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;label @click=&amp;#34;toggle&amp;#34; class=&amp;#34;weui-search-bar__label&amp;#34; id=&amp;#34;searchText&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;i class=&amp;#34;weui-icon-search&amp;#34;&amp;gt;&amp;lt;/i&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;span&amp;gt;搜索&amp;lt;/span&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;/label&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;/form&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;a @click=&amp;#34;toggle&amp;#34; href=&amp;#34;javascript:&amp;#34; class=&amp;#34;weui-search-bar__cancel-btn&amp;#34; id=&amp;#34;searchCancel&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;取消&lt;/span&gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;a&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; search from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./search.js&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
   setup(props, context) {
-    const {searchValue, isFocus, inputElement,  toggle} = search(props, context)
-    return {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; {searchValue, isFocus, inputElement,  toggle} &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; search(props, context)
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
       toggle,
       searchValue, 
       isFocus, 
@@ -679,36 +1067,36 @@ export default {
     }
   }
 }
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;searchjs&#34;&gt;search.js&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;import {reactive, toRefs, watch} from &amp;quot;@vue/composition-api&amp;quot;;
-export default function search(props, context) {
-  const search = reactive({
-    searchValue: &amp;quot;&amp;quot;,
-    isFocus: false,
-    inputElement: null
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;searchjs&#34;&gt;search.js&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {reactive, toRefs, watch} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; search(props, context) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; search &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; reactive({
+    searchValue&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
+    isFocus&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;,
+    inputElement&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;
   })
-  const searchRefs = toRefs(search); // 定义一个新的对象，它本身不具备响应性，但是它的字段全部是ref变量
-  // 切换搜索框状态的方法
-  const toggle = () =&amp;gt; {
-    search.inputElement.focus() // 让点击搜索后出现的输入框自动聚焦
-    search.isFocus = !search.isFocus
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; searchRefs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; toRefs(search); &lt;span style=&#34;color:#6272a4&#34;&gt;// 定义一个新的对象，它本身不具备响应性，但是它的字段全部是ref变量
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#6272a4&#34;&gt;// 切换搜索框状态的方法
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; toggle &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
+    search.inputElement.focus() &lt;span style=&#34;color:#6272a4&#34;&gt;// 让点击搜索后出现的输入框自动聚焦
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    search.isFocus &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;!&lt;/span&gt;search.isFocus
   }
-  // 监听搜索框的值
-  watch(
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 监听搜索框的值
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  watch(
     () =&amp;gt; {
-      return search.searchValue
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; search.searchValue
     },
     () =&amp;gt; {
-      context.emit(&amp;quot;search&amp;quot;, search.searchValue)
+      context.emit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;search&amp;#34;&lt;/span&gt;, search.searchValue)
     }
   )
-  return {
-    ...searchRefs, // 在这里结构toRefs对象才能继续保持响应式
-    toggle
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+    ...searchRefs, &lt;span style=&#34;color:#6272a4&#34;&gt;// 在这里结构toRefs对象才能继续保持响应式
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    toggle
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;响应式&#34;&gt;响应式&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;响应式&#34;&gt;响应式&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;setup&#34;&gt;setup&lt;/h2&gt;
@@ -716,87 +1104,87 @@ export default function search(props, context) {
 &lt;p&gt;参数：&lt;/p&gt;
 &lt;p&gt;1、props&lt;/p&gt;
 &lt;p&gt;响应式的，当传入新的 prop 时，它将被更新&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;export default {
-  props: {
-    title: String
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  props&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+    title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;String&lt;/span&gt;
   },
   setup(props) {
-    console.log(props.title)
+    console.log(props.title)j
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2、context&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;2、context&lt;/p&gt;
 &lt;p&gt;context是一个普通的 JavaScript 对象，它暴露组件的三个 property&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;export default {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
   setup(props, context) {
-    // Attribute (非响应式对象)
-    console.log(context.attrs)
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// Attribute (非响应式对象)
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    console.log(context.attrs)
   
-    // 插槽 (非响应式对象)
-    console.log(context.slots)
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 插槽 (非响应式对象)
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    console.log(context.slots)
   
-    // 触发事件 (方法)
-    console.log(context.emit)
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 触发事件 (方法)
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    console.log(context.emit)
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;attrs和slots是有状态的对象，它们总是会随组件本身的更新而更新。这意味着你应该避免对它们进行解构，并始终以 attrs.x或slots.x的方式引用 property。请注意，与props不同，attrs和slots是非响应式的。如果你打算根据attrs或slots更改应用副作用，那么应该在onUpdated生命周期钩子中执行此操作&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;attrs和slots是有状态的对象，它们总是会随组件本身的更新而更新。这意味着你应该避免对它们进行解构，并始终以 attrs.x或slots.x的方式引用 property。请注意，与props不同，attrs和slots是非响应式的。如果你打算根据attrs或slots更改应用副作用，那么应该在onUpdated生命周期钩子中执行此操作&lt;/p&gt;
 &lt;p&gt;setup注册生命周期钩子&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import {onMounted} from &amp;quot;@vue/composition-api&amp;quot;;
-export default function pane(props, context) {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {onMounted} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; pane(props, context) {
   onMounted(() =&amp;gt; {
-      // 业务逻辑
-  })
-  return {    
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 业务逻辑
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  })
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {    
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;watch响应式更改&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import {watch} from &amp;quot;@vue/composition-api&amp;quot;;
-export default function search(props, context) {
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;watch响应式更改&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {watch} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; search(props, context) {
   watch(
     () =&amp;gt; {
-      // 监听的值	
-      return search.searchValue
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 监听的值	
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; search.searchValue
     },
     () =&amp;gt; {
-      // 业务逻辑
-      context.emit(&amp;quot;search&amp;quot;, search.searchValue)
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 业务逻辑
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      context.emit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;search&amp;#34;&lt;/span&gt;, search.searchValue)
     }
   )
-  return {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;独立的computed属性&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import {computed} from &amp;quot;@vue/composition-api&amp;quot;;
-export default function search(props, context) {
-  newsComputed: computed(() =&amp;gt; {
-      // 业务逻辑
-  })
-  return {  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;独立的computed属性&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {computed} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; search(props, context) {
+  newsComputed&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; computed(() =&amp;gt; {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 业务逻辑
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  })
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {  
   }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;ref&#34;&gt;ref&lt;/h2&gt;
 &lt;p&gt;创建单个对象的响应对象，取值/赋值时需要使用.value&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;const count = ref(0)
-console.log(count.value) // 0
-count.value++
-console.log(count.value) // 1
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; count &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref(&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
+console.log(count.value) &lt;span style=&#34;color:#6272a4&#34;&gt;// 0
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;count.value&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;
+console.log(count.value) &lt;span style=&#34;color:#6272a4&#34;&gt;// 1
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;torefs&#34;&gt;toRefs&lt;/h2&gt;
 &lt;p&gt;从组合式函数返回响应式对象&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;const state = reactive({
-  foo: 1,
-  bar: 2
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; state &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; reactive({
+  foo&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;,
+  bar&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;
 })
-const stateAsRefs = toRefs(state)
-// ref 和原始 property 已经“链接”起来了
-state.foo++
-console.log(stateAsRefs.foo.value) // 2
-stateAsRefs.foo.value++
-console.log(state.foo) // 3
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; stateAsRefs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; toRefs(state)
+&lt;span style=&#34;color:#6272a4&#34;&gt;// ref 和原始 property 已经“链接”起来了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;state.foo&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;
+console.log(stateAsRefs.foo.value) &lt;span style=&#34;color:#6272a4&#34;&gt;// 2
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;stateAsRefs.foo.value&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;
+console.log(state.foo) &lt;span style=&#34;color:#6272a4&#34;&gt;// 3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -831,17 +1219,17 @@ console.log(state.foo) // 3
 &lt;/ol&gt;
 &lt;h2 id=&#34;事件循环说明&#34;&gt;事件循环说明&lt;/h2&gt;
 &lt;p&gt;简单来说，Vue 在修改数据后，视图不会立刻更新，而是等&lt;strong&gt;同一事件循环&lt;/strong&gt;中的所有数据变化完成之后，再统一进行视图更新&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//改变数据
-vm.message = &#39;changed&#39;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//改变数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;vm.message &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;changed&amp;#39;&lt;/span&gt;
 
-//想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新
-console.log(vm.$el.textContent) // 并不会得到&#39;changed&#39;
-
-//这样可以，nextTick里面的代码会在DOM更新后执行
-Vue.nextTick(function(){
-    console.log(vm.$el.textContent) // 可以得到&#39;changed&#39;
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue2-nextTick/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;span style=&#34;color:#6272a4&#34;&gt;//想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(vm.$el.textContent) &lt;span style=&#34;color:#6272a4&#34;&gt;// 并不会得到&amp;#39;changed&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#6272a4&#34;&gt;//这样可以，nextTick里面的代码会在DOM更新后执行
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;Vue.nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+    console.log(vm.$el.textContent) &lt;span style=&#34;color:#6272a4&#34;&gt;// 可以得到&amp;#39;changed&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue2-nextTick/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;本次更新循环&lt;/p&gt;
@@ -875,165 +1263,165 @@ Vue.nextTick(function(){
 &lt;blockquote&gt;
 &lt;p&gt;官方文档说明：注意 mounted 不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用 vm.$nextTick 替换掉 mounted&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;pre&gt;&lt;code&gt;created(){
-    let that=this
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;created(){
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; that&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;
     that.$nextTick(
-    	function(){  
-    		//不使用this.$nextTick()方法会报错
-        	that.$refs.aa.innerHTML = &amp;quot;created中更改了按钮内容&amp;quot; // 写入到DOM元素
-        }
+    	&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){  
+    		&lt;span style=&#34;color:#6272a4&#34;&gt;//不使用this.$nextTick()方法会报错
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        	that.$refs.aa.innerHTML &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;created中更改了按钮内容&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#6272a4&#34;&gt;// 写入到DOM元素
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        }
     })
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;当项目中你想在改变 DOM 元素的数据后基于新的 dom 做点什么，对新 DOM 一系列的 js 操作都需要放进 Vue.nextTick()的回调函数中；通俗的理解是：更改数据后当你想立即使用 js 操作新的视图的时候需要使用它&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
-    &amp;lt;div class=&amp;quot;app&amp;quot;&amp;gt;
-        &amp;lt;div ref=&amp;quot;msgDiv&amp;quot;&amp;gt;{{msg}}&amp;lt;/div&amp;gt;
-      	&amp;lt;div v-if=&amp;quot;msg1&amp;quot;&amp;gt;Message got outside $nextTick: {{msg1}}&amp;lt;/div&amp;gt;
-      	&amp;lt;div v-if=&amp;quot;msg2&amp;quot;&amp;gt;Message got inside $nextTick: {{msg2}}&amp;lt;/div&amp;gt;
-      	&amp;lt;div v-if=&amp;quot;msg3&amp;quot;&amp;gt;Message got outside $nextTick: {{msg3}}&amp;lt;/div&amp;gt;
-      	&amp;lt;button @click=&amp;quot;changeMsg&amp;quot;&amp;gt;Change the Message&amp;lt;/button&amp;gt;
-    &amp;lt;/div&amp;gt;
-&amp;lt;/template&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;ref&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;msgDiv&amp;#34;&lt;/span&gt;&amp;gt;{{msg}}&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+      	&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-if&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;msg1&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;Message&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;got&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;outside&lt;/span&gt; $&lt;span style=&#34;color:#50fa7b&#34;&gt;nextTick&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {{&lt;span style=&#34;color:#50fa7b&#34;&gt;msg1&lt;/span&gt;}}&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+      	&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-if&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;msg2&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;Message&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;got&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;inside&lt;/span&gt; $&lt;span style=&#34;color:#50fa7b&#34;&gt;nextTick&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {{&lt;span style=&#34;color:#50fa7b&#34;&gt;msg2&lt;/span&gt;}}&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+      	&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-if&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;msg3&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;Message&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;got&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;outside&lt;/span&gt; $&lt;span style=&#34;color:#50fa7b&#34;&gt;nextTick&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {{&lt;span style=&#34;color:#50fa7b&#34;&gt;msg3&lt;/span&gt;}}&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+      	&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;@click&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;changeMsg&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;Change&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;the&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;Message&lt;/span&gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
  
-&amp;lt;script&amp;gt;
-export default {
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
     data () {
-        return {
-            msg: &#39;Hello Vue.&#39;,
-            msg1: &#39;&#39;,
-            msg2: &#39;&#39;,
-            msg3: &#39;&#39;
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+            msg&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Hello Vue.&amp;#39;&lt;/span&gt;,
+            msg1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;,
+            msg2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;,
+            msg3&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
         }
     },
-    methods:{
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;{
         changeMsg() {
-            this.msg = &amp;quot;Hello world.&amp;quot;
-            this.msg1 = this.$refs.msgDiv.innerHTML
-            this.$nextTick(() =&amp;gt; {
-                this.msg2 = this.$refs.msgDiv.innerHTML
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.msg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Hello world.&amp;#34;&lt;/span&gt;
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.msg1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$refs.msgDiv.innerHTML
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(() =&amp;gt; {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.msg2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$refs.msgDiv.innerHTML
             })
-            this.msg3 = this.$refs.msgDiv.innerHTML
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.msg3 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$refs.msgDiv.innerHTML
         }
     }
 }    
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;点击前&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;点击前&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue2-nextTick/%E7%82%B9%E5%87%BB%E5%89%8D.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;点击后&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue2-nextTick/%E7%82%B9%E5%87%BB%E5%90%8E.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;从图中可以得知：msg1和msg3显示的内容还是变换之前的，而msg2显示的内容是变换之后的&lt;/p&gt;
 &lt;h1 id=&#34;通过一个实例理解nexttick&#34;&gt;通过一个实例理解nextTick&lt;/h1&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
-    &amp;lt;div class=&amp;quot;content&amp;quot;&amp;gt;
-        &amp;lt;ul&amp;gt;
-            &amp;lt;li v-for=&amp;quot;item in list1&amp;quot; :key=&amp;quot;item&amp;quot;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
-        &amp;lt;/ul&amp;gt;
-        &amp;lt;ul&amp;gt;
-       	    &amp;lt;li v-for=&amp;quot;item in list2&amp;quot; :key=&amp;quot;item&amp;quot;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
-        &amp;lt;/ul&amp;gt;
-        &amp;lt;ol&amp;gt;
-            &amp;lt;li v-for=&amp;quot;item in list3&amp;quot; :key=&amp;quot;item&amp;quot;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
-        &amp;lt;/ol&amp;gt;
-        &amp;lt;ol&amp;gt;
-            &amp;lt;li v-for=&amp;quot;item in list4&amp;quot; :key=&amp;quot;item&amp;quot;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
-        &amp;lt;/ol&amp;gt;
-        &amp;lt;ol&amp;gt;
-            &amp;lt;li v-for=&amp;quot;item in list5&amp;quot; :key=&amp;quot;item&amp;quot;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
-        &amp;lt;/ol&amp;gt;
-    &amp;lt;/div&amp;gt;
-&amp;lt;/template&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;content&amp;#34;&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;ul&lt;/span&gt;&amp;gt;
+            &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;li&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-for&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;item in list1&amp;#34; :key=&amp;#34;item&amp;#34;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;/ul&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;ul&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;       	    &amp;lt;li v-for=&amp;#34;item in list2&amp;#34; :key=&amp;#34;item&amp;#34;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;/ul&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;ol&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;            &amp;lt;li v-for=&amp;#34;item in list3&amp;#34; :key=&amp;#34;item&amp;#34;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;/ol&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;ol&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;            &amp;lt;li v-for=&amp;#34;item in list4&amp;#34; :key=&amp;#34;item&amp;#34;&amp;gt;{{item}}&amp;lt;/li&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;/ol&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;ol&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;            &amp;lt;li v-for=&amp;#34;item in list5&amp;#34; &lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:key&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;item&amp;#34;&lt;/span&gt;&amp;gt;{{&lt;span style=&#34;color:#50fa7b&#34;&gt;item&lt;/span&gt;}}&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;li&lt;/span&gt;&amp;gt;
+        &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;ol&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
 
-&amp;lt;script&amp;gt;
-import {dateFormat} from &#39;@/components/JS方法库/util/common.js&#39;
-export default {
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {dateFormat} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/components/JS方法库/util/common.js&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
   data () {
-        return {
-            list1: [],
-            list2: [],
-            list3: [],
-            list4: [],
-            list5: []
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+            list1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [],
+            list2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [],
+            list3&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [],
+            list4&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [],
+            list5&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; []
         }
     },
     created(){
-        this.composeList12()
-        this.composeList34()
-        this.composeList5()
-        this.$nextTick(function() {
-            // DOM 更新了
-            console.log(&#39;[7]同步视图更新 - &#39; + dateFormat(new Date() ,&#39;yyyy-MM-dd hh:mm:ss&#39;),document.querySelectorAll(&#39;li&#39;).length)
-            console.log(&#39;——————————同步视图更新完成——————————&#39;)
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.composeList12()
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.composeList34()
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.composeList5()
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+            &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[7]同步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;——————————同步视图更新完成——————————&amp;#39;&lt;/span&gt;)
         })
     },
  
-    methods: {
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
         composeList12() {
-            for (let i = 0; i &amp;lt; 10000; i++) {
-                this.$set(this.list1, i, &#39;I am a 测试信息～～啦啦啦&#39; + i)
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10000&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$set(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.list1, i, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I am a 测试信息～～啦啦啦&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; i)
             }
-            console.log(&#39;——————————开始更新同步数据——————————&#39;)
-            console.log(&#39;[1]同步数据更新 - &#39; + dateFormat(new Date() ,&#39;yyyy-MM-dd hh:mm:ss&#39;),document.querySelectorAll(&#39;li&#39;).length)
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;——————————开始更新同步数据——————————&amp;#39;&lt;/span&gt;)
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[1]同步数据更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
 
-            for (let i = 0; i &amp;lt; 10000; i++) {
-                this.$set(this.list2, i, &#39;I am a 测试信息～～啦啦啦&#39; + i)
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10000&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$set(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.list2, i, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I am a 测试信息～～啦啦啦&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; i)
             }
-            console.log(&#39;[2]同步数据更新 - &#39; + dateFormat(new Date() ,&#39;yyyy-MM-dd hh:mm:ss&#39;),document.querySelectorAll(&#39;li&#39;).length)
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[2]同步数据更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
 
-            this.$nextTick(function() {
-                // DOM 更新了
-                console.log(&#39;[1][2]同步视图更新 - &#39; + dateFormat(new Date() ,&#39;yyyy-MM-dd hh:mm:ss&#39;),document.querySelectorAll(&#39;li&#39;).length)
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[1][2]同步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
             })
         },
         composeList34() {
-            for (let i = 0; i &amp;lt; 10000; i++) {
-                this.$set(this.list3, i, &#39;I am a 测试信息～～啦啦啦&#39; + i)
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10000&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$set(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.list3, i, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I am a 测试信息～～啦啦啦&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; i)
             }
-            console.log(&#39;[3]同步数据更新 - &#39; + dateFormat(new Date() ,&#39;yyyy-MM-dd hh:mm:ss&#39;),document.querySelectorAll(&#39;li&#39;).length)
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[3]同步数据更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
 
-            this.$nextTick(function() {
-                // DOM 更新了
-                console.log(&#39;[3]同步视图更新 - &#39; + dateFormat(new Date() ,&#39;yyyy-MM-dd hh:mm:ss&#39;),document.querySelectorAll(&#39;li&#39;).length)
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[3]同步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
             })
 
-            setTimeout(this.setTimeout1, 0)
+            setTimeout(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.setTimeout1, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
         },
         setTimeout1() {
-            for (let i = 0; i &amp;lt; 10000; i++) {
-                this.$set(this.list4, i, &#39;I am a 测试信息～～啦啦啦&#39; + i)
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10000&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$set(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.list4, i, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I am a 测试信息～～啦啦啦&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; i)
             }
-            console.log(&#39;——————————开始更新异步数据——————————&#39;)
-            console.log(&#39;[4]异步数据更新 - &#39; + dateFormat(new Date() ,&#39;yyyy-MM-dd hh:mm:ss&#39;),document.querySelectorAll(&#39;li&#39;).length)
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;——————————开始更新异步数据——————————&amp;#39;&lt;/span&gt;)
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[4]异步数据更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
 
-            this.$nextTick(function() {
-                // DOM 更新了
-                console.log(&#39;[4]异步视图更新 - &#39; + dateFormat(new Date() ,&#39;yyyy-MM-dd hh:mm:ss&#39;),document.querySelectorAll(&#39;li&#39;).length)
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[4]异步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
             })
         },
         composeList5() {
-            this.$nextTick(function() {
-                // DOM 更新了
-                console.log(&#39;[5]同步视图更新 - &#39; + dateFormat(new Date() ,&#39;yyyy-MM-dd hh:mm:ss&#39;),document.querySelectorAll(&#39;li&#39;).length)
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[5]同步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
             })
 
-            setTimeout(this.setTimeout2, 0)
+            setTimeout(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.setTimeout2, &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
         },
         setTimeout2() {
-            for (let i = 0; i &amp;lt; 10000; i++) {
-                this.$set(this.list5, i, &#39;I am a 测试信息～～啦啦啦&#39; + i)
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10000&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$set(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.list5, i, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I am a 测试信息～～啦啦啦&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; i)
             }
-            console.log(&#39;[6]异步数据更新 - &#39; + dateFormat(new Date() ,&#39;yyyy-MM-dd hh:mm:ss&#39;),document.querySelectorAll(&#39;li&#39;).length)
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[6]异步数据更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
 
-            this.$nextTick(function() {
-                // DOM 更新了
-                console.log(&#39;[6]异步视图更新 - &#39; + dateFormat(new Date() ,&#39;yyyy-MM-dd hh:mm:ss&#39;),document.querySelectorAll(&#39;li&#39;).length)
-                console.log(&#39;——————————异步视图更新完成——————————&#39;)
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// DOM 更新了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;[6]异步视图更新 - &amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; dateFormat(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;() ,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;yyyy-MM-dd hh:mm:ss&amp;#39;&lt;/span&gt;),&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelectorAll(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;li&amp;#39;&lt;/span&gt;).length)
+                console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;——————————异步视图更新完成——————————&amp;#39;&lt;/span&gt;)
             })
         },
     }
 }
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;运行结果如下：&lt;/p&gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行结果如下：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue2-nextTick/%E5%AE%9E%E4%BE%8B.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1072,119 +1460,119 @@ export default {
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;修改app.vue，利用 v-if 可以刷新页面的属性，同时使用 provide 和 inject 将祖先节点的数据传递给子代节点&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
-    &amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;
-        &amp;lt;router-view v-if=&amp;quot;isRouterAlive&amp;quot;&amp;gt;&amp;lt;/router-view&amp;gt;
-    &amp;lt;/div&amp;gt;
-&amp;lt;/template&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;router-view&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-if&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;isRouterAlive&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#50fa7b&#34;&gt;router&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;-view&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
     
-&amp;lt;script&amp;gt;
-export default {
-    name: &#39;App&#39;,
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+    name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;App&amp;#39;&lt;/span&gt;,
     provide (){
-        return {
-            reload:this.reload
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+            reload&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.reload
         }
     },
     data(){
-        return {
-            isRouterAlive:true
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+            isRouterAlive&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
         }
     },
-    methods:{
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;{
         reload (){
-            this.isRouterAlive = false
-            this.$nextTick(function(){
-                this.isRouterAlive = true
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.isRouterAlive &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.isRouterAlive &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
             })
         }
    }
 }
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;在要刷新的子路由页面引入inject,然后执行reload事件即可刷新页面&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;export default {    
-    inject:[&#39;reload&#39;],
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {    
+    inject&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;[&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;reload&amp;#39;&lt;/span&gt;],
     data() {
-        return {}
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {}
     },
-    methods: {
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
         reflesh(){
-            this.reload()
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.reload()
         }
     }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;forceupdate&#34;&gt;forceUpdate&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;export default {
-    methods: {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
         handleUpdateClick() {
-            this.$forceUpdate()
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$forceUpdate()
         }
     }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;由于一些嵌套特别深的数据，导致数据更新了，但是页面却没有重新渲染。我遇到的一个情况是，v-for遍历数据渲染，当方法中处理相应数组数据时，数组改变了，但是页面却没有重新渲染&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;由于一些嵌套特别深的数据，导致数据更新了，但是页面却没有重新渲染。我遇到的一个情况是，v-for遍历数据渲染，当方法中处理相应数组数据时，数组改变了，但是页面却没有重新渲染&lt;/p&gt;
 &lt;p&gt;解决方法：运用 &lt;code&gt;this.$forceUpdate()&lt;/code&gt;强制刷新，解决v-for更新数据不重新渲染页面&lt;/p&gt;
 &lt;p&gt;官方解释：迫使 Vue 实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件&lt;/p&gt;
 &lt;h2 id=&#34;修改组件key值&#34;&gt;修改组件key值&lt;/h2&gt;
 &lt;p&gt;key-changing的原理很简单，vue使用&lt;code&gt;key&lt;/code&gt;标记组件身份，当&lt;code&gt;key&lt;/code&gt;改变时就是释放原始组件，重新加载新的组件&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
-    &amp;lt;div&amp;gt;
-        &amp;lt;!-- 父组件 --&amp;gt;
-        &amp;lt;div&amp;gt;
-            &amp;lt;button @click=&amp;quot;reLoad&amp;quot;&amp;gt;点击重新渲染子组件&amp;lt;/button&amp;gt;
-        &amp;lt;/div&amp;gt;
-        &amp;lt;!-- 内容库子组件 --&amp;gt;
-        &amp;lt;lib-window :key=&amp;quot;time&amp;quot; :channelCode=&amp;quot;searchChannelCode&amp;quot;&amp;gt;&amp;lt;/lib-window&amp;gt;
-    &amp;lt;/div&amp;gt;
-&amp;lt;/template&amp;gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+        &lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!--&lt;/span&gt; 父组件 &lt;span style=&#34;color:#ff79c6&#34;&gt;--&amp;gt;&lt;/span&gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+            &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;@click&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;reLoad&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;点击重新渲染子组件&lt;/span&gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt;&amp;gt;
+        &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+        &amp;lt;!-- &lt;span style=&#34;color:#50fa7b&#34;&gt;内容库子组件&lt;/span&gt; --&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;lib-window&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:key&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;time&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:channelCode&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;searchChannelCode&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;/lib-window&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
  
-&amp;lt;script&amp;gt;
-import children from &#39;@/components/parent/children&#39;
-export default {
-    name: &#39;contentLib&#39;,
-    components: { libWindow },
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; children from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/components/parent/children&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+    name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;contentLib&amp;#39;&lt;/span&gt;,
+    components&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; { libWindow },
     data () {
-        return {
-            time: &#39;&#39;
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+            time&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
         }
     },
-    methods: {
+    methods&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
         reLoad () {
-            this.time = new Date().getTime()
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.time &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;().getTime()
         }
     }
 }
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;eventhub&#34;&gt;eventHub&lt;/h2&gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;eventhub&#34;&gt;eventHub&lt;/h2&gt;
 &lt;p&gt;一般比较适合毫无关系的页面之间的刷新，如页面添加了keep-alive缓存，但是又需要在特定操作下重新初始化数据&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;main.js&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 给Vue函数添加一个原型属性$eventHub
-Vue.prototype.$eventHub = Vue.prototype.$eventHub || new Vue()
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 给Vue函数添加一个原型属性$eventHub
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;Vue.prototype.$eventHub &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; Vue.prototype.$eventHub &lt;span style=&#34;color:#ff79c6&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Vue()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;页面A&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// 一般情况下为了避免重名需要给事件名后面加唯一标记
-let timestamp = Date.parse(new Date())
-// 通过路由传参将timestamp传给目标页面
-this.$router.push({path: &#39;/xxx&#39;, query: {timestamp: timestamp}})
-// 父组件发送一个全局事件
-this.$eventHub.$emit(&#39;refresh&#39; + timestamp)
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 一般情况下为了避免重名需要给事件名后面加唯一标记
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; timestamp &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;.parse(&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Date&lt;/span&gt;())
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 通过路由传参将timestamp传给目标页面
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$router.push({path&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/xxx&amp;#39;&lt;/span&gt;, query&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {timestamp&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; timestamp}})
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 父组件发送一个全局事件
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$eventHub.$emit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;refresh&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; timestamp)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;页面B&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-jsp&#34; data-lang=&#34;jsp&#34;&gt;// 接受路由参数
-let timestamp = this.$route.query.timestamp
-// 接收全局事件
-this.$eventHub.$on(&#39;refresh&#39; + timestamp, (params) =&amp;gt; {
-  // 初始化数据方法
-  this.fetchData()
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 接受路由参数
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; timestamp &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$route.query.timestamp
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 接收全局事件
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$eventHub.$on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;refresh&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; timestamp, (params) =&amp;gt; {
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 初始化数据方法
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.fetchData()
 })
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -1192,205 +1580,6 @@ this.$eventHub.$on(&#39;refresh&#39; + timestamp, (params) =&amp;gt; {
 &lt;p&gt;&lt;a href=&#34;https://cloud.tencent.com/developer/article/1637749&#34;&gt;Vue 数据更新了但页面没有更新的 7 种情况汇总及延伸&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>JavaScript-原型链</title>
-        <link>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</link>
-        <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/ -&lt;ul&gt;
-&lt;li&gt;
-&lt;h1 id=&#34;原型&#34;&gt;原型&lt;/h1&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;理解原型对象&#34;&gt;理解原型对象&lt;/h2&gt;
-&lt;p&gt;无论什么时候，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。在默认情况下，所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。&lt;/p&gt;
-&lt;p&gt;使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。换句话说不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型对象中&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function Person() {}
-  
-Person.prototype.name = &#39;Nicholas&#39;
-Person.prototype.age = 19
-Person.prototype.sayName = function () {
-    console.log(this.name)
-}
-  
-let person1 = new Person()
-person1.sayName() // 输出：Nicholas
-  
-let person2 = new Person()
-person2.sayName() // 输出：Nicholas
-  
-console.log(person1.sayName == person2.sayName) // 输出：true
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们将sayName()方法和所有属性直接添加到Person的prototype属性中，构造函数变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说，person1和person2访问的都是同一组属性和同一个sayName()函数&lt;/p&gt;
-&lt;p&gt;创建了自定义构造函数之后，其原型对象默认只会取得constructor属性，至于其它方法，则都是从Object继承而来。当调用构造函数创建一个新实例后，该实例内部将包含一个指针（内部属性）____proto____指向构造函数的原型对象，需要明确的是，这个连接存在与实例和构造函数的原型之间，而不是存在与实例与构造函数之间&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-%E5%8E%9F%E5%9E%8B%E9%93%BE/%E5%8E%9F%E5%9E%8B%E5%85%B3%E7%B3%BB.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;上图展示了Person构造函数、Person的原型属性以及Person现有两个实例之间的关系。在此，Person.prototype指向了原型对象，而Person.prototype.constructor又指回了Person。原型对象中除了包含constructor属性之外，还包括后来添加的其它属性。Person的每个实例person1和person2都包含一个内部属性____proto____，该属性仅仅指向了Person.prototype，换句话说，它们与构造函数没有直接关系。此外，要格外注意的是，虽然这两个实例都不包含属性和方法，但我们却可以调用person1.sayName。这是通过查找对象属性的过程来实现的&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;原型搜索机制&#34;&gt;原型搜索机制&lt;/h2&gt;
-&lt;p&gt;每当代码读取某个对象的某个属性时，都会执行一次搜索，目标是具有给定名字的属性。搜索首先从对象的实例本身开始。如果在实例中找到了具有给定名字的实现，则返回该属性的值，如果没有找到，则继续搜索指针指向的原型对象，在原型对象中查找给定名字的属性。如果在原型对象中找到了这个属性，则返回该属性的值。也就是说，在我们调用person.sayName()的时候，会先后执行两次搜索。首先，解析器会问：&amp;ldquo;实例person1有sayName属性吗？&amp;ldquo;答：&amp;ldquo;没有。&amp;ldquo;然后，它继续搜索，再问：&amp;ldquo;person1的原型有sayName属性吗？&amp;ldquo;答：&amp;ldquo;有。&amp;ldquo;于是，他就读取那个保存在原型对象中的函数。当我们调用person2.sayName()时，将会重现相同的搜索过程，得到相同的结果。而正是多个对象实例共享原型所保存的属性和方法的基本原理&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;注意事项&#34;&gt;注意事项&lt;/h2&gt;
-&lt;p&gt;虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型的值。如果我们在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性，该属性将会屏蔽原型中的那个属性&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function Person() {}
-  
-Person.prototype.name = &#39;Nicholas&#39;
-Person.prototype.age = 19
-Person.prototype.sayName = function () {
-    console.log(this.name)
-}
-  
-let person1 = new Person()
-let person2 = new Person()
-person1.name = &#39;王大木&#39;
-console.log(person1.name) // &#39;王大木&#39; ——————来自实例
-console.log(person2.name) // &#39;Nicholas&#39; ——————来自原型
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在这个例子中，person1的name被一个新的值给屏蔽了。但无论访问person1.name还是访问person2.name都能正常的返回值，即分别是&amp;rsquo;王大木&amp;rsquo;（来自对象实例）和&amp;rsquo;Nicholas&amp;rsquo;（来自原型）。当console.log()中访问person1.name时，需要读取它的值，因此就会在这个实例上搜索一个名为name的属性。这个属性确实存在，于是就返回它的值而不必再搜搜索原型了。当以同样的方式访问person2.name时，并没有实例上发现该属性，因此就会继续搜索原型，结果在那里找到了name属性。&lt;/p&gt;
-&lt;p&gt;当为对象实例添加一个属性时，这个属性就会屏蔽原型对象中保存的同名属性，换句话说，添加这个属性只会阻止我们访问原型中的属性，但不会修改那个属性。即使这个属性设置为null，也只会在实例中设置这个属性，而不会恢复其指向原型的连接&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h1 id=&#34;原型链&#34;&gt;原型链&lt;/h1&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;理解原型链&#34;&gt;理解原型链&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-%E5%8E%9F%E5%9E%8B%E9%93%BE/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%9B%BE%E7%A4%BA.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。那么，假如我们让原型对象等于另一个类型的实例，结果会怎么样呢？显然，此时的原型对象将包含一个指向另一个原型的指针，相应的，另一个原型中也包含指向另一个构造函数的指针。假如另一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进，就够成了实例与原型的链条。这就是所谓原型链的基本概念&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function SuperType() {
-    this.property = &#39;SuperType&#39;
-}
-  
-SuperType.prototype.getSuperValue = function () {
-    return this.property
-}
-  
-function SubType() {
-    this.subProperty = &#39;SubType&#39;
-}
-  
-// 继承了 SuperType
-SubType.prototype = new SuperType()
-  
-SubType.prototype.getSubValue = function () {
-    return this.subProperty
-}
-  
-let instancce = new SubType()
-console.log(instancce.getSuperValue()) // 输出：SuperType
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上代码定义了两个类型：SuperType和SubType。每个类型分别有一个属性和一个方法。它们的主要区别是SubType继承了SuperType，而继承时通过创建SuperType的实例，并将实例赋值给SubType.prototype实现的。实现的本质是重写原型对象，代之以一个新类型的实例。换句话说，原来存在于SuperType的实例中的所有属性和方法，现在也存在与于SubType中了。在确立了继承关系之后，我们给SubType.prototype添加了一个方法，这样就继承了SuperType的属性和方法的基础上又添加了一个新方法&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-%E5%8E%9F%E5%9E%8B%E9%93%BE/%E5%8E%9F%E5%9E%8B%E9%93%BE.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;在上面代码中，我们没有使用SubType默认提供的原型，而是给它换了一个新的原型，这个新原型就是SuperType的实例。于是，新原型不仅具有作为一个SuperType的实例所拥有的全部属性和方法，而且内部还有一个指针，指向了SuperType的原型。最终结果就是这样：instance指向SubType的原型，SubType的原型又指向了SuperType的原型。getSuperValue()方法仍然还在SuperType.prototype中，但prototype则位于subType.prototype中。这是因为prototype是一个实例属性，而getSuperValue()则时一个原型方法。既然SubType.prototype现在是superType的实例，那么prototype当然就位于该实例中了&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;原型链搜索机制&#34;&gt;原型链搜索机制&lt;/h2&gt;
-&lt;p&gt;原型链本质上扩展了原型搜索机制。当以读取模式访问一个实例属性时，首先在会实例中搜索该属性。如果没有找到该属性，则会继续搜索实例的原型。在通过原型链实现继承的情况下，搜索过程就得以沿着原型链继续向上。拿上面的例子来说，调用instance.getSuperValue()会经历三个搜索步骤：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;搜索实例&lt;/li&gt;
-&lt;li&gt;搜索SubType.prototype&lt;/li&gt;
-&lt;li&gt;搜索SuperType.prototype，最后一步才会找到该方法。在找不到该属性或方法的情况下，搜索过程总要一环一环地前行到原型链末端才会停下来&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;默认的原型&#34;&gt;默认的原型&lt;/h2&gt;
-&lt;p&gt;所有引用类型默认都继承了Object，而这个继承也是通过原型链实现的。所有函数的默认原型都是Object的实例，因此默认原型都会包含一个内部指针，指向Object.prototype。这也正是所有自定义类型都会继承toString()、valueOf()等默认方法的根本原因。所以上面展示的原型链中还应包括另外一个继承层次&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-%E5%8E%9F%E5%9E%8B%E9%93%BE/%E9%BB%98%E8%AE%A4%E5%8E%9F%E5%9E%8B.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;一句话，SubType继承了SuperType，而SuperType继承了Object。当调用instance.toString()时，实际上调用的时保存在Object.prototype中的那个方法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;注意事项-1&#34;&gt;注意事项&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;子类型有时候需要重写超类型中的某个方法，或者添加超类型中不存在的某个方法。但不管怎样，给原型添加方法的代码一定要放在替换原型的语句之后&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function SuperType() {
-    this.property = &#39;SuperType&#39;
-}
-     
-SuperType.prototype.getSuperValue = function () {
-    return this.property
-}
-     
-function SubType() {
-    this.subProperty = &#39;SubType&#39;
-}
-     
-// 继承了 SuperType
-SubType.prototype = new SuperType()
-     
-// 添加新方法
-SubType.prototype.getSubValue = function () {
-    return this.subProperty
-}
-     
-// 重写超类型中的方法
-SubType.prototype.getSuperValue = function () {
-    return &#39;重写SuperType&#39;
-}
-     
-     
-let instancce = new SubType()
-console.log(instancce.getSuperValue()) // 输出： 重写SuperType
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上代码中，第一个方法getSubValue()被添加到了SubType中，第二个方法getSuperValue是原型中已经存在的一个方法，但重写这个方法会屏蔽原来的那个方法。换句话说，当通过SubType的实例调用getSuperValue()时，调用的就是这个重新定义的方法，但通过SuperType的实例调用getSuperValue()时，还会继续调用原来的那个方法。这里要格外注意的时，必须在用SuperType的实例替换原型之后，再定义这两个方法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;通过原型链实现继承时，不能使用对象字面量创建原型方法。因为这样做就会重写原型链&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function SuperType() {
-    this.property = &#39;SuperType&#39;
-}
-     
-SuperType.prototype.getSuperValue = function () {
-    return this.property
-}
-     
-function SubType() {
-    this.subProperty = &#39;SubType&#39;
-}
-     
-// 继承了 SuperType
-SubType.prototype = new SuperType()
-     
-// 使用字面量添加新方法，会导致上一行代码无效
-SubType.prototype  = {
-    getSubValue : function () {
-       return this.subProperty
-   }
-} 
-     
-let instancce = new SubType()
-console.log(instancce.getSuperValue()) // 输出： error
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上代码展示了刚刚把SuperType的实例赋值给原型，接着又将原型替换成一个对象字面量而导致报错。由于现在的原型包含的是一个Object的实例，而非SuperType的实例，因此我们设想中的原型链已经被切断，SubType和SuperType之间已经没有关系了&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在通过原型实现继承时，原型实际上会变成另一个类型的实例。于是原先的实例属性也就顺理成章的变成了现在的原型属性了&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function SuperType() {
-    this.color = [&#39;red&#39;,&#39;blue&#39;,&#39;green&#39;]
-}
-     
-function SubType() {
-         
-}
-     
-// 继承了 SuperType
-SubType.prototype = new SuperType()
-     
-let instance1 = new SubType()
-instance1.color.push(&#39;black&#39;)
-console.log(instance1.color) // 输出：[ &#39;red&#39;, &#39;blue&#39;, &#39;green&#39;, &#39;black&#39; ]
-     
-let instance2 = new SubType()
-console.log(instance2.color) // 输出：[ &#39;red&#39;, &#39;blue&#39;, &#39;green&#39;, &#39;black&#39; ]
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个例子中SuberType构造函数定义了一个color属性，该属性包含一个数组（引用类型值）SuperType的每个实例都会又各自包含自己数组的color属性。当SubType通过原型链继承了SuperType之后，SuperType.prototype就变成了SuperType的一个实例，因此它也拥有了一个它自己的color属性，就跟专门创建了一个SubType.prototype.color属性一样。但结果是什么呢？结果是SubType的所有实例都会共享这一个color属性。而我们对instance1.color的修改能够通过instance2.color反应出来，这就充分证实了这一点&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在创建子类型的实例时，不能向超类型的构造函数中传递参数。实际上，应该说是没有办法在不影响所有对象实例的情况下，给超类型的构造函数传递参数&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-- https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/ - </description>
         </item>
     
     

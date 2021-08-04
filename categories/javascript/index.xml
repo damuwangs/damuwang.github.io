@@ -6,10 +6,31 @@
     <description>Recent content in JavaScript on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Aug 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaScript-跨域</title>
+      <link>https://damuwangs.github.io/posts/javascript-%E8%B7%A8%E5%9F%9F/</link>
+      <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/javascript-%E8%B7%A8%E5%9F%9F/</guid>
+      <description>概述 含义 1995年，同源政策由 Netscape 公司引入浏览器。目前，所有浏览器都实行这个政策
+最初，它的含义是指，A网页设置的 Cookie，B网页不能打开，除非这两个网页&amp;quot;同源&amp;rdquo;
+所谓&amp;quot;同源&amp;quot;指的是&amp;quot;三个相同&amp;rdquo;
+  协议相同 域名相同 端口相同   常见跨域场景
+目的 同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。
+设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。如果其他网站可以读取A网站的 Cookie，会发生什么？
+很显然，如果 Cookie 包含隐私（比如存款总额），这些信息就会泄漏。更可怕的是，Cookie 往往用来保存用户的登录状态，如果用户没有退出登录，其他网站就可以冒充用户，为所欲为。因为浏览器同时还规定，提交表单不受同源政策的限制
+由此可见，&amp;ldquo;同源政策&amp;quot;是必需的，否则 Cookie 可以共享，互联网就毫无安全可言了
+限制范围   Cookie、LocalStorage 和 IndexDB 无法读取 DOM 无法获得 AJAX 请求不能发送   解决方案 CORS CORS 即是指跨域资源共享。它允许浏览器向非同源服务器，发出 Ajax 请求，从而克服了 Ajax 只能同源使用的限制。这种方式的跨域主要是在后端进行设置
+这种方式的关键是后端进行设置，即是后端开启 Access-Control-Allow-Origin 为*或对应的origin就可以实现跨域
+cors.html
+let xhr = new XMLHttpRequest() xhr.open(&amp;#39;GET&amp;#39;, &amp;#39;http://localhost:8002/request&amp;#39;) xhr.send(null) server.js
+const express = require(&amp;#39;express&amp;#39;) const app = express() app.use((req, res, next) =&amp;gt; { res.</description>
+    </item>
     
     <item>
       <title>JavaScript-防抖、节流</title>
@@ -21,7 +42,7 @@
 将一段时间内连续的多次触发转化为一次触发。
 应用场景   用户在输入框中连续输入一串字符后，只会在输入完后去执行最后一次的查询ajax请求，这样可以有效减少请求次数，节约请求资源；
   window的resize、scroll事件，不断地调整浏览器的窗口大小、或者滚动时会触发对应事件，防抖让其只触发一次；
-  实例   非立即执行版 &amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;&amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&amp;quot;&amp;gt;&amp;lt;meta http-equiv=&amp;quot;X-UA-Compatible&amp;quot; content=&amp;quot;ie=edge&amp;quot;&amp;gt;&amp;lt;title&amp;gt;防抖&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;button id=&amp;quot;debounce&amp;quot;&amp;gt;点我防抖！&amp;lt;/button&amp;gt;&amp;lt;script&amp;gt;window.onload = function() {// 1、获取这个按钮，并绑定事件var myDebounce = document.getElementById(&amp;quot;debounce&amp;quot;);myDebounce.addEventListener(&amp;quot;click&amp;quot;, debounce(sayDebounce));}// 2、防抖功能函数，接受传参function debounce(fn) {// 4、创建一个标记用来存放定时器的返回值let timeout = null;return function() {// 5、每次当用户点击/输入的时候，把前一个定时器清除clearTimeout(timeout);// 6、然后创建一个新的 setTimeout，// 这样就能保证点击按钮后的 interval 间隔内// 如果用户还点击了的话，就不会执行 fn 函数timeout = setTimeout(() =&amp;gt; {fn.</description>
+  实例   非立即执行版 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&amp;#34;&amp;gt; &amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;ie=edge&amp;#34;&amp;gt; &amp;lt;title&amp;gt;防抖&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;button id=&amp;#34;debounce&amp;#34;&amp;gt;点我防抖！&amp;lt;/button&amp;gt; &amp;lt;script&amp;gt; window.onload = function() { // 1、获取这个按钮，并绑定事件  var myDebounce = document.getElementById(&amp;#34;debounce&amp;#34;); myDebounce.addEventListener(&amp;#34;click&amp;#34;, debounce(sayDebounce)); } // 2、防抖功能函数，接受传参  function debounce(fn) { // 4、创建一个标记用来存放定时器的返回值  let timeout = null; return function() { // 5、每次当用户点击/输入的时候，把前一个定时器清除  clearTimeout(timeout); // 6、然后创建一个新的 setTimeout，  // 这样就能保证点击按钮后的 interval 间隔内  // 如果用户还点击了的话，就不会执行 fn 函数  timeout = setTimeout(() =&amp;gt; { fn.</description>
     </item>
     
     <item>
@@ -32,12 +53,12 @@
       <guid>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</guid>
       <description>原型   理解原型对象 无论什么时候，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。在默认情况下，所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。
 使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。换句话说不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型对象中
-function Person() {}Person.prototype.name = &#39;Nicholas&#39;Person.prototype.age = 19Person.prototype.sayName = function () {console.log(this.name)}let person1 = new Person()person1.sayName() // 输出：Nicholaslet person2 = new Person()person2.sayName() // 输出：Nicholasconsole.log(person1.sayName == person2.sayName) // 输出：true我们将sayName()方法和所有属性直接添加到Person的prototype属性中，构造函数变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说，person1和person2访问的都是同一组属性和同一个sayName()函数
+function Person() {} Person.prototype.name = &amp;#39;Nicholas&amp;#39; Person.prototype.age = 19 Person.prototype.sayName = function () { console.log(this.name) } let person1 = new Person() person1.sayName() // 输出：Nicholas  let person2 = new Person() person2.sayName() // 输出：Nicholas  console.log(person1.sayName == person2.sayName) // 输出：true 我们将sayName()方法和所有属性直接添加到Person的prototype属性中，构造函数变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说，person1和person2访问的都是同一组属性和同一个sayName()函数
 创建了自定义构造函数之后，其原型对象默认只会取得constructor属性，至于其它方法，则都是从Object继承而来。当调用构造函数创建一个新实例后，该实例内部将包含一个指针（内部属性）____proto____指向构造函数的原型对象，需要明确的是，这个连接存在与实例和构造函数的原型之间，而不是存在与实例与构造函数之间
 上图展示了Person构造函数、Person的原型属性以及Person现有两个实例之间的关系。在此，Person.prototype指向了原型对象，而Person.prototype.constructor又指回了Person。原型对象中除了包含constructor属性之外，还包括后来添加的其它属性。Person的每个实例person1和person2都包含一个内部属性____proto____，该属性仅仅指向了Person.prototype，换句话说，它们与构造函数没有直接关系。此外，要格外注意的是，虽然这两个实例都不包含属性和方法，但我们却可以调用person1.sayName。这是通过查找对象属性的过程来实现的
   原型搜索机制 每当代码读取某个对象的某个属性时，都会执行一次搜索，目标是具有给定名字的属性。搜索首先从对象的实例本身开始。如果在实例中找到了具有给定名字的实现，则返回该属性的值，如果没有找到，则继续搜索指针指向的原型对象，在原型对象中查找给定名字的属性。如果在原型对象中找到了这个属性，则返回该属性的值。也就是说，在我们调用person.sayName()的时候，会先后执行两次搜索。首先，解析器会问：&amp;ldquo;实例person1有sayName属性吗？&amp;ldquo;答：&amp;ldquo;没有。&amp;ldquo;然后，它继续搜索，再问：&amp;ldquo;person1的原型有sayName属性吗？&amp;ldquo;答：&amp;ldquo;有。&amp;ldquo;于是，他就读取那个保存在原型对象中的函数。当我们调用person2.sayName()时，将会重现相同的搜索过程，得到相同的结果。而正是多个对象实例共享原型所保存的属性和方法的基本原理
   注意事项 虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型的值。如果我们在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性，该属性将会屏蔽原型中的那个属性
-function Person() {}Person.prototype.name = &#39;Nicholas&#39;Person.prototype.age = 19Person.prototype.sayName = function () {console.</description>
+function Person() {} Person.prototype.name = &amp;#39;Nicholas&amp;#39; Person.prototype.age = 19 Person.prototype.sayName = function () { console.</description>
     </item>
     
     <item>
@@ -49,11 +70,11 @@ function Person() {}Person.prototype.name = &#39;Nicholas&#39;Person.prototype
       <description>概念   变量的作用域 要理解闭包，首先必须理解Javascript特殊的变量作用域
 变量的作用域无非就是两种：全局变量和局部变量
 Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量
-var n=999function f1(){alert(n)}f1() // 999在函数外部无法读取函数内的局部变量
-function f1(){var n=999}alert(n); // error  闭包的描述 闭包就是能够读取其他函数内部变量的函数
+var n=999 function f1(){ alert(n) } f1() // 999 在函数外部无法读取函数内的局部变量
+function f1(){ var n=999 } alert(n); // error   闭包的描述 闭包就是能够读取其他函数内部变量的函数
 由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成&amp;quot;定义在一个函数内部的函数&amp;rdquo;
 所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁，f2函数，就是闭包
-function f1(){var n=999function f2(){alert(n)}return f2}var result = f1()result() // 999  闭包优缺点 优点：
+function f1(){ var n=999 function f2(){ alert(n) } return f2 } var result = f1() result() // 999   闭包优缺点 优点：
   希望一个变量长期驻扎在内存中
   避免全局变量的污染
   私有成员的存在

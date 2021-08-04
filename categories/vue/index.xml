@@ -23,8 +23,8 @@
 另外，像 modals，toast等这样的元素需要使用到 Vue组件的状态（data或者props）的值
 这就是Teleport派上用场的地方。我们可以在组件的逻辑位置写模板代码，这意味着我们可以使用组件的data或props。然后在Vue应用的范围之外渲染它
  Teleport 的使用 index.html中
-&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div id=&amp;quot;teleport-target&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;script type=&amp;quot;module&amp;quot; src=&amp;quot;/src/main.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;src/components/HelloWorld.vue中，添加如下，留意to属性跟上面的id选择器一致
- &amp;lt;button @click=&amp;quot;showToast&amp;quot; class=&amp;quot;btn&amp;quot;&amp;gt;打开 toast&amp;lt;/button&amp;gt;&amp;lt;!-- to 属性就是目标位置 --&amp;gt;&amp;lt;teleport to=&amp;quot;#teleport-target&amp;quot;&amp;gt;&amp;lt;div v-if=&amp;quot;visible&amp;quot; class=&amp;quot;toast-wrap&amp;quot;&amp;gt;&amp;lt;div class=&amp;quot;toast-msg&amp;quot;&amp;gt;我是一个 Toast 文案&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/teleport&amp;gt;import { ref } from &#39;vue&#39;;export default {setup() {// toast 的封装const visible = ref(false);let timer;const showToast = () =&amp;gt; {visible.</description>
+&amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div id=&amp;#34;teleport-target&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;module&amp;#34; src=&amp;#34;/src/main.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; src/components/HelloWorld.vue中，添加如下，留意to属性跟上面的id选择器一致
+&amp;lt;button @click=&amp;#34;showToast&amp;#34; class=&amp;#34;btn&amp;#34;&amp;gt;打开 toast&amp;lt;/button&amp;gt; &amp;lt;!-- to 属性就是目标位置 --&amp;gt; &amp;lt;teleport to=&amp;#34;#teleport-target&amp;#34;&amp;gt; &amp;lt;div v-if=&amp;#34;visible&amp;#34; class=&amp;#34;toast-wrap&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;toast-msg&amp;#34;&amp;gt;我是一个 Toast 文案&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/teleport&amp;gt; import { ref } from &amp;#39;vue&amp;#39;; export default { setup() { // toast 的封装  const visible = ref(false); let timer; const showToast = () =&amp;gt; { visible.</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
  异步解析  Vue 实现响应式并不是数据发生变化之后 DOM 立即变化，而是按一定的策略进行 DOM 的更新
  ​	简而言之，异步接信息的运行机制如下
  所有同步任务都在主线程上执行，形成一个执行栈（execution context stack） 主线程之外，还存在一个&amp;quot;任务队列&amp;rdquo;（task queue）。只要异步任务有了运行结果，就在&amp;quot;任务队列&amp;quot;之中放置一个事件 一旦&amp;quot;执行栈&amp;quot;中的所有同步任务执行完毕，系统就会读取&amp;quot;任务队列&amp;rdquo;，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行 主线程不断重复上面的第三步  事件循环说明 简单来说，Vue 在修改数据后，视图不会立刻更新，而是等同一事件循环中的所有数据变化完成之后，再统一进行视图更新
-//改变数据vm.message = &#39;changed&#39;//想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新console.log(vm.$el.textContent) // 并不会得到&#39;changed&#39;//这样可以，nextTick里面的代码会在DOM更新后执行Vue.nextTick(function(){console.log(vm.$el.textContent) // 可以得到&#39;changed&#39;})  本次更新循环
+//改变数据 vm.message = &amp;#39;changed&amp;#39; //想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新 console.log(vm.$el.textContent) // 并不会得到&amp;#39;changed&amp;#39;  //这样可以，nextTick里面的代码会在DOM更新后执行 Vue.nextTick(function(){ console.log(vm.$el.textContent) // 可以得到&amp;#39;changed&amp;#39; })   本次更新循环
  首先修改数据，这是同步任务。同一事件循环的所有同步任务都在主线程上执行，形成一个执行栈，此时还未设计DOM Vue开启一个异步队列，并缓冲再次事件循环中发生的所有数据改变。如果同一个watcher被多次执行，只会被推入到队列中一次    下次更新循环
  同步任务执行完毕，开始执行异步watcher队列的任务，更新DOM。Vue在内部尝试对异步队列使用原生的Promise.then和messageChannel方法，如果执行环境不支持，会采用setTimeOut(fn,0)代替    下次更新循环结束之后
 此时通过Vue.nextTick获取到改变后的DOM。通过setTimeOut(fn,0)也可以同样获取到
@@ -69,8 +69,8 @@
       <guid>https://damuwangs.github.io/posts/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/</guid>
       <description>刷新组件 provide、inject 结合 v-if 这对选项需要一起使用，以允许一个根组件向其所有子组件注入一个依赖，实现原理就是通过控制router-view 的显示与隐藏，来重渲染路由区域，重而达到页面刷新的效果，show -&amp;gt; false -&amp;gt; show
   修改app.vue，利用 v-if 可以刷新页面的属性，同时使用 provide 和 inject 将祖先节点的数据传递给子代节点
-&amp;lt;template&amp;gt;&amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;&amp;lt;router-view v-if=&amp;quot;isRouterAlive&amp;quot;&amp;gt;&amp;lt;/router-view&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/template&amp;gt;&amp;lt;script&amp;gt;export default {name: &#39;App&#39;,provide (){return {reload:this.reload}},data(){return {isRouterAlive:true}},methods:{reload (){this.isRouterAlive = falsethis.$nextTick(function(){this.isRouterAlive = true})}}}&amp;lt;/script&amp;gt;  在要刷新的子路由页面引入inject,然后执行reload事件即可刷新页面
-export default { inject:[&#39;reload&#39;],data() {return {}},methods: {reflesh(){this.</description>
+&amp;lt;template&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;router-view v-if=&amp;#34;isRouterAlive&amp;#34;&amp;gt;&amp;lt;/router-view&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script&amp;gt; export default { name: &amp;#39;App&amp;#39;, provide (){ return { reload:this.reload } }, data(){ return { isRouterAlive:true } }, methods:{ reload (){ this.isRouterAlive = false this.$nextTick(function(){ this.isRouterAlive = true }) } } } &amp;lt;/script&amp;gt;   在要刷新的子路由页面引入inject,然后执行reload事件即可刷新页面
+export default { inject:[&amp;#39;reload&amp;#39;], data() { return {} }, methods: { reflesh(){ this.</description>
     </item>
     
   </channel>
