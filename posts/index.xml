@@ -6,10 +6,36 @@
     <description>Recent content in Posts on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 06 Aug 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue2-token</title>
+      <link>https://damuwangs.github.io/posts/vue2-token/</link>
+      <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/vue2-token/</guid>
+      <description>token的含义  1、Token的引入： Token是在客户端频繁向服务端请求数据，服务端频繁的去数据库查询用户名和密码并进行对比，判断用户名和密码正确与否，并作出相应提示，在这样的背景下，Token便应运而生。
+2、Token的定义： Token是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。
+3、使用Token的目的： Token的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮。
+4、Token 的优点： 扩展性更强，也更安全点，非常适合用在 Web 应用或者移动应用上。Token 的中文有人翻译成 “令牌”，我觉得挺好，意思就是，你拿着这个令牌，才能过一些关卡。
+ 项目中使用token 说明
+   文件名称 功能描述     auth.js 设置、获取以及清空cookie   http.js 接口请求封装   store.js 对接业务的状态管理，负责登录、登出状态的保存和移除    流程梳理
+  用户输入信息点击登录，调用store.js中的Login方法请求登录接口，调用成功返回200回传token值
+  接着调用SaveLoginInfo方法，将token值state中保存一份，再调用setToken将token在cookie中也保存一份
+因为vuex刷新页面数据会丢，所以在cookie里面也放了一份，使用的时候只需要通过getter方法获取state就可以，state默认值为调用getToken获取的cookie中的token值
+  此时token对象就可以全局使用了，除登录以外的所有接口请求都要传token，否则会报505错误
+  token由服务端生成，设置了失效时间为24小时
+当token过期，前端再发送请求，服务端会返回505，此响应会被http.js的拦截器捕获
+捕获后先弹框提示‘登录信息已过期，请重新登录&amp;rsquo;，接着调用store.js中的ClearLoginInfo方法清空state中全局token，再调用removeToken移除cookie
+  清空完之后会执行跳转，重新回到登录页面重复步骤一
+  退出登录与登录操作类似，用户点击退出登录按钮，调用store.js里的ClearLoginInfo方法。先清空state中全局token，再调用removeToken移除cookie
+  代码
+auth.js
+import Cookies from &amp;#39;js-cookie&amp;#39; const TokenKey = &amp;#39;sxmanage-auth-token&amp;#39;// tokenKey为固定字符串  // 根据TokenKey获取cookie中的token信息 export function getToken () { return Cookies.</description>
+    </item>
     
     <item>
       <title>CSS3响应式布局</title>

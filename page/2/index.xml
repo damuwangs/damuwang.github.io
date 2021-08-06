@@ -5,9 +5,353 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 06 Aug 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Vue3-组合式API</title>
+        <link>https://damuwangs.github.io/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/</link>
+        <pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;通过创建 Vue 组件，我们可以将界面中重复的部分连同其功能一起提取为可重用的代码段。仅此一项就可以使我们的应用在可维护性和灵活性方面走得相当远。然而随着项目的扩大，功能越来越复杂，定义的数据以及对其数据的操作被放在不同的地方，如methods，watch，碎片化使得理解和维护复杂组件变得困难。选项的分离掩盖了潜在的逻辑问题。此外，在处理单个逻辑关注点时，我们必须不断地“跳转”相关代码的选项块，于是出现了组合式api&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;组合式api主要解决的问题就是单业务逻辑代码单文件处理，将一个巨大无比的组件分成无数小的文件模块每个模块只处理很少的业务，通过定义setUp选项，将单逻辑的变量、生命周期以及方法独立成JS，再通过export的方式将需要使用的暴漏出来。Vue3提供的响应式API基本上可以保证我们在JS中实现响应式变量、父子组件传值、生命周期等所有操作，这是其它方式所不具备的&lt;/p&gt;
+&lt;h1 id=&#34;为什么要使用组合式-api&#34;&gt;为什么要使用组合式 API&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;组件化的缺点&#34;&gt;组件化的缺点&lt;/h2&gt;
+&lt;p&gt;使用 (&lt;code&gt;data&lt;/code&gt;、&lt;code&gt;computed&lt;/code&gt;、&lt;code&gt;methods&lt;/code&gt;、&lt;code&gt;watch&lt;/code&gt;) 组件选项来组织逻辑通常都很有效。然而，当我们的组件开始变得更大时，逻辑关注点的列表也会增长。尤其对于那些一开始没有编写这些组件的人来说，这会导致组件难以阅读和理解&lt;/p&gt;
+&lt;p&gt;这种碎片化使得理解和维护复杂组件变得困难。选项的分离掩盖了潜在的逻辑问题。此外，在处理单个逻辑关注点时，我们必须不断地“跳转”相关代码的选项块&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;提取公共js方式的缺点&#34;&gt;提取公共JS方式的缺点&lt;/h2&gt;
+&lt;p&gt;因为无法获取vue对象，只能编写非业务代码，例如工具方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;插槽的缺点&#34;&gt;插槽的缺点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;配置最终出现在模板中，理想情况下，模板应仅包含我们要呈现的内容&lt;/li&gt;
+&lt;li&gt;公开的属性仅在模板中可用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;mixin方式的缺点&#34;&gt;mixin方式的缺点&lt;/h2&gt;
+&lt;p&gt;mixin的解决方案是将vue页面的js部分提取成公共的以供多个相似模块的共用。这种方式的缺点主要由以下几点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如methods,components等，选项会被合并，键冲突的组件会覆盖混入对象的，比如混入对象里有个方法A，组件里也有方法A，这时候在组件里调用的话，执行的是组件里的A方法&lt;/li&gt;
+&lt;li&gt;不可知，不易维护因为你可以在mixins里几乎可以加任何代码，props、data、methods、各种东西，就导致如果不了解mixins封装的代码的话，是很难维护的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;样例&#34;&gt;样例&lt;/h1&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
+&lt;p&gt;实现了一个简单的列表功能，包括：列表展示、查看更多、关键字搜索&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件名称&lt;/th&gt;
+&lt;th&gt;功能描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;app.vue&lt;/td&gt;
+&lt;td&gt;主页，引入列表和搜索组件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;app.js&lt;/td&gt;
+&lt;td&gt;主页面逻辑，包含：1、初始化列表2、加载更多（接收子组件事件）3、关键字搜索（接收子组件事件）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;panel.vue&lt;/td&gt;
+&lt;td&gt;列表组件：接收列表数据渲染数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;panel.js&lt;/td&gt;
+&lt;td&gt;列表组件逻辑：1、加载更多（emit发送事件）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;search.vue&lt;/td&gt;
+&lt;td&gt;搜索组件：点击搜索框切换选中样式，输入关键字刷新列表数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;search.js&lt;/td&gt;
+&lt;td&gt;搜索组件逻辑：1、点击搜索框样式切换，自动聚集2、搜索值监听(emit发送事件)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
+&lt;h3 id=&#34;appvue&#34;&gt;app.vue&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;    
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;Search&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;@search&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;search&amp;#34;&lt;/span&gt;/&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;Panel&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;listData&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;listData&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;@loadMore&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;loadMore&amp;#34;&lt;/span&gt;/&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; app from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./app.js&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Search from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./components/Search.vue&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Panel from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./components/Panel.vue&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;,
+  components&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+    Search,
+    Panel
+  },   
+  setup(props, context){
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; {search, loadMore, listData} &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; app(props, context)
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+      search,
+      loadMore,
+      listData
+    }
+  }
+}
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;appjs&#34;&gt;app.js&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { ref} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; app(props, context) {
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; listData &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref([]) &lt;span style=&#34;color:#6272a4&#34;&gt;// 定义响应式变量,切记下方赋值/取值时修改的是.value属性！
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#6272a4&#34;&gt;// 初始化列表
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; loadData &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {      
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; [{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题一&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者一&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题二&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者二&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题三&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者三&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题四&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者四&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题五&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者五&amp;#39;&lt;/span&gt;}]
+  }
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 加载更多
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; loadMore &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {   
+    listData.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; [...listData.value, ...[{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题X&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者X&amp;#39;&lt;/span&gt;}]]
+  }
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 搜索
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; search &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; (searchVal) =&amp;gt; {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (searchVal) {
+      listData.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; listData.value.filter(item =&amp;gt; {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (item.title.indexOf(searchVal) &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;) {
+          &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; item
+        } 
+      })         
+    } &lt;span style=&#34;color:#ff79c6&#34;&gt;else&lt;/span&gt; {
+      listData.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; loadData()
+    }
+  }
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+    listData,
+    loadMore,
+    search
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;panelvue&#34;&gt;panel.vue&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-panel weui-panel_access&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-for&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;(n,index) in listData&amp;#34; :key=&amp;#34;index&amp;#34; class=&amp;#34;weui-panel__bd&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;a href=&amp;#34;javascript:void(0);&amp;#34; class=&amp;#34;weui-media-box weui-media-box_appmsg&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;div class=&amp;#34;weui-media-box__bd&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          &amp;lt;h4 class=&amp;#34;weui-media-box__title&amp;#34; v-text=&amp;#34;n.title&amp;#34;&amp;gt;&amp;lt;/h4&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          &amp;lt;p class=&amp;#34;weui-media-box__desc&amp;#34; v-text=&amp;#34;n.author&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;/a&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;div @click=&amp;#34;loadMore&amp;#34; class=&amp;#34;weui-panel__ft&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;a href=&amp;#34;javascript:void(0);&amp;#34; class=&amp;#34;weui-cell weui-cell_access weui-cell_link&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;div class=&amp;#34;weui-cell__bd&amp;#34;&amp;gt;查看更多&amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;span class=&amp;#34;weui-cell__ft&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;span&lt;/span&gt;&amp;gt;
+      &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;a&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { reactive, toRefs} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; pane from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./pane.js&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  props&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;[&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;listData&amp;#39;&lt;/span&gt;],
+  setup(props, context) {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; {loadMore} &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; pane(props, context)
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; state &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; reactive({
+    })     
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+      ...toRefs(state),
+      loadMore
+    }
+  }
+}
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;paneljs&#34;&gt;panel.js&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; pane(props, context) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; loadMore &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
+    context.emit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;loadMore&amp;#34;&lt;/span&gt;)
+  }
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+    loadMore
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;searchvue&#34;&gt;search.vue&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;[&amp;#39;weui-search-bar&amp;#39;, {&amp;#39;weui-search-bar_focusing&amp;#39;:isFocus}]&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;searchBar&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;form&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-search-bar__form&amp;#34;&lt;/span&gt;&amp;gt;
+      &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-search-bar__box&amp;#34;&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-icon-search&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;i&lt;/span&gt;&amp;gt;
+        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;input&lt;/span&gt;
+          &lt;span style=&#34;color:#ff79c6&#34;&gt;v-model&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;searchValue&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          ref=&amp;#34;inputElement&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          type=&amp;#34;search&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          class=&amp;#34;weui-search-bar__input&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          id=&amp;#34;searchInput&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          placeholder=&amp;#34;搜索&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          required
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        /&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;a href=&amp;#34;javascript:&amp;#34; class=&amp;#34;weui-icon-clear&amp;#34; id=&amp;#34;searchClear&amp;#34;&amp;gt;&amp;lt;/a&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;label @click=&amp;#34;toggle&amp;#34; class=&amp;#34;weui-search-bar__label&amp;#34; id=&amp;#34;searchText&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;i class=&amp;#34;weui-icon-search&amp;#34;&amp;gt;&amp;lt;/i&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;span&amp;gt;搜索&amp;lt;/span&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;/label&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;/form&amp;gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;a @click=&amp;#34;toggle&amp;#34; href=&amp;#34;javascript:&amp;#34; class=&amp;#34;weui-search-bar__cancel-btn&amp;#34; id=&amp;#34;searchCancel&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;取消&lt;/span&gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;a&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; search from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./search.js&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  setup(props, context) {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; {searchValue, isFocus, inputElement,  toggle} &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; search(props, context)
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+      toggle,
+      searchValue, 
+      isFocus, 
+      inputElement
+    }
+  }
+}
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;searchjs&#34;&gt;search.js&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {reactive, toRefs, watch} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; search(props, context) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; search &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; reactive({
+    searchValue&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
+    isFocus&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;,
+    inputElement&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;
+  })
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; searchRefs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; toRefs(search); &lt;span style=&#34;color:#6272a4&#34;&gt;// 定义一个新的对象，它本身不具备响应性，但是它的字段全部是ref变量
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#6272a4&#34;&gt;// 切换搜索框状态的方法
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; toggle &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
+    search.inputElement.focus() &lt;span style=&#34;color:#6272a4&#34;&gt;// 让点击搜索后出现的输入框自动聚焦
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    search.isFocus &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;!&lt;/span&gt;search.isFocus
+  }
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 监听搜索框的值
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  watch(
+    () =&amp;gt; {
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; search.searchValue
+    },
+    () =&amp;gt; {
+      context.emit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;search&amp;#34;&lt;/span&gt;, search.searchValue)
+    }
+  )
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+    ...searchRefs, &lt;span style=&#34;color:#6272a4&#34;&gt;// 在这里结构toRefs对象才能继续保持响应式
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    toggle
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;响应式&#34;&gt;响应式&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;setup&#34;&gt;setup&lt;/h2&gt;
+&lt;p&gt;概念：在组件创建之前执行，一旦 &lt;code&gt;props&lt;/code&gt; 被解析，就将作为组合式 API 的入口&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;p&gt;1、props&lt;/p&gt;
+&lt;p&gt;响应式的，当传入新的 prop 时，它将被更新&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  props&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+    title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;String&lt;/span&gt;
+  },
+  setup(props) {
+    console.log(props.title)j
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;2、context&lt;/p&gt;
+&lt;p&gt;context是一个普通的 JavaScript 对象，它暴露组件的三个 property&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  setup(props, context) {
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// Attribute (非响应式对象)
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    console.log(context.attrs)
+  
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 插槽 (非响应式对象)
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    console.log(context.slots)
+  
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 触发事件 (方法)
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    console.log(context.emit)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;attrs和slots是有状态的对象，它们总是会随组件本身的更新而更新。这意味着你应该避免对它们进行解构，并始终以 attrs.x或slots.x的方式引用 property。请注意，与props不同，attrs和slots是非响应式的。如果你打算根据attrs或slots更改应用副作用，那么应该在onUpdated生命周期钩子中执行此操作&lt;/p&gt;
+&lt;p&gt;setup注册生命周期钩子&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {onMounted} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; pane(props, context) {
+  onMounted(() =&amp;gt; {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 业务逻辑
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  })
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {    
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;watch响应式更改&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {watch} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; search(props, context) {
+  watch(
+    () =&amp;gt; {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 监听的值	
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; search.searchValue
+    },
+    () =&amp;gt; {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 业务逻辑
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      context.emit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;search&amp;#34;&lt;/span&gt;, search.searchValue)
+    }
+  )
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;独立的computed属性&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {computed} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; search(props, context) {
+  newsComputed&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; computed(() =&amp;gt; {
+      &lt;span style=&#34;color:#6272a4&#34;&gt;// 业务逻辑
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  })
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {  
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;ref&#34;&gt;ref&lt;/h2&gt;
+&lt;p&gt;创建单个对象的响应对象，取值/赋值时需要使用.value&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; count &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref(&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
+console.log(count.value) &lt;span style=&#34;color:#6272a4&#34;&gt;// 0
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;count.value&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;
+console.log(count.value) &lt;span style=&#34;color:#6272a4&#34;&gt;// 1
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;torefs&#34;&gt;toRefs&lt;/h2&gt;
+&lt;p&gt;从组合式函数返回响应式对象&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; state &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; reactive({
+  foo&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;,
+  bar&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;
+})
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; stateAsRefs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; toRefs(state)
+&lt;span style=&#34;color:#6272a4&#34;&gt;// ref 和原始 property 已经“链接”起来了
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;state.foo&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;
+console.log(stateAsRefs.foo.value) &lt;span style=&#34;color:#6272a4&#34;&gt;// 2
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;stateAsRefs.foo.value&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;
+console.log(state.foo) &lt;span style=&#34;color:#6272a4&#34;&gt;// 3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/Wscats/vue-cli&#34;&gt;组合式API的使用示例&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://vue3.chengpeiquan.com/&#34;&gt;Vue3.0学习教程与实战案例&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/ - </description>
+        </item>
     
     
     

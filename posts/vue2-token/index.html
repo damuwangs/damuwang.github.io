@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>CSS3响应式布局</title>
+<title>Vue2-token</title>
 
 
 
@@ -144,6 +144,73 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
     <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
 
 
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#token%e7%9a%84%e5%90%ab%e4%b9%89" onclick="onNavClick(`#token的含义-nav`)" id="token的含义-nav">
+									token的含义
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%a1%b9%e7%9b%ae%e4%b8%ad%e4%bd%bf%e7%94%a8token" onclick="onNavClick(`#项目中使用token-nav`)" id="项目中使用token-nav">
+									项目中使用token
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
 </div>
     
     <div class="pagination">
@@ -208,6 +275,73 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
             <div class="toc">
 
 
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#token%e7%9a%84%e5%90%ab%e4%b9%89" onclick="onNavClick(`#token的含义-nav`)" id="token的含义-nav">
+									token的含义
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%a1%b9%e7%9b%ae%e4%b8%ad%e4%bd%bf%e7%94%a8token" onclick="onNavClick(`#项目中使用token-nav`)" id="项目中使用token-nav">
+									项目中使用token
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
 </div>
             
         </div>
@@ -262,18 +396,18 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
             >
                 <div class="post-title">
-                    CSS3响应式布局
+                    Vue2-token
                     
                     <div class="post-meta">
                         
                         <time itemprop="datePublished">
-                            2021-08-04
+                            2021-08-06
                         </time>
                         
 
                         
                             <i class="material-icons" style="">folder</i>
-                                <a href="/categories/css">CSS</a>
+                                <a href="/categories/vue">VUE</a>
                                 &nbsp;
                         
 
@@ -293,10 +427,178 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 <div class="post-body" v-pre>
                 
-                    
+                    <h1 id="token的含义">token的含义</h1>
+<blockquote>
+<p>1、Token的引入：
+Token是在客户端频繁向服务端请求数据，服务端频繁的去数据库查询用户名和密码并进行对比，判断用户名和密码正确与否，并作出相应提示，在这样的背景下，Token便应运而生。</p>
+<p>2、Token的定义：
+Token是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。</p>
+<p>3、使用Token的目的：
+Token的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮。</p>
+<p>4、Token 的优点：
+扩展性更强，也更安全点，非常适合用在 Web 应用或者移动应用上。Token 的中文有人翻译成 “令牌”，我觉得挺好，意思就是，你拿着这个令牌，才能过一些关卡。</p>
+</blockquote>
+<h1 id="项目中使用token">项目中使用token</h1>
+<p>说明</p>
+<table>
+<thead>
+<tr>
+<th>文件名称</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auth.js</td>
+<td>设置、获取以及清空cookie</td>
+</tr>
+<tr>
+<td>http.js</td>
+<td>接口请求封装</td>
+</tr>
+<tr>
+<td>store.js</td>
+<td>对接业务的状态管理，负责登录、登出状态的保存和移除</td>
+</tr>
+</tbody>
+</table>
+<p>流程梳理</p>
+<ol>
+<li>
+<p>用户输入信息点击登录，调用store.js中的Login方法请求登录接口，调用成功返回200回传token值</p>
+</li>
+<li>
+<p>接着调用SaveLoginInfo方法，将token值state中保存一份，再调用setToken将token在cookie中也保存一份</p>
+<p>因为vuex刷新页面数据会丢，所以在cookie里面也放了一份，使用的时候只需要通过getter方法获取state就可以，state默认值为调用getToken获取的cookie中的token值</p>
+</li>
+<li>
+<p>此时token对象就可以全局使用了，除登录以外的所有接口请求都要传token，否则会报505错误</p>
+</li>
+<li>
+<p>token由服务端生成，设置了失效时间为24小时</p>
+<p>当token过期，前端再发送请求，服务端会返回505，此响应会被http.js的拦截器捕获</p>
+<p>捕获后先弹框提示‘登录信息已过期，请重新登录&rsquo;，接着调用store.js中的ClearLoginInfo方法清空state中全局token，再调用removeToken移除cookie</p>
+</li>
+<li>
+<p>清空完之后会执行跳转，重新回到登录页面重复步骤一</p>
+</li>
+<li>
+<p>退出登录与登录操作类似，用户点击退出登录按钮，调用store.js里的ClearLoginInfo方法。先清空state中全局token，再调用removeToken移除cookie</p>
+</li>
+</ol>
+<p>代码</p>
+<p>auth.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">import</span> Cookies from <span style="color:#f1fa8c">&#39;js-cookie&#39;</span>
+
+<span style="color:#ff79c6">const</span> TokenKey <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;sxmanage-auth-token&#39;</span><span style="color:#6272a4">// tokenKey为固定字符串
+</span><span style="color:#6272a4"></span>
+<span style="color:#6272a4">// 根据TokenKey获取cookie中的token信息
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">export</span> <span style="color:#8be9fd;font-style:italic">function</span> getToken () {
+  <span style="color:#ff79c6">return</span> Cookies.get(TokenKey)
+}
+<span style="color:#6272a4">// 设置将token设置到cookie中
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">export</span> <span style="color:#8be9fd;font-style:italic">function</span> setToken (token) {
+  <span style="color:#ff79c6">return</span> Cookies.set(TokenKey, token)
+}
+<span style="color:#6272a4">// 根据tTokenKey移除cookie中的token信息
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">export</span> <span style="color:#8be9fd;font-style:italic">function</span> removeToken () {
+  <span style="color:#ff79c6">return</span> Cookies.remove(TokenKey)
+}
+</code></pre></div><p>http.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">import</span> axios from <span style="color:#f1fa8c">&#39;axios&#39;</span>
+<span style="color:#ff79c6">import</span> store from <span style="color:#f1fa8c">&#39;@/store&#39;</span>
+
+<span style="color:#ff79c6">const</span> service <span style="color:#ff79c6">=</span> axios.create({
+    timeout<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">30000</span>, <span style="color:#6272a4">// request timeout
+</span><span style="color:#6272a4"></span>    withCredentials<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>
+})
+
+<span style="color:#6272a4">// resposne interceptor
+</span><span style="color:#6272a4"></span>service.interceptors.response.use(
+    response =&gt; {
+        <span style="color:#ff79c6">const</span> res <span style="color:#ff79c6">=</span> response.data
+        <span style="color:#ff79c6">if</span> (res.c <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">505</span>)  {
+            alert(<span style="color:#f1fa8c">&#39;登录信息已过期，请重新登录&#39;</span>)
+            <span style="color:#6272a4">// 清除数据
+</span><span style="color:#6272a4"></span>            store.dispatch(<span style="color:#f1fa8c">&#39;ClearLoginInfo&#39;</span>).then(() =&gt; {
+                <span style="color:#6272a4">// 跳转到登录页面
+</span><span style="color:#6272a4"></span>                router.push(<span style="color:#f1fa8c">&#39;/login&#39;</span>)
+            })
+        }
+        <span style="color:#ff79c6">return</span> response
+    }, error =&gt; {
+        <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">Promise</span>.reject(error)
+    }
+)
+</code></pre></div><p>store.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">import</span> Vuex from <span style="color:#f1fa8c">&#39;vuex&#39;</span>
+<span style="color:#ff79c6">import</span> Vue from <span style="color:#f1fa8c">&#39;vue&#39;</span>
+<span style="color:#ff79c6">import</span> { base } from <span style="color:#f1fa8c">&#39;@/api/base&#39;</span>
+<span style="color:#ff79c6">import</span> { getToken, setToken, removeToken} from <span style="color:#f1fa8c">&#39;@/utils/auth&#39;</span>
+
+Vue.use(Vuex)
+
+<span style="color:#ff79c6">const</span> state <span style="color:#ff79c6">=</span> {
+  token<span style="color:#ff79c6">:</span> getToken()
+}
+
+<span style="color:#ff79c6">const</span> getters <span style="color:#ff79c6">=</span> {
+  token<span style="color:#ff79c6">:</span> state =&gt; state.token
+}
+
+<span style="color:#ff79c6">const</span> mutations <span style="color:#ff79c6">=</span> {
+  SET_TOKEN<span style="color:#ff79c6">:</span> (state, token) =&gt; {
+    state.token <span style="color:#ff79c6">=</span> token
+  }
+}
+
+<span style="color:#ff79c6">const</span> actions <span style="color:#ff79c6">=</span> {
+  <span style="color:#6272a4">/** 登录 */</span>
+  Login<span style="color:#ff79c6">:</span> ({ commit, dispatch }, userInfo) =&gt; {
+    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; {
+      base.login(userInfo).then(response =&gt; {
+        <span style="color:#ff79c6">if</span> (response.data.c <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">200</span>) {
+          <span style="color:#6272a4">// 先清除数据
+</span><span style="color:#6272a4"></span>          dispatch(<span style="color:#f1fa8c">&#39;ClearLoginInfo&#39;</span>)
+          <span style="color:#6272a4">// 再保存数据
+</span><span style="color:#6272a4"></span>          dispatch(<span style="color:#f1fa8c">&#39;SaveLoginInfo&#39;</span>, response.data)
+          resolve(response.data)
+        } <span style="color:#ff79c6">else</span> {
+          reject(response.data.c)
+        }
+      })
+    })
+  },
+  <span style="color:#6272a4">// 保存登录信息
+</span><span style="color:#6272a4"></span>  SaveLoginInfo<span style="color:#ff79c6">:</span> ({ commit }, data) =&gt; {
+    <span style="color:#6272a4">// state保存token
+</span><span style="color:#6272a4"></span>    commit(<span style="color:#f1fa8c">&#39;SET_TOKEN&#39;</span>, data.v.token)
+    <span style="color:#6272a4">// 保存token到cookie中
+</span><span style="color:#6272a4"></span>    setToken(data.v.token)
+  },
+  <span style="color:#6272a4">/** 清除数据 */</span>
+  ClearLoginInfo<span style="color:#ff79c6">:</span> ({ commit }) =&gt; {
+    <span style="color:#6272a4">// 清除数据
+</span><span style="color:#6272a4"></span>    commit(<span style="color:#f1fa8c">&#39;SET_TOKEN&#39;</span>, <span style="color:#f1fa8c">&#39;&#39;</span>)
+    <span style="color:#6272a4">// 清除cookie中的token
+</span><span style="color:#6272a4"></span>    removeToken()
+  }
+}
+
+<span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#ff79c6">new</span> Vuex.Store({
+  state,
+  getters,
+  mutations,
+  actions
+})
+</code></pre></div><h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="https://blog.csdn.net/cmj6706/article/details/79032703">token详解以及应用原理</a></p>
+</blockquote>
+
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2021-08-04</p>
+		    <p style="color:#777;">Last modified on 2021-08-06</p>
                     
                 </div>
             </div>
@@ -305,14 +607,14 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="https://damuwangs.github.io/posts/vue2-token/">
-			Next<br>Vue2-token
+                <a class="newer-posts">
+			Next<br>No newer posts.
                 </a>
                 
                 
                 
-                <a class="older-posts" href="https://damuwangs.github.io/posts/javascript-%E8%B7%A8%E5%9F%9F/">
-			Previous<br>JavaScript-跨域
+                <a class="older-posts" href="https://damuwangs.github.io/posts/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/">
+			Previous<br>CSS3响应式布局
                 </a>
                 
             </nav>

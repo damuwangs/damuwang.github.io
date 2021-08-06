@@ -6,10 +6,19 @@
     <description>Recent content in Categories on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 06 Aug 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>VUE</title>
+      <link>https://damuwangs.github.io/categories/vue/</link>
+      <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/categories/vue/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>CSS</title>
@@ -35,15 +44,6 @@
       <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/categories/demo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VUE</title>
-      <link>https://damuwangs.github.io/categories/vue/</link>
-      <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://damuwangs.github.io/categories/vue/</guid>
       <description></description>
     </item>
     
