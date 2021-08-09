@@ -5,195 +5,16 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 06 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Aug 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
-        <title>Vue2-token</title>
-        <link>https://damuwangs.github.io/posts/vue2-token/</link>
-        <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/vue2-token/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/vue2-token/ -&lt;h1 id=&#34;token的含义&#34;&gt;token的含义&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1、Token的引入：
-Token是在客户端频繁向服务端请求数据，服务端频繁的去数据库查询用户名和密码并进行对比，判断用户名和密码正确与否，并作出相应提示，在这样的背景下，Token便应运而生。&lt;/p&gt;
-&lt;p&gt;2、Token的定义：
-Token是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。&lt;/p&gt;
-&lt;p&gt;3、使用Token的目的：
-Token的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮。&lt;/p&gt;
-&lt;p&gt;4、Token 的优点：
-扩展性更强，也更安全点，非常适合用在 Web 应用或者移动应用上。Token 的中文有人翻译成 “令牌”，我觉得挺好，意思就是，你拿着这个令牌，才能过一些关卡。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;项目中使用token&#34;&gt;项目中使用token&lt;/h1&gt;
-&lt;p&gt;说明&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;文件名称&lt;/th&gt;
-&lt;th&gt;功能描述&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;auth.js&lt;/td&gt;
-&lt;td&gt;设置、获取以及清空cookie&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;http.js&lt;/td&gt;
-&lt;td&gt;接口请求封装&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;store.js&lt;/td&gt;
-&lt;td&gt;对接业务的状态管理，负责登录、登出状态的保存和移除&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;流程梳理&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;用户输入信息点击登录，调用store.js中的Login方法请求登录接口，调用成功返回200回传token值&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;接着调用SaveLoginInfo方法，将token值state中保存一份，再调用setToken将token在cookie中也保存一份&lt;/p&gt;
-&lt;p&gt;因为vuex刷新页面数据会丢，所以在cookie里面也放了一份，使用的时候只需要通过getter方法获取state就可以，state默认值为调用getToken获取的cookie中的token值&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;此时token对象就可以全局使用了，除登录以外的所有接口请求都要传token，否则会报505错误&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;token由服务端生成，设置了失效时间为24小时&lt;/p&gt;
-&lt;p&gt;当token过期，前端再发送请求，服务端会返回505，此响应会被http.js的拦截器捕获&lt;/p&gt;
-&lt;p&gt;捕获后先弹框提示‘登录信息已过期，请重新登录&amp;rsquo;，接着调用store.js中的ClearLoginInfo方法清空state中全局token，再调用removeToken移除cookie&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;清空完之后会执行跳转，重新回到登录页面重复步骤一&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;退出登录与登录操作类似，用户点击退出登录按钮，调用store.js里的ClearLoginInfo方法。先清空state中全局token，再调用removeToken移除cookie&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;代码&lt;/p&gt;
-&lt;p&gt;auth.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Cookies from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;js-cookie&amp;#39;&lt;/span&gt;
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; TokenKey &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;sxmanage-auth-token&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// tokenKey为固定字符串
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 根据TokenKey获取cookie中的token信息
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; getToken () {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.get(TokenKey)
-}
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 设置将token设置到cookie中
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; setToken (token) {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.set(TokenKey, token)
-}
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 根据tTokenKey移除cookie中的token信息
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; removeToken () {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.remove(TokenKey)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;http.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; axios from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;axios&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; store from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/store&amp;#39;&lt;/span&gt;
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; service &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; axios.create({
-    timeout&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;30000&lt;/span&gt;, &lt;span style=&#34;color:#6272a4&#34;&gt;// request timeout
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    withCredentials&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
-})
-
-&lt;span style=&#34;color:#6272a4&#34;&gt;// resposne interceptor
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;service.interceptors.response.use(
-    response =&amp;gt; {
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; res &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; response.data
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (res.c &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;505&lt;/span&gt;)  {
-            alert(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;登录信息已过期，请重新登录&amp;#39;&lt;/span&gt;)
-            &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;            store.dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ClearLoginInfo&amp;#39;&lt;/span&gt;).then(() =&amp;gt; {
-                &lt;span style=&#34;color:#6272a4&#34;&gt;// 跳转到登录页面
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                router.push(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/login&amp;#39;&lt;/span&gt;)
-            })
-        }
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; response
-    }, error =&amp;gt; {
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;.reject(error)
-    }
-)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;store.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Vuex from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vuex&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Vue from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { base } from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/api/base&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { getToken, setToken, removeToken} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/utils/auth&amp;#39;&lt;/span&gt;
-
-Vue.use(Vuex)
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; state &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
-  token&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; getToken()
-}
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; getters &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
-  token&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; state =&amp;gt; state.token
-}
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; mutations &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
-  SET_TOKEN&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; (state, token) =&amp;gt; {
-    state.token &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; token
-  }
-}
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; actions &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
-  &lt;span style=&#34;color:#6272a4&#34;&gt;/** 登录 */&lt;/span&gt;
-  Login&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit, dispatch }, userInfo) =&amp;gt; {
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;((resolve, reject) =&amp;gt; {
-      base.login(userInfo).then(response =&amp;gt; {
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (response.data.c &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;) {
-          &lt;span style=&#34;color:#6272a4&#34;&gt;// 先清除数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;          dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ClearLoginInfo&amp;#39;&lt;/span&gt;)
-          &lt;span style=&#34;color:#6272a4&#34;&gt;// 再保存数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;          dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SaveLoginInfo&amp;#39;&lt;/span&gt;, response.data)
-          resolve(response.data)
-        } &lt;span style=&#34;color:#ff79c6&#34;&gt;else&lt;/span&gt; {
-          reject(response.data.c)
-        }
-      })
-    })
-  },
-  &lt;span style=&#34;color:#6272a4&#34;&gt;// 保存登录信息
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  SaveLoginInfo&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit }, data) =&amp;gt; {
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// state保存token
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    commit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SET_TOKEN&amp;#39;&lt;/span&gt;, data.v.token)
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 保存token到cookie中
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    setToken(data.v.token)
-  },
-  &lt;span style=&#34;color:#6272a4&#34;&gt;/** 清除数据 */&lt;/span&gt;
-  ClearLoginInfo&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit }) =&amp;gt; {
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    commit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SET_TOKEN&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;)
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除cookie中的token
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    removeToken()
-  }
-}
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Vuex.Store({
-  state,
-  getters,
-  mutations,
-  actions
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/cmj6706/article/details/79032703&#34;&gt;token详解以及应用原理&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/vue2-token/ - </description>
-        </item>
-    
-    
-    
-        <item>
         <title>重绘、回流</title>
         <link>https://damuwangs.github.io/posts/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</link>
-        <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 09 Aug 2021 00:00:00 +0000</pubDate>
         
         <guid>https://damuwangs.github.io/posts/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</guid>
         <description>DaMuWang https://damuwangs.github.io/posts/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/ -&lt;h1 id=&#34;浏览器渲染&#34;&gt;浏览器渲染&lt;/h1&gt;
@@ -380,6 +201,185 @@ oUl.parentElement.replaceChild(newUl, oUl);
 &lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/342371522&#34;&gt;讲清楚重排或回流、重绘&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Vue2-token</title>
+        <link>https://damuwangs.github.io/posts/vue2-token/</link>
+        <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/vue2-token/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/vue2-token/ -&lt;h1 id=&#34;token的含义&#34;&gt;token的含义&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1、Token的引入：
+Token是在客户端频繁向服务端请求数据，服务端频繁的去数据库查询用户名和密码并进行对比，判断用户名和密码正确与否，并作出相应提示，在这样的背景下，Token便应运而生。&lt;/p&gt;
+&lt;p&gt;2、Token的定义：
+Token是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。&lt;/p&gt;
+&lt;p&gt;3、使用Token的目的：
+Token的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮。&lt;/p&gt;
+&lt;p&gt;4、Token 的优点：
+扩展性更强，也更安全点，非常适合用在 Web 应用或者移动应用上。Token 的中文有人翻译成 “令牌”，我觉得挺好，意思就是，你拿着这个令牌，才能过一些关卡。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;项目中使用token&#34;&gt;项目中使用token&lt;/h1&gt;
+&lt;p&gt;说明&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件名称&lt;/th&gt;
+&lt;th&gt;功能描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;auth.js&lt;/td&gt;
+&lt;td&gt;设置、获取以及清空cookie&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;http.js&lt;/td&gt;
+&lt;td&gt;接口请求封装&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;store.js&lt;/td&gt;
+&lt;td&gt;对接业务的状态管理，负责登录、登出状态的保存和移除&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;流程梳理&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;用户输入信息点击登录，调用store.js中的Login方法请求登录接口，调用成功返回200回传token值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;接着调用SaveLoginInfo方法，将token值state中保存一份，再调用setToken将token在cookie中也保存一份&lt;/p&gt;
+&lt;p&gt;因为vuex刷新页面数据会丢，所以在cookie里面也放了一份，使用的时候只需要通过getter方法获取state就可以，state默认值为调用getToken获取的cookie中的token值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;此时token对象就可以全局使用了，除登录以外的所有接口请求都要传token，否则会报505错误&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;token由服务端生成，设置了失效时间为24小时&lt;/p&gt;
+&lt;p&gt;当token过期，前端再发送请求，服务端会返回505，此响应会被http.js的拦截器捕获&lt;/p&gt;
+&lt;p&gt;捕获后先弹框提示‘登录信息已过期，请重新登录&amp;rsquo;，接着调用store.js中的ClearLoginInfo方法清空state中全局token，再调用removeToken移除cookie&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;清空完之后会执行跳转，重新回到登录页面重复步骤一&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;退出登录与登录操作类似，用户点击退出登录按钮，调用store.js里的ClearLoginInfo方法。先清空state中全局token，再调用removeToken移除cookie&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;代码&lt;/p&gt;
+&lt;p&gt;auth.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Cookies from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;js-cookie&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; TokenKey &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;sxmanage-auth-token&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// tokenKey为固定字符串
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 根据TokenKey获取cookie中的token信息
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; getToken () {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.get(TokenKey)
+}
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 设置将token设置到cookie中
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; setToken (token) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.set(TokenKey, token)
+}
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 根据tTokenKey移除cookie中的token信息
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; removeToken () {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.remove(TokenKey)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;http.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; axios from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;axios&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; store from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/store&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; service &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; axios.create({
+    timeout&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;30000&lt;/span&gt;, &lt;span style=&#34;color:#6272a4&#34;&gt;// request timeout
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    withCredentials&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
+})
+
+&lt;span style=&#34;color:#6272a4&#34;&gt;// resposne interceptor
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;service.interceptors.response.use(
+    response =&amp;gt; {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; res &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; response.data
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (res.c &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;505&lt;/span&gt;)  {
+            alert(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;登录信息已过期，请重新登录&amp;#39;&lt;/span&gt;)
+            &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;            store.dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ClearLoginInfo&amp;#39;&lt;/span&gt;).then(() =&amp;gt; {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// 跳转到登录页面
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                router.push(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/login&amp;#39;&lt;/span&gt;)
+            })
+        }
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; response
+    }, error =&amp;gt; {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;.reject(error)
+    }
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;store.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Vuex from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vuex&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Vue from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { base } from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/api/base&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { getToken, setToken, removeToken} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/utils/auth&amp;#39;&lt;/span&gt;
+
+Vue.use(Vuex)
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; state &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  token&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; getToken()
+}
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; getters &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  token&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; state =&amp;gt; state.token
+}
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; mutations &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  SET_TOKEN&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; (state, token) =&amp;gt; {
+    state.token &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; token
+  }
+}
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; actions &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  &lt;span style=&#34;color:#6272a4&#34;&gt;/** 登录 */&lt;/span&gt;
+  Login&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit, dispatch }, userInfo) =&amp;gt; {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;((resolve, reject) =&amp;gt; {
+      base.login(userInfo).then(response =&amp;gt; {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (response.data.c &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;) {
+          &lt;span style=&#34;color:#6272a4&#34;&gt;// 先清除数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;          dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ClearLoginInfo&amp;#39;&lt;/span&gt;)
+          &lt;span style=&#34;color:#6272a4&#34;&gt;// 再保存数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;          dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SaveLoginInfo&amp;#39;&lt;/span&gt;, response.data)
+          resolve(response.data)
+        } &lt;span style=&#34;color:#ff79c6&#34;&gt;else&lt;/span&gt; {
+          reject(response.data.c)
+        }
+      })
+    })
+  },
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 保存登录信息
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  SaveLoginInfo&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit }, data) =&amp;gt; {
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// state保存token
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    commit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SET_TOKEN&amp;#39;&lt;/span&gt;, data.v.token)
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 保存token到cookie中
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    setToken(data.v.token)
+  },
+  &lt;span style=&#34;color:#6272a4&#34;&gt;/** 清除数据 */&lt;/span&gt;
+  ClearLoginInfo&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit }) =&amp;gt; {
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    commit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SET_TOKEN&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;)
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除cookie中的token
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    removeToken()
+  }
+}
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Vuex.Store({
+  state,
+  getters,
+  mutations,
+  actions
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/cmj6706/article/details/79032703&#34;&gt;token详解以及应用原理&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/vue2-token/ - </description>
         </item>
     
     
