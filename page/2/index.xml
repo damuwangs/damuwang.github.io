@@ -12,6 +12,97 @@
     
     
         <item>
+        <title>Vue3-Teleport</title>
+        <link>https://damuwangs.github.io/posts/vue3-teleport/</link>
+        <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/vue3-teleport/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/vue3-teleport/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Teleport 是一种能够将我们的模板移动到 DOM中Vue app之外的其他位置的技术，就有点像哆啦A梦的“任意门”&lt;/p&gt;
+&lt;p&gt;场景：像 modals,toast 等这样的元素，很多情况下，我们将它完全的和我们的 Vue 应用的 DOM完全剥离，管理起来反而会方便容易很多&lt;/p&gt;
+&lt;p&gt;原因在于如果我们嵌套在Vue的某个组件内部，那么处理嵌套组件的定位、z-index和样式就会变得很困难&lt;/p&gt;
+&lt;p&gt;另外，像 modals，toast等这样的元素需要使用到 Vue组件的状态（data或者props）的值&lt;/p&gt;
+&lt;p&gt;这就是Teleport派上用场的地方。我们可以在组件的逻辑位置写模板代码，这意味着我们可以使用组件的data或props。然后在Vue应用的范围之外渲染它&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;teleport-的使用&#34;&gt;Teleport 的使用&lt;/h1&gt;
+&lt;p&gt;index.html中&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;teleport-target&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/src/main.js&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;src/components/HelloWorld.vue中，添加如下，留意to属性跟上面的id选择器一致&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt; &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt; @&lt;span style=&#34;color:#50fa7b&#34;&gt;click&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;showToast&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;btn&amp;#34;&lt;/span&gt;&amp;gt;打开 toast&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt;&amp;gt;
+  &lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- to 属性就是目标位置 --&amp;gt;&lt;/span&gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;to&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;#teleport-target&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;v-if&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;visible&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;toast-wrap&amp;#34;&lt;/span&gt;&amp;gt;
+      &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;toast-msg&amp;#34;&lt;/span&gt;&amp;gt;我是一个 Toast 文案&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { ref } from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  setup() {
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// toast 的封装
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; visible &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref(&lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;);
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; timer;
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; showToast &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
+      visible.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;;
+      clearTimeout(timer);
+      timer &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; setTimeout(() =&amp;gt; {
+        visible.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;;
+      }, &lt;span style=&#34;color:#bd93f9&#34;&gt;2000&lt;/span&gt;);
+    }
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+      visible,
+      showToast
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;效果展示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue3-Teleport/%E6%95%88%E6%9E%9C%E4%B8%80.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到，我们使用teleport组件，通过to属性，指定该组件渲染的位置与&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;同级，也就是在body下，但是teleport的状态visible又是完全由内部Vue组件控制&lt;/p&gt;
+&lt;h1 id=&#34;与-vue组件-一起使用modal&#34;&gt;与 Vue组件 一起使用modal&lt;/h1&gt;
+&lt;p&gt;如果&lt;!-- raw HTML omitted --&gt;包含Vue组件，则它仍将是&lt;!-- raw HTML omitted --&gt;父组件的逻辑子组件&lt;/p&gt;
+&lt;p&gt;接下来我们以一个modal组件为例&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;modal-container&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/src/main.js&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;to&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;#modal-container&amp;#34;&lt;/span&gt;&amp;gt;
+  &lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- use the modal component, pass in the prop --&amp;gt;&lt;/span&gt;
+  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;modal&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;:show&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;showModal&amp;#34;&lt;/span&gt; @&lt;span style=&#34;color:#50fa7b&#34;&gt;close&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;showModal = false&amp;#34;&lt;/span&gt;&amp;gt;
+    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt; #&lt;span style=&#34;color:#50fa7b&#34;&gt;header&lt;/span&gt;&amp;gt;
+      &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;h3&lt;/span&gt;&amp;gt;custom header&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;h3&lt;/span&gt;&amp;gt;
+    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
+  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;modal&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { ref } from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Modal from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./Modal.vue&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
+  components&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+    Modal
+  },
+  setup() {
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// modal 的封装
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; showModal &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref(&lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;);
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
+      showModal
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在这种情况下，即使在不同的地方渲染Modal，它仍将是当前组件（调用Modal的组件）的子级，并将从中接收show prop&lt;/p&gt;
+&lt;p&gt;这也意味着来自父组件的注入按预期工作，并且子组件将嵌套在Vue Devtools中的父组件之下，而不是放在实际内容移动到的位置&lt;/p&gt;
+&lt;p&gt;看实际效果以及在Vue Devtool中&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue3-Teleport/%E6%95%88%E6%9E%9C%E4%BA%8C.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6874720017863147527&#34;&gt;Vue 3 任意传送门——Teleport&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6910100912367206414&#34;&gt;vue3.0新特性teleport是啥，用起来真香&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/vue3-teleport/ - </description>
+        </item>
+    
+    
+    
+        <item>
         <title>Vue3-组合式API</title>
         <link>https://damuwangs.github.io/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/</link>
         <pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate>
