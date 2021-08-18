@@ -6,10 +6,32 @@
     <description>Recent content in Posts on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Aug 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaScript-事件冒泡、事件捕获和事件委托</title>
+      <link>https://damuwangs.github.io/posts/javascript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/</link>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/javascript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/</guid>
+      <description>事件流 事件冒泡和事件捕获分别由微软和网景公司提出，这两个概念都是为了解决页面中事件流（事件发生顺序）的问题
+&amp;lt;div id=&amp;#34;outer&amp;#34;&amp;gt; &amp;lt;p id=&amp;#34;inner&amp;#34;&amp;gt;Click me!&amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt; 上面的代码当中一个div元素当中有一个p子元素，如果两个元素都有一个click的处理函数，那么我们怎么才能知道哪一个函数会首先被触发呢？
+为了解决这个问题微软和网景提出了两种几乎完全相反的概念
+事件冒泡 事件冒泡 概念 微软提出了名为事件冒泡(event bubbling)的事件流。事件冒泡可以形象地比喻为把一颗石头投入水中，泡泡会一直从水底冒出水面。也就是说，事件会从最内层的元素开始发生，一直向上传播，直到document对象
+上面的例子在事件冒泡的概念下发生click事件的顺序应该是
+p -&amp;gt; div -&amp;gt; body -&amp;gt; html -&amp;gt; document
+样例 阻止事件冒泡 阻止默认事件 事件捕获 概念 网景提出另一种事件流名为事件捕获(event capturing)。与事件冒泡相反，事件会从最外层开始发生，直到最具体的元素。
+上面的例子在事件捕获的概念下发生click事件的顺序应该是
+document -&amp;gt; html -&amp;gt; body -&amp;gt; div -&amp;gt; p
+样例 事件委托 概念 样例 Vue按键修饰符 参考资料  你真的理解 事件冒泡 和 事件捕获 吗？
+浅谈JavaScript事件捕获事件冒泡与事件委托
+JavaScript 事件冒泡、事件捕获和事件委托
+按键修饰符
+ </description>
+    </item>
     
     <item>
       <title>重绘、回流</title>

@@ -4,31 +4,41 @@
   
   <url>
     <loc>https://damuwangs.github.io/categories/</loc>
-    <lastmod>2021-08-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/categories/css/</loc>
-    <lastmod>2021-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2021-08-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://damuwangs.github.io/</loc>
-    <lastmod>2021-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2021-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/categories/javascript/</loc>
+    <lastmod>2021-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/javascript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/</loc>
+    <lastmod>2021-08-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://damuwangs.github.io/posts/</loc>
-    <lastmod>2021-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2021-08-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://damuwangs.github.io/tags/</loc>
-    <lastmod>2021-08-09T00:00:00+00:00</lastmod>
+    <lastmod>2021-08-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2021-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/categories/css/</loc>
     <lastmod>2021-08-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -49,11 +59,6 @@
   
   <url>
     <loc>https://damuwangs.github.io/posts/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</loc>
-    <lastmod>2021-08-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/categories/javascript/</loc>
     <lastmod>2021-08-04T00:00:00+00:00</lastmod>
   </url>
   
