@@ -20,17 +20,14 @@
       <description>事件流 事件冒泡和事件捕获分别由微软和网景公司提出，这两个概念都是为了解决页面中事件流（事件发生顺序）的问题
 &amp;lt;div id=&amp;#34;outer&amp;#34;&amp;gt; &amp;lt;p id=&amp;#34;inner&amp;#34;&amp;gt;Click me!&amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt; 上面的代码当中一个div元素当中有一个p子元素，如果两个元素都有一个click的处理函数，那么我们怎么才能知道哪一个函数会首先被触发呢？
 为了解决这个问题微软和网景提出了两种几乎完全相反的概念
-事件冒泡 事件冒泡 概念 微软提出了名为事件冒泡(event bubbling)的事件流。事件冒泡可以形象地比喻为把一颗石头投入水中，泡泡会一直从水底冒出水面。也就是说，事件会从最内层的元素开始发生，一直向上传播，直到document对象
-上面的例子在事件冒泡的概念下发生click事件的顺序应该是
-p -&amp;gt; div -&amp;gt; body -&amp;gt; html -&amp;gt; document
-样例 阻止事件冒泡 阻止默认事件 事件捕获 概念 网景提出另一种事件流名为事件捕获(event capturing)。与事件冒泡相反，事件会从最外层开始发生，直到最具体的元素。
-上面的例子在事件捕获的概念下发生click事件的顺序应该是
-document -&amp;gt; html -&amp;gt; body -&amp;gt; div -&amp;gt; p
-样例 事件委托 概念 样例 Vue按键修饰符 参考资料  你真的理解 事件冒泡 和 事件捕获 吗？
-浅谈JavaScript事件捕获事件冒泡与事件委托
-JavaScript 事件冒泡、事件捕获和事件委托
-按键修饰符
- </description>
+事件冒泡 概念 微软提出了名为事件冒泡(event bubbling)的事件流。事件冒泡可以形象地比喻为把一颗石头投入水中，泡泡会一直从水底冒出水面。也就是说，事件会从最内层的元素开始发生，一直向上传播，直到document对象
+样例：事件冒泡 阻止事件冒泡 事件的对象有一个stopPropagation()方法可以阻止事件冒泡，我们只需要把上个例子中button的事件处理程序修改如下：
+document.getElementById(&amp;#34;button&amp;#34;).addEventListener(&amp;#34;click&amp;#34;,function(event){ alert(&amp;#34;button&amp;#34;) event.stopPropagation() },false) 事件捕获 概念 网景提出另一种事件流名为事件捕获(event capturing)。与事件冒泡相反，事件会从最外层开始发生，直到最具体的元素
+样例：事件捕获 阻止事件捕获 但是我们可以使用DOM3级新增事件stopImmediatePropagation()方法来阻止事件捕获，另外此方法还可以阻止事件冒泡。应用如下
+document.getElementById(&amp;#34;second&amp;#34;).addEventListener(&amp;#34;click&amp;#34;,function(event){ alert(&amp;#34;second&amp;#34;) event.stopImmediatePropagation() },true) 那么 stopImmediatePropagation() 和 stopPropagation()的区别在哪儿呢？
+后者只会阻止冒泡或者是捕获。 但是前者除此之外还会阻止该元素的其他事件发生，但是后者就不会阻止其他事件的发生
+事件委托 在实际的开发当中，利用事件流的特性，我们可以使用一种叫做事件代理的方法
+样例 &amp;lt;ul class=&amp;#34;color_list&amp;#34;&amp;gt; &amp;lt;li&amp;gt;red&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;orange&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;yellow&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;green&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;blue&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;purple&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;div class=&amp;#34;box&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; .color_list{ display: flex; display: -webkit-flex; } .color_list li{ width: 100px; height: 100px; list-style: none; text-align: center; line-height: 100px; } //每个li加上对应的颜色，此处省略 .</description>
     </item>
     
     <item>
