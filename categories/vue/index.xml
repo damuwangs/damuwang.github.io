@@ -13,10 +13,10 @@
     
     <item>
       <title>Vue2-token</title>
-      <link>https://damuwangs.github.io/posts/vue2-token/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/</link>
       <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/vue2-token/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/</guid>
       <description>token的含义  1、Token的引入： Token是在客户端频繁向服务端请求数据，服务端频繁的去数据库查询用户名和密码并进行对比，判断用户名和密码正确与否，并作出相应提示，在这样的背景下，Token便应运而生。
 2、Token的定义： Token是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。
 3、使用Token的目的： Token的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮。
@@ -39,10 +39,10 @@ import Cookies from &amp;#39;js-cookie&amp;#39; const TokenKey = &amp;#39;sxmana
     
     <item>
       <title>Vue3-Teleport</title>
-      <link>https://damuwangs.github.io/posts/vue3-teleport/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-teleport/</link>
       <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/vue3-teleport/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-teleport/</guid>
       <description>概念  Teleport 是一种能够将我们的模板移动到 DOM中Vue app之外的其他位置的技术，就有点像哆啦A梦的“任意门”
 场景：像 modals,toast 等这样的元素，很多情况下，我们将它完全的和我们的 Vue 应用的 DOM完全剥离，管理起来反而会方便容易很多
 原因在于如果我们嵌套在Vue的某个组件内部，那么处理嵌套组件的定位、z-index和样式就会变得很困难
@@ -55,10 +55,10 @@ import Cookies from &amp;#39;js-cookie&amp;#39; const TokenKey = &amp;#39;sxmana
     
     <item>
       <title>Vue3-组合式API</title>
-      <link>https://damuwangs.github.io/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/</link>
       <pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/</guid>
       <description>概念  通过创建 Vue 组件，我们可以将界面中重复的部分连同其功能一起提取为可重用的代码段。仅此一项就可以使我们的应用在可维护性和灵活性方面走得相当远。然而随着项目的扩大，功能越来越复杂，定义的数据以及对其数据的操作被放在不同的地方，如methods，watch，碎片化使得理解和维护复杂组件变得困难。选项的分离掩盖了潜在的逻辑问题。此外，在处理单个逻辑关注点时，我们必须不断地“跳转”相关代码的选项块，于是出现了组合式api
  组合式api主要解决的问题就是单业务逻辑代码单文件处理，将一个巨大无比的组件分成无数小的文件模块每个模块只处理很少的业务，通过定义setUp选项，将单逻辑的变量、生命周期以及方法独立成JS，再通过export的方式将需要使用的暴漏出来。Vue3提供的响应式API基本上可以保证我们在JS中实现响应式变量、父子组件传值、生命周期等所有操作，这是其它方式所不具备的
 为什么要使用组合式 API   组件化的缺点 使用 (data、computed、methods、watch) 组件选项来组织逻辑通常都很有效。然而，当我们的组件开始变得更大时，逻辑关注点的列表也会增长。尤其对于那些一开始没有编写这些组件的人来说，这会导致组件难以阅读和理解
@@ -71,10 +71,10 @@ import Cookies from &amp;#39;js-cookie&amp;#39; const TokenKey = &amp;#39;sxmana
     
     <item>
       <title>Vue2-nextTick</title>
-      <link>https://damuwangs.github.io/posts/vue2-nexttick/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-nexttick/</link>
       <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/vue2-nexttick/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-nexttick/</guid>
       <description>概念  官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM
  异步解析  Vue 实现响应式并不是数据发生变化之后 DOM 立即变化，而是按一定的策略进行 DOM 的更新
  ​	简而言之，异步接信息的运行机制如下
@@ -89,10 +89,10 @@ import Cookies from &amp;#39;js-cookie&amp;#39; const TokenKey = &amp;#39;sxmana
     
     <item>
       <title>Vue2-刷新组件</title>
-      <link>https://damuwangs.github.io/posts/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/</link>
       <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%88%B7%E6%96%B0%E7%BB%84%E4%BB%B6/</guid>
       <description>刷新组件 provide、inject 结合 v-if 这对选项需要一起使用，以允许一个根组件向其所有子组件注入一个依赖，实现原理就是通过控制router-view 的显示与隐藏，来重渲染路由区域，重而达到页面刷新的效果，show -&amp;gt; false -&amp;gt; show
   修改app.vue，利用 v-if 可以刷新页面的属性，同时使用 provide 和 inject 将祖先节点的数据传递给子代节点
 &amp;lt;template&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;router-view v-if=&amp;#34;isRouterAlive&amp;#34;&amp;gt;&amp;lt;/router-view&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;script&amp;gt; export default { name: &amp;#39;App&amp;#39;, provide (){ return { reload:this.reload } }, data(){ return { isRouterAlive:true } }, methods:{ reload (){ this.isRouterAlive = false this.$nextTick(function(){ this.isRouterAlive = true }) } } } &amp;lt;/script&amp;gt;   在要刷新的子路由页面引入inject,然后执行reload事件即可刷新页面

@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html><head>
+<title>重绘、回流</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="https://damuwangs.github.io/scss/journal.min.4dabc90cf94657415a747e8400223bb3c4d11654d1279feff37fd6a11089fe77.css" integrity="sha256-TavJDPlGV0FadH6EACI7s8TRFlTRJ5/v83/WoRCJ/nc=" media="screen">
+
+
+
+<link rel="stylesheet" href="https://damuwangs.github.io/scss/dark-mode.min.83b57d3d51352700a502fbe45536227cf28ce7e56fedacaf14b7fe499db0f186.css" integrity="sha256-g7V9PVE1JwClAvvkVTYifPKM5&#43;Vv7ayvFLf&#43;SZ2w8YY=" media="screen">
+
+
+<script src="/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Fira+Mono|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="/js/toc.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://damuwangs.github.io">
+    
+        <div class="nav-title">
+            DaMuWang
+        </div>
+        
+        <div class="nav-subtitle">
+            damuwang&#39;s blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/posts">
+                博客
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                分类
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags">
+                标签
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2021 DaMuWang
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%b5%8f%e8%a7%88%e5%99%a8%e6%b8%b2%e6%9f%93" onclick="onNavClick(`#浏览器渲染-nav`)" id="浏览器渲染-nav">
+									浏览器渲染
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%9b%9e%e6%b5%81" onclick="onNavClick(`#回流-nav`)" id="回流-nav">
+									回流
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%b9%e6%98%93%e9%80%a0%e6%88%90%e5%9b%9e%e6%b5%81%e7%9a%84%e6%93%8d%e4%bd%9c" onclick="onNavClick(`#容易造成回流的操作-nav`)" id="容易造成回流的操作-nav">
+									容易造成回流的操作
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1%e5%b8%83%e5%b1%80%e6%b5%81%e7%9b%b8%e5%85%b3%e6%93%8d%e4%bd%9c" onclick="onNavClick(`#1布局流相关操作-nav`)" id="1布局流相关操作-nav">
+									1、布局流相关操作
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2%e6%94%b9%e5%8f%98%e8%8a%82%e7%82%b9%e5%86%85%e7%9a%84%e5%86%85%e5%ae%b9" onclick="onNavClick(`#2改变节点内的内容-nav`)" id="2改变节点内的内容-nav">
+									2、改变节点内的内容
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3css" onclick="onNavClick(`#3css-nav`)" id="3css-nav">
+									3、css
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e9%87%8d%e7%bb%98" onclick="onNavClick(`#重绘-nav`)" id="重绘-nav">
+									重绘
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5-1" onclick="onNavClick(`#概念-1-nav`)" id="概念-1-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%b9%e6%98%93%e9%80%a0%e6%88%90%e9%87%8d%e7%bb%98%e6%93%8d%e4%bd%9c%e7%9a%84css" onclick="onNavClick(`#容易造成重绘操作的css-nav`)" id="容易造成重绘操作的css-nav">
+									容易造成重绘操作的CSS
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%bc%98%e5%8c%96%e6%9c%ba%e5%88%b6" onclick="onNavClick(`#优化机制-nav`)" id="优化机制-nav">
+									优化机制
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1%e6%b5%8f%e8%a7%88%e5%99%a8%e4%bc%98%e5%8c%96" onclick="onNavClick(`#1浏览器优化-nav`)" id="1浏览器优化-nav">
+									1、浏览器优化
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2%e5%90%88%e5%b9%b6%e6%a0%b7%e5%bc%8f%e4%bf%ae%e6%94%b9" onclick="onNavClick(`#2合并样式修改-nav`)" id="2合并样式修改-nav">
+									2、合并样式修改
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3%e6%89%b9%e9%87%8f%e6%93%8d%e4%bd%9cdom" onclick="onNavClick(`#3批量操作dom-nav`)" id="3批量操作dom-nav">
+									3、批量操作DOM
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4%e9%81%bf%e5%85%8d%e5%a4%9a%e6%ac%a1%e8%a7%a6%e5%8f%91%e5%b8%83%e5%b1%80" onclick="onNavClick(`#4避免多次触发布局-nav`)" id="4避免多次触发布局-nav">
+									4、避免多次触发布局
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+<div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
+                    博客
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    分类
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags">
+                    标签
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%b5%8f%e8%a7%88%e5%99%a8%e6%b8%b2%e6%9f%93" onclick="onNavClick(`#浏览器渲染-nav`)" id="浏览器渲染-nav">
+									浏览器渲染
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%9b%9e%e6%b5%81" onclick="onNavClick(`#回流-nav`)" id="回流-nav">
+									回流
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%b9%e6%98%93%e9%80%a0%e6%88%90%e5%9b%9e%e6%b5%81%e7%9a%84%e6%93%8d%e4%bd%9c" onclick="onNavClick(`#容易造成回流的操作-nav`)" id="容易造成回流的操作-nav">
+									容易造成回流的操作
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1%e5%b8%83%e5%b1%80%e6%b5%81%e7%9b%b8%e5%85%b3%e6%93%8d%e4%bd%9c" onclick="onNavClick(`#1布局流相关操作-nav`)" id="1布局流相关操作-nav">
+									1、布局流相关操作
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2%e6%94%b9%e5%8f%98%e8%8a%82%e7%82%b9%e5%86%85%e7%9a%84%e5%86%85%e5%ae%b9" onclick="onNavClick(`#2改变节点内的内容-nav`)" id="2改变节点内的内容-nav">
+									2、改变节点内的内容
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3css" onclick="onNavClick(`#3css-nav`)" id="3css-nav">
+									3、css
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e9%87%8d%e7%bb%98" onclick="onNavClick(`#重绘-nav`)" id="重绘-nav">
+									重绘
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e5%bf%b5-1" onclick="onNavClick(`#概念-1-nav`)" id="概念-1-nav">
+									概念
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ae%b9%e6%98%93%e9%80%a0%e6%88%90%e9%87%8d%e7%bb%98%e6%93%8d%e4%bd%9c%e7%9a%84css" onclick="onNavClick(`#容易造成重绘操作的css-nav`)" id="容易造成重绘操作的css-nav">
+									容易造成重绘操作的CSS
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%bc%98%e5%8c%96%e6%9c%ba%e5%88%b6" onclick="onNavClick(`#优化机制-nav`)" id="优化机制-nav">
+									优化机制
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1%e6%b5%8f%e8%a7%88%e5%99%a8%e4%bc%98%e5%8c%96" onclick="onNavClick(`#1浏览器优化-nav`)" id="1浏览器优化-nav">
+									1、浏览器优化
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2%e5%90%88%e5%b9%b6%e6%a0%b7%e5%bc%8f%e4%bf%ae%e6%94%b9" onclick="onNavClick(`#2合并样式修改-nav`)" id="2合并样式修改-nav">
+									2、合并样式修改
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3%e6%89%b9%e9%87%8f%e6%93%8d%e4%bd%9cdom" onclick="onNavClick(`#3批量操作dom-nav`)" id="3批量操作dom-nav">
+									3、批量操作DOM
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4%e9%81%bf%e5%85%8d%e5%a4%9a%e6%ac%a1%e8%a7%a6%e5%8f%91%e5%b8%83%e5%b1%80" onclick="onNavClick(`#4避免多次触发布局-nav`)" id="4避免多次触发布局-nav">
+									4、避免多次触发布局
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://damuwangs.github.io">
+            DaMuWang
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://damuwangs.github.io">
+        <div class="single-column-header-title">DaMuWang</div>
+        
+        <div class="single-column-header-subtitle">damuwang&#39;s blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    重绘、回流
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-08-09
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/css">CSS</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B">编程</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="浏览器渲染">浏览器渲染</h1>
+<p>浏览器在渲染页面的时候，大致是以下几个步骤：</p>
+<ol>
+<li>解析html生成DOM树，解析css，生成CSSOM树，将DOM树和CSSOM树结合，生成渲染树；</li>
+<li>根据渲染树，浏览器可以计算出网页中有哪些节点，各节点的CSS以及从属关系 - 【回流】</li>
+<li>根据渲染树以及回流得到的节点信息，计算出每个节点在屏幕中的位置 - 【重绘】</li>
+<li>最后将得到的节点位置信息交给浏览器的图形处理程序，让浏览器中显示页面</li>
+</ol>
+<h1 id="回流">回流</h1>
+<h2 id="概念">概念</h2>
+<p>英文叫reflow，指的是当渲染树中的节点信息发生了大小、边距等问题，需要重新计算各节点和css具体的大小和位置</p>
+<p>例：在css中对一个div修饰的样式中，使用了宽度50%，此时需要将50%转换为具体的像素，这个计算的过程，就是回流的过程</p>
+<h2 id="容易造成回流的操作">容易造成回流的操作</h2>
+<h3 id="1布局流相关操作">1、布局流相关操作</h3>
+<ul>
+<li>盒模型的相关操作会触发重新布局</li>
+<li>定位相关操作会触发重新布局</li>
+<li>浮动相关操作会触发重新布局</li>
+</ul>
+<h3 id="2改变节点内的内容">2、改变节点内的内容</h3>
+<p>改变节点的结构或其中的文本结构会触发重新布局</p>
+<h3 id="3css">3、css</h3>
+<ul>
+<li>width</li>
+<li>height</li>
+<li>padding</li>
+<li>border</li>
+<li>margin</li>
+<li>position</li>
+<li>top</li>
+<li>left</li>
+<li>bottom</li>
+<li>right</li>
+<li>float</li>
+<li>clear</li>
+<li>text-align</li>
+<li>vertical-align</li>
+<li>line-height</li>
+<li>font-weight</li>
+<li>font-size</li>
+<li>font-family</li>
+<li>overflow</li>
+<li>white-space</li>
+</ul>
+<h1 id="重绘">重绘</h1>
+<h2 id="概念-1">概念</h2>
+<p>重绘：英文叫repaint，当节点的部分属性发生变化，但不影响布局，只需要重新计算节点在屏幕中的绝对位置并渲染的过程，就叫重绘</p>
+<p>例：改变元素的背景颜色、字体颜色等操作会造成重绘</p>
+<h2 id="容易造成重绘操作的css">容易造成重绘操作的CSS</h2>
+<ul>
+<li>color</li>
+<li>border-style</li>
+<li>border-radius</li>
+<li>text-decoration</li>
+<li>box-shadow</li>
+<li>outline</li>
+<li>background</li>
+</ul>
+<h1 id="优化机制">优化机制</h1>
+<h2 id="1浏览器优化">1、浏览器优化</h2>
+<p>每次回流都会对浏览器造成额外的计算消耗，所以浏览器对于回流和重绘有一定的优化机制</p>
+<p>浏览器通常都会将多次回流操作放入一个队列中，等过了一段时间或操作达到了一定的临界值，然后才会挨个执行，这样能节省一些计算消耗。</p>
+<p>但是在获取布局信息操作的时候，会强制将队列清空，也就是强制回流，比如访问或操作以下或方法时：</p>
+<ul>
+<li>offsetTop</li>
+<li>offsetLeft</li>
+<li>offsetWidth</li>
+<li>offsetHeight</li>
+<li>scrollTop</li>
+<li>scrollLeft</li>
+<li>scrollWidth</li>
+<li>scrollHeight</li>
+<li>clientTop</li>
+<li>clientLeft</li>
+<li>clientWidth</li>
+<li>clientHeight</li>
+<li>getComputedStyle()</li>
+</ul>
+<p>这些属性或方法都需要得到最新的布局信息，所以浏览器必须去回流执行。因此，在项目中，尽量避免使用上述属性或方法，如果非要使用的时候，也尽量将值缓存起来，而不是一直获取</p>
+<h2 id="2合并样式修改">2、合并样式修改</h2>
+<p>减少造成回流的次数，如果要给一个节点操作多个css属性，而每一个都会造成回流的话，尽量将多次操作合并成一个，例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> oDiv <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.querySelector(<span style="color:#f1fa8c">&#39;.box&#39;</span>)
+oDiv.style.padding <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;5px&#39;</span>
+oDiv.style.border <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;1px solid #000&#39;</span>
+oDiv.style.margin <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;5px&#39;</span>
+</code></pre></div><p>操作div的3个css属性，分别是padding、border、margin，此时就可以考虑将多次操作合并为一次</p>
+<p>方法一：使用style的cssText</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">oDiv.style.cssText <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;padding:5px; border:1px solid #000; margin:5px;&#39;</span>
+</code></pre></div><p>方法二：将这几个样式定义给一个类名，然后给标签添加类名</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">style</span>&gt;
+    .<span style="color:#50fa7b">pbm</span>{
+        <span style="color:#ff79c6">padding</span>:<span style="color:#bd93f9">5</span><span style="color:#8be9fd">px</span>; 
+        <span style="color:#ff79c6">border</span>:<span style="color:#bd93f9">1</span><span style="color:#8be9fd">px</span> <span style="color:#ff79c6">solid</span> <span style="color:#bd93f9">#000</span>; 
+        <span style="color:#ff79c6">margin</span>:<span style="color:#bd93f9">5</span><span style="color:#8be9fd">px</span>;
+    }
+&lt;/<span style="color:#ff79c6">style</span>&gt;
+&lt;<span style="color:#ff79c6">script</span>&gt;
+    <span style="color:#8be9fd;font-style:italic">var</span> oDiv <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.querySelector(<span style="color:#f1fa8c">&#39;.box&#39;</span>);
+    oDiv.classList.add(<span style="color:#f1fa8c">&#39;pbm&#39;</span>);
+&lt;/<span style="color:#ff79c6">script</span>&gt;
+</code></pre></div><h2 id="3批量操作dom">3、批量操作DOM</h2>
+<p>当对DOM有多次操作的时候，需要使用一些特殊处理减少触发回流，其实就是对DOM的多次操作，在脱离标准流后，对元素进行的多次操作，不会触发回流，等操作完成后，再将元素放回标准流</p>
+<p>脱离标准流的操作有以下3中：</p>
+<ol>
+<li>隐藏元素</li>
+<li>使用文档碎片</li>
+<li>拷贝节点</li>
+</ol>
+<p>例：下面对DOM节点的多次操作，每次都会触发回流</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> data <span style="color:#ff79c6">=</span> [
+    {
+        id<span style="color:#ff79c6">:</span><span style="color:#bd93f9">1</span>,
+        name<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#34;商品1&#34;</span>
+    },
+    {
+        id<span style="color:#ff79c6">:</span><span style="color:#bd93f9">2</span>,
+        name<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#34;商品1&#34;</span>
+    },
+    {
+        id<span style="color:#ff79c6">:</span><span style="color:#bd93f9">3</span>,
+        name<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#34;商品1&#34;</span>
+    },
+    {
+        id<span style="color:#ff79c6">:</span><span style="color:#bd93f9">4</span>,
+        name<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#34;商品1&#34;</span>
+    }
+    <span style="color:#6272a4">// 假设后面还有很多
+</span><span style="color:#6272a4"></span>]
+<span style="color:#8be9fd;font-style:italic">var</span> oUl <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.querySelector(<span style="color:#f1fa8c">&#34;ul&#34;</span>)
+<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd;font-style:italic">var</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;i<span style="color:#ff79c6">&lt;</span>data.length;i<span style="color:#ff79c6">++</span>){
+    <span style="color:#8be9fd;font-style:italic">var</span> oLi <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createElement(<span style="color:#f1fa8c">&#34;li&#34;</span>)
+    oLi.innerText <span style="color:#ff79c6">=</span> data[i].name
+    oUl.appendChild(oLi)
+}
+</code></pre></div><p>这样每次给ul中新增一个li的操作，每次都会触发回流。</p>
+<p>方法一：隐藏ul后，给ul添加节点，添加完成后再将ul显示</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">oUl.style.display <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;none&#39;</span>
+<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd;font-style:italic">var</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;i<span style="color:#ff79c6">&lt;</span>data.length;i<span style="color:#ff79c6">++</span>){
+    <span style="color:#8be9fd;font-style:italic">var</span> oLi <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createElement(<span style="color:#f1fa8c">&#34;li&#34;</span>)
+    oLi.innerText <span style="color:#ff79c6">=</span> data[i].name
+    oUl.appendChild(oLi)
+}
+oUl.style.display <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;block&#39;</span>
+</code></pre></div><p>此时，在隐藏ul和显示ul的时候，触发了两次回流，给ul添加每个li的时候没有触发回流。</p>
+<p>方法二：创建文档碎片，将所有li先放在文档碎片中，等都放进去以后，再将文档碎片放在ul中</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> fragment <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createDocumentFragment()
+<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd;font-style:italic">var</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;i<span style="color:#ff79c6">&lt;</span>data.length;i<span style="color:#ff79c6">++</span>){
+    <span style="color:#8be9fd;font-style:italic">var</span> oLi <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createElement(<span style="color:#f1fa8c">&#34;li&#34;</span>)
+    oLi.innerText <span style="color:#ff79c6">=</span> data[i].name
+    fragment.appendChild(oLi)
+}
+oUl.appendChild(fragment)
+</code></pre></div><p>方法三：将ul拷贝一份，将所有li放在拷贝中，等都放进去以后，使用拷贝替换掉ul</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> newUL <span style="color:#ff79c6">=</span> oUl.cloneNode(<span style="color:#ff79c6">true</span>);
+<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd;font-style:italic">var</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;i<span style="color:#ff79c6">&lt;</span>data.length;i<span style="color:#ff79c6">++</span>){
+    <span style="color:#8be9fd;font-style:italic">var</span> oLi <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createElement(<span style="color:#f1fa8c">&#34;li&#34;</span>);
+    oLi.innerText <span style="color:#ff79c6">=</span> data[i].name;
+    newUL.appendChild(oLi);
+}
+oUl.parentElement.replaceChild(newUl, oUl);
+</code></pre></div><h2 id="4避免多次触发布局">4、避免多次触发布局</h2>
+<p>例：如下回到顶部的操作</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">goBack.onclick <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>(){
+    setInterval(<span style="color:#8be9fd;font-style:italic">function</span>(){
+        <span style="color:#8be9fd;font-style:italic">var</span> t <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.documentElement.scrollTop <span style="color:#ff79c6">||</span> <span style="color:#8be9fd;font-style:italic">document</span>.body.scrollTop
+        t <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">10</span>
+        <span style="color:#8be9fd;font-style:italic">document</span>.documentElement.scrollTop <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.body.scrollTop <span style="color:#ff79c6">=</span> t
+    },<span style="color:#bd93f9">20</span>)
+}
+</code></pre></div><p>每隔20毫秒都会重新获取滚动过的距离，每次都会触发回流，代码优化如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">goBack.onclick <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>(){
+    <span style="color:#8be9fd;font-style:italic">var</span> t <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.documentElement.scrollTop <span style="color:#ff79c6">||</span> <span style="color:#8be9fd;font-style:italic">document</span>.body.scrollTop
+    setInterval(<span style="color:#8be9fd;font-style:italic">function</span>(){
+        t <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">10</span>
+        <span style="color:#8be9fd;font-style:italic">document</span>.documentElement.scrollTop <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.body.scrollTop <span style="color:#ff79c6">=</span> t
+    },<span style="color:#bd93f9">20</span>)
+}
+</code></pre></div><p>只获取一次，每次都让数字递增，避免每次都获取滚动过的距离</p>
+<p>对于页面中比较复杂的动画，尽量将元素设置为绝对定位，操作元素的定位属性，这样只有这一个元素会回流，如果不是定位的话，容易引起其父元素以及子元素的回流</p>
+<h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/342371522">讲清楚重排或回流、重绘</a></p>
+</blockquote>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-08-09</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
+			Next<br>JavaScript-事件冒泡、事件捕获和事件委托
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/">
+			Previous<br>Vue2-token
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2021 DaMuWang
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            },
+            debounce(func, wait, options) {
+                let lastArgs,
+                    lastThis,
+                    maxWait,
+                    result,
+                    timerId,
+                    lastCallTime
+
+                let lastInvokeTime = 0
+                let leading = false
+                let maxing = false
+                let trailing = true
+
+                
+                const useRAF = (!wait && wait !== 0 && typeof root.requestAnimationFrame === 'function')
+
+                if (typeof func !== 'function') {
+                    throw new TypeError('Expected a function')
+                }
+                function isObject(value) {
+                    const type = typeof value
+                    return value != null && (type === 'object' || type === 'function')
+                }
+
+                wait = +wait || 0
+                if (isObject(options)) {
+                    leading = !!options.leading
+                    maxing = 'maxWait' in options
+                    maxWait = maxing ? Math.max(+options.maxWait || 0, wait) : maxWait
+                    trailing = 'trailing' in options ? !!options.trailing : trailing
+                }
+
+                function invokeFunc(time) {
+                    const args = lastArgs
+                    const thisArg = lastThis
+
+                    lastArgs = lastThis = undefined
+                    lastInvokeTime = time
+                    result = func.apply(thisArg, args)
+                    return result
+                }
+
+                function startTimer(pendingFunc, wait) {
+                    if (useRAF) {
+                    root.cancelAnimationFrame(timerId)
+                    return root.requestAnimationFrame(pendingFunc)
+                    }
+                    return setTimeout(pendingFunc, wait)
+                }
+
+                function cancelTimer(id) {
+                    if (useRAF) {
+                    return root.cancelAnimationFrame(id)
+                    }
+                    clearTimeout(id)
+                }
+
+                function leadingEdge(time) {
+                    
+                    lastInvokeTime = time
+                    
+                    timerId = startTimer(timerExpired, wait)
+                    
+                    return leading ? invokeFunc(time) : result
+                }
+
+                function remainingWait(time) {
+                    const timeSinceLastCall = time - lastCallTime
+                    const timeSinceLastInvoke = time - lastInvokeTime
+                    const timeWaiting = wait - timeSinceLastCall
+
+                    return maxing
+                    ? Math.min(timeWaiting, maxWait - timeSinceLastInvoke)
+                    : timeWaiting
+                }
+
+                function shouldInvoke(time) {
+                    const timeSinceLastCall = time - lastCallTime
+                    const timeSinceLastInvoke = time - lastInvokeTime
+
+                    
+                    
+                    
+                    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+                    (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait))
+                }
+
+                function timerExpired() {
+                    const time = Date.now()
+                    if (shouldInvoke(time)) {
+                    return trailingEdge(time)
+                    }
+                    
+                    timerId = startTimer(timerExpired, remainingWait(time))
+                }
+
+                function trailingEdge(time) {
+                    timerId = undefined
+
+                    
+                    
+                    if (trailing && lastArgs) {
+                    return invokeFunc(time)
+                    }
+                    lastArgs = lastThis = undefined
+                    return result
+                }
+
+                function cancel() {
+                    if (timerId !== undefined) {
+                    cancelTimer(timerId)
+                    }
+                    lastInvokeTime = 0
+                    lastArgs = lastCallTime = lastThis = timerId = undefined
+                }
+
+                function flush() {
+                    return timerId === undefined ? result : trailingEdge(Date.now())
+                }
+
+                function pending() {
+                    return timerId !== undefined
+                }
+
+                function debounced(...args) {
+                    const time = Date.now()
+                    const isInvoking = shouldInvoke(time)
+
+                    lastArgs = args
+                    lastThis = this
+                    lastCallTime = time
+
+                    if (isInvoking) {
+                    if (timerId === undefined) {
+                        return leadingEdge(lastCallTime)
+                    }
+                    if (maxing) {
+                        
+                        timerId = startTimer(timerExpired, wait)
+                        return invokeFunc(lastCallTime)
+                    }
+                    }
+                    if (timerId === undefined) {
+                    timerId = startTimer(timerExpired, wait)
+                    }
+                    return result
+                }
+                debounced.cancel = cancel
+                debounced.flush = flush
+                debounced.pending = pending
+                return debounced
+                }
+
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+        
+        
+
+        document.querySelectorAll("table").forEach(function(elem){
+            elem.classList.add("table-striped");
+            elem.classList.add("table");
+            elem.classList.add("table-responsive");
+            elem.classList.add("table-hover");
+        })
+
+        
+        spy();
+        window.addEventListener('scroll', this.debounce(spy, 250, { 'maxWait': 250 }), false);
+        
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+
+
+
+</script>
+    </body>
+</html>

@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html><head>
+<title>JavaScript-跨域</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="https://damuwangs.github.io/scss/journal.min.4dabc90cf94657415a747e8400223bb3c4d11654d1279feff37fd6a11089fe77.css" integrity="sha256-TavJDPlGV0FadH6EACI7s8TRFlTRJ5/v83/WoRCJ/nc=" media="screen">
+
+
+
+<link rel="stylesheet" href="https://damuwangs.github.io/scss/dark-mode.min.83b57d3d51352700a502fbe45536227cf28ce7e56fedacaf14b7fe499db0f186.css" integrity="sha256-g7V9PVE1JwClAvvkVTYifPKM5&#43;Vv7ayvFLf&#43;SZ2w8YY=" media="screen">
+
+
+<script src="/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Fira+Mono|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="/js/toc.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://damuwangs.github.io">
+    
+        <div class="nav-title">
+            DaMuWang
+        </div>
+        
+        <div class="nav-subtitle">
+            damuwang&#39;s blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/posts">
+                博客
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                分类
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags">
+                标签
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2021 DaMuWang
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e8%bf%b0" onclick="onNavClick(`#概述-nav`)" id="概述-nav">
+									概述
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%90%ab%e4%b9%89" onclick="onNavClick(`#含义-nav`)" id="含义-nav">
+									含义
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%9b%ae%e7%9a%84" onclick="onNavClick(`#目的-nav`)" id="目的-nav">
+									目的
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%99%90%e5%88%b6%e8%8c%83%e5%9b%b4" onclick="onNavClick(`#限制范围-nav`)" id="限制范围-nav">
+									限制范围
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" onclick="onNavClick(`#解决方案-nav`)" id="解决方案-nav">
+									解决方案
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#cors" onclick="onNavClick(`#cors-nav`)" id="cors-nav">
+									CORS
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#jsonp" onclick="onNavClick(`#jsonp-nav`)" id="jsonp-nav">
+									Jsonp
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#node-%e4%b8%ad%e9%97%b4%e4%bb%b6%e4%bb%a3%e7%90%86" onclick="onNavClick(`#node-中间件代理-nav`)" id="node-中间件代理-nav">
+									Node 中间件代理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#nginx-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86" onclick="onNavClick(`#nginx-反向代理-nav`)" id="nginx-反向代理-nav">
+									Nginx 反向代理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#postmessage" onclick="onNavClick(`#postmessage-nav`)" id="postmessage-nav">
+									PostMessage
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#websocket" onclick="onNavClick(`#websocket-nav`)" id="websocket-nav">
+									WebSocket
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#documentdomain--iframe" onclick="onNavClick(`#documentdomain--iframe-nav`)" id="documentdomain--iframe-nav">
+									document.domain &#43; iframe
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#windowname--iframe" onclick="onNavClick(`#windowname--iframe-nav`)" id="windowname--iframe-nav">
+									window.name &#43; iframe
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#locationhash--iframe" onclick="onNavClick(`#locationhash--iframe-nav`)" id="locationhash--iframe-nav">
+									location.hash &#43; iframe
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+<div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
+                    博客
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    分类
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags">
+                    标签
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e6%a6%82%e8%bf%b0" onclick="onNavClick(`#概述-nav`)" id="概述-nav">
+									概述
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%90%ab%e4%b9%89" onclick="onNavClick(`#含义-nav`)" id="含义-nav">
+									含义
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%9b%ae%e7%9a%84" onclick="onNavClick(`#目的-nav`)" id="目的-nav">
+									目的
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e9%99%90%e5%88%b6%e8%8c%83%e5%9b%b4" onclick="onNavClick(`#限制范围-nav`)" id="限制范围-nav">
+									限制范围
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" onclick="onNavClick(`#解决方案-nav`)" id="解决方案-nav">
+									解决方案
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#cors" onclick="onNavClick(`#cors-nav`)" id="cors-nav">
+									CORS
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#jsonp" onclick="onNavClick(`#jsonp-nav`)" id="jsonp-nav">
+									Jsonp
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#node-%e4%b8%ad%e9%97%b4%e4%bb%b6%e4%bb%a3%e7%90%86" onclick="onNavClick(`#node-中间件代理-nav`)" id="node-中间件代理-nav">
+									Node 中间件代理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#nginx-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86" onclick="onNavClick(`#nginx-反向代理-nav`)" id="nginx-反向代理-nav">
+									Nginx 反向代理
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#postmessage" onclick="onNavClick(`#postmessage-nav`)" id="postmessage-nav">
+									PostMessage
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#websocket" onclick="onNavClick(`#websocket-nav`)" id="websocket-nav">
+									WebSocket
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#documentdomain--iframe" onclick="onNavClick(`#documentdomain--iframe-nav`)" id="documentdomain--iframe-nav">
+									document.domain &#43; iframe
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#windowname--iframe" onclick="onNavClick(`#windowname--iframe-nav`)" id="windowname--iframe-nav">
+									window.name &#43; iframe
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#locationhash--iframe" onclick="onNavClick(`#locationhash--iframe-nav`)" id="locationhash--iframe-nav">
+									location.hash &#43; iframe
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://damuwangs.github.io">
+            DaMuWang
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://damuwangs.github.io">
+        <div class="single-column-header-title">DaMuWang</div>
+        
+        <div class="single-column-header-subtitle">damuwang&#39;s blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    JavaScript-跨域
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-08-04
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/javascript">JavaScript</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B">编程</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="概述">概述</h1>
+<h2 id="含义">含义</h2>
+<p>1995年，同源政策由 Netscape 公司引入浏览器。目前，所有浏览器都实行这个政策</p>
+<p>最初，它的含义是指，A网页设置的 Cookie，B网页不能打开，除非这两个网页&quot;同源&rdquo;</p>
+<p>所谓&quot;同源&quot;指的是&quot;三个相同&rdquo;</p>
+<blockquote>
+<ul>
+<li>协议相同</li>
+<li>域名相同</li>
+<li>端口相同</li>
+</ul>
+</blockquote>
+<p>常见跨域场景</p>
+<p><img src="/img/JavaScript-%E8%B7%A8%E5%9F%9F/%E5%9C%BA%E6%99%AF.png" alt=""></p>
+<h2 id="目的">目的</h2>
+<p>同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。</p>
+<p>设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。如果其他网站可以读取A网站的 Cookie，会发生什么？</p>
+<p>很显然，如果 Cookie 包含隐私（比如存款总额），这些信息就会泄漏。更可怕的是，Cookie 往往用来保存用户的登录状态，如果用户没有退出登录，其他网站就可以冒充用户，为所欲为。因为浏览器同时还规定，提交表单不受同源政策的限制</p>
+<p>由此可见，&ldquo;同源政策&quot;是必需的，否则 Cookie 可以共享，互联网就毫无安全可言了</p>
+<h2 id="限制范围">限制范围</h2>
+<blockquote>
+<ul>
+<li>Cookie、LocalStorage 和 IndexDB 无法读取</li>
+<li>DOM 无法获得</li>
+<li>AJAX 请求不能发送</li>
+</ul>
+</blockquote>
+<h1 id="解决方案">解决方案</h1>
+<h2 id="cors">CORS</h2>
+<p>CORS 即是指跨域资源共享。它允许浏览器向非同源服务器，发出 Ajax 请求，从而克服了 Ajax 只能同源使用的限制。这种方式的跨域主要是在后端进行设置</p>
+<p>这种方式的关键是后端进行设置，即是后端开启 Access-Control-Allow-Origin 为*或对应的origin就可以实现跨域</p>
+<p>cors.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">let</span> xhr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> XMLHttpRequest() xhr.open(<span style="color:#f1fa8c">&#39;GET&#39;</span>, <span style="color:#f1fa8c">&#39;http://localhost:8002/request&#39;</span>)
+xhr.send(<span style="color:#ff79c6">null</span>)
+</code></pre></div><p>server.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> express <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;express&#39;</span>)
+<span style="color:#ff79c6">const</span> app <span style="color:#ff79c6">=</span> express()
+
+app.use((req, res, next) =&gt; {
+  res.header(<span style="color:#f1fa8c">&#39;Access-Control-Allow-Origin&#39;</span>, <span style="color:#f1fa8c">&#39;http://127.0.0.1:5500&#39;</span>) <span style="color:#6272a4">// 设置允许哪个域访问
+</span><span style="color:#6272a4"></span>  next()
+})
+
+app.get(<span style="color:#f1fa8c">&#39;/request&#39;</span>, (req, res) =&gt; {
+  res.end(<span style="color:#f1fa8c">&#39;server ok&#39;</span>)
+})
+
+app.listen(<span style="color:#bd93f9">8002</span>)
+</code></pre></div><h2 id="jsonp">Jsonp</h2>
+<p>说明：利用了 script 标签可跨域的特性，在客户端定义一个回调函数（全局函数），请求服务端返回该回调函数的调用，并将服务端的数据以该回调函数参数的形式传递过来，然后该函数就被执行了。该方法需要服务端配合完成</p>
+<p>优点：兼容性好</p>
+<p>缺点：由于 script 本身的限制，该跨域方式仅支持 get 请求，且不安全可能遭受 XSS 攻击</p>
+<p>实现步骤：</p>
+<ol>
+<li>声明一个全局回调函数，参数为服务端返回的 data。</li>
+<li>创建一个 script 标签，拼接整个请求 api 的地址（要传入回调函数名称如 ?callback=getInfo ），赋值给 script 的 src 属性</li>
+<li>服务端接受到请求后处理数据，然后将函数名和需要返回的数据拼接成字符串，拼装完成是执行函数的形式。（getInfo(&lsquo;server data&rsquo;)）</li>
+<li>浏览器接收到服务端的返回结果，调用了声明的回调函数</li>
+</ol>
+<p>jsonp.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> getInfo(data) {
+  console.log(data) <span style="color:#6272a4">// 告诉你一声， jsonp跨域成功
+</span><span style="color:#6272a4"></span>}
+
+<span style="color:#8be9fd;font-style:italic">let</span> script <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createElement(<span style="color:#f1fa8c">&#39;script&#39;</span>)
+script.src <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;http://localhost:3000?callback=getInfo&#39;</span>
+<span style="color:#8be9fd;font-style:italic">document</span>.body.appendChild(script)
+</code></pre></div><p>server.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> express <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;express&#39;</span>)
+<span style="color:#ff79c6">const</span> app <span style="color:#ff79c6">=</span> express()
+
+app.get(<span style="color:#f1fa8c">&#39;/&#39;</span>, (req, res) =&gt; {
+  <span style="color:#8be9fd;font-style:italic">let</span> { callback } <span style="color:#ff79c6">=</span> req.query
+  res.end(<span style="color:#f1fa8c">`</span><span style="color:#f1fa8c">${</span>callback<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">(&#39;告诉你一声， jsonp跨域成功&#39;)`</span>)
+})
+
+app.listen(<span style="color:#bd93f9">3000</span>)
+</code></pre></div><p>封装了一个 jsonp 函数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> jsonp({ url, params, callback }) {
+  <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve, reject) =&gt; {
+    <span style="color:#8be9fd;font-style:italic">let</span> script <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createElement(<span style="color:#f1fa8c">&#39;script&#39;</span>)
+    <span style="color:#6272a4">// 定义全局回调函数
+</span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">window</span>[callback] <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> (data) {
+      resolve(data)
+      <span style="color:#8be9fd;font-style:italic">document</span>.body.removeChild(script) <span style="color:#6272a4">// 调用完毕即删除
+</span><span style="color:#6272a4"></span>    }
+
+    params <span style="color:#ff79c6">=</span> { callback, ...params } <span style="color:#6272a4">// {callback: &#34;getInfo&#34;, name: &#34;jacky&#34;}
+</span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> paramsArr <span style="color:#ff79c6">=</span> []
+    <span style="color:#ff79c6">for</span> (<span style="color:#ff79c6">const</span> key <span style="color:#ff79c6">in</span> params) {
+      paramsArr.push(<span style="color:#f1fa8c">`</span><span style="color:#f1fa8c">${</span>key<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">=</span><span style="color:#f1fa8c">${</span>params[key]<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>)
+    }
+    <span style="color:#6272a4">// http://localhost:3000/?callback=getInfo&amp;name=jacky
+</span><span style="color:#6272a4"></span>    script.src <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">`</span><span style="color:#f1fa8c">${</span>url<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">?</span><span style="color:#f1fa8c">${</span>paramsArr.join(<span style="color:#f1fa8c">&#39;&amp;&#39;</span>)<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span> 
+    <span style="color:#8be9fd;font-style:italic">document</span>.body.appendChild(script)
+  })
+}
+
+jsonp({
+  url<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;http://localhost:3000&#39;</span>,
+  params<span style="color:#ff79c6">:</span> {
+    name<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;jacky&#39;</span>,
+  },
+  callback<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;getInfo&#39;</span>,
+}).then(res =&gt; {
+  console.log(res) <span style="color:#6272a4">// 告诉你一声， jsonp跨域成功
+</span><span style="color:#6272a4"></span>})
+</code></pre></div><h2 id="node-中间件代理">Node 中间件代理</h2>
+<p>说明：同源策略是浏览器需要遵循的标准，而如果是服务器向服务器请求就没有跨域一说。</p>
+<p>这次我们使用 express 中间件 http-proxy-middleware 来代理跨域, 转发请求和响应</p>
+<p>实现步骤：</p>
+<ol>
+<li>接受客户端请求</li>
+<li>将请求转发给服务器</li>
+<li>拿到服务器响应数据</li>
+<li>将响应转发给客户端</li>
+</ol>
+<p>index.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">let</span> xhr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> XMLHttpRequest()
+xhr.open(<span style="color:#f1fa8c">&#39;GET&#39;</span>, <span style="color:#f1fa8c">&#39;/api/request&#39;</span>)
+xhr.onreadystatechange <span style="color:#ff79c6">=</span> () =&gt; {
+  <span style="color:#ff79c6">if</span> (xhr.readyState <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">4</span> <span style="color:#ff79c6">&amp;&amp;</span> xhr.status <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">200</span>) {
+    console.log(<span style="color:#f1fa8c">&#39;请求成功，结果是：&#39;</span>, xhr.responseText) <span style="color:#6272a4">// request success
+</span><span style="color:#6272a4"></span>  }
+}
+xhr.send(<span style="color:#ff79c6">null</span>)
+</code></pre></div><p>nodeMdServer.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> express <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;express&#39;</span>)
+<span style="color:#ff79c6">const</span> { createProxyMiddleware } <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;http-proxy-middleware&#39;</span>)
+
+<span style="color:#ff79c6">const</span> app <span style="color:#ff79c6">=</span> express()
+
+<span style="color:#6272a4">// 设置静态资源
+</span><span style="color:#6272a4"></span>app.use(express.<span style="color:#ff79c6">static</span>(__dirname))
+
+<span style="color:#6272a4">// 使用代理
+</span><span style="color:#6272a4"></span>app.use(
+  <span style="color:#f1fa8c">&#39;/api&#39;</span>,
+  createProxyMiddleware({
+    target<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;http://localhost:8002&#39;</span>,
+    pathRewrite<span style="color:#ff79c6">:</span> {
+      <span style="color:#f1fa8c">&#39;^/api&#39;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&#39;</span>, <span style="color:#6272a4">// 重写路径
+</span><span style="color:#6272a4"></span>    },
+    changeOrigin<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+  })
+)
+
+app.listen(<span style="color:#bd93f9">8001</span>)
+</code></pre></div><p>nodeServer.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> express <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;express&#39;</span>)
+<span style="color:#ff79c6">const</span> app <span style="color:#ff79c6">=</span> express()
+
+app.get(<span style="color:#f1fa8c">&#39;/request&#39;</span>, (req, res) =&gt; {
+  res.end(<span style="color:#f1fa8c">&#39;request success&#39;</span>)
+})
+
+app.listen(<span style="color:#bd93f9">8002</span>)
+</code></pre></div><h2 id="nginx-反向代理">Nginx 反向代理</h2>
+<p>说明：实现原理类似于 Node 中间件代理，需要你搭建一个中转 nginx 服务器，用于转发请求。这种方式只需修改 Nginx 的配置即可解决跨域问题，前端除了接口换成对应形式，然后前后端不需要修改作其他修改。</p>
+<p>实现思路：通过 nginx 配置一个代理服务器（同域不同端口）做跳板机，反向代理要跨域的域名，这样可以修改 cookie 中 domain 信息，方便当前域 cookie 写入，实现跨域登录</p>
+<p>nginx 目录下修改 nginx.conf</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">// proxy服务器
+server {
+    listen <span style="color:#bd93f9">80</span>;
+    server_name  www.domain1.com;
+    location / {
+        proxy_pass   http://www.domain2.com:<span style="color:#bd93f9">8080</span>;  <span style="color:#6272a4"># 反向代理</span>
+        proxy_cookie_domain www.domain2.com www.domain1.com; <span style="color:#6272a4"># 修改cookie里域名</span>
+        index  index.html index.htm;
+
+        <span style="color:#6272a4"># 当用webpack-dev-server等中间件代理接口访问nignx时，此时无浏览器参与，故没有同源限制，下面的跨域配置可不启用</span>
+        add_header Access-Control-Allow-Origin http://www.domain1.com;  <span style="color:#6272a4"># 当前端只跨域不带cookie时，可为*</span>
+        add_header Access-Control-Allow-Credentials <span style="color:#ff79c6">true</span>;
+    }
+}
+</code></pre></div><p>启动 Nginx</p>
+<p>index.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> xhr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> XMLHttpRequest()
+<span style="color:#6272a4">// 前端开关：浏览器是否读写cookie
+</span><span style="color:#6272a4"></span>xhr.withCredentials <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+<span style="color:#6272a4">// 访问nginx中的代理服务器
+</span><span style="color:#6272a4"></span>xhr.open(<span style="color:#f1fa8c">&#39;get&#39;</span>, <span style="color:#f1fa8c">&#39;http://www.domain1.com:81/?user=admin&#39;</span>, <span style="color:#ff79c6">true</span>)
+xhr.send()
+</code></pre></div><p>server.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> http <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;http&#39;</span>)
+<span style="color:#8be9fd;font-style:italic">var</span> server <span style="color:#ff79c6">=</span> http.createServer()
+<span style="color:#8be9fd;font-style:italic">var</span> qs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;querystring&#39;</span>)
+server.on(<span style="color:#f1fa8c">&#39;request&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (req, res) {
+  <span style="color:#8be9fd;font-style:italic">var</span> params <span style="color:#ff79c6">=</span> qs.parse(req.url.substring(<span style="color:#bd93f9">2</span>))
+  <span style="color:#6272a4">// 向前台写cookie
+</span><span style="color:#6272a4"></span>  res.writeHead(<span style="color:#bd93f9">200</span>, {
+    <span style="color:#f1fa8c">&#39;Set-Cookie&#39;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;l=123456;Path=/;Domain=www.domain2.com;HttpOnly&#39;</span>, <span style="color:#6272a4">// HttpOnly:脚本无法读取
+</span><span style="color:#6272a4"></span>  })
+  res.write(JSON.stringify(params))
+  res.end()
+})
+server.listen(<span style="color:#bd93f9">8080</span>)
+</code></pre></div><h2 id="postmessage">PostMessage</h2>
+<p>postMessage 是 HTML5 XMLHttpRequest Level 2 中的 API，且是为数不多可以跨域操作的 window 属性之一，它可用于解决以下方面的问题：</p>
+<ol>
+<li>页面和其打开的新窗口的数据传递</li>
+<li>多窗口之间消息传递</li>
+<li>页面与嵌套的 iframe 消息传递</li>
+<li>上面三个场景的跨域数据传递</li>
+</ol>
+<p>总之，它可以允许来自不同源的脚本采用异步方式进行有限的通信，可以实现跨文本档、多窗口、跨域消息传递。</p>
+<blockquote>
+<p>otherWindow.postMessage(message, targetOrigin, [transfer])</p>
+</blockquote>
+<ul>
+<li>otherWindow：其他窗口的一个引用，比如 iframe 的 contentWindow 属性、执行 window.open 返回的窗口对象、或者是命名过或数值索引的 window.frames。</li>
+<li>message: 将要发送到其他 window 的数据。</li>
+<li>targetOrigin:通过窗口的 origin 属性来指定哪些窗口能接收到消息事件，其值可以是字符串&rdquo;*&quot;（表示无限制）或者一个 URI。在发送消息的时候，如果目标窗口的协议、主机地址或端口这三者的任意一项不匹配 targetOrigin 提供的值，那么消息就不会被发送；只有三者完全匹配，消息才会被发送。</li>
+<li>transfer(可选)：是一串和 message 同时传递的 Transferable 对象. 这些对象的所有权将被转移给消息的接收方，而发送一方将不再保有所有权。</li>
+</ul>
+<p>这次我们把两个 html 文件挂到两个 server 下，采取 fs 读取的方式引入，运行两个 js 文件</p>
+<p>postMessage1.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">body</span>&gt;
+  &lt;<span style="color:#ff79c6">iframe</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;http://localhost:8002&#34;</span> <span style="color:#50fa7b">frameborder</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;0&#34;</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;frame&#34;</span> <span style="color:#50fa7b">onLoad</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;load()&#34;</span>&gt;&lt;/<span style="color:#ff79c6">iframe</span>&gt;
+  &lt;<span style="color:#ff79c6">script</span>&gt;
+    <span style="color:#8be9fd;font-style:italic">function</span> load() {
+      <span style="color:#8be9fd;font-style:italic">let</span> frame <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.getElementById(<span style="color:#f1fa8c">&#39;frame&#39;</span>)
+      frame.contentWindow.postMessage(<span style="color:#f1fa8c">&#39;你好，我是postMessage1&#39;</span>, <span style="color:#f1fa8c">&#39;http://localhost:8002&#39;</span>) <span style="color:#6272a4">//发送数据
+</span><span style="color:#6272a4"></span>      <span style="color:#8be9fd;font-style:italic">window</span>.onmessage <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> (e) {
+        <span style="color:#6272a4">//接受返回数据
+</span><span style="color:#6272a4"></span>        console.log(e.data) <span style="color:#6272a4">// 你好，我是postMessage2
+</span><span style="color:#6272a4"></span>      }
+    }
+  &lt;/<span style="color:#ff79c6">script</span>&gt;
+&lt;/<span style="color:#ff79c6">body</span>&gt;
+</code></pre></div><p>postMsgServer1.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> express <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;express&#39;</span>)
+<span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;fs&#39;</span>)
+<span style="color:#ff79c6">const</span> app <span style="color:#ff79c6">=</span> express()
+
+app.get(<span style="color:#f1fa8c">&#39;/&#39;</span>, (req, res) =&gt; {
+  <span style="color:#ff79c6">const</span> html <span style="color:#ff79c6">=</span> fs.readFileSync(<span style="color:#f1fa8c">&#39;./postMessage1.html&#39;</span>, <span style="color:#f1fa8c">&#39;utf8&#39;</span>)
+  res.end(html)
+})
+
+app.listen(<span style="color:#bd93f9">8001</span>, (req, res) =&gt; {
+  console.log(<span style="color:#f1fa8c">&#39;server listening on 8001&#39;</span>)
+})
+</code></pre></div><p>postMessage2.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">body</span>&gt;
+  &lt;<span style="color:#ff79c6">script</span>&gt;
+    <span style="color:#8be9fd;font-style:italic">window</span>.onmessage <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> (e) {
+      console.log(e.data) <span style="color:#6272a4">// 你好，我是postMessage1
+</span><span style="color:#6272a4"></span>      e.source.postMessage(<span style="color:#f1fa8c">&#39;你好，我是postMessage2&#39;</span>, e.origin)
+    }
+  &lt;/<span style="color:#ff79c6">script</span>&gt;
+&lt;/<span style="color:#ff79c6">body</span>&gt;
+</code></pre></div><p>postMsgServer2.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> express <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;express&#39;</span>)
+<span style="color:#ff79c6">const</span> fs <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;fs&#39;</span>)
+<span style="color:#ff79c6">const</span> app <span style="color:#ff79c6">=</span> express()
+
+app.get(<span style="color:#f1fa8c">&#39;/&#39;</span>, (req, res) =&gt; {
+  <span style="color:#ff79c6">const</span> html <span style="color:#ff79c6">=</span> fs.readFileSync(<span style="color:#f1fa8c">&#39;./postMessage2.html&#39;</span>, <span style="color:#f1fa8c">&#39;utf8&#39;</span>)
+  res.end(html)
+})
+
+app.listen(<span style="color:#bd93f9">8002</span>, (req, res) =&gt; {
+  console.log(<span style="color:#f1fa8c">&#39;server listening on 8002&#39;</span>)
+})
+</code></pre></div><h2 id="websocket">WebSocket</h2>
+<p>说明：WebSocket 是一种网络通信协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯，长连接方式不受跨域影响</p>
+<p>由于原生 WebSocket API 使用起来不太方便，我们一般都会使用第三方库如 ws</p>
+<p>Web 浏览器和服务器都必须实现 WebSockets 协议来建立和维护连接。由于 WebSockets 连接长期存在，与典型的 HTTP 连接不同，对服务器有重要的影响</p>
+<p>socket.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">let</span> socket <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> WebSocket(<span style="color:#f1fa8c">&#39;ws://localhost:8001&#39;</span>)
+socket.onopen <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
+  socket.send(<span style="color:#f1fa8c">&#39;向服务端发送数据&#39;</span>)
+}
+socket.onmessage <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> (e) {
+  console.log(e.data) <span style="color:#6272a4">// 服务端传给你的数据
+</span><span style="color:#6272a4"></span>}
+</code></pre></div><p>Server.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> express <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;express&#39;</span>)
+<span style="color:#ff79c6">const</span> WebSocket <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;ws&#39;</span>)
+<span style="color:#ff79c6">const</span> app <span style="color:#ff79c6">=</span> express()
+
+<span style="color:#8be9fd;font-style:italic">let</span> wsServer <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> WebSocket.Server({ port<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">8001</span> })
+wsServer.on(<span style="color:#f1fa8c">&#39;connection&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (ws) {
+  ws.on(<span style="color:#f1fa8c">&#39;message&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (data) {
+    <span style="color:#8be9fd;font-style:italic">let</span> buf <span style="color:#ff79c6">=</span> Buffer.from(data);
+    console.log(buf.toString(<span style="color:#f1fa8c">&#39;utf-8&#39;</span>)) <span style="color:#6272a4">// 向服务端发送数据
+</span><span style="color:#6272a4"></span>    ws.send(<span style="color:#f1fa8c">&#39;服务端传给你的数据&#39;</span>)
+  })
+})
+</code></pre></div><h2 id="documentdomain--iframe">document.domain + iframe</h2>
+<p>说明：这种方式只能用于二级域名相同的情况下。</p>
+<p>比如 a.test.com 和 b.test.com 就属于二级域名，它们都是 test.com 的子域</p>
+<p>只需要给页面添加 document.domain ='test.com&rsquo; 表示二级域名都相同就可以实现跨域。</p>
+<p>比如：页面 a.test.com:3000/test1.html 获取页面 b.test.com:3000/test2.html 中 a 的值</p>
+<p>test1.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">body</span>&gt;
+  &lt;<span style="color:#ff79c6">iframe</span>
+    <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;http://b.test.com:3000/test2.html&#34;</span>
+    <span style="color:#50fa7b">frameborder</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;0&#34;</span>
+    <span style="color:#50fa7b">onload</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;load()&#34;</span>
+    <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;iframe&#34;</span>
+  &gt;&lt;/<span style="color:#ff79c6">iframe</span>&gt;
+  &lt;<span style="color:#ff79c6">script</span>&gt;
+    <span style="color:#8be9fd;font-style:italic">document</span>.domain <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;test.com&#39;</span>
+    <span style="color:#8be9fd;font-style:italic">function</span> load() {
+      console.log(iframe.contentWindow.a)
+    }
+  &lt;/<span style="color:#ff79c6">script</span>&gt;
+&lt;/<span style="color:#ff79c6">body</span>&gt;
+</code></pre></div><p>test2.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">document</span>.domain <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;test.com&#39;</span>
+<span style="color:#8be9fd;font-style:italic">var</span> a <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>
+</code></pre></div><h2 id="windowname--iframe">window.name + iframe</h2>
+<p>浏览器具有这样一个特性：同一个标签页或者同一个 iframe 框架加载过的页面共享相同的 window.name 属性值。在同个标签页里，name 值在不同的页面加载后也依旧存在，这些页面上 window.name 属性值都是相同的</p>
+<p>利用这些特性，就可以将这个属性作为在不同页面之间传递数据的介质</p>
+<blockquote>
+<p>由于安全原因，浏览器始终会保持 window.name 是 string 类型</p>
+</blockquote>
+<p>a.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">body</span>&gt;
+  &lt;<span style="color:#ff79c6">iframe</span>
+    <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;http://localhost:8002/c.html&#34;</span>
+    <span style="color:#50fa7b">frameborder</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;0&#34;</span>
+    <span style="color:#50fa7b">onload</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;load()&#34;</span>
+    <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;iframe&#34;</span>
+  &gt;&lt;/<span style="color:#ff79c6">iframe</span>&gt;
+  &lt;<span style="color:#ff79c6">script</span>&gt;
+    <span style="color:#8be9fd;font-style:italic">let</span> first <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+    <span style="color:#8be9fd;font-style:italic">function</span> load() {
+      <span style="color:#ff79c6">if</span> (first) {
+        <span style="color:#6272a4">// 第1次onload(跨域页)成功后，切换到同域代理页面
+</span><span style="color:#6272a4"></span>        <span style="color:#8be9fd;font-style:italic">let</span> iframe <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.getElementById(<span style="color:#f1fa8c">&#39;iframe&#39;</span>)
+        iframe.src <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;http://localhost:8001/b.html&#39;</span>
+        first <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>
+      } <span style="color:#ff79c6">else</span> {
+        <span style="color:#6272a4">// 第2次onload(同域b.html页)成功后，读取同域window.name中数据
+</span><span style="color:#6272a4"></span>        console.log(iframe.contentWindow.name) <span style="color:#6272a4">// 我是c.html里的数据
+</span><span style="color:#6272a4"></span>      }
+    }
+  &lt;/<span style="color:#ff79c6">script</span>&gt;
+&lt;/<span style="color:#ff79c6">body</span>&gt;
+</code></pre></div><p>b.html（不需要往html加内容，默认html结构模板即可）</p>
+<p>c.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">body</span>&gt;
+  &lt;<span style="color:#ff79c6">script</span>&gt;
+    <span style="color:#8be9fd;font-style:italic">window</span>.name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;我是c.html里的数据&#39;</span>
+  &lt;/<span style="color:#ff79c6">script</span>&gt;
+&lt;/<span style="color:#ff79c6">body</span>&gt;
+</code></pre></div><p>c 页面给 window.name 设置了值, 即便 c 页面销毁，但 name 值不会被销毁；a 页面依旧能够得到 window.name</p>
+<h2 id="locationhash--iframe">location.hash + iframe</h2>
+<p>说明：实现原理： a.html 欲与 c.html 跨域相互通信，通过中间页 b.html 来实现。 三个页面，不同域之间利用 iframe 的 location.hash 传值，相同域之间直接 js 访问来通信。</p>
+<p>具体实现步骤：一开始 a.html 给 c.html 传一个 hash 值，然后 c.html 收到 hash 值后，再把 hash 值传递给 b.html，最后 b.html 将结果放到 a.html 的 hash 值中。</p>
+<p>同样的，a.html 和 b.html 是同域的，都是http://localhost:8001，也就是说 b 的 hash 值可以直接复制给 a 的 hash。c.html 为http://localhost:8002下的</p>
+<p>a.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">body</span>&gt;
+  &lt;<span style="color:#ff79c6">iframe</span> <span style="color:#50fa7b">src</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;http://localhost:8002/c.html#jackylin&#34;</span> <span style="color:#50fa7b">style</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;display: none;&#34;</span>&gt;&lt;/<span style="color:#ff79c6">iframe</span>&gt;
+  &lt;<span style="color:#ff79c6">script</span>&gt;
+    <span style="color:#8be9fd;font-style:italic">window</span>.onhashchange <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
+      <span style="color:#6272a4">// 检测hash的变化
+</span><span style="color:#6272a4"></span>      console.log(<span style="color:#bd93f9">456</span>, location.hash) <span style="color:#6272a4">// #monkey
+</span><span style="color:#6272a4"></span>    }
+  &lt;/<span style="color:#ff79c6">script</span>&gt;
+&lt;/<span style="color:#ff79c6">body</span>&gt;
+</code></pre></div><p>b.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">window</span>.parent.parent.location.hash <span style="color:#ff79c6">=</span> location.hash
+<span style="color:#6272a4">// b.html将结果放到a.html的hash值中，b.html可通过parent.parent访问a.html页面
+</span></code></pre></div><p>c.html</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">console.log(location.hash) <span style="color:#6272a4">//  #jackylin
+</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">let</span> iframe <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createElement(<span style="color:#f1fa8c">&#39;iframe&#39;</span>)
+iframe.src <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;http://localhost:8001/b.html#monkey&#39;</span>
+<span style="color:#8be9fd;font-style:italic">document</span>.body.appendChild(iframe)
+</code></pre></div><h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="https://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html">浏览器同源政策及其规避方法</a></p>
+<p><a href="https://juejin.cn/post/6861553339994374157#heading-5">前端跨域解决方案归纳整理</a></p>
+</blockquote>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-08-04</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/">
+			Next<br>Vue2-token
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/">
+			Previous<br>【待补充】CSS3响应式布局
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2021 DaMuWang
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            },
+            debounce(func, wait, options) {
+                let lastArgs,
+                    lastThis,
+                    maxWait,
+                    result,
+                    timerId,
+                    lastCallTime
+
+                let lastInvokeTime = 0
+                let leading = false
+                let maxing = false
+                let trailing = true
+
+                
+                const useRAF = (!wait && wait !== 0 && typeof root.requestAnimationFrame === 'function')
+
+                if (typeof func !== 'function') {
+                    throw new TypeError('Expected a function')
+                }
+                function isObject(value) {
+                    const type = typeof value
+                    return value != null && (type === 'object' || type === 'function')
+                }
+
+                wait = +wait || 0
+                if (isObject(options)) {
+                    leading = !!options.leading
+                    maxing = 'maxWait' in options
+                    maxWait = maxing ? Math.max(+options.maxWait || 0, wait) : maxWait
+                    trailing = 'trailing' in options ? !!options.trailing : trailing
+                }
+
+                function invokeFunc(time) {
+                    const args = lastArgs
+                    const thisArg = lastThis
+
+                    lastArgs = lastThis = undefined
+                    lastInvokeTime = time
+                    result = func.apply(thisArg, args)
+                    return result
+                }
+
+                function startTimer(pendingFunc, wait) {
+                    if (useRAF) {
+                    root.cancelAnimationFrame(timerId)
+                    return root.requestAnimationFrame(pendingFunc)
+                    }
+                    return setTimeout(pendingFunc, wait)
+                }
+
+                function cancelTimer(id) {
+                    if (useRAF) {
+                    return root.cancelAnimationFrame(id)
+                    }
+                    clearTimeout(id)
+                }
+
+                function leadingEdge(time) {
+                    
+                    lastInvokeTime = time
+                    
+                    timerId = startTimer(timerExpired, wait)
+                    
+                    return leading ? invokeFunc(time) : result
+                }
+
+                function remainingWait(time) {
+                    const timeSinceLastCall = time - lastCallTime
+                    const timeSinceLastInvoke = time - lastInvokeTime
+                    const timeWaiting = wait - timeSinceLastCall
+
+                    return maxing
+                    ? Math.min(timeWaiting, maxWait - timeSinceLastInvoke)
+                    : timeWaiting
+                }
+
+                function shouldInvoke(time) {
+                    const timeSinceLastCall = time - lastCallTime
+                    const timeSinceLastInvoke = time - lastInvokeTime
+
+                    
+                    
+                    
+                    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+                    (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait))
+                }
+
+                function timerExpired() {
+                    const time = Date.now()
+                    if (shouldInvoke(time)) {
+                    return trailingEdge(time)
+                    }
+                    
+                    timerId = startTimer(timerExpired, remainingWait(time))
+                }
+
+                function trailingEdge(time) {
+                    timerId = undefined
+
+                    
+                    
+                    if (trailing && lastArgs) {
+                    return invokeFunc(time)
+                    }
+                    lastArgs = lastThis = undefined
+                    return result
+                }
+
+                function cancel() {
+                    if (timerId !== undefined) {
+                    cancelTimer(timerId)
+                    }
+                    lastInvokeTime = 0
+                    lastArgs = lastCallTime = lastThis = timerId = undefined
+                }
+
+                function flush() {
+                    return timerId === undefined ? result : trailingEdge(Date.now())
+                }
+
+                function pending() {
+                    return timerId !== undefined
+                }
+
+                function debounced(...args) {
+                    const time = Date.now()
+                    const isInvoking = shouldInvoke(time)
+
+                    lastArgs = args
+                    lastThis = this
+                    lastCallTime = time
+
+                    if (isInvoking) {
+                    if (timerId === undefined) {
+                        return leadingEdge(lastCallTime)
+                    }
+                    if (maxing) {
+                        
+                        timerId = startTimer(timerExpired, wait)
+                        return invokeFunc(lastCallTime)
+                    }
+                    }
+                    if (timerId === undefined) {
+                    timerId = startTimer(timerExpired, wait)
+                    }
+                    return result
+                }
+                debounced.cancel = cancel
+                debounced.flush = flush
+                debounced.pending = pending
+                return debounced
+                }
+
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+        
+        
+
+        document.querySelectorAll("table").forEach(function(elem){
+            elem.classList.add("table-striped");
+            elem.classList.add("table");
+            elem.classList.add("table-responsive");
+            elem.classList.add("table-hover");
+        })
+
+        
+        spy();
+        window.addEventListener('scroll', this.debounce(spy, 250, { 'maxWait': 250 }), false);
+        
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+
+
+
+</script>
+    </body>
+</html>

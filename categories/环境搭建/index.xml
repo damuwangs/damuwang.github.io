@@ -13,10 +13,10 @@
     
     <item>
       <title>GitHub Pages&#43;Hugo构建个人博客</title>
-      <link>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Tue, 15 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
       <description>hugo配置 1、安装   下载地址：https://github.com/gohugoio/hugo/releases
   我使用的版本：  解压后即可使用hugo命令，不过只能在当前文件夹下使用，所以需要配置环境变量
   2、配置环境变量   在系统变量Path后面追加一条，为hugo.exe的解压地址我的在D盘

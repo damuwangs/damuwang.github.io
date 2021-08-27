@@ -13,10 +13,10 @@
     
     <item>
       <title>重绘、回流</title>
-      <link>https://damuwangs.github.io/posts/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</link>
       <pubDate>Mon, 09 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</guid>
       <description>浏览器渲染 浏览器在渲染页面的时候，大致是以下几个步骤：
  解析html生成DOM树，解析css，生成CSSOM树，将DOM树和CSSOM树结合，生成渲染树； 根据渲染树，浏览器可以计算出网页中有哪些节点，各节点的CSS以及从属关系 - 【回流】 根据渲染树以及回流得到的节点信息，计算出每个节点在屏幕中的位置 - 【重绘】 最后将得到的节点位置信息交给浏览器的图形处理程序，让浏览器中显示页面  回流 概念 英文叫reflow，指的是当渲染树中的节点信息发生了大小、边距等问题，需要重新计算各节点和css具体的大小和位置
 例：在css中对一个div修饰的样式中，使用了宽度50%，此时需要将50%转换为具体的像素，这个计算的过程，就是回流的过程
@@ -30,29 +30,29 @@
     </item>
     
     <item>
-      <title>CSS3响应式布局</title>
-      <link>https://damuwangs.github.io/posts/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</link>
+      <title>【待补充】CSS3响应式布局</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</link>
       <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Less和Sass</title>
-      <link>https://damuwangs.github.io/posts/less%E5%92%8Csass/</link>
+      <title>【待补充】Less和Sass</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/less%E5%92%8Csass/</link>
       <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/less%E5%92%8Csass/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/less%E5%92%8Csass/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CSS3动画</title>
-      <link>https://damuwangs.github.io/posts/css3%E5%8A%A8%E7%94%BB/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%8A%A8%E7%94%BB/</link>
       <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/css3%E5%8A%A8%E7%94%BB/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%8A%A8%E7%94%BB/</guid>
       <description>一、素转换transform 1.元素位置移动translate() 参数：左(X轴)，顶部(Y轴)单位px
 样例：元素位置移动
 2.元素旋转rotate() 参数：旋转度数(负值是允许的，这样是元素逆时针旋转)，单位deg

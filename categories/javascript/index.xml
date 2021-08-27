@@ -6,17 +6,38 @@
     <description>Recent content in JavaScript on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 26 Aug 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>JavaScript-EventLoop事件循环</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-eventloop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</link>
+      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-eventloop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</guid>
+      <description>概念 JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。
+ 举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。
+ 只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：setTimeout
+下面要讲的 Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的。
+队列（Queue） 队列是一种FIFO(First In, First Out) 的数据结构，它的特点就是先进先出
+ 举例：生活中最常见的例子就是排队啦，排在队伍最前面的人最先被提供服务
+ 栈（Stack） 栈是一种 LIFO（Last In, First Out）的数据结构，特点即后进先出
+ 样例：大家都吃过桶装薯片吧~薯片在包装的时候只能从顶部放入，而吃的时候也只能从顶部拿出，这就叫后进先出
+ 调用栈（Stack） 调用栈本质上当然还是个栈，关键在于它里面装的东西，是一个个待执行的函数
+Event Loop 会一直检查 Call Stack 中是否有函数需要执行，如果有，就从栈顶依次执行。同时，如果执行的过程中发现其他函数，继续入栈然后执行
+先拿两个函数来说：
+ 栈空 现在执行到一个函数A，函数A入栈 函数A 又调用了函数B，函数B入栈 函数B执行完后出栈 然后继续执行函数A，执行完后A也出栈 栈空  看一段代码：
+const bar = () =&amp;gt; console.log(&amp;#39;bar&amp;#39;) const baz = () =&amp;gt; console.log(&amp;#39;baz&amp;#39;) const foo = () =&amp;gt; { console.</description>
+    </item>
+    
+    <item>
       <title>JavaScript-事件冒泡、事件捕获和事件委托</title>
-      <link>https://damuwangs.github.io/posts/javascript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/</link>
       <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/javascript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/</guid>
       <description>事件流 事件冒泡和事件捕获分别由微软和网景公司提出，这两个概念都是为了解决页面中事件流（事件发生顺序）的问题
 &amp;lt;div id=&amp;#34;outer&amp;#34;&amp;gt; &amp;lt;p id=&amp;#34;inner&amp;#34;&amp;gt;Click me!&amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt; 上面的代码当中一个div元素当中有一个p子元素，如果两个元素都有一个click的处理函数，那么我们怎么才能知道哪一个函数会首先被触发呢？
 为了解决这个问题微软和网景提出了两种几乎完全相反的概念
@@ -32,10 +53,10 @@ document.getElementById(&amp;#34;second&amp;#34;).addEventListener(&amp;#34;clic
     
     <item>
       <title>JavaScript-跨域</title>
-      <link>https://damuwangs.github.io/posts/javascript-%E8%B7%A8%E5%9F%9F/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E8%B7%A8%E5%9F%9F/</link>
       <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/javascript-%E8%B7%A8%E5%9F%9F/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E8%B7%A8%E5%9F%9F/</guid>
       <description>概述 含义 1995年，同源政策由 Netscape 公司引入浏览器。目前，所有浏览器都实行这个政策
 最初，它的含义是指，A网页设置的 Cookie，B网页不能打开，除非这两个网页&amp;quot;同源&amp;rdquo;
 所谓&amp;quot;同源&amp;quot;指的是&amp;quot;三个相同&amp;rdquo;
@@ -53,10 +74,10 @@ const express = require(&amp;#39;express&amp;#39;) const app = express() app.use
     
     <item>
       <title>JavaScript-防抖、节流</title>
-      <link>https://damuwangs.github.io/posts/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/</link>
       <pubDate>Fri, 16 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/</guid>
       <description>防抖 概念 任务频繁触发的情况下，只有任务触发的间隔超过制定的时间间隔的时候，任务才会被执行
 将一段时间内连续的多次触发转化为一次触发。
 应用场景   用户在输入框中连续输入一串字符后，只会在输入完后去执行最后一次的查询ajax请求，这样可以有效减少请求次数，节约请求资源；
@@ -66,10 +87,10 @@ const express = require(&amp;#39;express&amp;#39;) const app = express() app.use
     
     <item>
       <title>JavaScript-原型链</title>
-      <link>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</link>
       <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</guid>
       <description>原型   理解原型对象 无论什么时候，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。在默认情况下，所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。
 使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。换句话说不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型对象中
 function Person() {} Person.prototype.name = &amp;#39;Nicholas&amp;#39; Person.prototype.age = 19 Person.prototype.sayName = function () { console.log(this.name) } let person1 = new Person() person1.sayName() // 输出：Nicholas  let person2 = new Person() person2.sayName() // 输出：Nicholas  console.log(person1.sayName == person2.sayName) // 输出：true 我们将sayName()方法和所有属性直接添加到Person的prototype属性中，构造函数变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说，person1和person2访问的都是同一组属性和同一个sayName()函数
@@ -82,10 +103,10 @@ function Person() {} Person.prototype.name = &amp;#39;Nicholas&amp;#39; Person.p
     
     <item>
       <title>JavaScript-闭包</title>
-      <link>https://damuwangs.github.io/posts/javascript-%E9%97%AD%E5%8C%85/</link>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%97%AD%E5%8C%85/</link>
       <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/javascript-%E9%97%AD%E5%8C%85/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%97%AD%E5%8C%85/</guid>
       <description>概念   变量的作用域 要理解闭包，首先必须理解Javascript特殊的变量作用域
 变量的作用域无非就是两种：全局变量和局部变量
 Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量
