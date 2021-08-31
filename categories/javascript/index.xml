@@ -6,10 +6,29 @@
     <description>Recent content in JavaScript on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Aug 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaScript-this指向</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/</link>
+      <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/</guid>
+      <description>this的指向  在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象
+ 看几个简单的例子:this指向
+改变this的指向 var name = &amp;#34;windowsName&amp;#34;; var a = { name : &amp;#34;Cherry&amp;#34;, func1: function () { console.log(this.name) }, func2: function () { setTimeout( function () { this.func1() },100) } } a.func2() // this.func1 is not a function 在不使用箭头函数的情况下，是会报错的，因为最后调用setTimeout的对象是 window，但是在 window 中并没有 func1 函数
+我们在改变 this 指向这一节将把这个例子作为 demo 进行改造
+箭头函数 先看箭头函数和普通函数的重要区别：
+ 1、没有自己的this、super、arguments和new.target绑定
+2、不能使用new来调用
+3、没有原型对象
+4、不可以改变this的绑定
+5、形参名称不能重复
+ 箭头函数的 this 始终指向函数定义时的 this，而非执行时，箭头函数需要记着这句话：“箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined”</description>
+    </item>
     
     <item>
       <title>JavaScript-EventLoop事件循环</title>
@@ -17,15 +36,15 @@
       <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-eventloop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</guid>
-      <description>概念 JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。
- 举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。
+      <description>概念 JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的
+ 举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务
  只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：setTimeout
-下面要讲的 Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的。
+Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的
 队列（Queue） 队列是一种FIFO(First In, First Out) 的数据结构，它的特点就是先进先出
- 举例：生活中最常见的例子就是排队啦，排在队伍最前面的人最先被提供服务
+ 举例：生活中最常见的例子就是排队，排在队伍最前面的人最先被提供服务
  栈（Stack） 栈是一种 LIFO（Last In, First Out）的数据结构，特点即后进先出
  样例：大家都吃过桶装薯片吧~薯片在包装的时候只能从顶部放入，而吃的时候也只能从顶部拿出，这就叫后进先出
- 调用栈（Stack） 调用栈本质上当然还是个栈，关键在于它里面装的东西，是一个个待执行的函数
+ 调用栈（Call Stack） 调用栈本质上当然还是个栈，关键在于它里面装的东西，是一个个待执行的函数
 Event Loop 会一直检查 Call Stack 中是否有函数需要执行，如果有，就从栈顶依次执行。同时，如果执行的过程中发现其他函数，继续入栈然后执行
 先拿两个函数来说：
  栈空 现在执行到一个函数A，函数A入栈 函数A 又调用了函数B，函数B入栈 函数B执行完后出栈 然后继续执行函数A，执行完后A也出栈 栈空  看一段代码：

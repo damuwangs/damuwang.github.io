@@ -5,9 +5,280 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Aug 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>JavaScript-this指向</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/</link>
+        <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/ -&lt;h1 id=&#34;this的指向&#34;&gt;this的指向&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;看几个简单的例子:&lt;a href=&#34;https://codepen.io/damuwangs/pen/OJgMPxe?editors=0012&#34;&gt;this指向&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;改变this的指向&#34;&gt;改变this的指向&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+    name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+
+    func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)     
+    },
+
+    func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        setTimeout(  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.func1()
+        },&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+    }
+}
+
+a.func2()     &lt;span style=&#34;color:#6272a4&#34;&gt;// this.func1 is not a function
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在不使用箭头函数的情况下，是会报错的，因为最后调用setTimeout的对象是 window，但是在 window 中并没有 func1 函数&lt;/p&gt;
+&lt;p&gt;我们在改变 this 指向这一节将把这个例子作为 demo 进行改造&lt;/p&gt;
+&lt;h2 id=&#34;箭头函数&#34;&gt;箭头函数&lt;/h2&gt;
+&lt;p&gt;先看箭头函数和普通函数的重要区别：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1、没有自己的this、super、arguments和new.target绑定&lt;/p&gt;
+&lt;p&gt;2、不能使用new来调用&lt;/p&gt;
+&lt;p&gt;3、没有原型对象&lt;/p&gt;
+&lt;p&gt;4、不可以改变this的绑定&lt;/p&gt;
+&lt;p&gt;5、形参名称不能重复&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;箭头函数的 this 始终指向函数定义时的 this，而非执行时，箭头函数需要记着这句话：“箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined”&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+    name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+
+    func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)     
+    },
+
+    func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        setTimeout( () =&amp;gt; {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.func1()
+        },&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+    }
+}
+
+a.func2()     &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;函数内部使用_this--this&#34;&gt;函数内部使用_this = this&lt;/h2&gt;
+&lt;p&gt;先将调用这个函数的对象保存在变量_this中，然后在函数中都使用这个_this，这样_this就不会改变了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+    name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+    
+    func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)     
+    },
+    
+    func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; _this &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;
+        setTimeout( &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+            _this.func1()
+        },&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+    }
+}
+
+a.func2()       &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个例子中，在 func2 中，首先设置var _this = this，这里的this 是调用func2的对象 a，为了防止在func2中的 setTimeout 被 window 调用而导致的在 setTimeout 中的 this 为 window。我们将this(指向变量 a)赋值给一个变量 _this，这样，在func2中我们使用this就是指向对象 a 了。&lt;/p&gt;
+&lt;h2 id=&#34;使用applycallbind&#34;&gt;使用apply、call、bind&lt;/h2&gt;
+&lt;h3 id=&#34;使用-apply&#34;&gt;使用 apply&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+    name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+
+    func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)
+    },
+
+    func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        setTimeout(  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.func1()
+        }.apply(a),&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+    }
+}
+
+a.func2()            &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;使用-call&#34;&gt;使用 call&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+        name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+
+        func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)
+        },
+
+        func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            setTimeout(  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.func1()
+            }.call(a),&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+        }
+    }
+
+    a.func2()            &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;使用-bind&#34;&gt;使用 bind&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+        name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+
+        func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)
+        },
+
+        func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            setTimeout(  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.func1()
+            }.bind(a)(),&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+        }
+    }
+
+    a.func2()            &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;applycallbind区别&#34;&gt;apply、call、bind区别&lt;/h1&gt;
+&lt;p&gt;其实 apply 和 call 基本类似，他们的区别只是传入的参数不同。所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://link.juejin.cn?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FFunction%2Fapply&#34;&gt;MDN&lt;/a&gt;中定义 apply 如下&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;apply() 方法调用一个函数, 其具有一个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数&lt;/p&gt;
+&lt;p&gt;语法：fun.apply(thisArg, [argsArray])&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;thisArg：在 fun 函数运行时指定的 this 值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;argsArray：一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call&#34;&gt;MDN&lt;/a&gt;中定义call如下&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;call()方法使用一个指定的this值和单独给出的一个或多个参数来调用一个函数&lt;/p&gt;
+&lt;p&gt;语法：function.call(thisArg, arg1, arg2, &amp;hellip;)&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;thisArg：在function函数运行时使用的this值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;arg1, arg2, &amp;hellip;：指定的参数列表&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;我们先来将刚刚的例子使用 bind 试一下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;{
+    name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+    fn &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (a,b) {
+        console.log( a &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; b)
+    }
+}
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; b &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; a.fn;
+b.bind(a,&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我们会发现并没有输出，&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind&#34;&gt;MDN&lt;/a&gt;中定义bind如下&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;所以我们可以看出，bind 是创建一个新的函数，我们必须要手动去调用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;{
+	name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+	fn &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (a,b) {
+    	console.log( a &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; b)
+    }
+}
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; b &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; a.fn
+b.bind(a,&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;)()           &lt;span style=&#34;color:#6272a4&#34;&gt;// 3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;js中的函数调用&#34;&gt;JS中的函数调用&lt;/h1&gt;
+&lt;h3 id=&#34;普通函数调用模式&#34;&gt;普通函数调用模式&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; a() {
+	&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;
+	console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)          &lt;span style=&#34;color:#6272a4&#34;&gt;// windowsName
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;}
+a()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样一个最简单的函数，不属于任何一个对象，就是一个函数，这样的情况在 JavaScript 的在浏览器中的非严格模式默认是属于全局对象 window 的，在严格模式，就是 undefined&lt;/p&gt;
+&lt;p&gt;但这是一个全局的函数，很容易产生命名冲突，所以不建议这样使用&lt;/p&gt;
+&lt;h3 id=&#34;对象中的函数方法调用模式&#34;&gt;对象中的函数（方法）调用模式&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;window&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; doSth &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+    console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; student &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+    name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;若川&amp;#39;&lt;/span&gt;,
+    doSth&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; doSth,
+    other&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+        name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;other&amp;#39;&lt;/span&gt;,
+        doSth&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; doSth,
+    }
+}
+student.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;student.other.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;other&amp;#39;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;callapplybind模式&#34;&gt;call、apply、bind模式&lt;/h3&gt;
+&lt;p&gt;同上&lt;a href=&#34;http://localhost:1313/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/#%E4%BD%BF%E7%94%A8applycallbind&#34;&gt;使用apply、call、bind&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;构造函数调用模式&#34;&gt;构造函数调用模式&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果函数调用前使用了 new 关键字, 则是调用了构造函数
+这看起来就像创建了新的函数，但实际上 JavaScript 函数是重新创建的对象：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 构造函数:
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; myFunction(arg1, arg2) {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.firstName &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; arg1
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.lastName  &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; arg2
+}
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; myFunction(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Li&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;);
+a.lastName  &lt;span style=&#34;color:#6272a4&#34;&gt;// 返回 &amp;#34;Cherry&amp;#34;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这就有要说另一个面试经典问题：new 的过程了，(ಥ_ಥ)
+这里就简单的来看一下 new 的过程吧：
+伪代码表示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; myFunction(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Li&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;);
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; myFunction{
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; obj &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {};
+    obj.__proto__ &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; myFunction.prototype;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; result &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; myFunction.call(obj,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Li&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;);
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;typeof&lt;/span&gt; result &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;obj&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;?&lt;/span&gt; result &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; obj;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建一个空对象 obj&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将新创建的空对象的隐式原型指向其构造函数的显示原型&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 call 改变 this 的指向&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；&lt;/p&gt;
+&lt;p&gt;如果返回值是一个新对象的话那么直接直接返回该对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;所以我们可以看到，在 new 的过程中，我们是使用 call 改变了 this 的指向。&lt;/p&gt;
+&lt;h3 id=&#34;原型链中的调用模式&#34;&gt;原型链中的调用模式&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; Student(name){
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; name
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; s1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Student(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;若川&amp;#39;&lt;/span&gt;)
+Student.prototype.doSth &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+    console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)
+}
+s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;箭头函数调用模式&#34;&gt;箭头函数调用模式&lt;/h3&gt;
+&lt;p&gt;同上&lt;a href=&#34;http://localhost:1313/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0&#34;&gt;箭头函数&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2018/06/javascript-this.html&#34;&gt;JavaScript 的 this 原理&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903496253177863&#34;&gt;this、apply、call、bind&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903746984476686#heading-13&#34;&gt;面试官问：JS的this指向&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/ - </description>
+        </item>
     
     
     
@@ -160,23 +431,23 @@
         
         <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-eventloop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</guid>
         <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-eventloop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
-&lt;p&gt;JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。&lt;/p&gt;
+&lt;p&gt;JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。&lt;/p&gt;
+&lt;p&gt;举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：&lt;code&gt;setTimeout&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;下面要讲的 Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的。&lt;/p&gt;
+&lt;p&gt;Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的&lt;/p&gt;
 &lt;h2 id=&#34;队列queue&#34;&gt;队列（Queue）&lt;/h2&gt;
 &lt;p&gt;队列是一种FIFO(First In, First Out) 的数据结构，它的特点就是先进先出&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;举例：生活中最常见的例子就是排队啦，排在队伍最前面的人最先被提供服务&lt;/p&gt;
+&lt;p&gt;举例：生活中最常见的例子就是排队，排在队伍最前面的人最先被提供服务&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;栈stack&#34;&gt;栈（Stack）&lt;/h2&gt;
 &lt;p&gt;栈是一种 LIFO（Last In, First Out）的数据结构，特点即后进先出&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;样例：大家都吃过桶装薯片吧~薯片在包装的时候只能从顶部放入，而吃的时候也只能从顶部拿出，这就叫后进先出&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;调用栈stack&#34;&gt;调用栈（Stack）&lt;/h2&gt;
+&lt;h2 id=&#34;调用栈call-stack&#34;&gt;调用栈（Call Stack）&lt;/h2&gt;
 &lt;p&gt;调用栈本质上当然还是个栈，关键在于它里面装的东西，是一个个待执行的函数&lt;/p&gt;
 &lt;p&gt;Event Loop 会一直检查 Call Stack 中是否有函数需要执行，如果有，就从栈顶依次执行。同时，如果执行的过程中发现其他函数，继续入栈然后执行&lt;/p&gt;
 &lt;p&gt;先拿两个函数来说：&lt;/p&gt;
@@ -205,12 +476,12 @@ foo()
 &lt;h2 id=&#34;event-table&#34;&gt;Event Table&lt;/h2&gt;
 &lt;p&gt;Event Table 可以理解成一张 &lt;code&gt;事件-&amp;gt;回调函数&lt;/code&gt; 对应表&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;它就是用来存储 JavaScript 中的异步事件 (request, setTimeout, IO等) 及其对应的回调函数的列表&lt;/p&gt;
+&lt;p&gt;它就是用来存储 JavaScript 中的异步事件 (request, setTimeout, IO等) 及其对应的回调函数&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;event-queue&#34;&gt;Event Queue&lt;/h2&gt;
 &lt;p&gt;Event Queue 简单理解就是 &lt;code&gt;回调函数 队列&lt;/code&gt;，所以它也叫 Callback Queue&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;当 Event Table 中的事件被触发，事件对应的 &lt;strong&gt;回调函数&lt;/strong&gt; 就会被 push 进这个 Event Queue，然后等待被执行&lt;/p&gt;
+&lt;p&gt;当 Event Table 中的事件被触发，事件对应的回调函数就会被 push 进这个 Event Queue，然后等待被执行&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&#34;event-loop&#34;&gt;Event Loop&lt;/h1&gt;
 &lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-EventLoop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/EventLoop.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
@@ -228,11 +499,214 @@ foo()
 &lt;p&gt;微任务和宏任务皆为异步任务，它们都属于一个队列，主要区别在于他们的执行顺序，Event Loop的走向和取值&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-EventLoop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/%E5%AE%8F%E4%BB%BB%E5%8A%A1%E3%80%81%E5%BE%AE%E4%BB%BB%E5%8A%A1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入eventqueue，然后在执行微任务，将微任务放入eventqueue，这两个queue不是一个queue。&lt;/p&gt;
-&lt;p&gt;当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的queue上拿宏任务的回掉函数&lt;/p&gt;
+&lt;p&gt;Js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入Event Queue，然后在执行微任务，将微任务放入Event Queue，这两个Queue不是一个Queue。&lt;/p&gt;
+&lt;p&gt;当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的Queue上拿宏任务的回掉函数&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;而宏任务一般是：包括整体代码script，setTimeout，setInterval、setImmediate。&lt;/p&gt;
 &lt;p&gt;微任务：原生Promise(有些实现的promise将then方法放到了宏任务中)、process.nextTick、Object.observe(已废弃)、 MutationObserver 记住就行了&lt;/p&gt;
+&lt;h2 id=&#34;settimeout&#34;&gt;setTimeout&lt;/h2&gt;
+&lt;p&gt;我们经常这么实现延时3秒执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;setTimeout(() =&amp;gt; {
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;延时3秒&amp;#39;&lt;/span&gt;)
+},&lt;span style=&#34;color:#bd93f9&#34;&gt;3000&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;渐渐的setTimeout用的地方多了，问题也出现了，有时候明明写的延时3秒，实际却5，6秒才执行函数&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;setTimeout(() =&amp;gt; {
+    task()
+},&lt;span style=&#34;color:#bd93f9&#34;&gt;3000&lt;/span&gt;)
+console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;执行console&amp;#39;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;根据前面我们的结论，setTimeout是异步的，应该先执行console.log这个同步任务，所以我们的结论是：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;// 执行console
+// task()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;去验证一下，结果正确！ 然后我们修改一下前面的代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;setTimeout(() =&amp;gt; {
+    task()
+},&lt;span style=&#34;color:#bd93f9&#34;&gt;3000&lt;/span&gt;)
+sleep(&lt;span style=&#34;color:#bd93f9&#34;&gt;10000000&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;乍一看其实差不多，但我们把这段代码在chrome执行一下，却发现控制台执行task()需要的时间远远超过3秒，说好的延时三秒，为啥现在需要这么长时间啊？&lt;/p&gt;
+&lt;p&gt;这时候我们需要重新理解setTimeout的定义。我们先说上述代码是怎么执行的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;task()进入Event Table并注册,计时开始&lt;/li&gt;
+&lt;li&gt;执行sleep函数，很慢，非常慢，计时仍在继续&lt;/li&gt;
+&lt;li&gt;3秒到了，计时事件timeout完成，task()进入Event Queue，但是sleep也太慢了吧，还没执行完，只好等着&lt;/li&gt;
+&lt;li&gt;sleep终于执行完了，task()终于从Event Queue进入了主线程执行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上述的流程走完，我们知道setTimeout这个函数，是经过指定时间后，把要执行的任务(本例中为task())加入到Event Queue中，又因为是单线程任务要一个一个执行，如果前面的任务需要的时间太久，那么只能等着，导致真正的延迟时间远大于3秒&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;我们还经常遇到setTimeout(fn,0)这样的代码，0秒后执行又是什么意思呢？是不是可以立即执行呢？ 答案是不会的，setTimeout(fn,0)的含义是，指定某个任务在主线程最早可得的空闲时间执行，意思就是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。举例说明：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//代码1
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;先执行这里&amp;#39;&lt;/span&gt;)
+setTimeout(() =&amp;gt; {
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;执行啦&amp;#39;&lt;/span&gt;)
+},&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
+&lt;span style=&#34;color:#6272a4&#34;&gt;//代码2
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;先执行这里&amp;#39;&lt;/span&gt;)
+setTimeout(() =&amp;gt; {
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;执行啦&amp;#39;&lt;/span&gt;)
+},&lt;span style=&#34;color:#bd93f9&#34;&gt;3000&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;代码1的输出结果是：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;先执行这里
+执行啦
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;代码2的输出结果是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//先执行这里
+// ... 3s later
+// 执行啦
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;关于setTimeout要补充的是，即便主线程为空，0毫秒实际上也是达不到的。根据HTML的标准，最低是4毫秒&lt;/p&gt;
+&lt;h2 id=&#34;setinterval&#34;&gt;setInterval&lt;/h2&gt;
+&lt;p&gt;上面说完了setTimeout，当然不能错过它的孪生兄弟setInterval。他俩差不多，只不过后者是循环的执行。对于执行顺序来说，setInterval会每隔指定的时间将注册的函数置入Event Queue，如果前面的任务耗时太久，那么同样需要等待&lt;/p&gt;
+&lt;p&gt;唯一需要注意的一点是，对于setInterval(fn,ms)来说，我们已经知道不是每过ms秒会执行一次fn，而是每过ms秒，会有fn进入Event Queue。一旦setInterval的回调函数fn执行时间超过了延迟时间ms，那么就完全看不出来有时间间隔了&lt;/p&gt;
+&lt;h2 id=&#34;promise与processnexttick&#34;&gt;Promise与process.nextTick&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Promise的定义和功能本文不再赘述，可以学习一下 &lt;a href=&#34;https://link.juejin.cn/?target=http%3A%2F%2Fes6.ruanyifeng.com%2F%23docs%2Fpromise&#34;&gt;阮一峰老师的Promise&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;而process.nextTick(callback)类似node.js版的&amp;quot;setTimeout&amp;rdquo;，在事件循环的下一次循环中调用 callback 回调函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不同类型的任务会进入对应的Event Queue，比如&lt;code&gt;setTimeout&lt;/code&gt;和&lt;code&gt;setInterval&lt;/code&gt;会进入相同的Event Queue&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;setTimeout(()=&amp;gt;{
+  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;setTimeout1&amp;#39;&lt;/span&gt;)
+},&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; p &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;((resolve,reject)=&amp;gt;{
+  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Promise1&amp;#39;&lt;/span&gt;)
+  resolve()
+})
+p.then(()=&amp;gt;{
+  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Promise2&amp;#39;&lt;/span&gt;)    
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行结果：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;Promise1
+Promise2
+setTimeout1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Promise参数中的Promise1是同步执行的 其次是因为Promise是microtasks，会在同步任务执行完后会去清空microtasks queues， 最后清空完微任务再去宏任务队列取值&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;.resolve().then(()=&amp;gt;{
+  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Promise1&amp;#39;&lt;/span&gt;)  
+  setTimeout(()=&amp;gt;{
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;setTimeout2&amp;#39;&lt;/span&gt;)
+  },&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
+})
+
+setTimeout(()=&amp;gt;{
+  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;setTimeout1&amp;#39;&lt;/span&gt;)
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;.resolve().then(()=&amp;gt;{
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Promise2&amp;#39;&lt;/span&gt;)    
+  })
+},&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行结果：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;Promise1
+setTimeout1
+Promise2
+setTimeout2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一开始执行栈的同步任务执行完毕，会去 microtasks queues 找 清空 microtasks queues ，输出Promise1，同时会生成一个异步任务 setTimeout1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;去宏任务队列查看此时队列是 setTimeout1 在 setTimeout2 之前，因为setTimeout1执行栈一开始的时候就开始异步执行,所以输出setTimeout1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在执行setTimeout1时会生成Promise2的一个 microtasks ，放入 microtasks queues 中，接着又是一个循环，去清空 microtasks queues ，输出Promise2&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;清空完 microtasks queues ，就又会去宏任务队列取一个，这回取的是setTimeout2&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后我们来分析一段较复杂的代码，掌握js的执行机制：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;);
+
+setTimeout(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;2&amp;#39;&lt;/span&gt;);
+    process.nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;3&amp;#39;&lt;/span&gt;);
+    })
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(resolve) {
+        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;4&amp;#39;&lt;/span&gt;);
+        resolve();
+    }).then(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;5&amp;#39;&lt;/span&gt;)
+    })
+})
+process.nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;6&amp;#39;&lt;/span&gt;);
+})
+&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(resolve) {
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;7&amp;#39;&lt;/span&gt;);
+    resolve();
+}).then(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;8&amp;#39;&lt;/span&gt;)
+})
+
+setTimeout(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;9&amp;#39;&lt;/span&gt;);
+    process.nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;10&amp;#39;&lt;/span&gt;);
+    })
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(resolve) {
+        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;11&amp;#39;&lt;/span&gt;);
+        resolve();
+    }).then(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;12&amp;#39;&lt;/span&gt;)
+    })
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;第一轮事件循环流程分析如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;整体script作为第一个宏任务进入主线程，遇到console.log，输出1&lt;/li&gt;
+&lt;li&gt;遇到setTimeout，其回调函数被分发到宏任务Event Queue中。我们暂且记为setTimeout1&lt;/li&gt;
+&lt;li&gt;遇到process.nextTick()，其回调函数被分发到微任务Event Queue中。我们记为process1&lt;/li&gt;
+&lt;li&gt;遇到Promise，new Promise直接执行，输出7。then被分发到微任务Event Queue中。我们记为then1&lt;/li&gt;
+&lt;li&gt;又遇到了setTimeout，其回调函数被分发到宏任务Event Queue中，我们记为setTimeout2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;宏任务Event Queue&lt;/th&gt;
+&lt;th&gt;微任务Event Queue&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;setTimeout1&lt;/td&gt;
+&lt;td&gt;process1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;setTimeout2&lt;/td&gt;
+&lt;td&gt;then1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;表是第一轮事件循环宏任务结束时各Event Queue的情况，此时已经输出了1和7&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们发现了process1和then1两个微任务&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;执行process1,输出6&lt;/li&gt;
+&lt;li&gt;执行then1，输出8&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;好了，第一轮事件循环正式结束，这一轮的结果是输出1，7，6，8。那么第二轮时间循环从setTimeout1宏任务开始：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;首先输出2。接下来遇到了process.nextTick()，同样将其分发到微任务Event Queue中，记为process2&lt;/li&gt;
+&lt;li&gt;new Promise立即执行输出4，then也分发到微任务Event Queue中，记为then2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;宏任务Event Queue&lt;/th&gt;
+&lt;th&gt;微任务Event Queue&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;setTimeout2&lt;/td&gt;
+&lt;td&gt;process3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;then3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;第三轮事件循环宏任务执行结束，执行两个微任务process3和then3。&lt;/p&gt;
+&lt;p&gt;输出10&lt;/p&gt;
+&lt;p&gt;输出12&lt;/p&gt;
+&lt;p&gt;第三轮事件循环结束，第三轮输出9，11，10，12&lt;/p&gt;
+&lt;p&gt;整段代码，共进行了三次事件循环，完整的输出为1，7，6，8，2，4，3，5，9，11，10，12&lt;/p&gt;
+&lt;p&gt;node环境下的事件监听依赖libuv与前端环境不完全相同，输出顺序可能会有误差&lt;/p&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
@@ -1107,17 +1581,6 @@ iframe.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span sty
 &lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6861553339994374157#heading-5&#34;&gt;前端跨域解决方案归纳整理&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E8%B7%A8%E5%9F%9F/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>【待补充】CSS3响应式布局</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</link>
-        <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/ -- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/ - </description>
         </item>
     
     

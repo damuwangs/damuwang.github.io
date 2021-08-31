@@ -223,8 +223,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#%e8%b0%83%e7%94%a8%e6%a0%88stack" onclick="onNavClick(`#调用栈stack-nav`)" id="调用栈stack-nav">
-									调用栈（Stack）
+								<a href="#%e8%b0%83%e7%94%a8%e6%a0%88call-stack" onclick="onNavClick(`#调用栈call-stack-nav`)" id="调用栈call-stack-nav">
+									调用栈（Call Stack）
 								</a>
 							</li>
 						
@@ -307,6 +307,60 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 							<li>
 								<a href="#%e5%ae%8f%e4%bb%bb%e5%8a%a1%e4%b8%8e%e5%be%ae%e4%bb%bb%e5%8a%a1" onclick="onNavClick(`#宏任务与微任务-nav`)" id="宏任务与微任务-nav">
 									宏任务与微任务
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#settimeout" onclick="onNavClick(`#settimeout-nav`)" id="settimeout-nav">
+									setTimeout
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#setinterval" onclick="onNavClick(`#setinterval-nav`)" id="setinterval-nav">
+									setInterval
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#promise%e4%b8%8eprocessnexttick" onclick="onNavClick(`#promise与processnexttick-nav`)" id="promise与processnexttick-nav">
+									Promise与process.nextTick
 								</a>
 							</li>
 						
@@ -482,8 +536,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#%e8%b0%83%e7%94%a8%e6%a0%88stack" onclick="onNavClick(`#调用栈stack-nav`)" id="调用栈stack-nav">
-									调用栈（Stack）
+								<a href="#%e8%b0%83%e7%94%a8%e6%a0%88call-stack" onclick="onNavClick(`#调用栈call-stack-nav`)" id="调用栈call-stack-nav">
+									调用栈（Call Stack）
 								</a>
 							</li>
 						
@@ -566,6 +620,60 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 							<li>
 								<a href="#%e5%ae%8f%e4%bb%bb%e5%8a%a1%e4%b8%8e%e5%be%ae%e4%bb%bb%e5%8a%a1" onclick="onNavClick(`#宏任务与微任务-nav`)" id="宏任务与微任务-nav">
 									宏任务与微任务
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#settimeout" onclick="onNavClick(`#settimeout-nav`)" id="settimeout-nav">
+									setTimeout
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#setinterval" onclick="onNavClick(`#setinterval-nav`)" id="setinterval-nav">
+									setInterval
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#promise%e4%b8%8eprocessnexttick" onclick="onNavClick(`#promise与processnexttick-nav`)" id="promise与processnexttick-nav">
+									Promise与process.nextTick
 								</a>
 							</li>
 						
@@ -684,23 +792,23 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 <div class="post-body" v-pre>
                 
                     <h1 id="概念">概念</h1>
-<p>JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。</p>
+<p>JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的</p>
 <blockquote>
-<p>举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。</p>
+<p>举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务</p>
 </blockquote>
 <p>只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：<code>setTimeout</code></p>
-<p>下面要讲的 Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的。</p>
+<p>Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的</p>
 <h2 id="队列queue">队列（Queue）</h2>
 <p>队列是一种FIFO(First In, First Out) 的数据结构，它的特点就是先进先出</p>
 <blockquote>
-<p>举例：生活中最常见的例子就是排队啦，排在队伍最前面的人最先被提供服务</p>
+<p>举例：生活中最常见的例子就是排队，排在队伍最前面的人最先被提供服务</p>
 </blockquote>
 <h2 id="栈stack">栈（Stack）</h2>
 <p>栈是一种 LIFO（Last In, First Out）的数据结构，特点即后进先出</p>
 <blockquote>
 <p>样例：大家都吃过桶装薯片吧~薯片在包装的时候只能从顶部放入，而吃的时候也只能从顶部拿出，这就叫后进先出</p>
 </blockquote>
-<h2 id="调用栈stack">调用栈（Stack）</h2>
+<h2 id="调用栈call-stack">调用栈（Call Stack）</h2>
 <p>调用栈本质上当然还是个栈，关键在于它里面装的东西，是一个个待执行的函数</p>
 <p>Event Loop 会一直检查 Call Stack 中是否有函数需要执行，如果有，就从栈顶依次执行。同时，如果执行的过程中发现其他函数，继续入栈然后执行</p>
 <p>先拿两个函数来说：</p>
@@ -729,12 +837,12 @@ foo()
 <h2 id="event-table">Event Table</h2>
 <p>Event Table 可以理解成一张 <code>事件-&gt;回调函数</code> 对应表</p>
 <blockquote>
-<p>它就是用来存储 JavaScript 中的异步事件 (request, setTimeout, IO等) 及其对应的回调函数的列表</p>
+<p>它就是用来存储 JavaScript 中的异步事件 (request, setTimeout, IO等) 及其对应的回调函数</p>
 </blockquote>
 <h2 id="event-queue">Event Queue</h2>
 <p>Event Queue 简单理解就是 <code>回调函数 队列</code>，所以它也叫 Callback Queue</p>
 <blockquote>
-<p>当 Event Table 中的事件被触发，事件对应的 <strong>回调函数</strong> 就会被 push 进这个 Event Queue，然后等待被执行</p>
+<p>当 Event Table 中的事件被触发，事件对应的回调函数就会被 push 进这个 Event Queue，然后等待被执行</p>
 </blockquote>
 <h1 id="event-loop">Event Loop</h1>
 <p><img src="/img/JavaScript-EventLoop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/EventLoop.png" alt=""></p>
@@ -752,11 +860,214 @@ foo()
 <p>微任务和宏任务皆为异步任务，它们都属于一个队列，主要区别在于他们的执行顺序，Event Loop的走向和取值</p>
 <p><img src="/img/JavaScript-EventLoop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/%E5%AE%8F%E4%BB%BB%E5%8A%A1%E3%80%81%E5%BE%AE%E4%BB%BB%E5%8A%A1.png" alt=""></p>
 <blockquote>
-<p>js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入eventqueue，然后在执行微任务，将微任务放入eventqueue，这两个queue不是一个queue。</p>
-<p>当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的queue上拿宏任务的回掉函数</p>
+<p>Js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入Event Queue，然后在执行微任务，将微任务放入Event Queue，这两个Queue不是一个Queue。</p>
+<p>当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的Queue上拿宏任务的回掉函数</p>
 </blockquote>
 <p>而宏任务一般是：包括整体代码script，setTimeout，setInterval、setImmediate。</p>
 <p>微任务：原生Promise(有些实现的promise将then方法放到了宏任务中)、process.nextTick、Object.observe(已废弃)、 MutationObserver 记住就行了</p>
+<h2 id="settimeout">setTimeout</h2>
+<p>我们经常这么实现延时3秒执行</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setTimeout(() =&gt; {
+    console.log(<span style="color:#f1fa8c">&#39;延时3秒&#39;</span>)
+},<span style="color:#bd93f9">3000</span>)
+</code></pre></div><p>渐渐的setTimeout用的地方多了，问题也出现了，有时候明明写的延时3秒，实际却5，6秒才执行函数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setTimeout(() =&gt; {
+    task()
+},<span style="color:#bd93f9">3000</span>)
+console.log(<span style="color:#f1fa8c">&#39;执行console&#39;</span>)
+</code></pre></div><p>根据前面我们的结论，setTimeout是异步的，应该先执行console.log这个同步任务，所以我们的结论是：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">// 执行console
+// task()
+</code></pre></div><p>去验证一下，结果正确！ 然后我们修改一下前面的代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setTimeout(() =&gt; {
+    task()
+},<span style="color:#bd93f9">3000</span>)
+sleep(<span style="color:#bd93f9">10000000</span>)
+</code></pre></div><p>乍一看其实差不多，但我们把这段代码在chrome执行一下，却发现控制台执行task()需要的时间远远超过3秒，说好的延时三秒，为啥现在需要这么长时间啊？</p>
+<p>这时候我们需要重新理解setTimeout的定义。我们先说上述代码是怎么执行的：</p>
+<ul>
+<li>task()进入Event Table并注册,计时开始</li>
+<li>执行sleep函数，很慢，非常慢，计时仍在继续</li>
+<li>3秒到了，计时事件timeout完成，task()进入Event Queue，但是sleep也太慢了吧，还没执行完，只好等着</li>
+<li>sleep终于执行完了，task()终于从Event Queue进入了主线程执行</li>
+</ul>
+<p>上述的流程走完，我们知道setTimeout这个函数，是经过指定时间后，把要执行的任务(本例中为task())加入到Event Queue中，又因为是单线程任务要一个一个执行，如果前面的任务需要的时间太久，那么只能等着，导致真正的延迟时间远大于3秒</p>
+<hr>
+<p>我们还经常遇到setTimeout(fn,0)这样的代码，0秒后执行又是什么意思呢？是不是可以立即执行呢？ 答案是不会的，setTimeout(fn,0)的含义是，指定某个任务在主线程最早可得的空闲时间执行，意思就是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。举例说明：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//代码1
+</span><span style="color:#6272a4"></span>console.log(<span style="color:#f1fa8c">&#39;先执行这里&#39;</span>)
+setTimeout(() =&gt; {
+    console.log(<span style="color:#f1fa8c">&#39;执行啦&#39;</span>)
+},<span style="color:#bd93f9">0</span>)
+<span style="color:#6272a4">//代码2
+</span><span style="color:#6272a4"></span>console.log(<span style="color:#f1fa8c">&#39;先执行这里&#39;</span>)
+setTimeout(() =&gt; {
+    console.log(<span style="color:#f1fa8c">&#39;执行啦&#39;</span>)
+},<span style="color:#bd93f9">3000</span>)
+</code></pre></div><p>代码1的输出结果是：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">先执行这里
+执行啦
+</code></pre></div><p>代码2的输出结果是：</p>
+<pre><code>//先执行这里
+// ... 3s later
+// 执行啦
+</code></pre><p>关于setTimeout要补充的是，即便主线程为空，0毫秒实际上也是达不到的。根据HTML的标准，最低是4毫秒</p>
+<h2 id="setinterval">setInterval</h2>
+<p>上面说完了setTimeout，当然不能错过它的孪生兄弟setInterval。他俩差不多，只不过后者是循环的执行。对于执行顺序来说，setInterval会每隔指定的时间将注册的函数置入Event Queue，如果前面的任务耗时太久，那么同样需要等待</p>
+<p>唯一需要注意的一点是，对于setInterval(fn,ms)来说，我们已经知道不是每过ms秒会执行一次fn，而是每过ms秒，会有fn进入Event Queue。一旦setInterval的回调函数fn执行时间超过了延迟时间ms，那么就完全看不出来有时间间隔了</p>
+<h2 id="promise与processnexttick">Promise与process.nextTick</h2>
+<ul>
+<li>Promise的定义和功能本文不再赘述，可以学习一下 <a href="https://link.juejin.cn/?target=http%3A%2F%2Fes6.ruanyifeng.com%2F%23docs%2Fpromise">阮一峰老师的Promise</a></li>
+<li>而process.nextTick(callback)类似node.js版的&quot;setTimeout&rdquo;，在事件循环的下一次循环中调用 callback 回调函数</li>
+</ul>
+<p>不同类型的任务会进入对应的Event Queue，比如<code>setTimeout</code>和<code>setInterval</code>会进入相同的Event Queue</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setTimeout(()=&gt;{
+  console.log(<span style="color:#f1fa8c">&#39;setTimeout1&#39;</span>)
+},<span style="color:#bd93f9">0</span>)
+<span style="color:#8be9fd;font-style:italic">let</span> p <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve,reject)=&gt;{
+  console.log(<span style="color:#f1fa8c">&#39;Promise1&#39;</span>)
+  resolve()
+})
+p.then(()=&gt;{
+  console.log(<span style="color:#f1fa8c">&#39;Promise2&#39;</span>)    
+})
+</code></pre></div><p>执行结果：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">Promise1
+Promise2
+setTimeout1
+</code></pre></div><p>Promise参数中的Promise1是同步执行的 其次是因为Promise是microtasks，会在同步任务执行完后会去清空microtasks queues， 最后清空完微任务再去宏任务队列取值</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">Promise</span>.resolve().then(()=&gt;{
+  console.log(<span style="color:#f1fa8c">&#39;Promise1&#39;</span>)  
+  setTimeout(()=&gt;{
+    console.log(<span style="color:#f1fa8c">&#39;setTimeout2&#39;</span>)
+  },<span style="color:#bd93f9">0</span>)
+})
+
+setTimeout(()=&gt;{
+  console.log(<span style="color:#f1fa8c">&#39;setTimeout1&#39;</span>)
+  <span style="color:#8be9fd;font-style:italic">Promise</span>.resolve().then(()=&gt;{
+    console.log(<span style="color:#f1fa8c">&#39;Promise2&#39;</span>)    
+  })
+},<span style="color:#bd93f9">0</span>)
+</code></pre></div><p>执行结果：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">Promise1
+setTimeout1
+Promise2
+setTimeout2
+</code></pre></div><ul>
+<li>
+<p>一开始执行栈的同步任务执行完毕，会去 microtasks queues 找 清空 microtasks queues ，输出Promise1，同时会生成一个异步任务 setTimeout1</p>
+</li>
+<li>
+<p>去宏任务队列查看此时队列是 setTimeout1 在 setTimeout2 之前，因为setTimeout1执行栈一开始的时候就开始异步执行,所以输出setTimeout1</p>
+</li>
+<li>
+<p>在执行setTimeout1时会生成Promise2的一个 microtasks ，放入 microtasks queues 中，接着又是一个循环，去清空 microtasks queues ，输出Promise2</p>
+</li>
+<li>
+<p>清空完 microtasks queues ，就又会去宏任务队列取一个，这回取的是setTimeout2</p>
+</li>
+</ul>
+<p>最后我们来分析一段较复杂的代码，掌握js的执行机制：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">console.log(<span style="color:#f1fa8c">&#39;1&#39;</span>);
+
+setTimeout(<span style="color:#8be9fd;font-style:italic">function</span>() {
+    console.log(<span style="color:#f1fa8c">&#39;2&#39;</span>);
+    process.nextTick(<span style="color:#8be9fd;font-style:italic">function</span>() {
+        console.log(<span style="color:#f1fa8c">&#39;3&#39;</span>);
+    })
+    <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve) {
+        console.log(<span style="color:#f1fa8c">&#39;4&#39;</span>);
+        resolve();
+    }).then(<span style="color:#8be9fd;font-style:italic">function</span>() {
+        console.log(<span style="color:#f1fa8c">&#39;5&#39;</span>)
+    })
+})
+process.nextTick(<span style="color:#8be9fd;font-style:italic">function</span>() {
+    console.log(<span style="color:#f1fa8c">&#39;6&#39;</span>);
+})
+<span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve) {
+    console.log(<span style="color:#f1fa8c">&#39;7&#39;</span>);
+    resolve();
+}).then(<span style="color:#8be9fd;font-style:italic">function</span>() {
+    console.log(<span style="color:#f1fa8c">&#39;8&#39;</span>)
+})
+
+setTimeout(<span style="color:#8be9fd;font-style:italic">function</span>() {
+    console.log(<span style="color:#f1fa8c">&#39;9&#39;</span>);
+    process.nextTick(<span style="color:#8be9fd;font-style:italic">function</span>() {
+        console.log(<span style="color:#f1fa8c">&#39;10&#39;</span>);
+    })
+    <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve) {
+        console.log(<span style="color:#f1fa8c">&#39;11&#39;</span>);
+        resolve();
+    }).then(<span style="color:#8be9fd;font-style:italic">function</span>() {
+        console.log(<span style="color:#f1fa8c">&#39;12&#39;</span>)
+    })
+})
+</code></pre></div><p>第一轮事件循环流程分析如下：</p>
+<ul>
+<li>整体script作为第一个宏任务进入主线程，遇到console.log，输出1</li>
+<li>遇到setTimeout，其回调函数被分发到宏任务Event Queue中。我们暂且记为setTimeout1</li>
+<li>遇到process.nextTick()，其回调函数被分发到微任务Event Queue中。我们记为process1</li>
+<li>遇到Promise，new Promise直接执行，输出7。then被分发到微任务Event Queue中。我们记为then1</li>
+<li>又遇到了setTimeout，其回调函数被分发到宏任务Event Queue中，我们记为setTimeout2</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>宏任务Event Queue</th>
+<th>微任务Event Queue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setTimeout1</td>
+<td>process1</td>
+</tr>
+<tr>
+<td>setTimeout2</td>
+<td>then1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>表是第一轮事件循环宏任务结束时各Event Queue的情况，此时已经输出了1和7</li>
+</ul>
+<p>我们发现了process1和then1两个微任务</p>
+<ul>
+<li>执行process1,输出6</li>
+<li>执行then1，输出8</li>
+</ul>
+<p>好了，第一轮事件循环正式结束，这一轮的结果是输出1，7，6，8。那么第二轮时间循环从setTimeout1宏任务开始：</p>
+<ul>
+<li>首先输出2。接下来遇到了process.nextTick()，同样将其分发到微任务Event Queue中，记为process2</li>
+<li>new Promise立即执行输出4，then也分发到微任务Event Queue中，记为then2</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>宏任务Event Queue</th>
+<th>微任务Event Queue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setTimeout2</td>
+<td>process3</td>
+</tr>
+<tr>
+<td></td>
+<td>then3</td>
+</tr>
+</tbody>
+</table>
+<p>第三轮事件循环宏任务执行结束，执行两个微任务process3和then3。</p>
+<p>输出10</p>
+<p>输出12</p>
+<p>第三轮事件循环结束，第三轮输出9，11，10，12</p>
+<p>整段代码，共进行了三次事件循环，完整的输出为1，7，6，8，2，4，3，5，9，11，10，12</p>
+<p>node环境下的事件监听依赖libuv与前端环境不完全相同，输出顺序可能会有误差</p>
 <h1 id="参考资料">参考资料</h1>
 <blockquote>
 <p><a href="https://www.cnblogs.com/formercoding/p/12906640.html">JS事件循环（Event Loop）</a></p>
