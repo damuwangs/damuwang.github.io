@@ -6,10 +6,31 @@
     <description>Recent content in Posts on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Sep 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaScript-异步解决方案</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E5%BC%82%E6%AD%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Wed, 01 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E5%BC%82%E6%AD%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+      <description>概念 Javascript语言的执行环境是&amp;quot;单线程&amp;rdquo;。也就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务。
+这种模式虽然实现起来比较简单，执行环境相对单纯，但是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段Javascript代码长时间运行（比如死循环），导致整个页面卡在这个地方，其他任务无法执行。
+为了解决这个问题，Javascript语言将任务的执行模式分成两种：同步和异步
+同步 所有的任务都处在同一队列中，不可以插队，一个任务执行完接着开始执行下一个，相对于浏览器而言，同步的效率过低
+异步 将一个任务放入到异步队列中，当这个任务执行完成之后，再从异步队列中提取出来，插队到同步队列中，拿到异步任务的结果，可以提升代码执行的效率，不需要因为一个耗时长的代码而一直等待
+回调函数 ajax(url, () =&amp;gt; { // 处理逻辑 }) 假设多个请求存在依赖性，可能就会写出如下代码：
+ajax(url, () =&amp;gt; { // 处理逻辑  ajax(url1, () =&amp;gt; { // 处理逻辑  ajax(url2, () =&amp;gt; { // 处理逻辑  }) }) }) 优点：解决了同步的问题
+缺点：回调地狱，不能用 try catch 捕获错误，不能 return
+事件监听 这种方式下，异步任务的执行不取决于代码的顺序，而取决于某个事件是否发生
+下面是两个函数f1和f2，编程的意图是f2必须等到f1执行完成，才能执行
+f1方法执行完，通过$emit发送一个事件doSomething（vue写法）
+f1(){ // ...  // 发送事件  this.$emit(&amp;#39;doSomething&amp;#39;, {data:&amp;#39;data&amp;#39;}) } 通过$on接收事件
+// 接收事件 this.$on(doSomething, (res) =&amp;gt; { if (res) { this.</description>
+    </item>
     
     <item>
       <title>JavaScript-this指向</title>
