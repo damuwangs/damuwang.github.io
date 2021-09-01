@@ -138,7 +138,7 @@ a.func2()            &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
     }
 
     a.func2()            &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;applycallbind区别&#34;&gt;apply、call、bind区别&lt;/h1&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;applycallbind区别&#34;&gt;apply、call、bind区别&lt;/h2&gt;
 &lt;p&gt;其实 apply 和 call 基本类似，他们的区别只是传入的参数不同。所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://link.juejin.cn?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FFunction%2Fapply&#34;&gt;MDN&lt;/a&gt;中定义 apply 如下&lt;/p&gt;
 &lt;blockquote&gt;
