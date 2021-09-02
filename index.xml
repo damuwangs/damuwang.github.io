@@ -183,25 +183,204 @@ end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;需要特别注意的是，Promise.all获得的成功结果的数组里面的数据顺序和Promise.all接收到的数组顺序是一致的，即p1的结果在前，即便p1的结果获取的比p2要晚。这带来了一个绝大的好处：在前端开发请求数据的过程中，偶尔会遇到发送多个请求并根据请求顺序获取和使用数据的场景，使用Promise.all毫无疑问可以解决这个问题&lt;/p&gt;
 &lt;h2 id=&#34;promiserace&#34;&gt;Promise.race&lt;/h2&gt;
 &lt;p&gt;顾名思义，Promse.race就是赛跑的意思，意思就是说，Promise.race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;let p1 = new Promise((resolve, reject) =&amp;gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; p1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;((resolve, reject) =&amp;gt; {
   setTimeout(() =&amp;gt; {
-    resolve(&#39;success&#39;)
-  },1000)
+    resolve(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;success&amp;#39;&lt;/span&gt;)
+  },&lt;span style=&#34;color:#bd93f9&#34;&gt;1000&lt;/span&gt;)
 })
 
-let p2 = new Promise((resolve, reject) =&amp;gt; {
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; p2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;((resolve, reject) =&amp;gt; {
   setTimeout(() =&amp;gt; {
-    reject(&#39;failed&#39;)
-  }, 500)
+    reject(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;failed&amp;#39;&lt;/span&gt;)
+  }, &lt;span style=&#34;color:#bd93f9&#34;&gt;500&lt;/span&gt;)
 })
 
-Promise.race([p1, p2]).then((result) =&amp;gt; {
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;.race([p1, p2]).then((result) =&amp;gt; {
   console.log(result)
-}).catch((error) =&amp;gt; {
-  console.log(error)  // 打开的是 &#39;failed&#39;
+}).&lt;span style=&#34;color:#ff79c6&#34;&gt;catch&lt;/span&gt;((error) =&amp;gt; {
+  console.log(error)  &lt;span style=&#34;color:#6272a4&#34;&gt;// 打开的是 &amp;#39;failed&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;generatoryield&#34;&gt;Generator/yield&lt;/h1&gt;
+&lt;p&gt;Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同，Generator 最大的特点就是可以控制函数的执行。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;语法上，首先可以把它理解成，Generator 函数是一个状态机，封装了多个内部状态&lt;/li&gt;
+&lt;li&gt;Generator 函数除了状态机，还是一个遍历器对象生成函数&lt;/li&gt;
+&lt;li&gt;可暂停函数, yield可暂停，next方法可启动，每次返回的是yield后的表达式结果&lt;/li&gt;
+&lt;li&gt;yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例1&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;*&lt;/span&gt;foo(x) {
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; y &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;*&lt;/span&gt; (&lt;span style=&#34;color:#ff79c6&#34;&gt;yield&lt;/span&gt; (x &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;))
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; z &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;yield&lt;/span&gt; (y &lt;span style=&#34;color:#ff79c6&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;)
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; (x &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; y &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; z)
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; it &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; foo(&lt;span style=&#34;color:#bd93f9&#34;&gt;5&lt;/span&gt;)
+console.log(it.next())   &lt;span style=&#34;color:#6272a4&#34;&gt;// =&amp;gt; {value: 6, done: false}
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(it.next(&lt;span style=&#34;color:#bd93f9&#34;&gt;12&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// =&amp;gt; {value: 8, done: false}
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(it.next(&lt;span style=&#34;color:#bd93f9&#34;&gt;13&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// =&amp;gt; {value: 42, done: true}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;首先 Generator 函数调用和普通函数不同，它会返回一个迭代器&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当执行第一次 next 时，传参会被忽略，并且函数暂停在 yield (x + 1) 处，所以返回 5 + 1 = 6&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当执行第二次 next 时，传入的参数12就会被当作上一个yield表达式的返回值，如果你不传参，yield 永远返回 undefined。此时 let y = 2 * 12，所以第二个 yield 等于 2 * 12 / 3 = 8&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当执行第三次 next 时，传入的参数13就会被当作上一个yield表达式的返回值，所以 z = 13, x = 5, y = 24，相加等于 42&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例2：有三个本地文件，分别1.txt,2.txt和3.txt，内容都只有一句话，下一个请求依赖上一个请求的结果，想通过Generator函数依次调用三个文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;//1.txt文件
+2.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;//2.txt文件
+3.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;//3.txt文件
+结束
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; fs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; read(file) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(resolve, reject) {
+    fs.readFile(file, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(err, data) {
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (err) reject(err)
+      resolve(data)
+    })
+  })
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;*&lt;/span&gt; r() {
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; r1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;yield&lt;/span&gt; read(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./1.txt&amp;#39;&lt;/span&gt;)
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; r2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;yield&lt;/span&gt; read(r1)
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; r3 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;yield&lt;/span&gt; read(r2)
+  console.log(r1)
+  console.log(r2)
+  console.log(r3)
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; it &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; r()
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; { value, done } &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; it.next()
+value.then(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(data) { &lt;span style=&#34;color:#6272a4&#34;&gt;// value是个promise
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  console.log(data) &lt;span style=&#34;color:#6272a4&#34;&gt;//data=&amp;gt;2.txt
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; { value, done } &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; it.next(data)
+  value.then(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(data) {
+    console.log(data) &lt;span style=&#34;color:#6272a4&#34;&gt;//data=&amp;gt;3.txt
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; { value, done } &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; it.next(data)
+    value.then(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(data) {
+      console.log(data) &lt;span style=&#34;color:#6272a4&#34;&gt;//data=&amp;gt;结束
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    })
+  })
 })
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;generatoryield&#34;&gt;Generator/yield&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出结果：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;2.txt
+3.txt
+结束
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;从上例中我们看出手动迭代&lt;code&gt;Generator&lt;/code&gt; 函数很麻烦，实现逻辑有点绕，而实际开发一般会配合 &lt;code&gt;co&lt;/code&gt; 库去使用&lt;/p&gt;
+&lt;p&gt;co是一个为Node.js和浏览器打造的基于生成器的流程控制工具，借助于Promise，你可以使用更加优雅的方式编写非阻塞代码&lt;/p&gt;
+&lt;p&gt;安装co库只需&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;npm install co
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;上面例子只需两句话就可以轻松实现&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;*&lt;/span&gt; r() {
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; r1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;yield&lt;/span&gt; read(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./1.txt&amp;#39;&lt;/span&gt;)
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; r2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;yield&lt;/span&gt; read(r1)
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; r3 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;yield&lt;/span&gt; read(r2)
+  console.log(r1)
+  console.log(r2)
+  console.log(r3)
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; co &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;co&amp;#39;&lt;/span&gt;)
+co(r()).then(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(data) {
+  console.log(data)
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出结果：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;2.txt
+3.txt
+结束
+undefined
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;例3：我们可以通过 Generator 函数解决回调地狱的问题，可以把之前的回调地狱例子改写为如下代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;*&lt;/span&gt;fetch() {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;yield&lt;/span&gt; ajax(url, () =&amp;gt; {})
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;yield&lt;/span&gt; ajax(url1, () =&amp;gt; {})
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;yield&lt;/span&gt; ajax(url2, () =&amp;gt; {})
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; it &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; fetch()
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; result1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; it.next()
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; result2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; it.next()
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; result3 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; it.next()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;特点：可以控制函数的执行，可以配合 co 函数库使用&lt;/p&gt;
 &lt;h1 id=&#34;asyncawait&#34;&gt;Async/await&lt;/h1&gt;
+&lt;h2 id=&#34;asyncawait简介&#34;&gt;Async/Await简介&lt;/h2&gt;
+&lt;p&gt;使用async/await，你可以轻松地达成之前使用生成器和co函数所做到的工作,它有如下特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;async/await是基于Promise实现的，它不能用于普通的回调函数。&lt;/li&gt;
+&lt;li&gt;async/await与Promise一样，是非阻塞的。&lt;/li&gt;
+&lt;li&gt;async/await使得异步代码看起来像同步代码，这正是它的魔力所在。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一个函数如果加上 async ，那么该函数就会返回一个 Promise&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;async &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; async1() {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;
+}
+console.log(async1()) &lt;span style=&#34;color:#6272a4&#34;&gt;// -&amp;gt; Promise {&amp;lt;resolved&amp;gt;: &amp;#34;1&amp;#34;}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Generator函数依次调用三个文件那个例子用async/await写法，只需几句话便可实现&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; fs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; read(file) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(resolve, reject) {
+    fs.readFile(file, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(err, data) {
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (err) reject(err)
+      resolve(data)
+    })
+  })
+}
+async &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; readResult(params) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;try&lt;/span&gt; {
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; p1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; await read(params, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#6272a4&#34;&gt;//await后面跟的是一个Promise实例
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; p2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; await read(p1, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;)
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; p3 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; await read(p2, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;)
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;p1&amp;#39;&lt;/span&gt;, p1)
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;p2&amp;#39;&lt;/span&gt;, p2)
+    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;p3&amp;#39;&lt;/span&gt;, p3)
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; p3
+  } &lt;span style=&#34;color:#ff79c6&#34;&gt;catch&lt;/span&gt; (error) {
+    console.log(error)
+  }
+}
+readResult(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;1.txt&amp;#39;&lt;/span&gt;).then( &lt;span style=&#34;color:#6272a4&#34;&gt;// async函数返回的也是个promise
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  data =&amp;gt; {
+    console.log(data)
+  },
+  err =&amp;gt; console.log(err)
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出结果：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;p1 2.txt
+p2 3.txt
+p3 结束
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;asyncawait并发请求&#34;&gt;Async/Await并发请求&lt;/h2&gt;
+&lt;p&gt;如果请求两个文件，毫无关系，可以通过并发请求&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; fs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;)
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; read(file) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(resolve, reject) {
+    fs.readFile(file, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(err, data) {
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (err) reject(err)
+      resolve(data)
+    })
+  })
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; readAll() {
+  read1()
+  read2()&lt;span style=&#34;color:#6272a4&#34;&gt;//这个函数同步执行
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;}
+async &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; read1() {
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; r &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; await read(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;1.txt&amp;#39;&lt;/span&gt;,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;)
+  console.log(r)
+}
+async &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; read2() {
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; r &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; await read(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;2.txt&amp;#39;&lt;/span&gt;,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;)
+  console.log(r)
+}
+readAll() 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出结果：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;2.txt 
+3.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;优点：代码清晰，不用像 Promise 写一大堆 then 链，处理了回调地狱的问题&lt;/p&gt;
+&lt;p&gt;缺点：await 将异步代码改造成同步代码，如果多个异步操作没有依赖性而使用 await 会导致性能上的降低&lt;/p&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903760280420366#heading-12&#34;&gt;JS 异步编程六种方案&lt;/a&gt;&lt;/p&gt;
