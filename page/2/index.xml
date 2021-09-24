@@ -5,9 +5,382 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Sep 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>重绘、回流</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</link>
+        <pubDate>Mon, 09 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/ -&lt;h1 id=&#34;浏览器渲染&#34;&gt;浏览器渲染&lt;/h1&gt;
+&lt;p&gt;浏览器在渲染页面的时候，大致是以下几个步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;解析html生成DOM树，解析css，生成CSSOM树，将DOM树和CSSOM树结合，生成渲染树；&lt;/li&gt;
+&lt;li&gt;根据渲染树，浏览器可以计算出网页中有哪些节点，各节点的CSS以及从属关系 - 【回流】&lt;/li&gt;
+&lt;li&gt;根据渲染树以及回流得到的节点信息，计算出每个节点在屏幕中的位置 - 【重绘】&lt;/li&gt;
+&lt;li&gt;最后将得到的节点位置信息交给浏览器的图形处理程序，让浏览器中显示页面&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;回流&#34;&gt;回流&lt;/h1&gt;
+&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
+&lt;p&gt;英文叫reflow，指的是当渲染树中的节点信息发生了大小、边距等问题，需要重新计算各节点和css具体的大小和位置&lt;/p&gt;
+&lt;p&gt;例：在css中对一个div修饰的样式中，使用了宽度50%，此时需要将50%转换为具体的像素，这个计算的过程，就是回流的过程&lt;/p&gt;
+&lt;h2 id=&#34;容易造成回流的操作&#34;&gt;容易造成回流的操作&lt;/h2&gt;
+&lt;h3 id=&#34;1布局流相关操作&#34;&gt;1、布局流相关操作&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;盒模型的相关操作会触发重新布局&lt;/li&gt;
+&lt;li&gt;定位相关操作会触发重新布局&lt;/li&gt;
+&lt;li&gt;浮动相关操作会触发重新布局&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2改变节点内的内容&#34;&gt;2、改变节点内的内容&lt;/h3&gt;
+&lt;p&gt;改变节点的结构或其中的文本结构会触发重新布局&lt;/p&gt;
+&lt;h3 id=&#34;3css&#34;&gt;3、css&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;width&lt;/li&gt;
+&lt;li&gt;height&lt;/li&gt;
+&lt;li&gt;padding&lt;/li&gt;
+&lt;li&gt;border&lt;/li&gt;
+&lt;li&gt;margin&lt;/li&gt;
+&lt;li&gt;position&lt;/li&gt;
+&lt;li&gt;top&lt;/li&gt;
+&lt;li&gt;left&lt;/li&gt;
+&lt;li&gt;bottom&lt;/li&gt;
+&lt;li&gt;right&lt;/li&gt;
+&lt;li&gt;float&lt;/li&gt;
+&lt;li&gt;clear&lt;/li&gt;
+&lt;li&gt;text-align&lt;/li&gt;
+&lt;li&gt;vertical-align&lt;/li&gt;
+&lt;li&gt;line-height&lt;/li&gt;
+&lt;li&gt;font-weight&lt;/li&gt;
+&lt;li&gt;font-size&lt;/li&gt;
+&lt;li&gt;font-family&lt;/li&gt;
+&lt;li&gt;overflow&lt;/li&gt;
+&lt;li&gt;white-space&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;重绘&#34;&gt;重绘&lt;/h1&gt;
+&lt;h2 id=&#34;概念-1&#34;&gt;概念&lt;/h2&gt;
+&lt;p&gt;重绘：英文叫repaint，当节点的部分属性发生变化，但不影响布局，只需要重新计算节点在屏幕中的绝对位置并渲染的过程，就叫重绘&lt;/p&gt;
+&lt;p&gt;例：改变元素的背景颜色、字体颜色等操作会造成重绘&lt;/p&gt;
+&lt;h2 id=&#34;容易造成重绘操作的css&#34;&gt;容易造成重绘操作的CSS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;color&lt;/li&gt;
+&lt;li&gt;border-style&lt;/li&gt;
+&lt;li&gt;border-radius&lt;/li&gt;
+&lt;li&gt;text-decoration&lt;/li&gt;
+&lt;li&gt;box-shadow&lt;/li&gt;
+&lt;li&gt;outline&lt;/li&gt;
+&lt;li&gt;background&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;优化机制&#34;&gt;优化机制&lt;/h1&gt;
+&lt;h2 id=&#34;1浏览器优化&#34;&gt;1、浏览器优化&lt;/h2&gt;
+&lt;p&gt;每次回流都会对浏览器造成额外的计算消耗，所以浏览器对于回流和重绘有一定的优化机制&lt;/p&gt;
+&lt;p&gt;浏览器通常都会将多次回流操作放入一个队列中，等过了一段时间或操作达到了一定的临界值，然后才会挨个执行，这样能节省一些计算消耗。&lt;/p&gt;
+&lt;p&gt;但是在获取布局信息操作的时候，会强制将队列清空，也就是强制回流，比如访问或操作以下或方法时：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;offsetTop&lt;/li&gt;
+&lt;li&gt;offsetLeft&lt;/li&gt;
+&lt;li&gt;offsetWidth&lt;/li&gt;
+&lt;li&gt;offsetHeight&lt;/li&gt;
+&lt;li&gt;scrollTop&lt;/li&gt;
+&lt;li&gt;scrollLeft&lt;/li&gt;
+&lt;li&gt;scrollWidth&lt;/li&gt;
+&lt;li&gt;scrollHeight&lt;/li&gt;
+&lt;li&gt;clientTop&lt;/li&gt;
+&lt;li&gt;clientLeft&lt;/li&gt;
+&lt;li&gt;clientWidth&lt;/li&gt;
+&lt;li&gt;clientHeight&lt;/li&gt;
+&lt;li&gt;getComputedStyle()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些属性或方法都需要得到最新的布局信息，所以浏览器必须去回流执行。因此，在项目中，尽量避免使用上述属性或方法，如果非要使用的时候，也尽量将值缓存起来，而不是一直获取&lt;/p&gt;
+&lt;h2 id=&#34;2合并样式修改&#34;&gt;2、合并样式修改&lt;/h2&gt;
+&lt;p&gt;减少造成回流的次数，如果要给一个节点操作多个css属性，而每一个都会造成回流的话，尽量将多次操作合并成一个，例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oDiv &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelector(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;.box&amp;#39;&lt;/span&gt;)
+oDiv.style.padding &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;5px&amp;#39;&lt;/span&gt;
+oDiv.style.border &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;1px solid #000&amp;#39;&lt;/span&gt;
+oDiv.style.margin &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;5px&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;操作div的3个css属性，分别是padding、border、margin，此时就可以考虑将多次操作合并为一次&lt;/p&gt;
+&lt;p&gt;方法一：使用style的cssText&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;oDiv.style.cssText &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;padding:5px; border:1px solid #000; margin:5px;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;方法二：将这几个样式定义给一个类名，然后给标签添加类名&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;style&lt;/span&gt;&amp;gt;
+    .&lt;span style=&#34;color:#50fa7b&#34;&gt;pbm&lt;/span&gt;{
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;padding&lt;/span&gt;:&lt;span style=&#34;color:#bd93f9&#34;&gt;5&lt;/span&gt;&lt;span style=&#34;color:#8be9fd&#34;&gt;px&lt;/span&gt;; 
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;border&lt;/span&gt;:&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#8be9fd&#34;&gt;px&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;solid&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;#000&lt;/span&gt;; 
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;margin&lt;/span&gt;:&lt;span style=&#34;color:#bd93f9&#34;&gt;5&lt;/span&gt;&lt;span style=&#34;color:#8be9fd&#34;&gt;px&lt;/span&gt;;
+    }
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;style&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oDiv &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelector(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;.box&amp;#39;&lt;/span&gt;);
+    oDiv.classList.add(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;pbm&amp;#39;&lt;/span&gt;);
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;3批量操作dom&#34;&gt;3、批量操作DOM&lt;/h2&gt;
+&lt;p&gt;当对DOM有多次操作的时候，需要使用一些特殊处理减少触发回流，其实就是对DOM的多次操作，在脱离标准流后，对元素进行的多次操作，不会触发回流，等操作完成后，再将元素放回标准流&lt;/p&gt;
+&lt;p&gt;脱离标准流的操作有以下3中：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;隐藏元素&lt;/li&gt;
+&lt;li&gt;使用文档碎片&lt;/li&gt;
+&lt;li&gt;拷贝节点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;例：下面对DOM节点的多次操作，每次都会触发回流&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; data &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; [
+    {
+        id&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;,
+        name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;商品1&amp;#34;&lt;/span&gt;
+    },
+    {
+        id&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;,
+        name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;商品1&amp;#34;&lt;/span&gt;
+    },
+    {
+        id&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;,
+        name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;商品1&amp;#34;&lt;/span&gt;
+    },
+    {
+        id&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt;,
+        name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;商品1&amp;#34;&lt;/span&gt;
+    }
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 假设后面还有很多
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;]
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oUl &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelector(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;ul&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; i&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;;i&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;data.length;i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;){
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oLi &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;li&amp;#34;&lt;/span&gt;)
+    oLi.innerText &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; data[i].name
+    oUl.appendChild(oLi)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样每次给ul中新增一个li的操作，每次都会触发回流。&lt;/p&gt;
+&lt;p&gt;方法一：隐藏ul后，给ul添加节点，添加完成后再将ul显示&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;oUl.style.display &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;none&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; i&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;;i&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;data.length;i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;){
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oLi &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;li&amp;#34;&lt;/span&gt;)
+    oLi.innerText &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; data[i].name
+    oUl.appendChild(oLi)
+}
+oUl.style.display &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;block&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;此时，在隐藏ul和显示ul的时候，触发了两次回流，给ul添加每个li的时候没有触发回流。&lt;/p&gt;
+&lt;p&gt;方法二：创建文档碎片，将所有li先放在文档碎片中，等都放进去以后，再将文档碎片放在ul中&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; fragment &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createDocumentFragment()
+&lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; i&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;;i&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;data.length;i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;){
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oLi &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;li&amp;#34;&lt;/span&gt;)
+    oLi.innerText &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; data[i].name
+    fragment.appendChild(oLi)
+}
+oUl.appendChild(fragment)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;方法三：将ul拷贝一份，将所有li放在拷贝中，等都放进去以后，使用拷贝替换掉ul&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; newUL &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; oUl.cloneNode(&lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;);
+&lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; i&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;;i&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;data.length;i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;){
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oLi &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;li&amp;#34;&lt;/span&gt;);
+    oLi.innerText &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; data[i].name;
+    newUL.appendChild(oLi);
+}
+oUl.parentElement.replaceChild(newUl, oUl);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;4避免多次触发布局&#34;&gt;4、避免多次触发布局&lt;/h2&gt;
+&lt;p&gt;例：如下回到顶部的操作&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;goBack.onclick &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+    setInterval(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+        &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; t &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.documentElement.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.scrollTop
+        t &lt;span style=&#34;color:#ff79c6&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt;
+        &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.documentElement.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; t
+    },&lt;span style=&#34;color:#bd93f9&#34;&gt;20&lt;/span&gt;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;每隔20毫秒都会重新获取滚动过的距离，每次都会触发回流，代码优化如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;goBack.onclick &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; t &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.documentElement.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.scrollTop
+    setInterval(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+        t &lt;span style=&#34;color:#ff79c6&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt;
+        &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.documentElement.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; t
+    },&lt;span style=&#34;color:#bd93f9&#34;&gt;20&lt;/span&gt;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;只获取一次，每次都让数字递增，避免每次都获取滚动过的距离&lt;/p&gt;
+&lt;p&gt;对于页面中比较复杂的动画，尽量将元素设置为绝对定位，操作元素的定位属性，这样只有这一个元素会回流，如果不是定位的话，容易引起其父元素以及子元素的回流&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/342371522&#34;&gt;讲清楚重排或回流、重绘&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Vue2-token</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/</link>
+        <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/ -&lt;h1 id=&#34;token的含义&#34;&gt;token的含义&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1、Token的引入：
+Token是在客户端频繁向服务端请求数据，服务端频繁的去数据库查询用户名和密码并进行对比，判断用户名和密码正确与否，并作出相应提示，在这样的背景下，Token便应运而生。&lt;/p&gt;
+&lt;p&gt;2、Token的定义：
+Token是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。&lt;/p&gt;
+&lt;p&gt;3、使用Token的目的：
+Token的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮。&lt;/p&gt;
+&lt;p&gt;4、Token 的优点：
+扩展性更强，也更安全点，非常适合用在 Web 应用或者移动应用上。Token 的中文有人翻译成 “令牌”，我觉得挺好，意思就是，你拿着这个令牌，才能过一些关卡。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;项目中使用token&#34;&gt;项目中使用token&lt;/h1&gt;
+&lt;p&gt;说明&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件名称&lt;/th&gt;
+&lt;th&gt;功能描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;auth.js&lt;/td&gt;
+&lt;td&gt;设置、获取以及清空cookie&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;http.js&lt;/td&gt;
+&lt;td&gt;接口请求封装&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;store.js&lt;/td&gt;
+&lt;td&gt;对接业务的状态管理，负责登录、登出状态的保存和移除&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;流程梳理&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;用户输入信息点击登录，调用store.js中的Login方法请求登录接口，调用成功返回200回传token值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;接着调用SaveLoginInfo方法，将token值state中保存一份，再调用setToken将token在cookie中也保存一份&lt;/p&gt;
+&lt;p&gt;因为vuex刷新页面数据会丢，所以在cookie里面也放了一份，使用的时候只需要通过getter方法获取state就可以，state默认值为调用getToken获取的cookie中的token值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;此时token对象就可以全局使用了，除登录以外的所有接口请求都要传token，否则会报505错误&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;token由服务端生成，设置了失效时间为24小时&lt;/p&gt;
+&lt;p&gt;当token过期，前端再发送请求，服务端会返回505，此响应会被http.js的拦截器捕获&lt;/p&gt;
+&lt;p&gt;捕获后先弹框提示‘登录信息已过期，请重新登录&amp;rsquo;，接着调用store.js中的ClearLoginInfo方法清空state中全局token，再调用removeToken移除cookie&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;清空完之后会执行跳转，重新回到登录页面重复步骤一&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;退出登录与登录操作类似，用户点击退出登录按钮，调用store.js里的ClearLoginInfo方法。先清空state中全局token，再调用removeToken移除cookie&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;代码&lt;/p&gt;
+&lt;p&gt;auth.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Cookies from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;js-cookie&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; TokenKey &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;sxmanage-auth-token&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// tokenKey为固定字符串
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 根据TokenKey获取cookie中的token信息
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; getToken () {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.get(TokenKey)
+}
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 设置将token设置到cookie中
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; setToken (token) {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.set(TokenKey, token)
+}
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 根据tTokenKey移除cookie中的token信息
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; removeToken () {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.remove(TokenKey)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;http.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; axios from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;axios&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; store from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/store&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; service &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; axios.create({
+    timeout&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;30000&lt;/span&gt;, &lt;span style=&#34;color:#6272a4&#34;&gt;// request timeout
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    withCredentials&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
+})
+
+&lt;span style=&#34;color:#6272a4&#34;&gt;// resposne interceptor
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;service.interceptors.response.use(
+    response =&amp;gt; {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; res &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; response.data
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (res.c &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;505&lt;/span&gt;)  {
+            alert(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;登录信息已过期，请重新登录&amp;#39;&lt;/span&gt;)
+            &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;            store.dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ClearLoginInfo&amp;#39;&lt;/span&gt;).then(() =&amp;gt; {
+                &lt;span style=&#34;color:#6272a4&#34;&gt;// 跳转到登录页面
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                router.push(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/login&amp;#39;&lt;/span&gt;)
+            })
+        }
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; response
+    }, error =&amp;gt; {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;.reject(error)
+    }
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;store.js&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Vuex from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vuex&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Vue from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { base } from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/api/base&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { getToken, setToken, removeToken} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/utils/auth&amp;#39;&lt;/span&gt;
+
+Vue.use(Vuex)
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; state &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  token&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; getToken()
+}
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; getters &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  token&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; state =&amp;gt; state.token
+}
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; mutations &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  SET_TOKEN&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; (state, token) =&amp;gt; {
+    state.token &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; token
+  }
+}
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; actions &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+  &lt;span style=&#34;color:#6272a4&#34;&gt;/** 登录 */&lt;/span&gt;
+  Login&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit, dispatch }, userInfo) =&amp;gt; {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;((resolve, reject) =&amp;gt; {
+      base.login(userInfo).then(response =&amp;gt; {
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (response.data.c &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;) {
+          &lt;span style=&#34;color:#6272a4&#34;&gt;// 先清除数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;          dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ClearLoginInfo&amp;#39;&lt;/span&gt;)
+          &lt;span style=&#34;color:#6272a4&#34;&gt;// 再保存数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;          dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SaveLoginInfo&amp;#39;&lt;/span&gt;, response.data)
+          resolve(response.data)
+        } &lt;span style=&#34;color:#ff79c6&#34;&gt;else&lt;/span&gt; {
+          reject(response.data.c)
+        }
+      })
+    })
+  },
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 保存登录信息
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  SaveLoginInfo&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit }, data) =&amp;gt; {
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// state保存token
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    commit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SET_TOKEN&amp;#39;&lt;/span&gt;, data.v.token)
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 保存token到cookie中
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    setToken(data.v.token)
+  },
+  &lt;span style=&#34;color:#6272a4&#34;&gt;/** 清除数据 */&lt;/span&gt;
+  ClearLoginInfo&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit }) =&amp;gt; {
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除数据
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    commit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SET_TOKEN&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;)
+    &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除cookie中的token
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    removeToken()
+  }
+}
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Vuex.Store({
+  state,
+  getters,
+  mutations,
+  actions
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/cmj6706/article/details/79032703&#34;&gt;token详解以及应用原理&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/ - </description>
+        </item>
     
     
     
@@ -779,441 +1152,6 @@ iframe.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span sty
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/binguo666/p/10535948.html&#34;&gt;闲聊前端性能&amp;mdash;-防抖、节流、重绘与回流。&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Vue3-Teleport</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-teleport/</link>
-        <pubDate>Tue, 06 Jul 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-teleport/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-teleport/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Teleport 是一种能够将我们的模板移动到 DOM中Vue app之外的其他位置的技术，就有点像哆啦A梦的“任意门”&lt;/p&gt;
-&lt;p&gt;场景：像 modals,toast 等这样的元素，很多情况下，我们将它完全的和我们的 Vue 应用的 DOM完全剥离，管理起来反而会方便容易很多&lt;/p&gt;
-&lt;p&gt;原因在于如果我们嵌套在Vue的某个组件内部，那么处理嵌套组件的定位、z-index和样式就会变得很困难&lt;/p&gt;
-&lt;p&gt;另外，像 modals，toast等这样的元素需要使用到 Vue组件的状态（data或者props）的值&lt;/p&gt;
-&lt;p&gt;这就是Teleport派上用场的地方。我们可以在组件的逻辑位置写模板代码，这意味着我们可以使用组件的data或props。然后在Vue应用的范围之外渲染它&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;teleport-的使用&#34;&gt;Teleport 的使用&lt;/h1&gt;
-&lt;p&gt;index.html中&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;teleport-target&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/src/main.js&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;src/components/HelloWorld.vue中，添加如下，留意to属性跟上面的id选择器一致&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt; &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt; @&lt;span style=&#34;color:#50fa7b&#34;&gt;click&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;showToast&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;btn&amp;#34;&lt;/span&gt;&amp;gt;打开 toast&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;button&lt;/span&gt;&amp;gt;
-  &lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- to 属性就是目标位置 --&amp;gt;&lt;/span&gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;to&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;#teleport-target&amp;#34;&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;v-if&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;visible&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;toast-wrap&amp;#34;&lt;/span&gt;&amp;gt;
-      &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;toast-msg&amp;#34;&lt;/span&gt;&amp;gt;我是一个 Toast 文案&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
-    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
-  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { ref } from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
-  setup() {
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// toast 的封装
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; visible &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref(&lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;);
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; timer;
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; showToast &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
-      visible.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;;
-      clearTimeout(timer);
-      timer &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; setTimeout(() =&amp;gt; {
-        visible.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;;
-      }, &lt;span style=&#34;color:#bd93f9&#34;&gt;2000&lt;/span&gt;);
-    }
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
-      visible,
-      showToast
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;效果展示：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue3-Teleport/%E6%95%88%E6%9E%9C%E4%B8%80.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;可以看到，我们使用teleport组件，通过to属性，指定该组件渲染的位置与&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;同级，也就是在body下，但是teleport的状态visible又是完全由内部Vue组件控制&lt;/p&gt;
-&lt;h1 id=&#34;与-vue组件-一起使用modal&#34;&gt;与 Vue组件 一起使用modal&lt;/h1&gt;
-&lt;p&gt;如果&lt;!-- raw HTML omitted --&gt;包含Vue组件，则它仍将是&lt;!-- raw HTML omitted --&gt;父组件的逻辑子组件&lt;/p&gt;
-&lt;p&gt;接下来我们以一个modal组件为例&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;modal-container&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;/src/main.js&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;to&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;#modal-container&amp;#34;&lt;/span&gt;&amp;gt;
-  &lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- use the modal component, pass in the prop --&amp;gt;&lt;/span&gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;modal&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;:show&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;showModal&amp;#34;&lt;/span&gt; @&lt;span style=&#34;color:#50fa7b&#34;&gt;close&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;showModal = false&amp;#34;&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt; #&lt;span style=&#34;color:#50fa7b&#34;&gt;header&lt;/span&gt;&amp;gt;
-      &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;h3&lt;/span&gt;&amp;gt;custom header&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;h3&lt;/span&gt;&amp;gt;
-    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
-  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;modal&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;teleport&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { ref } from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Modal from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./Modal.vue&amp;#39;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
-  components&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
-    Modal
-  },
-  setup() {
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// modal 的封装
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; showModal &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref(&lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;);
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
-      showModal
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在这种情况下，即使在不同的地方渲染Modal，它仍将是当前组件（调用Modal的组件）的子级，并将从中接收show prop&lt;/p&gt;
-&lt;p&gt;这也意味着来自父组件的注入按预期工作，并且子组件将嵌套在Vue Devtools中的父组件之下，而不是放在实际内容移动到的位置&lt;/p&gt;
-&lt;p&gt;看实际效果以及在Vue Devtool中&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue3-Teleport/%E6%95%88%E6%9E%9C%E4%BA%8C.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6874720017863147527&#34;&gt;Vue 3 任意传送门——Teleport&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6910100912367206414&#34;&gt;vue3.0新特性teleport是啥，用起来真香&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-teleport/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Vue3-组合式API</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/</link>
-        <pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;通过创建 Vue 组件，我们可以将界面中重复的部分连同其功能一起提取为可重用的代码段。仅此一项就可以使我们的应用在可维护性和灵活性方面走得相当远。然而随着项目的扩大，功能越来越复杂，定义的数据以及对其数据的操作被放在不同的地方，如methods，watch，碎片化使得理解和维护复杂组件变得困难。选项的分离掩盖了潜在的逻辑问题。此外，在处理单个逻辑关注点时，我们必须不断地“跳转”相关代码的选项块，于是出现了组合式api&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;组合式api主要解决的问题就是单业务逻辑代码单文件处理，将一个巨大无比的组件分成无数小的文件模块每个模块只处理很少的业务，通过定义setUp选项，将单逻辑的变量、生命周期以及方法独立成JS，再通过export的方式将需要使用的暴漏出来。Vue3提供的响应式API基本上可以保证我们在JS中实现响应式变量、父子组件传值、生命周期等所有操作，这是其它方式所不具备的&lt;/p&gt;
-&lt;h1 id=&#34;为什么要使用组合式-api&#34;&gt;为什么要使用组合式 API&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;组件化的缺点&#34;&gt;组件化的缺点&lt;/h2&gt;
-&lt;p&gt;使用 (&lt;code&gt;data&lt;/code&gt;、&lt;code&gt;computed&lt;/code&gt;、&lt;code&gt;methods&lt;/code&gt;、&lt;code&gt;watch&lt;/code&gt;) 组件选项来组织逻辑通常都很有效。然而，当我们的组件开始变得更大时，逻辑关注点的列表也会增长。尤其对于那些一开始没有编写这些组件的人来说，这会导致组件难以阅读和理解&lt;/p&gt;
-&lt;p&gt;这种碎片化使得理解和维护复杂组件变得困难。选项的分离掩盖了潜在的逻辑问题。此外，在处理单个逻辑关注点时，我们必须不断地“跳转”相关代码的选项块&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;提取公共js方式的缺点&#34;&gt;提取公共JS方式的缺点&lt;/h2&gt;
-&lt;p&gt;因为无法获取vue对象，只能编写非业务代码，例如工具方法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;插槽的缺点&#34;&gt;插槽的缺点&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;配置最终出现在模板中，理想情况下，模板应仅包含我们要呈现的内容&lt;/li&gt;
-&lt;li&gt;公开的属性仅在模板中可用&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;mixin方式的缺点&#34;&gt;mixin方式的缺点&lt;/h2&gt;
-&lt;p&gt;mixin的解决方案是将vue页面的js部分提取成公共的以供多个相似模块的共用。这种方式的缺点主要由以下几点&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;如methods,components等，选项会被合并，键冲突的组件会覆盖混入对象的，比如混入对象里有个方法A，组件里也有方法A，这时候在组件里调用的话，执行的是组件里的A方法&lt;/li&gt;
-&lt;li&gt;不可知，不易维护因为你可以在mixins里几乎可以加任何代码，props、data、methods、各种东西，就导致如果不了解mixins封装的代码的话，是很难维护的&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;样例&#34;&gt;样例&lt;/h1&gt;
-&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
-&lt;p&gt;实现了一个简单的列表功能，包括：列表展示、查看更多、关键字搜索&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;文件名称&lt;/th&gt;
-&lt;th&gt;功能描述&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;app.vue&lt;/td&gt;
-&lt;td&gt;主页，引入列表和搜索组件&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;app.js&lt;/td&gt;
-&lt;td&gt;主页面逻辑，包含：1、初始化列表2、加载更多（接收子组件事件）3、关键字搜索（接收子组件事件）&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;panel.vue&lt;/td&gt;
-&lt;td&gt;列表组件：接收列表数据渲染数据&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;panel.js&lt;/td&gt;
-&lt;td&gt;列表组件逻辑：1、加载更多（emit发送事件）&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;search.vue&lt;/td&gt;
-&lt;td&gt;搜索组件：点击搜索框切换选中样式，输入关键字刷新列表数据&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;search.js&lt;/td&gt;
-&lt;td&gt;搜索组件逻辑：1、点击搜索框样式切换，自动聚集2、搜索值监听(emit发送事件)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&#34;代码&#34;&gt;代码&lt;/h2&gt;
-&lt;h3 id=&#34;appvue&#34;&gt;app.vue&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;    
-    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;Search&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;@search&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;search&amp;#34;&lt;/span&gt;/&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;Panel&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;listData&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;listData&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;@loadMore&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;loadMore&amp;#34;&lt;/span&gt;/&amp;gt;
-  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; app from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./app.js&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Search from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./components/Search.vue&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Panel from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./components/Panel.vue&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
-  name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;,
-  components&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
-    Search,
-    Panel
-  },   
-  setup(props, context){
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; {search, loadMore, listData} &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; app(props, context)
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
-      search,
-      loadMore,
-      listData
-    }
-  }
-}
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;appjs&#34;&gt;app.js&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { ref} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; app(props, context) {
-  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; listData &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref([]) &lt;span style=&#34;color:#6272a4&#34;&gt;// 定义响应式变量,切记下方赋值/取值时修改的是.value属性！
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#6272a4&#34;&gt;// 初始化列表
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; loadData &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {      
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; [{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题一&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者一&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题二&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者二&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题三&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者三&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题四&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者四&amp;#39;&lt;/span&gt;},{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题五&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者五&amp;#39;&lt;/span&gt;}]
-  }
-  &lt;span style=&#34;color:#6272a4&#34;&gt;// 加载更多
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; loadMore &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {   
-    listData.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; [...listData.value, ...[{title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;标题X&amp;#39;&lt;/span&gt;, author&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;作者X&amp;#39;&lt;/span&gt;}]]
-  }
-  &lt;span style=&#34;color:#6272a4&#34;&gt;// 搜索
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; search &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; (searchVal) =&amp;gt; {
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (searchVal) {
-      listData.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; listData.value.filter(item =&amp;gt; {
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (item.title.indexOf(searchVal) &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;) {
-          &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; item
-        } 
-      })         
-    } &lt;span style=&#34;color:#ff79c6&#34;&gt;else&lt;/span&gt; {
-      listData.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; loadData()
-    }
-  }
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
-    listData,
-    loadMore,
-    search
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;panelvue&#34;&gt;panel.vue&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-panel weui-panel_access&amp;#34;&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;v-for&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;(n,index) in listData&amp;#34; :key=&amp;#34;index&amp;#34; class=&amp;#34;weui-panel__bd&amp;#34;&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;a href=&amp;#34;javascript:void(0);&amp;#34; class=&amp;#34;weui-media-box weui-media-box_appmsg&amp;#34;&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;div class=&amp;#34;weui-media-box__bd&amp;#34;&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          &amp;lt;h4 class=&amp;#34;weui-media-box__title&amp;#34; v-text=&amp;#34;n.title&amp;#34;&amp;gt;&amp;lt;/h4&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          &amp;lt;p class=&amp;#34;weui-media-box__desc&amp;#34; v-text=&amp;#34;n.author&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;/div&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;/a&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;/div&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;div @click=&amp;#34;loadMore&amp;#34; class=&amp;#34;weui-panel__ft&amp;#34;&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;a href=&amp;#34;javascript:void(0);&amp;#34; class=&amp;#34;weui-cell weui-cell_access weui-cell_link&amp;#34;&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;div class=&amp;#34;weui-cell__bd&amp;#34;&amp;gt;查看更多&amp;lt;/div&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;span class=&amp;#34;weui-cell__ft&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;span&lt;/span&gt;&amp;gt;
-      &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;a&lt;/span&gt;&amp;gt;
-    &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
-  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { reactive, toRefs} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; pane from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./pane.js&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
-  props&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;[&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;listData&amp;#39;&lt;/span&gt;],
-  setup(props, context) {
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; {loadMore} &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; pane(props, context)
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; state &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; reactive({
-    })     
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
-      ...toRefs(state),
-      loadMore
-    }
-  }
-}
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;paneljs&#34;&gt;panel.js&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; pane(props, context) {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; loadMore &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
-    context.emit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;loadMore&amp;#34;&lt;/span&gt;)
-  }
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
-    loadMore
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;searchvue&#34;&gt;search.vue&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-vue&#34; data-lang=&#34;vue&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;[&amp;#39;weui-search-bar&amp;#39;, {&amp;#39;weui-search-bar_focusing&amp;#39;:isFocus}]&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;searchBar&amp;#34;&lt;/span&gt;&amp;gt;
-    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;form&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-search-bar__form&amp;#34;&lt;/span&gt;&amp;gt;
-      &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-search-bar__box&amp;#34;&lt;/span&gt;&amp;gt;
-        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;weui-icon-search&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;i&lt;/span&gt;&amp;gt;
-        &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;input&lt;/span&gt;
-          &lt;span style=&#34;color:#ff79c6&#34;&gt;v-model&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&amp;#34;searchValue&amp;#34;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          ref=&amp;#34;inputElement&amp;#34;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          type=&amp;#34;search&amp;#34;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          class=&amp;#34;weui-search-bar__input&amp;#34;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          id=&amp;#34;searchInput&amp;#34;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          placeholder=&amp;#34;搜索&amp;#34;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;          required
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        /&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;a href=&amp;#34;javascript:&amp;#34; class=&amp;#34;weui-icon-clear&amp;#34; id=&amp;#34;searchClear&amp;#34;&amp;gt;&amp;lt;/a&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;/div&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;label @click=&amp;#34;toggle&amp;#34; class=&amp;#34;weui-search-bar__label&amp;#34; id=&amp;#34;searchText&amp;#34;&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;i class=&amp;#34;weui-icon-search&amp;#34;&amp;gt;&amp;lt;/i&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;        &amp;lt;span&amp;gt;搜索&amp;lt;/span&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;      &amp;lt;/label&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;/form&amp;gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;    &amp;lt;a @click=&amp;#34;toggle&amp;#34; href=&amp;#34;javascript:&amp;#34; class=&amp;#34;weui-search-bar__cancel-btn&amp;#34; id=&amp;#34;searchCancel&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;取消&lt;/span&gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;a&lt;/span&gt;&amp;gt;
-  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;template&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; search from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;./search.js&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
-  setup(props, context) {
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; {searchValue, isFocus, inputElement,  toggle} &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; search(props, context)
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
-      toggle,
-      searchValue, 
-      isFocus, 
-      inputElement
-    }
-  }
-}
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;searchjs&#34;&gt;search.js&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {reactive, toRefs, watch} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; search(props, context) {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; search &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; reactive({
-    searchValue&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
-    isFocus&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;,
-    inputElement&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;
-  })
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; searchRefs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; toRefs(search); &lt;span style=&#34;color:#6272a4&#34;&gt;// 定义一个新的对象，它本身不具备响应性，但是它的字段全部是ref变量
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#6272a4&#34;&gt;// 切换搜索框状态的方法
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; toggle &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
-    search.inputElement.focus() &lt;span style=&#34;color:#6272a4&#34;&gt;// 让点击搜索后出现的输入框自动聚焦
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    search.isFocus &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;!&lt;/span&gt;search.isFocus
-  }
-  &lt;span style=&#34;color:#6272a4&#34;&gt;// 监听搜索框的值
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  watch(
-    () =&amp;gt; {
-      &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; search.searchValue
-    },
-    () =&amp;gt; {
-      context.emit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;search&amp;#34;&lt;/span&gt;, search.searchValue)
-    }
-  )
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
-    ...searchRefs, &lt;span style=&#34;color:#6272a4&#34;&gt;// 在这里结构toRefs对象才能继续保持响应式
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    toggle
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;响应式&#34;&gt;响应式&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;setup&#34;&gt;setup&lt;/h2&gt;
-&lt;p&gt;概念：在组件创建之前执行，一旦 &lt;code&gt;props&lt;/code&gt; 被解析，就将作为组合式 API 的入口&lt;/p&gt;
-&lt;p&gt;参数：&lt;/p&gt;
-&lt;p&gt;1、props&lt;/p&gt;
-&lt;p&gt;响应式的，当传入新的 prop 时，它将被更新&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
-  props&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
-    title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;String&lt;/span&gt;
-  },
-  setup(props) {
-    console.log(props.title)j
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;2、context&lt;/p&gt;
-&lt;p&gt;context是一个普通的 JavaScript 对象，它暴露组件的三个 property&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; {
-  setup(props, context) {
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// Attribute (非响应式对象)
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    console.log(context.attrs)
-  
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 插槽 (非响应式对象)
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    console.log(context.slots)
-  
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 触发事件 (方法)
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    console.log(context.emit)
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;attrs和slots是有状态的对象，它们总是会随组件本身的更新而更新。这意味着你应该避免对它们进行解构，并始终以 attrs.x或slots.x的方式引用 property。请注意，与props不同，attrs和slots是非响应式的。如果你打算根据attrs或slots更改应用副作用，那么应该在onUpdated生命周期钩子中执行此操作&lt;/p&gt;
-&lt;p&gt;setup注册生命周期钩子&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {onMounted} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; pane(props, context) {
-  onMounted(() =&amp;gt; {
-      &lt;span style=&#34;color:#6272a4&#34;&gt;// 业务逻辑
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  })
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {    
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;watch响应式更改&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {watch} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; search(props, context) {
-  watch(
-    () =&amp;gt; {
-      &lt;span style=&#34;color:#6272a4&#34;&gt;// 监听的值	
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; search.searchValue
-    },
-    () =&amp;gt; {
-      &lt;span style=&#34;color:#6272a4&#34;&gt;// 业务逻辑
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      context.emit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;search&amp;#34;&lt;/span&gt;, search.searchValue)
-    }
-  )
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;独立的computed属性&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; {computed} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;@vue/composition-api&amp;#34;&lt;/span&gt;;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; search(props, context) {
-  newsComputed&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; computed(() =&amp;gt; {
-      &lt;span style=&#34;color:#6272a4&#34;&gt;// 业务逻辑
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  })
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {  
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;ref&#34;&gt;ref&lt;/h2&gt;
-&lt;p&gt;创建单个对象的响应对象，取值/赋值时需要使用.value&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; count &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ref(&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
-console.log(count.value) &lt;span style=&#34;color:#6272a4&#34;&gt;// 0
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;count.value&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;
-console.log(count.value) &lt;span style=&#34;color:#6272a4&#34;&gt;// 1
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;torefs&#34;&gt;toRefs&lt;/h2&gt;
-&lt;p&gt;从组合式函数返回响应式对象&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; state &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; reactive({
-  foo&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;,
-  bar&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;
-})
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; stateAsRefs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; toRefs(state)
-&lt;span style=&#34;color:#6272a4&#34;&gt;// ref 和原始 property 已经“链接”起来了
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;state.foo&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;
-console.log(stateAsRefs.foo.value) &lt;span style=&#34;color:#6272a4&#34;&gt;// 2
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;stateAsRefs.foo.value&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;
-console.log(state.foo) &lt;span style=&#34;color:#6272a4&#34;&gt;// 3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/Wscats/vue-cli&#34;&gt;组合式API的使用示例&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://vue3.chengpeiquan.com/&#34;&gt;Vue3.0学习教程与实战案例&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E7%BB%84%E5%90%88%E5%BC%8Fapi/ - </description>
         </item>
     
     

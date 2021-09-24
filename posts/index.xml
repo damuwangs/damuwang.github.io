@@ -6,10 +6,26 @@
     <description>Recent content in Posts on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Sep 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaScript-正则</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/</link>
+      <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/</guid>
+      <description>字符串匹配single char 单个字符 最简单的正则表达式可以由简单的数字和字母组成，没有特殊的语义，纯粹就是一一对应的关系。如想在&amp;rsquo;apple&amp;rsquo;这个单词里找到‘a&amp;rsquo;这个字符，就直接用/a/这个正则就可以了。
+但是如果想要匹配特殊字符的话，就要使用元字符\， 它是转义字符字符，顾名思义，就是让其后续的字符失去其本来的含义。举个例子：
+我想匹配*这个符号，由于*这个符号本身是个特殊字符，所以我要利用转义元字符\来让它失去其本来的含义
+/\*/ 如果本来这个字符不是特殊字符，使用转义符号就会让它拥有特殊的含义。我们常常需要匹配一些特殊字符，比如空格，制表符，回车，换行等, 而这些就需要我们使用转义字符来匹配
+   特殊字符 正则表达式     换行符 \n   换页符 \f   回车符 \r   空白符 \s   制表符 \t   垂直制表符 \v   回退符 [\b]    // \s代表匹配空格，abc为匹配&amp;#39;abc&amp;#39;字符串 const reg = /\sabc/ console.log(reg.test(&amp;#39; abc&amp;#39;)) // true 多个字符 单个字符的映射关系是一对一的，即正则表达式的被用来筛选匹配的字符只有一个。而这显然是不够的，只要引入集合区间和通配符的方式就可以实现一对多的匹配了。
+在正则表达式里，集合的定义方式是使用中括号[和]。如/[123]/这个正则就能同时匹配1,2,3三个字符。那如果我想匹配所有的数字怎么办呢？从0写到9显然太过低效，所以元字符-就可以用来表示区间范围，利用/[0-9]/就能匹配所有的数字, /[a-z]/则可以匹配所有的英文小写字母。
+即便有了集合和区间的定义方式，如果要同时匹配多个字符也还是要一一列举，这是低效的。所以在正则表达式里衍生了一批用来同时匹配多个字符的简便正则表达式
+   匹配区间 正则表达式     除了换行符之外的任何字符 .</description>
+    </item>
     
     <item>
       <title>JavaScript-异步解决方案</title>
@@ -67,11 +83,26 @@ f1(){ // ...  // 发送事件  this.$emit(&amp;#39;doSomething&amp;#39;, {data:&
     </item>
     
     <item>
-      <title>【待补充】四川-贡嘎</title>
-      <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%9B%9B%E5%B7%9D-%E8%B4%A1%E5%98%8E/</link>
+      <title>【待补充】甘南藏族自治州</title>
+      <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</link>
       <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%9B%9B%E5%B7%9D-%E8%B4%A1%E5%98%8E/</guid>
+      <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</guid>
+      <description>概念 JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。
+ 举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。
+ 只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：setTimeout
+下面要讲的 Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的。
+参考资料  JS事件循环（Event Loop）
+浅析 JS 中的 EventLoop 事件循环（新手向）
+ </description>
+    </item>
+    
+    <item>
+      <title>【待补充】甘孜藏族自治州-康定</title>
+      <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/</link>
+      <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/</guid>
       <description>行程 租车500*5 = 2500 车票来回2500 酒店两间500 * 5 = 2500 油费算五天2000 吃饭一天300 * 5 = 1500 门票粗略计算 2000 零食 1000
 注意事项
 参考资料  JS事件循环（Event Loop）
@@ -80,11 +111,11 @@ f1(){ // ...  // 发送事件  this.$emit(&amp;#39;doSomething&amp;#39;, {data:&
     </item>
     
     <item>
-      <title>【待补充】山东-青岛</title>
-      <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%B1%B1%E4%B8%9C-%E9%9D%92%E5%B2%9B/</link>
+      <title>【待补充】青岛</title>
+      <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/</link>
       <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%B1%B1%E4%B8%9C-%E9%9D%92%E5%B2%9B/</guid>
+      <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/</guid>
       <description>概念 JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。
  举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。
  只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：setTimeout

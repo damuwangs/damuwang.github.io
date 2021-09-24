@@ -6,10 +6,26 @@
     <description>Recent content in JavaScript on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Sep 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaScript-正则</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/</link>
+      <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/</guid>
+      <description>字符串匹配single char 单个字符 最简单的正则表达式可以由简单的数字和字母组成，没有特殊的语义，纯粹就是一一对应的关系。如想在&amp;rsquo;apple&amp;rsquo;这个单词里找到‘a&amp;rsquo;这个字符，就直接用/a/这个正则就可以了。
+但是如果想要匹配特殊字符的话，就要使用元字符\， 它是转义字符字符，顾名思义，就是让其后续的字符失去其本来的含义。举个例子：
+我想匹配*这个符号，由于*这个符号本身是个特殊字符，所以我要利用转义元字符\来让它失去其本来的含义
+/\*/ 如果本来这个字符不是特殊字符，使用转义符号就会让它拥有特殊的含义。我们常常需要匹配一些特殊字符，比如空格，制表符，回车，换行等, 而这些就需要我们使用转义字符来匹配
+   特殊字符 正则表达式     换行符 \n   换页符 \f   回车符 \r   空白符 \s   制表符 \t   垂直制表符 \v   回退符 [\b]    // \s代表匹配空格，abc为匹配&amp;#39;abc&amp;#39;字符串 const reg = /\sabc/ console.log(reg.test(&amp;#39; abc&amp;#39;)) // true 多个字符 单个字符的映射关系是一对一的，即正则表达式的被用来筛选匹配的字符只有一个。而这显然是不够的，只要引入集合区间和通配符的方式就可以实现一对多的匹配了。
+在正则表达式里，集合的定义方式是使用中括号[和]。如/[123]/这个正则就能同时匹配1,2,3三个字符。那如果我想匹配所有的数字怎么办呢？从0写到9显然太过低效，所以元字符-就可以用来表示区间范围，利用/[0-9]/就能匹配所有的数字, /[a-z]/则可以匹配所有的英文小写字母。
+即便有了集合和区间的定义方式，如果要同时匹配多个字符也还是要一一列举，这是低效的。所以在正则表达式里衍生了一批用来同时匹配多个字符的简便正则表达式
+   匹配区间 正则表达式     除了换行符之外的任何字符 .</description>
+    </item>
     
     <item>
       <title>JavaScript-异步解决方案</title>

@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html><head>
+<title>JavaScript-正则</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="https://damuwangs.github.io/scss/journal.min.4dabc90cf94657415a747e8400223bb3c4d11654d1279feff37fd6a11089fe77.css" integrity="sha256-TavJDPlGV0FadH6EACI7s8TRFlTRJ5/v83/WoRCJ/nc=" media="screen">
+
+
+
+<link rel="stylesheet" href="https://damuwangs.github.io/scss/dark-mode.min.83b57d3d51352700a502fbe45536227cf28ce7e56fedacaf14b7fe499db0f186.css" integrity="sha256-g7V9PVE1JwClAvvkVTYifPKM5&#43;Vv7ayvFLf&#43;SZ2w8YY=" media="screen">
+
+
+<script src="/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Fira+Mono|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="/js/toc.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://damuwangs.github.io">
+    
+        <div class="nav-title">
+            DaMuWang
+        </div>
+        
+        <div class="nav-subtitle">
+            damuwang&#39;s blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/posts">
+                博客
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                分类
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags">
+                标签
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2021 DaMuWang
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%8c%b9%e9%85%8dsingle-char" onclick="onNavClick(`#字符串匹配single-char-nav`)" id="字符串匹配single-char-nav">
+									字符串匹配single char
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%8d%95%e4%b8%aa%e5%ad%97%e7%ac%a6" onclick="onNavClick(`#单个字符-nav`)" id="单个字符-nav">
+									单个字符
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%a4%9a%e4%b8%aa%e5%ad%97%e7%ac%a6" onclick="onNavClick(`#多个字符-nav`)" id="多个字符-nav">
+									多个字符
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%95%b0%e9%87%8f%e5%8c%b9%e9%85%8dquantifiers" onclick="onNavClick(`#数量匹配quantifiers-nav`)" id="数量匹配quantifiers-nav">
+									数量匹配quantifiers
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%8c%b9%e9%85%8d%e4%b8%80%e4%b8%aa%e6%88%960%e4%b8%aa%e5%ad%97%e7%ac%a6" onclick="onNavClick(`#匹配一个或0个字符-nav`)" id="匹配一个或0个字符-nav">
+									匹配一个或0个字符
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8c%b9%e9%85%8d0%e4%b8%aa%e6%88%96%e6%97%a0%e6%95%b0%e4%b8%aa%e5%ad%97%e7%ac%a6" onclick="onNavClick(`#匹配0个或无数个字符-nav`)" id="匹配0个或无数个字符-nav">
+									匹配0个或无数个字符
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8c%b9%e9%85%8d%e7%89%b9%e5%ae%9a%e7%9a%84%e9%87%8d%e5%a4%8d%e6%ac%a1%e6%95%b0" onclick="onNavClick(`#匹配特定的重复次数-nav`)" id="匹配特定的重复次数-nav">
+									匹配特定的重复次数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%bd%8d%e7%bd%ae%e8%be%b9%e7%95%8c%e5%8c%b9%e9%85%8dposition" onclick="onNavClick(`#位置边界匹配position-nav`)" id="位置边界匹配position-nav">
+									位置边界匹配position
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%8d%95%e8%af%8d%e8%be%b9%e7%95%8c" onclick="onNavClick(`#单词边界-nav`)" id="单词边界-nav">
+									单词边界
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%be%b9%e7%95%8c" onclick="onNavClick(`#字符串边界-nav`)" id="字符串边界-nav">
+									字符串边界
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%88%86%e7%bb%84%e5%8c%b9%e9%85%8d" onclick="onNavClick(`#分组匹配-nav`)" id="分组匹配-nav">
+									分组匹配
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e4%bb%80%e4%b9%88%e6%98%af%e5%88%86%e7%bb%84" onclick="onNavClick(`#什么是分组-nav`)" id="什么是分组-nav">
+									什么是分组
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%88%86%e7%bb%84%e5%86%85%e5%ae%b9%e7%9a%84%e7%9a%84%e5%bd%a2%e5%bc%8f" onclick="onNavClick(`#分组内容的的形式-nav`)" id="分组内容的的形式-nav">
+									分组内容的的形式
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%88%86%e7%bb%84%e7%9a%84%e5%88%86%e7%b1%bb" onclick="onNavClick(`#分组的分类-nav`)" id="分组的分类-nav">
+									分组的分类
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%88%86%e7%bb%84%e7%9a%84%e5%ba%94%e7%94%a8" onclick="onNavClick(`#分组的应用-nav`)" id="分组的应用-nav">
+									分组的应用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1-%e6%8d%95%e8%8e%b7%e4%b8%8e%e5%bc%95%e7%94%a8" onclick="onNavClick(`#1-捕获与引用-nav`)" id="1-捕获与引用-nav">
+									1. 捕获与引用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2-%e7%bb%93%e5%90%88replace%e6%96%b9%e6%b3%95%e5%81%9a%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%87%aa%e5%ae%9a%e4%b9%89%e6%9b%bf%e6%8d%a2" onclick="onNavClick(`#2-结合replace方法做字符串自定义替换-nav`)" id="2-结合replace方法做字符串自定义替换-nav">
+									2. 结合replace方法做字符串自定义替换
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3-%e5%8f%8d%e5%90%91%e5%bc%95%e7%94%a8" onclick="onNavClick(`#3-反向引用-nav`)" id="3-反向引用-nav">
+									3. 反向引用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4-%e9%9d%9e%e6%8d%95%e8%8e%b7%e5%9e%8b%e5%88%86%e7%bb%84" onclick="onNavClick(`#4-非捕获型分组-nav`)" id="4-非捕获型分组-nav">
+									4. 非捕获型分组
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#5-%e6%ad%a3%e5%90%91%e4%b8%8e%e5%8f%8d%e5%90%91%e5%89%8d%e7%9e%bb%e5%9e%8b%e5%88%86%e7%bb%84" onclick="onNavClick(`#5-正向与反向前瞻型分组-nav`)" id="5-正向与反向前瞻型分组-nav">
+									5. 正向与反向前瞻型分组
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#6-%e5%89%8d%e7%9e%bb%e5%9e%8b%e5%88%86%e7%bb%84%e5%92%8c%e9%9d%9e%e6%8d%95%e8%8e%b7%e5%9e%8b%e5%88%86%e7%bb%84%e7%9a%84%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#6-前瞻型分组和非捕获型分组的区别-nav`)" id="6-前瞻型分组和非捕获型分组的区别-nav">
+									6. 前瞻型分组和非捕获型分组的区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div>
+<div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
+                    博客
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    分类
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags">
+                    标签
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%8c%b9%e9%85%8dsingle-char" onclick="onNavClick(`#字符串匹配single-char-nav`)" id="字符串匹配single-char-nav">
+									字符串匹配single char
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%8d%95%e4%b8%aa%e5%ad%97%e7%ac%a6" onclick="onNavClick(`#单个字符-nav`)" id="单个字符-nav">
+									单个字符
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%a4%9a%e4%b8%aa%e5%ad%97%e7%ac%a6" onclick="onNavClick(`#多个字符-nav`)" id="多个字符-nav">
+									多个字符
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%95%b0%e9%87%8f%e5%8c%b9%e9%85%8dquantifiers" onclick="onNavClick(`#数量匹配quantifiers-nav`)" id="数量匹配quantifiers-nav">
+									数量匹配quantifiers
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%8c%b9%e9%85%8d%e4%b8%80%e4%b8%aa%e6%88%960%e4%b8%aa%e5%ad%97%e7%ac%a6" onclick="onNavClick(`#匹配一个或0个字符-nav`)" id="匹配一个或0个字符-nav">
+									匹配一个或0个字符
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8c%b9%e9%85%8d0%e4%b8%aa%e6%88%96%e6%97%a0%e6%95%b0%e4%b8%aa%e5%ad%97%e7%ac%a6" onclick="onNavClick(`#匹配0个或无数个字符-nav`)" id="匹配0个或无数个字符-nav">
+									匹配0个或无数个字符
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8c%b9%e9%85%8d%e7%89%b9%e5%ae%9a%e7%9a%84%e9%87%8d%e5%a4%8d%e6%ac%a1%e6%95%b0" onclick="onNavClick(`#匹配特定的重复次数-nav`)" id="匹配特定的重复次数-nav">
+									匹配特定的重复次数
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%bd%8d%e7%bd%ae%e8%be%b9%e7%95%8c%e5%8c%b9%e9%85%8dposition" onclick="onNavClick(`#位置边界匹配position-nav`)" id="位置边界匹配position-nav">
+									位置边界匹配position
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e5%8d%95%e8%af%8d%e8%be%b9%e7%95%8c" onclick="onNavClick(`#单词边界-nav`)" id="单词边界-nav">
+									单词边界
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%be%b9%e7%95%8c" onclick="onNavClick(`#字符串边界-nav`)" id="字符串边界-nav">
+									字符串边界
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%88%86%e7%bb%84%e5%8c%b9%e9%85%8d" onclick="onNavClick(`#分组匹配-nav`)" id="分组匹配-nav">
+									分组匹配
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#%e4%bb%80%e4%b9%88%e6%98%af%e5%88%86%e7%bb%84" onclick="onNavClick(`#什么是分组-nav`)" id="什么是分组-nav">
+									什么是分组
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%88%86%e7%bb%84%e5%86%85%e5%ae%b9%e7%9a%84%e7%9a%84%e5%bd%a2%e5%bc%8f" onclick="onNavClick(`#分组内容的的形式-nav`)" id="分组内容的的形式-nav">
+									分组内容的的形式
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%88%86%e7%bb%84%e7%9a%84%e5%88%86%e7%b1%bb" onclick="onNavClick(`#分组的分类-nav`)" id="分组的分类-nav">
+									分组的分类
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%88%86%e7%bb%84%e7%9a%84%e5%ba%94%e7%94%a8" onclick="onNavClick(`#分组的应用-nav`)" id="分组的应用-nav">
+									分组的应用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1-%e6%8d%95%e8%8e%b7%e4%b8%8e%e5%bc%95%e7%94%a8" onclick="onNavClick(`#1-捕获与引用-nav`)" id="1-捕获与引用-nav">
+									1. 捕获与引用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2-%e7%bb%93%e5%90%88replace%e6%96%b9%e6%b3%95%e5%81%9a%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%87%aa%e5%ae%9a%e4%b9%89%e6%9b%bf%e6%8d%a2" onclick="onNavClick(`#2-结合replace方法做字符串自定义替换-nav`)" id="2-结合replace方法做字符串自定义替换-nav">
+									2. 结合replace方法做字符串自定义替换
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3-%e5%8f%8d%e5%90%91%e5%bc%95%e7%94%a8" onclick="onNavClick(`#3-反向引用-nav`)" id="3-反向引用-nav">
+									3. 反向引用
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4-%e9%9d%9e%e6%8d%95%e8%8e%b7%e5%9e%8b%e5%88%86%e7%bb%84" onclick="onNavClick(`#4-非捕获型分组-nav`)" id="4-非捕获型分组-nav">
+									4. 非捕获型分组
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#5-%e6%ad%a3%e5%90%91%e4%b8%8e%e5%8f%8d%e5%90%91%e5%89%8d%e7%9e%bb%e5%9e%8b%e5%88%86%e7%bb%84" onclick="onNavClick(`#5-正向与反向前瞻型分组-nav`)" id="5-正向与反向前瞻型分组-nav">
+									5. 正向与反向前瞻型分组
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#6-%e5%89%8d%e7%9e%bb%e5%9e%8b%e5%88%86%e7%bb%84%e5%92%8c%e9%9d%9e%e6%8d%95%e8%8e%b7%e5%9e%8b%e5%88%86%e7%bb%84%e7%9a%84%e5%8c%ba%e5%88%ab" onclick="onNavClick(`#6-前瞻型分组和非捕获型分组的区别-nav`)" id="6-前瞻型分组和非捕获型分组的区别-nav">
+									6. 前瞻型分组和非捕获型分组的区别
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="https://damuwangs.github.io">
+            DaMuWang
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://damuwangs.github.io">
+        <div class="single-column-header-title">DaMuWang</div>
+        
+        <div class="single-column-header-subtitle">damuwang&#39;s blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    JavaScript-正则
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-09-23
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/javascript">JavaScript</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B">编程</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <ul>
+<li>
+<h1 id="字符串匹配single-char">字符串匹配single char</h1>
+<h2 id="单个字符">单个字符</h2>
+<p>最简单的正则表达式可以由简单的数字和字母组成，没有特殊的语义，纯粹就是一一对应的关系。如想在&rsquo;apple&rsquo;这个单词里找到‘a&rsquo;这个字符，就直接用<code>/a/</code>这个正则就可以了。</p>
+<p>但是如果想要匹配特殊字符的话，就要使用元字符<code>\</code>， 它是转义字符字符，顾名思义，就是让其后续的字符失去其本来的含义。举个例子：</p>
+<p>我想匹配<code>*</code>这个符号，由于<code>*</code>这个符号本身是个特殊字符，所以我要利用转义元字符\来让它失去其本来的含义</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#f1fa8c">/\*/</span>
+</code></pre></div><p>如果本来这个字符不是特殊字符，使用转义符号就会让它拥有特殊的含义。我们常常需要匹配一些特殊字符，比如空格，制表符，回车，换行等, 而这些就需要我们使用转义字符来匹配</p>
+<table>
+<thead>
+<tr>
+<th>特殊字符</th>
+<th>正则表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>换行符</td>
+<td>\n</td>
+</tr>
+<tr>
+<td>换页符</td>
+<td>\f</td>
+</tr>
+<tr>
+<td>回车符</td>
+<td>\r</td>
+</tr>
+<tr>
+<td>空白符</td>
+<td>\s</td>
+</tr>
+<tr>
+<td>制表符</td>
+<td>\t</td>
+</tr>
+<tr>
+<td>垂直制表符</td>
+<td>\v</td>
+</tr>
+<tr>
+<td>回退符</td>
+<td>[\b]</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// \s代表匹配空格，abc为匹配&#39;abc&#39;字符串
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/\sabc/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39; abc&#39;</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div><h2 id="多个字符">多个字符</h2>
+<p>单个字符的映射关系是一对一的，即正则表达式的被用来筛选匹配的字符只有一个。而这显然是不够的，只要引入集合区间和通配符的方式就可以实现一对多的匹配了。</p>
+<p>在正则表达式里，集合的定义方式是使用中括号<code>[</code>和<code>]</code>。如<code>/[123]/</code>这个正则就能同时匹配1,2,3三个字符。那如果我想匹配所有的数字怎么办呢？从0写到9显然太过低效，所以元字符-就可以用来表示区间范围，利用<code>/[0-9]/</code>就能匹配所有的数字, <code>/[a-z]/</code>则可以匹配所有的英文小写字母。</p>
+<p>即便有了集合和区间的定义方式，如果要同时匹配多个字符也还是要一一列举，这是低效的。所以在正则表达式里衍生了一批用来同时匹配多个字符的简便正则表达式</p>
+<table>
+<thead>
+<tr>
+<th>匹配区间</th>
+<th>正则表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>除了换行符之外的任何字符</td>
+<td>.</td>
+</tr>
+<tr>
+<td>单个数字, [0-9]</td>
+<td>\d</td>
+</tr>
+<tr>
+<td>除了[0-9]</td>
+<td>\D</td>
+</tr>
+<tr>
+<td>包括下划线在内的单个字符，[A-Za-z0-9_]</td>
+<td>\w</td>
+</tr>
+<tr>
+<td>非单字字符</td>
+<td>\W</td>
+</tr>
+<tr>
+<td>匹配空白字符,包括空格、制表符、换页符和换行符</td>
+<td>\s</td>
+</tr>
+<tr>
+<td>匹配非空白字符</td>
+<td>\S</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// \d代表匹配0-9的数字，[a-z]为匹配所有小写字母
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/\d[a-z]/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39;1a2b&#39;</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div></li>
+<li>
+<h1 id="数量匹配quantifiers">数量匹配quantifiers</h1>
+<p>要实现多个字符的匹配我们只要多次循环，重复使用我们的之前的正则规则就可以了。根据循环次数的多与少，我可以分为0次，1次，多次，特定次</p>
+<table>
+<thead>
+<tr>
+<th>匹配规则</th>
+<th>元字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0次或1次</td>
+<td>?</td>
+</tr>
+<tr>
+<td>0次或无数次</td>
+<td>*</td>
+</tr>
+<tr>
+<td>1次或无数次</td>
+<td>+</td>
+</tr>
+<tr>
+<td>特定次数</td>
+<td>{x}, {min, max}</td>
+</tr>
+</tbody>
+</table>
+<h2 id="匹配一个或0个字符">匹配一个或0个字符</h2>
+<p>元字符<code>?</code>代表了匹配一个字符或0个字符</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// 第一个?前面的字符串可以舍弃，第二个?前面的字符串可拼1个或2个
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/colou?rs?/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39;color&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;colors&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;colours&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;colour&#39;</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div><h2 id="匹配0个或无数个字符">匹配0个或无数个字符</h2>
+<p>元字符<code>*</code>用来表示匹配0个字符或无数个字符。通常用来过滤某些可有可无的字符串</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// *表示不限制，appl可随意拼接最后一位，也可不拼
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/appl*/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39;appl&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;apple&#39;</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div><p>元字符<code>+</code>适用于要匹配同个字符出现1次或多次的情况</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// +限制apple必须出现1次或多次
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/apple+/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39;appl&#39;</span>)) <span style="color:#6272a4">// false
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;apple&#39;</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div><h2 id="匹配特定的重复次数">匹配特定的重复次数</h2>
+<p>在某些情况下，我们需要匹配特定的重复次数，元字符<code>{</code>和<code>}</code>用来给重复匹配设置精确的区间范围。如&rsquo;a&rsquo;我想匹配3次,那么我就使用<code>/a{3}/</code>这个正则，或者说&rsquo;a&rsquo;我想匹配至少两次就是用<code>/a{2,}/</code>这个正则。</p>
+<p>以下是完整的语法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">-</span> {x}<span style="color:#ff79c6">:</span> x次
+<span style="color:#ff79c6">-</span> {min, max}： 介于min次到max次之间
+<span style="color:#ff79c6">-</span> {min, }<span style="color:#ff79c6">:</span> 至少min次
+<span style="color:#ff79c6">-</span> {<span style="color:#bd93f9">0</span>, max}： 至多max次
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// 限制a必须重复3次到5次，包括3和5
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/a{3,5}/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39;aaaaa&#39;</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div></li>
+<li>
+<h1 id="位置边界匹配position">位置边界匹配position</h1>
+<p>在长文本字符串查找过程中，我们常常需要限制查询的位置。比如我只想在单词的开头结尾查找</p>
+<table>
+<thead>
+<tr>
+<th>边界和标志</th>
+<th>正则表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单词边界</td>
+<td>\b</td>
+</tr>
+<tr>
+<td>非单词边界</td>
+<td>\B</td>
+</tr>
+<tr>
+<td>字符串开头</td>
+<td>^</td>
+</tr>
+<tr>
+<td>字符串结尾</td>
+<td>$</td>
+</tr>
+<tr>
+<td>多行模式</td>
+<td>m标志</td>
+</tr>
+<tr>
+<td>忽略大小写</td>
+<td>i标志</td>
+</tr>
+<tr>
+<td>全局模式</td>
+<td>g标志</td>
+</tr>
+</tbody>
+</table>
+<h2 id="单词边界">单词边界</h2>
+<p>单词是构成句子和文章的基本单位，一个常见的使用场景是把文章或句子中的特定单词找出来</p>
+<p>我想找到<code>cat</code>这个单词，但是如果只是使用<code>/cat/</code>这个正则，就会同时匹配到<code>cat</code>和<code>scattered</code>这两处文本。这时候我们就需要使用边界正则表达式<code>\b</code>，其中b是boundary的首字母。在正则引擎里它其实匹配的是能构成单词的字符(\w)和不能构成单词的字符(\W)中间的那个位置。</p>
+<p>上面的例子改写成<code>/\bcat\b/</code>这样就能匹配到<code>cat</code>这个单词了</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// 包含cat都会被匹配到
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> reg1 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/cat/</span>
+console.log(reg1.test(<span style="color:#f1fa8c">&#39;cat&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>console.log(reg1.test(<span style="color:#f1fa8c">&#39;scattered&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>  
+<span style="color:#6272a4">// \b 设置了单词边界，必须为cat才能被匹配到,因此scattered会返回false
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> reg2 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/\bcat\b/</span>
+console.log(reg2.test(<span style="color:#f1fa8c">&#39;cat&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>console.log(reg2.test(<span style="color:#f1fa8c">&#39;scattered&#39;</span>)) <span style="color:#6272a4">// false
+</span></code></pre></div><h2 id="字符串边界">字符串边界</h2>
+<p>元字符<code>^</code>用来匹配字符串的开头。而元字符<code>$</code>用来匹配字符串的末尾。注意的是在长文本里，如果要排除换行符的干扰，我们要使用多行模式</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// 从I开始0结束，匹配&#39;I am scq000&#39;,忽略大小写，忽略换行符
+</span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> reg1 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/^I am scq000$/m</span>
+console.log(reg1.test(<span style="color:#f1fa8c">`I am scq000
+</span><span style="color:#f1fa8c">                       I am scq000
+</span><span style="color:#f1fa8c">                       I AM SCQ000`</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div></li>
+<li>
+<h1 id="分组匹配">分组匹配</h1>
+<h2 id="什么是分组">什么是分组</h2>
+<p>通俗来说，我理解的分组就是在正则表达式中用（）包起来的内容代表了一个分组</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// 匹配两位数字
+</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">let</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/(\d{2})/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39;12&#39;</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div><p>这里reg中的<code>(/d{2})</code>就表示一个分组，匹配两位数字</p>
+<h2 id="分组内容的的形式">分组内容的的形式</h2>
+<p>一个分组中可以像上面这样有一个具体的表达式，这样可以优雅地表达一个重复的字符串</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// 匹配字符串&#39;hahaha&#39;
+</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">let</span> reg1 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/hahaha/</span>
+<span style="color:#8be9fd;font-style:italic">let</span> reg2 <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/(ha){3}/</span>
+console.log(reg1.test(<span style="color:#f1fa8c">&#39;hahaha&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>console.log(reg2.test(<span style="color:#f1fa8c">&#39;hahaha&#39;</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div><p>这两个表达式是等效的，但有了分组之后可以更急简洁</p>
+<p>分组中还可以有多个候选表达式</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// 匹配I come from hunan/hubei/zhejiang
+</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">var</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/I come from (hunan|hubei|zhejiang)/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39;I come from hunan&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;I come from hubei&#39;</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div><p>也就是说在这个分组中，通过|隔开的几个候选表达式是并列的关系，所以可以把这个|理解为或的意思</p>
+<h2 id="分组的分类">分组的分类</h2>
+<p>分组有四种类型，我们使用的比较多的都是捕获型分组，只有这种分组才会暂存匹配到的串</p>
+<ul>
+<li>
+<p>捕获型</p>
+</li>
+<li>
+<p>非捕获型</p>
+</li>
+<li>
+<p>正向前瞻型</p>
+</li>
+<li>
+<p>反向前瞻型</p>
+</li>
+</ul>
+<h2 id="分组的应用">分组的应用</h2>
+<h3 id="1-捕获与引用">1. 捕获与引用</h3>
+<p>被正则表达式捕获(匹配)到的字符串会被暂存起来，其中，由分组捕获到的字符串会从1开始编号，于是我们可以引用这些字符串</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">var</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/(\d{4})-(\d{2})-(\d{2})/</span>
+<span style="color:#8be9fd;font-style:italic">var</span> dateStr <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;2018-04-18&#39;</span>
+reg.test(dateStr)  <span style="color:#6272a4">//true
+</span><span style="color:#6272a4"></span>console.log(<span style="color:#8be9fd;font-style:italic">RegExp</span>.$1) <span style="color:#6272a4">// 2018
+</span><span style="color:#6272a4"></span>console.log(<span style="color:#8be9fd;font-style:italic">RegExp</span>.$2) <span style="color:#6272a4">// 04
+</span><span style="color:#6272a4"></span>console.log(<span style="color:#8be9fd;font-style:italic">RegExp</span>.$3) <span style="color:#6272a4">// 18
+</span></code></pre></div><h3 id="2-结合replace方法做字符串自定义替换">2. 结合replace方法做字符串自定义替换</h3>
+<p>String.prototype.replace方法的传参中可以直接引用被捕获的串，比如我们想开发中常见的日期格式替换,例如后台给你返回了一个2018/04/18,让你用正则替换为2018-04-18，就可以利用分组</p>
+<p>这里需要注意的是<code>/</code>是需要用<code>\</code>转义的</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">let</span> dateStr <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;2018/04/18&#39;</span>;
+<span style="color:#8be9fd;font-style:italic">let</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/(\d{4})\/(\d{2})\/(\d{2})/</span>;
+dateStr <span style="color:#ff79c6">=</span> dateStr.replace(reg, <span style="color:#f1fa8c">&#39;$1-$2-$3&#39;</span>)
+console.log(dateStr) <span style="color:#6272a4">// 2018-04-18
+</span></code></pre></div><h3 id="3-反向引用">3. 反向引用</h3>
+<p>正则表达式里也能进行引用，这称为反向引用</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// \w{3}表示任意的三位字母或数字,\1表示引用第1个分组，这里代表前三个字符
+</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">let</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/(\w{3}) is \1/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39;kid is kid&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;dik is dik&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;kid is dik&#39;</span>)) <span style="color:#6272a4">// false
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;dik is kid&#39;</span>)) <span style="color:#6272a4">// false
+</span></code></pre></div><p>如果引用了越界或者不存在的编号的话，就被被解析为普通的表达式</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">// \w{3}表示任意的三位字母或数字,\1表示引用第6个分组，这里第6个分组不存在，所以解析成了字符串&#39;\6&#39;
+</span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">let</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/(\w{3}) is \6/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39;kid is kid&#39;</span>)) <span style="color:#6272a4">// false
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;kid is \6&#39;</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div><h3 id="4-非捕获型分组">4. 非捕获型分组</h3>
+<p>有的时候只是为了分组并不需要捕获的情况下就可以使用非捕获型分组</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">let</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/(?:\d{4})-(\d{2})-(\d{2})/</span>
+<span style="color:#8be9fd;font-style:italic">let</span> date <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;2012-12-21&#39;</span>
+reg.test(date)
+console.log(<span style="color:#8be9fd;font-style:italic">RegExp</span>.$1) <span style="color:#6272a4">// 12
+</span><span style="color:#6272a4"></span>console.log(<span style="color:#8be9fd;font-style:italic">RegExp</span>.$2) <span style="color:#6272a4">// 21
+</span></code></pre></div><h3 id="5-正向与反向前瞻型分组">5. 正向与反向前瞻型分组</h3>
+<p>正向前瞻型分组：你站在原地往前看，如果前方是指定的东西就返回true，否则为false</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">let</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/kid is a (?=doubi)/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39;kid is a doubi&#39;</span>)) <span style="color:#6272a4">// true
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;kid is a shabi&#39;</span>)) <span style="color:#6272a4">// false
+</span></code></pre></div><p>反向前瞻型分组：你站在原地往前看，如果前方不是指定的东西则返回true，如果是则返回false</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">let</span> reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/kid is a (?!doubi)/</span>
+console.log(reg.test(<span style="color:#f1fa8c">&#39;kid is a doubi&#39;</span>)) <span style="color:#6272a4">// false
+</span><span style="color:#6272a4"></span>console.log(reg.test(<span style="color:#f1fa8c">&#39;kid is a shabi&#39;</span>)) <span style="color:#6272a4">// true
+</span></code></pre></div><h3 id="6-前瞻型分组和非捕获型分组的区别">6. 前瞻型分组和非捕获型分组的区别</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">let</span> reg, str <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;kid is a doubi&#34;</span>;
+reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/(kid is a (?:doubi))/</span>
+reg.test(str)
+console.log(<span style="color:#8be9fd;font-style:italic">RegExp</span>.$1) <span style="color:#6272a4">// kid is a doubi
+</span><span style="color:#6272a4"></span>  
+reg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">/(kid is a (?=doubi))/</span>
+reg.test(str)
+console.log(<span style="color:#8be9fd;font-style:italic">RegExp</span>.$1) <span style="color:#6272a4">// kis is a
+</span></code></pre></div><p>也就是说非捕获型分组匹配到的字符串任然会被外层分组匹配到，而前瞻型不会</p>
+<p>如果你希望在外层分组中不匹配里面分组的值的话就可以使用前瞻型分组了</p>
+</li>
+</ul>
+<h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="https://jex.im/regulex/#!flags=&amp;re=%5E(a%7Cb)*%3F%24">在线正则工具</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">正则表达式中的特殊字符</a></p>
+<p><a href="https://juejin.cn/post/6844903845227659271">正则表达式不要背</a></p>
+<p><a href="https://www.cnblogs.com/wancheng7/p/8906015.html">JS正则表达式的分组匹配</a></p>
+<p><a href="https://www.cnblogs.com/allen2333/p/9835654.html">正则表达式 - (?!), (?:), (?=)</a></p>
+</blockquote>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-09-23</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E5%BC%82%E6%AD%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+			Previous<br>JavaScript-异步解决方案
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2021 DaMuWang
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            },
+            debounce(func, wait, options) {
+                let lastArgs,
+                    lastThis,
+                    maxWait,
+                    result,
+                    timerId,
+                    lastCallTime
+
+                let lastInvokeTime = 0
+                let leading = false
+                let maxing = false
+                let trailing = true
+
+                
+                const useRAF = (!wait && wait !== 0 && typeof root.requestAnimationFrame === 'function')
+
+                if (typeof func !== 'function') {
+                    throw new TypeError('Expected a function')
+                }
+                function isObject(value) {
+                    const type = typeof value
+                    return value != null && (type === 'object' || type === 'function')
+                }
+
+                wait = +wait || 0
+                if (isObject(options)) {
+                    leading = !!options.leading
+                    maxing = 'maxWait' in options
+                    maxWait = maxing ? Math.max(+options.maxWait || 0, wait) : maxWait
+                    trailing = 'trailing' in options ? !!options.trailing : trailing
+                }
+
+                function invokeFunc(time) {
+                    const args = lastArgs
+                    const thisArg = lastThis
+
+                    lastArgs = lastThis = undefined
+                    lastInvokeTime = time
+                    result = func.apply(thisArg, args)
+                    return result
+                }
+
+                function startTimer(pendingFunc, wait) {
+                    if (useRAF) {
+                    root.cancelAnimationFrame(timerId)
+                    return root.requestAnimationFrame(pendingFunc)
+                    }
+                    return setTimeout(pendingFunc, wait)
+                }
+
+                function cancelTimer(id) {
+                    if (useRAF) {
+                    return root.cancelAnimationFrame(id)
+                    }
+                    clearTimeout(id)
+                }
+
+                function leadingEdge(time) {
+                    
+                    lastInvokeTime = time
+                    
+                    timerId = startTimer(timerExpired, wait)
+                    
+                    return leading ? invokeFunc(time) : result
+                }
+
+                function remainingWait(time) {
+                    const timeSinceLastCall = time - lastCallTime
+                    const timeSinceLastInvoke = time - lastInvokeTime
+                    const timeWaiting = wait - timeSinceLastCall
+
+                    return maxing
+                    ? Math.min(timeWaiting, maxWait - timeSinceLastInvoke)
+                    : timeWaiting
+                }
+
+                function shouldInvoke(time) {
+                    const timeSinceLastCall = time - lastCallTime
+                    const timeSinceLastInvoke = time - lastInvokeTime
+
+                    
+                    
+                    
+                    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+                    (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait))
+                }
+
+                function timerExpired() {
+                    const time = Date.now()
+                    if (shouldInvoke(time)) {
+                    return trailingEdge(time)
+                    }
+                    
+                    timerId = startTimer(timerExpired, remainingWait(time))
+                }
+
+                function trailingEdge(time) {
+                    timerId = undefined
+
+                    
+                    
+                    if (trailing && lastArgs) {
+                    return invokeFunc(time)
+                    }
+                    lastArgs = lastThis = undefined
+                    return result
+                }
+
+                function cancel() {
+                    if (timerId !== undefined) {
+                    cancelTimer(timerId)
+                    }
+                    lastInvokeTime = 0
+                    lastArgs = lastCallTime = lastThis = timerId = undefined
+                }
+
+                function flush() {
+                    return timerId === undefined ? result : trailingEdge(Date.now())
+                }
+
+                function pending() {
+                    return timerId !== undefined
+                }
+
+                function debounced(...args) {
+                    const time = Date.now()
+                    const isInvoking = shouldInvoke(time)
+
+                    lastArgs = args
+                    lastThis = this
+                    lastCallTime = time
+
+                    if (isInvoking) {
+                    if (timerId === undefined) {
+                        return leadingEdge(lastCallTime)
+                    }
+                    if (maxing) {
+                        
+                        timerId = startTimer(timerExpired, wait)
+                        return invokeFunc(lastCallTime)
+                    }
+                    }
+                    if (timerId === undefined) {
+                    timerId = startTimer(timerExpired, wait)
+                    }
+                    return result
+                }
+                debounced.cancel = cancel
+                debounced.flush = flush
+                debounced.pending = pending
+                return debounced
+                }
+
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+        
+        
+
+        document.querySelectorAll("table").forEach(function(elem){
+            elem.classList.add("table-striped");
+            elem.classList.add("table");
+            elem.classList.add("table-responsive");
+            elem.classList.add("table-hover");
+        })
+
+        
+        spy();
+        window.addEventListener('scroll', this.debounce(spy, 250, { 'maxWait': 250 }), false);
+        
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+
+
+
+</script>
+    </body>
+</html>

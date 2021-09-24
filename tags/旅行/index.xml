@@ -12,11 +12,26 @@
     
     
     <item>
-      <title>【待补充】四川-贡嘎</title>
-      <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%9B%9B%E5%B7%9D-%E8%B4%A1%E5%98%8E/</link>
+      <title>【待补充】甘南藏族自治州</title>
+      <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</link>
       <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%9B%9B%E5%B7%9D-%E8%B4%A1%E5%98%8E/</guid>
+      <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</guid>
+      <description>概念 JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。
+ 举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。
+ 只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：setTimeout
+下面要讲的 Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的。
+参考资料  JS事件循环（Event Loop）
+浅析 JS 中的 EventLoop 事件循环（新手向）
+ </description>
+    </item>
+    
+    <item>
+      <title>【待补充】甘孜藏族自治州-康定</title>
+      <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/</link>
+      <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/</guid>
       <description>行程 租车500*5 = 2500 车票来回2500 酒店两间500 * 5 = 2500 油费算五天2000 吃饭一天300 * 5 = 1500 门票粗略计算 2000 零食 1000
 注意事项
 参考资料  JS事件循环（Event Loop）
@@ -25,11 +40,11 @@
     </item>
     
     <item>
-      <title>【待补充】山东-青岛</title>
-      <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%B1%B1%E4%B8%9C-%E9%9D%92%E5%B2%9B/</link>
+      <title>【待补充】青岛</title>
+      <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/</link>
       <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%B1%B1%E4%B8%9C-%E9%9D%92%E5%B2%9B/</guid>
+      <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/</guid>
       <description>概念 JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。
  举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。
  只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：setTimeout

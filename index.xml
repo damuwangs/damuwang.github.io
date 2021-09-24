@@ -5,9 +5,341 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Sep 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>JavaScript-正则</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/</link>
+        <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/ -&lt;ul&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;字符串匹配single-char&#34;&gt;字符串匹配single char&lt;/h1&gt;
+&lt;h2 id=&#34;单个字符&#34;&gt;单个字符&lt;/h2&gt;
+&lt;p&gt;最简单的正则表达式可以由简单的数字和字母组成，没有特殊的语义，纯粹就是一一对应的关系。如想在&amp;rsquo;apple&amp;rsquo;这个单词里找到‘a&amp;rsquo;这个字符，就直接用&lt;code&gt;/a/&lt;/code&gt;这个正则就可以了。&lt;/p&gt;
+&lt;p&gt;但是如果想要匹配特殊字符的话，就要使用元字符&lt;code&gt;\&lt;/code&gt;， 它是转义字符字符，顾名思义，就是让其后续的字符失去其本来的含义。举个例子：&lt;/p&gt;
+&lt;p&gt;我想匹配&lt;code&gt;*&lt;/code&gt;这个符号，由于&lt;code&gt;*&lt;/code&gt;这个符号本身是个特殊字符，所以我要利用转义元字符\来让它失去其本来的含义&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;/\*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果本来这个字符不是特殊字符，使用转义符号就会让它拥有特殊的含义。我们常常需要匹配一些特殊字符，比如空格，制表符，回车，换行等, 而这些就需要我们使用转义字符来匹配&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;特殊字符&lt;/th&gt;
+&lt;th&gt;正则表达式&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;换行符&lt;/td&gt;
+&lt;td&gt;\n&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;换页符&lt;/td&gt;
+&lt;td&gt;\f&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;回车符&lt;/td&gt;
+&lt;td&gt;\r&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;空白符&lt;/td&gt;
+&lt;td&gt;\s&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;制表符&lt;/td&gt;
+&lt;td&gt;\t&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;垂直制表符&lt;/td&gt;
+&lt;td&gt;\v&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;回退符&lt;/td&gt;
+&lt;td&gt;[\b]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// \s代表匹配空格，abc为匹配&amp;#39;abc&amp;#39;字符串
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/\sabc/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39; abc&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;多个字符&#34;&gt;多个字符&lt;/h2&gt;
+&lt;p&gt;单个字符的映射关系是一对一的，即正则表达式的被用来筛选匹配的字符只有一个。而这显然是不够的，只要引入集合区间和通配符的方式就可以实现一对多的匹配了。&lt;/p&gt;
+&lt;p&gt;在正则表达式里，集合的定义方式是使用中括号&lt;code&gt;[&lt;/code&gt;和&lt;code&gt;]&lt;/code&gt;。如&lt;code&gt;/[123]/&lt;/code&gt;这个正则就能同时匹配1,2,3三个字符。那如果我想匹配所有的数字怎么办呢？从0写到9显然太过低效，所以元字符-就可以用来表示区间范围，利用&lt;code&gt;/[0-9]/&lt;/code&gt;就能匹配所有的数字, &lt;code&gt;/[a-z]/&lt;/code&gt;则可以匹配所有的英文小写字母。&lt;/p&gt;
+&lt;p&gt;即便有了集合和区间的定义方式，如果要同时匹配多个字符也还是要一一列举，这是低效的。所以在正则表达式里衍生了一批用来同时匹配多个字符的简便正则表达式&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;匹配区间&lt;/th&gt;
+&lt;th&gt;正则表达式&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;除了换行符之外的任何字符&lt;/td&gt;
+&lt;td&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;单个数字, [0-9]&lt;/td&gt;
+&lt;td&gt;\d&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;除了[0-9]&lt;/td&gt;
+&lt;td&gt;\D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;包括下划线在内的单个字符，[A-Za-z0-9_]&lt;/td&gt;
+&lt;td&gt;\w&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;非单字字符&lt;/td&gt;
+&lt;td&gt;\W&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;匹配空白字符,包括空格、制表符、换页符和换行符&lt;/td&gt;
+&lt;td&gt;\s&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;匹配非空白字符&lt;/td&gt;
+&lt;td&gt;\S&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// \d代表匹配0-9的数字，[a-z]为匹配所有小写字母
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/\d[a-z]/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;1a2b&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;数量匹配quantifiers&#34;&gt;数量匹配quantifiers&lt;/h1&gt;
+&lt;p&gt;要实现多个字符的匹配我们只要多次循环，重复使用我们的之前的正则规则就可以了。根据循环次数的多与少，我可以分为0次，1次，多次，特定次&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;匹配规则&lt;/th&gt;
+&lt;th&gt;元字符&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0次或1次&lt;/td&gt;
+&lt;td&gt;?&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;0次或无数次&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;1次或无数次&lt;/td&gt;
+&lt;td&gt;+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;特定次数&lt;/td&gt;
+&lt;td&gt;{x}, {min, max}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;匹配一个或0个字符&#34;&gt;匹配一个或0个字符&lt;/h2&gt;
+&lt;p&gt;元字符&lt;code&gt;?&lt;/code&gt;代表了匹配一个字符或0个字符&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 第一个?前面的字符串可以舍弃，第二个?前面的字符串可拼1个或2个
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/colou?rs?/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;color&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;colors&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;colours&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;colour&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;匹配0个或无数个字符&#34;&gt;匹配0个或无数个字符&lt;/h2&gt;
+&lt;p&gt;元字符&lt;code&gt;*&lt;/code&gt;用来表示匹配0个字符或无数个字符。通常用来过滤某些可有可无的字符串&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// *表示不限制，appl可随意拼接最后一位，也可不拼
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/appl*/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;appl&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;apple&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;元字符&lt;code&gt;+&lt;/code&gt;适用于要匹配同个字符出现1次或多次的情况&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// +限制apple必须出现1次或多次
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/apple+/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;appl&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;apple&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;匹配特定的重复次数&#34;&gt;匹配特定的重复次数&lt;/h2&gt;
+&lt;p&gt;在某些情况下，我们需要匹配特定的重复次数，元字符&lt;code&gt;{&lt;/code&gt;和&lt;code&gt;}&lt;/code&gt;用来给重复匹配设置精确的区间范围。如&amp;rsquo;a&amp;rsquo;我想匹配3次,那么我就使用&lt;code&gt;/a{3}/&lt;/code&gt;这个正则，或者说&amp;rsquo;a&amp;rsquo;我想匹配至少两次就是用&lt;code&gt;/a{2,}/&lt;/code&gt;这个正则。&lt;/p&gt;
+&lt;p&gt;以下是完整的语法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;-&lt;/span&gt; {x}&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; x次
+&lt;span style=&#34;color:#ff79c6&#34;&gt;-&lt;/span&gt; {min, max}： 介于min次到max次之间
+&lt;span style=&#34;color:#ff79c6&#34;&gt;-&lt;/span&gt; {min, }&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; 至少min次
+&lt;span style=&#34;color:#ff79c6&#34;&gt;-&lt;/span&gt; {&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, max}： 至多max次
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 限制a必须重复3次到5次，包括3和5
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/a{3,5}/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;aaaaa&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;位置边界匹配position&#34;&gt;位置边界匹配position&lt;/h1&gt;
+&lt;p&gt;在长文本字符串查找过程中，我们常常需要限制查询的位置。比如我只想在单词的开头结尾查找&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;边界和标志&lt;/th&gt;
+&lt;th&gt;正则表达式&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;单词边界&lt;/td&gt;
+&lt;td&gt;\b&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;非单词边界&lt;/td&gt;
+&lt;td&gt;\B&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;字符串开头&lt;/td&gt;
+&lt;td&gt;^&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;字符串结尾&lt;/td&gt;
+&lt;td&gt;$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;多行模式&lt;/td&gt;
+&lt;td&gt;m标志&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;忽略大小写&lt;/td&gt;
+&lt;td&gt;i标志&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;全局模式&lt;/td&gt;
+&lt;td&gt;g标志&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;单词边界&#34;&gt;单词边界&lt;/h2&gt;
+&lt;p&gt;单词是构成句子和文章的基本单位，一个常见的使用场景是把文章或句子中的特定单词找出来&lt;/p&gt;
+&lt;p&gt;我想找到&lt;code&gt;cat&lt;/code&gt;这个单词，但是如果只是使用&lt;code&gt;/cat/&lt;/code&gt;这个正则，就会同时匹配到&lt;code&gt;cat&lt;/code&gt;和&lt;code&gt;scattered&lt;/code&gt;这两处文本。这时候我们就需要使用边界正则表达式&lt;code&gt;\b&lt;/code&gt;，其中b是boundary的首字母。在正则引擎里它其实匹配的是能构成单词的字符(\w)和不能构成单词的字符(\W)中间的那个位置。&lt;/p&gt;
+&lt;p&gt;上面的例子改写成&lt;code&gt;/\bcat\b/&lt;/code&gt;这样就能匹配到&lt;code&gt;cat&lt;/code&gt;这个单词了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 包含cat都会被匹配到
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/cat/&lt;/span&gt;
+console.log(reg1.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;cat&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg1.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;scattered&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  
+&lt;span style=&#34;color:#6272a4&#34;&gt;// \b 设置了单词边界，必须为cat才能被匹配到,因此scattered会返回false
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/\bcat\b/&lt;/span&gt;
+console.log(reg2.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;cat&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg2.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;scattered&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;字符串边界&#34;&gt;字符串边界&lt;/h2&gt;
+&lt;p&gt;元字符&lt;code&gt;^&lt;/code&gt;用来匹配字符串的开头。而元字符&lt;code&gt;$&lt;/code&gt;用来匹配字符串的末尾。注意的是在长文本里，如果要排除换行符的干扰，我们要使用多行模式&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 从I开始0结束，匹配&amp;#39;I am scq000&amp;#39;,忽略大小写，忽略换行符
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/^I am scq000$/m&lt;/span&gt;
+console.log(reg1.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;`I am scq000
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;                       I am scq000
+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;                       I AM SCQ000`&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;分组匹配&#34;&gt;分组匹配&lt;/h1&gt;
+&lt;h2 id=&#34;什么是分组&#34;&gt;什么是分组&lt;/h2&gt;
+&lt;p&gt;通俗来说，我理解的分组就是在正则表达式中用（）包起来的内容代表了一个分组&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 匹配两位数字
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(\d{2})/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;12&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里reg中的&lt;code&gt;(/d{2})&lt;/code&gt;就表示一个分组，匹配两位数字&lt;/p&gt;
+&lt;h2 id=&#34;分组内容的的形式&#34;&gt;分组内容的的形式&lt;/h2&gt;
+&lt;p&gt;一个分组中可以像上面这样有一个具体的表达式，这样可以优雅地表达一个重复的字符串&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 匹配字符串&amp;#39;hahaha&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/hahaha/&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(ha){3}/&lt;/span&gt;
+console.log(reg1.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;hahaha&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg2.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;hahaha&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这两个表达式是等效的，但有了分组之后可以更急简洁&lt;/p&gt;
+&lt;p&gt;分组中还可以有多个候选表达式&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 匹配I come from hunan/hubei/zhejiang
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/I come from (hunan|hubei|zhejiang)/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I come from hunan&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I come from hubei&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也就是说在这个分组中，通过|隔开的几个候选表达式是并列的关系，所以可以把这个|理解为或的意思&lt;/p&gt;
+&lt;h2 id=&#34;分组的分类&#34;&gt;分组的分类&lt;/h2&gt;
+&lt;p&gt;分组有四种类型，我们使用的比较多的都是捕获型分组，只有这种分组才会暂存匹配到的串&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;捕获型&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;非捕获型&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;正向前瞻型&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;反向前瞻型&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;分组的应用&#34;&gt;分组的应用&lt;/h2&gt;
+&lt;h3 id=&#34;1-捕获与引用&#34;&gt;1. 捕获与引用&lt;/h3&gt;
+&lt;p&gt;被正则表达式捕获(匹配)到的字符串会被暂存起来，其中，由分组捕获到的字符串会从1开始编号，于是我们可以引用这些字符串&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(\d{4})-(\d{2})-(\d{2})/&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; dateStr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;2018-04-18&amp;#39;&lt;/span&gt;
+reg.test(dateStr)  &lt;span style=&#34;color:#6272a4&#34;&gt;//true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$1) &lt;span style=&#34;color:#6272a4&#34;&gt;// 2018
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$2) &lt;span style=&#34;color:#6272a4&#34;&gt;// 04
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$3) &lt;span style=&#34;color:#6272a4&#34;&gt;// 18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-结合replace方法做字符串自定义替换&#34;&gt;2. 结合replace方法做字符串自定义替换&lt;/h3&gt;
+&lt;p&gt;String.prototype.replace方法的传参中可以直接引用被捕获的串，比如我们想开发中常见的日期格式替换,例如后台给你返回了一个2018/04/18,让你用正则替换为2018-04-18，就可以利用分组&lt;/p&gt;
+&lt;p&gt;这里需要注意的是&lt;code&gt;/&lt;/code&gt;是需要用&lt;code&gt;\&lt;/code&gt;转义的&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; dateStr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;2018/04/18&amp;#39;&lt;/span&gt;;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(\d{4})\/(\d{2})\/(\d{2})/&lt;/span&gt;;
+dateStr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; dateStr.replace(reg, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;$1-$2-$3&amp;#39;&lt;/span&gt;)
+console.log(dateStr) &lt;span style=&#34;color:#6272a4&#34;&gt;// 2018-04-18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3-反向引用&#34;&gt;3. 反向引用&lt;/h3&gt;
+&lt;p&gt;正则表达式里也能进行引用，这称为反向引用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// \w{3}表示任意的三位字母或数字,\1表示引用第1个分组，这里代表前三个字符
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(\w{3}) is \1/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is kid&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;dik is dik&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is dik&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;dik is kid&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果引用了越界或者不存在的编号的话，就被被解析为普通的表达式&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// \w{3}表示任意的三位字母或数字,\1表示引用第6个分组，这里第6个分组不存在，所以解析成了字符串&amp;#39;\6&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(\w{3}) is \6/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is kid&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is \6&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;4-非捕获型分组&#34;&gt;4. 非捕获型分组&lt;/h3&gt;
+&lt;p&gt;有的时候只是为了分组并不需要捕获的情况下就可以使用非捕获型分组&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(?:\d{4})-(\d{2})-(\d{2})/&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; date &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;2012-12-21&amp;#39;&lt;/span&gt;
+reg.test(date)
+console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$1) &lt;span style=&#34;color:#6272a4&#34;&gt;// 12
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$2) &lt;span style=&#34;color:#6272a4&#34;&gt;// 21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;5-正向与反向前瞻型分组&#34;&gt;5. 正向与反向前瞻型分组&lt;/h3&gt;
+&lt;p&gt;正向前瞻型分组：你站在原地往前看，如果前方是指定的东西就返回true，否则为false&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/kid is a (?=doubi)/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is a doubi&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is a shabi&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;反向前瞻型分组：你站在原地往前看，如果前方不是指定的东西则返回true，如果是则返回false&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/kid is a (?!doubi)/&lt;/span&gt;
+console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is a doubi&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is a shabi&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;6-前瞻型分组和非捕获型分组的区别&#34;&gt;6. 前瞻型分组和非捕获型分组的区别&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg, str &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;kid is a doubi&amp;#34;&lt;/span&gt;;
+reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(kid is a (?:doubi))/&lt;/span&gt;
+reg.test(str)
+console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$1) &lt;span style=&#34;color:#6272a4&#34;&gt;// kid is a doubi
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  
+reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(kid is a (?=doubi))/&lt;/span&gt;
+reg.test(str)
+console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$1) &lt;span style=&#34;color:#6272a4&#34;&gt;// kis is a
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也就是说非捕获型分组匹配到的字符串任然会被外层分组匹配到，而前瞻型不会&lt;/p&gt;
+&lt;p&gt;如果你希望在外层分组中不匹配里面分组的值的话就可以使用前瞻型分组了&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://jex.im/regulex/#!flags=&amp;amp;re=%5E(a%7Cb)*%3F%24&#34;&gt;在线正则工具&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions&#34;&gt;正则表达式中的特殊字符&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903845227659271&#34;&gt;正则表达式不要背&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/wancheng7/p/8906015.html&#34;&gt;JS正则表达式的分组匹配&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/allen2333/p/9835654.html&#34;&gt;正则表达式 - (?!), (?:), (?=)&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/ - </description>
+        </item>
     
     
     
@@ -686,12 +1018,35 @@ s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
     
     
         <item>
-        <title>【待补充】四川-贡嘎</title>
-        <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%9B%9B%E5%B7%9D-%E8%B4%A1%E5%98%8E/</link>
+        <title>【待补充】甘南藏族自治州</title>
+        <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</link>
         <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%9B%9B%E5%B7%9D-%E8%B4%A1%E5%98%8E/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%9B%9B%E5%B7%9D-%E8%B4%A1%E5%98%8E/ -&lt;h1 id=&#34;行程&#34;&gt;行程&lt;/h1&gt;
+        <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;p&gt;JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：&lt;code&gt;setTimeout&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;下面要讲的 Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的。&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000019313028&#34;&gt;浅析 JS 中的 EventLoop 事件循环（新手向）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>【待补充】甘孜藏族自治州-康定</title>
+        <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/</link>
+        <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/ -&lt;h1 id=&#34;行程&#34;&gt;行程&lt;/h1&gt;
 &lt;p&gt;租车500*5 = 2500 
 车票来回2500 
 酒店两间500 * 5 = 2500 
@@ -705,18 +1060,18 @@ s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000019313028&#34;&gt;浅析 JS 中的 EventLoop 事件循环（新手向）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%9B%9B%E5%B7%9D-%E8%B4%A1%E5%98%8E/ - </description>
+- https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/ - </description>
         </item>
     
     
     
         <item>
-        <title>【待补充】山东-青岛</title>
-        <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%B1%B1%E4%B8%9C-%E9%9D%92%E5%B2%9B/</link>
+        <title>【待补充】青岛</title>
+        <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/</link>
         <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%B1%B1%E4%B8%9C-%E9%9D%92%E5%B2%9B/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%B1%B1%E4%B8%9C-%E9%9D%92%E5%B2%9B/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+        <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
 &lt;p&gt;JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。&lt;/p&gt;
@@ -728,7 +1083,7 @@ s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000019313028&#34;&gt;浅析 JS 中的 EventLoop 事件循环（新手向）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%B1%B1%E4%B8%9C-%E9%9D%92%E5%B2%9B/ - </description>
+- https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/ - </description>
         </item>
     
     
@@ -1202,379 +1557,6 @@ color_list.addEventListener(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;c
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/zhuzhenwei918/p/6139880.html&#34;&gt;JavaScript中捕获/阻止捕获、冒泡/阻止冒泡&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>重绘、回流</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</link>
-        <pubDate>Mon, 09 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/ -&lt;h1 id=&#34;浏览器渲染&#34;&gt;浏览器渲染&lt;/h1&gt;
-&lt;p&gt;浏览器在渲染页面的时候，大致是以下几个步骤：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;解析html生成DOM树，解析css，生成CSSOM树，将DOM树和CSSOM树结合，生成渲染树；&lt;/li&gt;
-&lt;li&gt;根据渲染树，浏览器可以计算出网页中有哪些节点，各节点的CSS以及从属关系 - 【回流】&lt;/li&gt;
-&lt;li&gt;根据渲染树以及回流得到的节点信息，计算出每个节点在屏幕中的位置 - 【重绘】&lt;/li&gt;
-&lt;li&gt;最后将得到的节点位置信息交给浏览器的图形处理程序，让浏览器中显示页面&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;回流&#34;&gt;回流&lt;/h1&gt;
-&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
-&lt;p&gt;英文叫reflow，指的是当渲染树中的节点信息发生了大小、边距等问题，需要重新计算各节点和css具体的大小和位置&lt;/p&gt;
-&lt;p&gt;例：在css中对一个div修饰的样式中，使用了宽度50%，此时需要将50%转换为具体的像素，这个计算的过程，就是回流的过程&lt;/p&gt;
-&lt;h2 id=&#34;容易造成回流的操作&#34;&gt;容易造成回流的操作&lt;/h2&gt;
-&lt;h3 id=&#34;1布局流相关操作&#34;&gt;1、布局流相关操作&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;盒模型的相关操作会触发重新布局&lt;/li&gt;
-&lt;li&gt;定位相关操作会触发重新布局&lt;/li&gt;
-&lt;li&gt;浮动相关操作会触发重新布局&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;2改变节点内的内容&#34;&gt;2、改变节点内的内容&lt;/h3&gt;
-&lt;p&gt;改变节点的结构或其中的文本结构会触发重新布局&lt;/p&gt;
-&lt;h3 id=&#34;3css&#34;&gt;3、css&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;width&lt;/li&gt;
-&lt;li&gt;height&lt;/li&gt;
-&lt;li&gt;padding&lt;/li&gt;
-&lt;li&gt;border&lt;/li&gt;
-&lt;li&gt;margin&lt;/li&gt;
-&lt;li&gt;position&lt;/li&gt;
-&lt;li&gt;top&lt;/li&gt;
-&lt;li&gt;left&lt;/li&gt;
-&lt;li&gt;bottom&lt;/li&gt;
-&lt;li&gt;right&lt;/li&gt;
-&lt;li&gt;float&lt;/li&gt;
-&lt;li&gt;clear&lt;/li&gt;
-&lt;li&gt;text-align&lt;/li&gt;
-&lt;li&gt;vertical-align&lt;/li&gt;
-&lt;li&gt;line-height&lt;/li&gt;
-&lt;li&gt;font-weight&lt;/li&gt;
-&lt;li&gt;font-size&lt;/li&gt;
-&lt;li&gt;font-family&lt;/li&gt;
-&lt;li&gt;overflow&lt;/li&gt;
-&lt;li&gt;white-space&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;重绘&#34;&gt;重绘&lt;/h1&gt;
-&lt;h2 id=&#34;概念-1&#34;&gt;概念&lt;/h2&gt;
-&lt;p&gt;重绘：英文叫repaint，当节点的部分属性发生变化，但不影响布局，只需要重新计算节点在屏幕中的绝对位置并渲染的过程，就叫重绘&lt;/p&gt;
-&lt;p&gt;例：改变元素的背景颜色、字体颜色等操作会造成重绘&lt;/p&gt;
-&lt;h2 id=&#34;容易造成重绘操作的css&#34;&gt;容易造成重绘操作的CSS&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;color&lt;/li&gt;
-&lt;li&gt;border-style&lt;/li&gt;
-&lt;li&gt;border-radius&lt;/li&gt;
-&lt;li&gt;text-decoration&lt;/li&gt;
-&lt;li&gt;box-shadow&lt;/li&gt;
-&lt;li&gt;outline&lt;/li&gt;
-&lt;li&gt;background&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;优化机制&#34;&gt;优化机制&lt;/h1&gt;
-&lt;h2 id=&#34;1浏览器优化&#34;&gt;1、浏览器优化&lt;/h2&gt;
-&lt;p&gt;每次回流都会对浏览器造成额外的计算消耗，所以浏览器对于回流和重绘有一定的优化机制&lt;/p&gt;
-&lt;p&gt;浏览器通常都会将多次回流操作放入一个队列中，等过了一段时间或操作达到了一定的临界值，然后才会挨个执行，这样能节省一些计算消耗。&lt;/p&gt;
-&lt;p&gt;但是在获取布局信息操作的时候，会强制将队列清空，也就是强制回流，比如访问或操作以下或方法时：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;offsetTop&lt;/li&gt;
-&lt;li&gt;offsetLeft&lt;/li&gt;
-&lt;li&gt;offsetWidth&lt;/li&gt;
-&lt;li&gt;offsetHeight&lt;/li&gt;
-&lt;li&gt;scrollTop&lt;/li&gt;
-&lt;li&gt;scrollLeft&lt;/li&gt;
-&lt;li&gt;scrollWidth&lt;/li&gt;
-&lt;li&gt;scrollHeight&lt;/li&gt;
-&lt;li&gt;clientTop&lt;/li&gt;
-&lt;li&gt;clientLeft&lt;/li&gt;
-&lt;li&gt;clientWidth&lt;/li&gt;
-&lt;li&gt;clientHeight&lt;/li&gt;
-&lt;li&gt;getComputedStyle()&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这些属性或方法都需要得到最新的布局信息，所以浏览器必须去回流执行。因此，在项目中，尽量避免使用上述属性或方法，如果非要使用的时候，也尽量将值缓存起来，而不是一直获取&lt;/p&gt;
-&lt;h2 id=&#34;2合并样式修改&#34;&gt;2、合并样式修改&lt;/h2&gt;
-&lt;p&gt;减少造成回流的次数，如果要给一个节点操作多个css属性，而每一个都会造成回流的话，尽量将多次操作合并成一个，例：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oDiv &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelector(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;.box&amp;#39;&lt;/span&gt;)
-oDiv.style.padding &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;5px&amp;#39;&lt;/span&gt;
-oDiv.style.border &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;1px solid #000&amp;#39;&lt;/span&gt;
-oDiv.style.margin &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;5px&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;操作div的3个css属性，分别是padding、border、margin，此时就可以考虑将多次操作合并为一次&lt;/p&gt;
-&lt;p&gt;方法一：使用style的cssText&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;oDiv.style.cssText &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;padding:5px; border:1px solid #000; margin:5px;&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;方法二：将这几个样式定义给一个类名，然后给标签添加类名&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;style&lt;/span&gt;&amp;gt;
-    .&lt;span style=&#34;color:#50fa7b&#34;&gt;pbm&lt;/span&gt;{
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;padding&lt;/span&gt;:&lt;span style=&#34;color:#bd93f9&#34;&gt;5&lt;/span&gt;&lt;span style=&#34;color:#8be9fd&#34;&gt;px&lt;/span&gt;; 
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;border&lt;/span&gt;:&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#8be9fd&#34;&gt;px&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;solid&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;#000&lt;/span&gt;; 
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;margin&lt;/span&gt;:&lt;span style=&#34;color:#bd93f9&#34;&gt;5&lt;/span&gt;&lt;span style=&#34;color:#8be9fd&#34;&gt;px&lt;/span&gt;;
-    }
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;style&lt;/span&gt;&amp;gt;
-&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oDiv &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelector(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;.box&amp;#39;&lt;/span&gt;);
-    oDiv.classList.add(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;pbm&amp;#39;&lt;/span&gt;);
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;3批量操作dom&#34;&gt;3、批量操作DOM&lt;/h2&gt;
-&lt;p&gt;当对DOM有多次操作的时候，需要使用一些特殊处理减少触发回流，其实就是对DOM的多次操作，在脱离标准流后，对元素进行的多次操作，不会触发回流，等操作完成后，再将元素放回标准流&lt;/p&gt;
-&lt;p&gt;脱离标准流的操作有以下3中：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;隐藏元素&lt;/li&gt;
-&lt;li&gt;使用文档碎片&lt;/li&gt;
-&lt;li&gt;拷贝节点&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;例：下面对DOM节点的多次操作，每次都会触发回流&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; data &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; [
-    {
-        id&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;,
-        name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;商品1&amp;#34;&lt;/span&gt;
-    },
-    {
-        id&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;,
-        name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;商品1&amp;#34;&lt;/span&gt;
-    },
-    {
-        id&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;,
-        name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;商品1&amp;#34;&lt;/span&gt;
-    },
-    {
-        id&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt;,
-        name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;商品1&amp;#34;&lt;/span&gt;
-    }
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 假设后面还有很多
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;]
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oUl &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.querySelector(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;ul&amp;#34;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; i&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;;i&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;data.length;i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;){
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oLi &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;li&amp;#34;&lt;/span&gt;)
-    oLi.innerText &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; data[i].name
-    oUl.appendChild(oLi)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样每次给ul中新增一个li的操作，每次都会触发回流。&lt;/p&gt;
-&lt;p&gt;方法一：隐藏ul后，给ul添加节点，添加完成后再将ul显示&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;oUl.style.display &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;none&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; i&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;;i&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;data.length;i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;){
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oLi &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;li&amp;#34;&lt;/span&gt;)
-    oLi.innerText &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; data[i].name
-    oUl.appendChild(oLi)
-}
-oUl.style.display &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;block&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;此时，在隐藏ul和显示ul的时候，触发了两次回流，给ul添加每个li的时候没有触发回流。&lt;/p&gt;
-&lt;p&gt;方法二：创建文档碎片，将所有li先放在文档碎片中，等都放进去以后，再将文档碎片放在ul中&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; fragment &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createDocumentFragment()
-&lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; i&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;;i&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;data.length;i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;){
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oLi &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;li&amp;#34;&lt;/span&gt;)
-    oLi.innerText &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; data[i].name
-    fragment.appendChild(oLi)
-}
-oUl.appendChild(fragment)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;方法三：将ul拷贝一份，将所有li放在拷贝中，等都放进去以后，使用拷贝替换掉ul&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; newUL &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; oUl.cloneNode(&lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;);
-&lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; i&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;;i&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;data.length;i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;){
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; oLi &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;li&amp;#34;&lt;/span&gt;);
-    oLi.innerText &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; data[i].name;
-    newUL.appendChild(oLi);
-}
-oUl.parentElement.replaceChild(newUl, oUl);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;4避免多次触发布局&#34;&gt;4、避免多次触发布局&lt;/h2&gt;
-&lt;p&gt;例：如下回到顶部的操作&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;goBack.onclick &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
-    setInterval(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
-        &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; t &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.documentElement.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.scrollTop
-        t &lt;span style=&#34;color:#ff79c6&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt;
-        &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.documentElement.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; t
-    },&lt;span style=&#34;color:#bd93f9&#34;&gt;20&lt;/span&gt;)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;每隔20毫秒都会重新获取滚动过的距离，每次都会触发回流，代码优化如下：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;goBack.onclick &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; t &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.documentElement.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.scrollTop
-    setInterval(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
-        t &lt;span style=&#34;color:#ff79c6&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt;
-        &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.documentElement.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.scrollTop &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; t
-    },&lt;span style=&#34;color:#bd93f9&#34;&gt;20&lt;/span&gt;)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;只获取一次，每次都让数字递增，避免每次都获取滚动过的距离&lt;/p&gt;
-&lt;p&gt;对于页面中比较复杂的动画，尽量将元素设置为绝对定位，操作元素的定位属性，这样只有这一个元素会回流，如果不是定位的话，容易引起其父元素以及子元素的回流&lt;/p&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/342371522&#34;&gt;讲清楚重排或回流、重绘&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Vue2-token</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/</link>
-        <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/ -&lt;h1 id=&#34;token的含义&#34;&gt;token的含义&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1、Token的引入：
-Token是在客户端频繁向服务端请求数据，服务端频繁的去数据库查询用户名和密码并进行对比，判断用户名和密码正确与否，并作出相应提示，在这样的背景下，Token便应运而生。&lt;/p&gt;
-&lt;p&gt;2、Token的定义：
-Token是服务端生成的一串字符串，以作客户端进行请求的一个令牌，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。&lt;/p&gt;
-&lt;p&gt;3、使用Token的目的：
-Token的目的是为了减轻服务器的压力，减少频繁的查询数据库，使服务器更加健壮。&lt;/p&gt;
-&lt;p&gt;4、Token 的优点：
-扩展性更强，也更安全点，非常适合用在 Web 应用或者移动应用上。Token 的中文有人翻译成 “令牌”，我觉得挺好，意思就是，你拿着这个令牌，才能过一些关卡。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;项目中使用token&#34;&gt;项目中使用token&lt;/h1&gt;
-&lt;p&gt;说明&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;文件名称&lt;/th&gt;
-&lt;th&gt;功能描述&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;auth.js&lt;/td&gt;
-&lt;td&gt;设置、获取以及清空cookie&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;http.js&lt;/td&gt;
-&lt;td&gt;接口请求封装&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;store.js&lt;/td&gt;
-&lt;td&gt;对接业务的状态管理，负责登录、登出状态的保存和移除&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;流程梳理&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;用户输入信息点击登录，调用store.js中的Login方法请求登录接口，调用成功返回200回传token值&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;接着调用SaveLoginInfo方法，将token值state中保存一份，再调用setToken将token在cookie中也保存一份&lt;/p&gt;
-&lt;p&gt;因为vuex刷新页面数据会丢，所以在cookie里面也放了一份，使用的时候只需要通过getter方法获取state就可以，state默认值为调用getToken获取的cookie中的token值&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;此时token对象就可以全局使用了，除登录以外的所有接口请求都要传token，否则会报505错误&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;token由服务端生成，设置了失效时间为24小时&lt;/p&gt;
-&lt;p&gt;当token过期，前端再发送请求，服务端会返回505，此响应会被http.js的拦截器捕获&lt;/p&gt;
-&lt;p&gt;捕获后先弹框提示‘登录信息已过期，请重新登录&amp;rsquo;，接着调用store.js中的ClearLoginInfo方法清空state中全局token，再调用removeToken移除cookie&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;清空完之后会执行跳转，重新回到登录页面重复步骤一&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;退出登录与登录操作类似，用户点击退出登录按钮，调用store.js里的ClearLoginInfo方法。先清空state中全局token，再调用removeToken移除cookie&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;代码&lt;/p&gt;
-&lt;p&gt;auth.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Cookies from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;js-cookie&amp;#39;&lt;/span&gt;
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; TokenKey &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;sxmanage-auth-token&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// tokenKey为固定字符串
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 根据TokenKey获取cookie中的token信息
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; getToken () {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.get(TokenKey)
-}
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 设置将token设置到cookie中
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; setToken (token) {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.set(TokenKey, token)
-}
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 根据tTokenKey移除cookie中的token信息
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; removeToken () {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; Cookies.remove(TokenKey)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;http.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; axios from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;axios&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; store from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/store&amp;#39;&lt;/span&gt;
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; service &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; axios.create({
-    timeout&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;30000&lt;/span&gt;, &lt;span style=&#34;color:#6272a4&#34;&gt;// request timeout
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    withCredentials&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
-})
-
-&lt;span style=&#34;color:#6272a4&#34;&gt;// resposne interceptor
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;service.interceptors.response.use(
-    response =&amp;gt; {
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; res &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; response.data
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (res.c &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;505&lt;/span&gt;)  {
-            alert(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;登录信息已过期，请重新登录&amp;#39;&lt;/span&gt;)
-            &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;            store.dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ClearLoginInfo&amp;#39;&lt;/span&gt;).then(() =&amp;gt; {
-                &lt;span style=&#34;color:#6272a4&#34;&gt;// 跳转到登录页面
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                router.push(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/login&amp;#39;&lt;/span&gt;)
-            })
-        }
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; response
-    }, error =&amp;gt; {
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;.reject(error)
-    }
-)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;store.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Vuex from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vuex&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; Vue from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;vue&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { base } from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/api/base&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;import&lt;/span&gt; { getToken, setToken, removeToken} from &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;@/utils/auth&amp;#39;&lt;/span&gt;
-
-Vue.use(Vuex)
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; state &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
-  token&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; getToken()
-}
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; getters &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
-  token&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; state =&amp;gt; state.token
-}
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; mutations &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
-  SET_TOKEN&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; (state, token) =&amp;gt; {
-    state.token &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; token
-  }
-}
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; actions &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
-  &lt;span style=&#34;color:#6272a4&#34;&gt;/** 登录 */&lt;/span&gt;
-  Login&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit, dispatch }, userInfo) =&amp;gt; {
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;((resolve, reject) =&amp;gt; {
-      base.login(userInfo).then(response =&amp;gt; {
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (response.data.c &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;) {
-          &lt;span style=&#34;color:#6272a4&#34;&gt;// 先清除数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;          dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ClearLoginInfo&amp;#39;&lt;/span&gt;)
-          &lt;span style=&#34;color:#6272a4&#34;&gt;// 再保存数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;          dispatch(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SaveLoginInfo&amp;#39;&lt;/span&gt;, response.data)
-          resolve(response.data)
-        } &lt;span style=&#34;color:#ff79c6&#34;&gt;else&lt;/span&gt; {
-          reject(response.data.c)
-        }
-      })
-    })
-  },
-  &lt;span style=&#34;color:#6272a4&#34;&gt;// 保存登录信息
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  SaveLoginInfo&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit }, data) =&amp;gt; {
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// state保存token
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    commit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SET_TOKEN&amp;#39;&lt;/span&gt;, data.v.token)
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 保存token到cookie中
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    setToken(data.v.token)
-  },
-  &lt;span style=&#34;color:#6272a4&#34;&gt;/** 清除数据 */&lt;/span&gt;
-  ClearLoginInfo&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; ({ commit }) =&amp;gt; {
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    commit(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;SET_TOKEN&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;)
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 清除cookie中的token
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    removeToken()
-  }
-}
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Vuex.Store({
-  state,
-  getters,
-  mutations,
-  actions
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/cmj6706/article/details/79032703&#34;&gt;token详解以及应用原理&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/ - </description>
         </item>
     
     
