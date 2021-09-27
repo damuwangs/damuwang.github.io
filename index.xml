@@ -1051,17 +1051,9 @@ s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
         <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
         
         <guid>https://damuwangs.github.io/posts/%E9%9F%B3%E4%B9%90/%E4%B9%90%E7%90%86/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E9%9F%B3%E4%B9%90/%E4%B9%90%E7%90%86/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
-&lt;p&gt;JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：&lt;code&gt;setTimeout&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;下面要讲的 Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的。&lt;/p&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+        <description>DaMuWang https://damuwangs.github.io/posts/%E9%9F%B3%E4%B9%90/%E4%B9%90%E7%90%86/ -&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000019313028&#34;&gt;浅析 JS 中的 EventLoop 事件循环（新手向）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E9%9F%B3%E4%B9%90/%E4%B9%90%E7%90%86/ - </description>
         </item>
@@ -1074,17 +1066,9 @@ s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
         <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
         
         <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
-&lt;p&gt;JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：&lt;code&gt;setTimeout&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;下面要讲的 Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的。&lt;/p&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/ -&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000019313028&#34;&gt;浅析 JS 中的 EventLoop 事件循环（新手向）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/ - </description>
         </item>
@@ -1109,7 +1093,6 @@ s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000019313028&#34;&gt;浅析 JS 中的 EventLoop 事件循环（新手向）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/ - </description>
         </item>
@@ -1122,17 +1105,9 @@ s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
         <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
         
         <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
-&lt;p&gt;JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：&lt;code&gt;setTimeout&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;下面要讲的 Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的。&lt;/p&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/ -&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000019313028&#34;&gt;浅析 JS 中的 EventLoop 事件循环（新手向）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/ - </description>
         </item>
