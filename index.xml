@@ -18,7 +18,7 @@
         
         <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
         <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/ -&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.blog/2020-07-30-token-authentication-requirements-for-api-and-git-operations/&#34;&gt;2020 年 7 月&lt;/a&gt;，Github官方宣布对所有经过身份验证的 Git 操作，使用基于令牌的身份验证（例如，个人访问、OAuth 或 GitHub 应用程序安装令牌）。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.blog/2020-07-30-token-authentication-requirements-for-api-and-git-operations/&#34;&gt;2020 年 7 月&lt;/a&gt;，GitHub官方宣布对所有经过身份验证的 Git 操作，使用基于令牌的身份验证（例如，个人访问、OAuth 或 GitHub 应用程序安装令牌）。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;从 2021 年 8 月 13 日开始，将在 GitHub.com 上对 Git 操作进行身份验证时不再接受帐户密码&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;因此对于开发人员来说，如果无法再用密码对 GitHub.com 的 Git 操作进行身份验证，则必须通过 HTTPS（推荐）或 SSH 密钥开始使用个人访问令牌，以避免中断&lt;/p&gt;
 &lt;h1 id=&#34;创建个人访问令牌&#34;&gt;创建个人访问令牌&lt;/h1&gt;
@@ -55,7 +55,7 @@
 &lt;/ol&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;%5BGithub%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E6%95%99%E7%A8%8B_%E8%BF%99%E4%B9%9F%E5%A4%AA%E5%8D%97%E4%BA%86%E8%B6%B4%E7%9A%84%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2_github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%5D(https://blog.csdn.net/qq_46941656/article/details/119737804)&#34;&gt;Github创建个人访问令牌教程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;%5BGithub%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E6%95%99%E7%A8%8B_%E8%BF%99%E4%B9%9F%E5%A4%AA%E5%8D%97%E4%BA%86%E8%B6%B4%E7%9A%84%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2_github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%5D(https://blog.csdn.net/qq_46941656/article/details/119737804)&#34;&gt;GitHub创建个人访问令牌教程&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/ - </description>
         </item>
