@@ -6,10 +6,19 @@
     <description>Recent content in Categories on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 Sep 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DEMO</title>
+      <link>https://damuwangs.github.io/categories/demo/</link>
+      <pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/categories/demo/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>环境搭建</title>
@@ -44,15 +53,6 @@
       <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/categories/vue/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DEMO</title>
-      <link>https://damuwangs.github.io/categories/demo/</link>
-      <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://damuwangs.github.io/categories/demo/</guid>
       <description></description>
     </item>
     

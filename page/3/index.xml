@@ -5,9 +5,100 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 Sep 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>CSS3动画</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%8A%A8%E7%94%BB/</link>
+        <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%8A%A8%E7%94%BB/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%8A%A8%E7%94%BB/ -&lt;h1 id=&#34;一素转换transform&#34;&gt;一、素转换transform&lt;/h1&gt;
+&lt;h2 id=&#34;1元素位置移动translate&#34;&gt;1.元素位置移动translate()&lt;/h2&gt;
+&lt;p&gt;参数：左(X轴)，顶部(Y轴)单位px&lt;/p&gt;
+&lt;p&gt;样例：&lt;a href=&#34;https://codepen.io/damuwangs/pen/LYymGqJ&#34;&gt;元素位置移动&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2元素旋转rotate&#34;&gt;2.元素旋转rotate()&lt;/h2&gt;
+&lt;p&gt;参数：旋转度数(负值是允许的，这样是元素逆时针旋转)，单位deg&lt;/p&gt;
+&lt;p&gt;样例：&lt;a href=&#34;https://codepen.io/damuwangs/pen/qBmYZdQ&#34;&gt;元素旋转&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3元素缩放scale&#34;&gt;3.元素缩放scale()&lt;/h2&gt;
+&lt;p&gt;参数：宽度缩放倍数、高度缩放倍数无参数&lt;/p&gt;
+&lt;p&gt;样例：&lt;a href=&#34;https://codepen.io/damuwangs/pen/oNWdxGr&#34;&gt;元素缩放&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;4元素倾斜skew&#34;&gt;4.元素倾斜skew()&lt;/h2&gt;
+&lt;p&gt;通过设置倾斜将正方形转化成菱形&lt;/p&gt;
+&lt;p&gt;参数：X轴，Y轴单位deg&lt;/p&gt;
+&lt;p&gt;样例：&lt;a href=&#34;https://codepen.io/damuwangs/pen/mdmLPKP&#34;&gt;元素倾斜&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;5元素转换matrix&#34;&gt;5.元素转换matrix()&lt;/h2&gt;
+&lt;p&gt;方法：将上面的方法合并成一个，matrix 方法有六个参数，包含旋转，缩放，移动（平移）和倾斜功能&lt;/p&gt;
+&lt;h1 id=&#34;二过渡transition&#34;&gt;二、过渡transition&lt;/h1&gt;
+&lt;p&gt;属性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;transition-property：规定应用过渡的 CSS 属性的名称&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;transition-duration：定义过渡效果花费的时间。默认是 0&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;transition-timing-function：规定过渡效果的时间曲线。默认是 &amp;ldquo;ease&amp;rdquo;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;linear：规定以相同速度开始至结束的过渡效果（等于 cubic-bezier(0,0,1,1)）&lt;/li&gt;
+&lt;li&gt;ease：规定慢速开始，然后变快，然后慢速结束的过渡效果（cubic-bezier(0.25,0.1,0.25,1)）&lt;/li&gt;
+&lt;li&gt;ease-in：规定以慢速开始的过渡效果（等于 cubic-bezier(0.42,0,1,1)）&lt;/li&gt;
+&lt;li&gt;ease-out：规定以慢速结束的过渡效果（等于 cubic-bezier(0,0,0.58,1)）&lt;/li&gt;
+&lt;li&gt;ease-in-out：规定以慢速开始和结束的过渡效果（等于 cubic-bezier(0.42,0,0.58,1)）&lt;/li&gt;
+&lt;li&gt;cubic-bezier(n,n,n,n)：在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;transition-delay：规定过渡效果何时开始。默认是 0&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;样例：&lt;a href=&#34;https://codepen.io/damuwangs/pen/ExmLyJy&#34;&gt;blog - CSS3动画 - 过渡&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;三动画animation&#34;&gt;三、动画animation&lt;/h1&gt;
+&lt;p&gt;属性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;@keyframes：声明动画&lt;/li&gt;
+&lt;li&gt;animation-name：引入动画&lt;/li&gt;
+&lt;li&gt;animation-duration： 规定动画完成一个周期所花费的秒或毫秒。默认是 0，单位s&lt;/li&gt;
+&lt;li&gt;animation-timing-function：规定动画的速度曲线。默认是 &amp;ldquo;ease&amp;rdquo;，设置同上&lt;/li&gt;
+&lt;li&gt;animation-fill-mode：规定当动画不播放时，要应用到元素的样式。&lt;/li&gt;
+&lt;li&gt;animation-delay：规定动画何时开始。默认是 0，单位s&lt;/li&gt;
+&lt;li&gt;animation-iteration-count：规定动画被播放的次数。
+&lt;ul&gt;
+&lt;li&gt;填写一个数字，默认是 1&lt;/li&gt;
+&lt;li&gt;infinite指定动画应该播放无限次&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;animation-direction：规定动画是否在下一周期逆向地播放，默认是 &amp;ldquo;normal&amp;rdquo;
+&lt;ul&gt;
+&lt;li&gt;normal：默认值。动画按正常播放&lt;/li&gt;
+&lt;li&gt;reverse：动画反向播放&lt;/li&gt;
+&lt;li&gt;alternate：动画在奇数次（1、3、5&amp;hellip;）正向播放，在偶数次（2、4、6&amp;hellip;）反向播放&lt;/li&gt;
+&lt;li&gt;reverse：动画在奇数次（1、3、5&amp;hellip;）反向播放，在偶数次（2、4、6&amp;hellip;）正向播放&lt;/li&gt;
+&lt;li&gt;initial：设置该属性为它的默认值&lt;/li&gt;
+&lt;li&gt;inherit：从父元素继承该属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;animation-play-state：规定动画是否正在运行或暂停，默认是 &amp;ldquo;running&amp;rdquo;
+&lt;ul&gt;
+&lt;li&gt;paused：指定暂停动画&lt;/li&gt;
+&lt;li&gt;running：指定正在运行的动画&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;样例：&lt;a href=&#34;https://codepen.io/damuwangs/pen/xxdjEoz&#34;&gt;blog - CSS3动画 - 动画&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/q/1010000003867335&#34;&gt;如何理解animation-fill-mode及其使用？&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://c.runoob.com/codedemo/5528&#34;&gt;HTML+CSS 绘制太阳系各个行星运行轨迹&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://c.runoob.com/codedemo/5645&#34;&gt;CSS 太极旋转图&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%8A%A8%E7%94%BB/ - </description>
+        </item>
     
     
     
