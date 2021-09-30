@@ -5,9 +5,51 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Sep 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Vue2-路由传参，页面刷新后参数类型改变</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E5%90%8E%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%B9%E5%8F%98/</link>
+        <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E5%90%8E%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%B9%E5%8F%98/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E5%90%8E%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%B9%E5%8F%98/ -&lt;h1 id=&#34;问题描述&#34;&gt;问题描述&lt;/h1&gt;
+&lt;p&gt;今天发现一个小问题，列表通过路由传递的 number 类型参数，用 === 来判断&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Number&lt;/span&gt;(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$route.query.type) &lt;span style=&#34;color:#ff79c6&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;结果发现有时候为 true ，有时候为 false&lt;/p&gt;
+&lt;p&gt;进入页面，打印参数类型：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;number
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;刷新页面，打印参数类型：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;string
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;后来发现，原因是：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;vue-router 传参，不管是 params 形式还是query形式传参，在页面刷新后，params 和 query
+对象中的属性所对应的属性值都会被浏览器自身强制转换为string类型
+(这一点与浏览器的sessionStorage和localStorage存储对象，对象会被转为string类型，不谋而合)，破环原先属性值的数据类型&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
+&lt;p&gt;将参数强制转为 Number类型：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Number&lt;/span&gt;(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$route.query.type)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;总结&#34;&gt;总结&lt;/h1&gt;
+&lt;p&gt;1、number数据类型：页面刷新后，其类型会转换为 string 类型。&lt;/p&gt;
+&lt;p&gt;所以，在路由刷新页面，在使用时，不管页面是否刷新，都对传递过来的属性值做一次Number()转换；&lt;/p&gt;
+&lt;p&gt;2、string数据类型：页面刷新后，其类型依然为string类型；&lt;/p&gt;
+&lt;p&gt;3、boolean数据类型：页面刷新后，其类型会转换为string类型。&lt;/p&gt;
+&lt;p&gt;所以，在路由刷新页面，在使用时，不管页面是否刷新，都对传递过来的属性值做一次Boolean()转换；&lt;/p&gt;
+&lt;p&gt;4、undefined数据类型：页面刷新后，其类型依然为undefined类型；&lt;/p&gt;
+&lt;p&gt;5、null数据类型：页面刷新后，其类型依然为null类型；&lt;/p&gt;
+&lt;p&gt;6、object数据类型：页面刷新后，其类型会转换为string类型；&lt;/p&gt;
+&lt;p&gt;所以，在路由跳转传参页面对属性值做一次JSON.stringify()预处理，然后在路由刷新页面对该值进行JSON.parse()转换。&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/HH18700418030/article/details/119576206&#34;&gt;vue 路由传参，页面刷新后参数类型改变_且听风吟的博客-CSDN博客&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E5%90%8E%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%B9%E5%8F%98/ - </description>
+        </item>
     
     
     
@@ -1183,300 +1225,6 @@ s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
 &lt;p&gt;&lt;a href=&#34;https://www.sohu.com/a/380044473_685943&#34;&gt;增肌减脂必知BMR&amp;amp;TDEE计算口诀&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E5%81%A5%E8%BA%AB/%E8%9B%8B%E7%99%BD%E8%B4%A8%E6%91%84%E5%85%A5%E4%B8%8E%E7%83%AD%E9%87%8F%E7%BC%BA%E5%8F%A3%E8%AE%A1%E7%AE%97/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>JavaScript-EventLoop事件循环</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-eventloop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</link>
-        <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-eventloop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-eventloop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
-&lt;p&gt;JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：&lt;code&gt;setTimeout&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的&lt;/p&gt;
-&lt;h2 id=&#34;队列queue&#34;&gt;队列（Queue）&lt;/h2&gt;
-&lt;p&gt;队列是一种FIFO(First In, First Out) 的数据结构，它的特点就是先进先出&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;举例：生活中最常见的例子就是排队，排在队伍最前面的人最先被提供服务&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;栈stack&#34;&gt;栈（Stack）&lt;/h2&gt;
-&lt;p&gt;栈是一种 LIFO（Last In, First Out）的数据结构，特点即后进先出&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;样例：大家都吃过桶装薯片吧~薯片在包装的时候只能从顶部放入，而吃的时候也只能从顶部拿出，这就叫后进先出&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;调用栈call-stack&#34;&gt;调用栈（Call Stack）&lt;/h2&gt;
-&lt;p&gt;调用栈本质上当然还是个栈，关键在于它里面装的东西，是一个个待执行的函数&lt;/p&gt;
-&lt;p&gt;Event Loop 会一直检查 Call Stack 中是否有函数需要执行，如果有，就从栈顶依次执行。同时，如果执行的过程中发现其他函数，继续入栈然后执行&lt;/p&gt;
-&lt;p&gt;先拿两个函数来说：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;栈空&lt;/li&gt;
-&lt;li&gt;现在执行到一个函数A，函数A入栈&lt;/li&gt;
-&lt;li&gt;函数A 又调用了函数B，函数B入栈&lt;/li&gt;
-&lt;li&gt;函数B执行完后出栈&lt;/li&gt;
-&lt;li&gt;然后继续执行函数A，执行完后A也出栈&lt;/li&gt;
-&lt;li&gt;栈空&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;看一段代码：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; bar &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; baz &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; foo &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
-	console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;)
-	bar()
-	baz()
-}
-foo()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这段代码在 调用栈中的运行顺序如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-EventLoop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/%E8%B0%83%E7%94%A8%E6%A0%88.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;上面我们讨论的其实都是同步代码，代码在运行的时候只用 调用栈 解释就可以了&lt;/p&gt;
-&lt;p&gt;那么，假如我们发起了一个网络请求(request)，或者设置了一个定时器延时(setTimeout)，一段时间后的代码（回调函数）肯定不是直接被加到调用栈吧？&lt;/p&gt;
-&lt;p&gt;这时就要引出事件表格（Event Table）和事件队列 (Event Queue)了&lt;/p&gt;
-&lt;h2 id=&#34;event-table&#34;&gt;Event Table&lt;/h2&gt;
-&lt;p&gt;Event Table 可以理解成一张 &lt;code&gt;事件-&amp;gt;回调函数&lt;/code&gt; 对应表&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;它就是用来存储 JavaScript 中的异步事件 (request, setTimeout, IO等) 及其对应的回调函数&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;event-queue&#34;&gt;Event Queue&lt;/h2&gt;
-&lt;p&gt;Event Queue 简单理解就是 &lt;code&gt;回调函数 队列&lt;/code&gt;，所以它也叫 Callback Queue&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;当 Event Table 中的事件被触发，事件对应的回调函数就会被 push 进这个 Event Queue，然后等待被执行&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;event-loop&#34;&gt;Event Loop&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-EventLoop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/EventLoop.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;开始，任务先进入 Call Stack&lt;/li&gt;
-&lt;li&gt;同步任务直接在栈中等待被执行，异步任务从 Call Stack 移入到 Event Table 注册&lt;/li&gt;
-&lt;li&gt;当对应的事件触发（或延迟到指定时间），Event Table 会将事件回调函数移入 Event Queue 等待&lt;/li&gt;
-&lt;li&gt;当 Call Stack 中没有任务，就从 Event Queue 中拿出一个任务放入 Call Stack&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;而Event Loop指的就是这一整个圈圈：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;它不停检查 Call Stack 中是否有任务（也叫栈帧）需要执行，如果没有，就检查 Event Queue，从中弹出一个任务，放入 Call Stack 中，如此往复循环。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;宏任务与微任务&#34;&gt;宏任务与微任务&lt;/h2&gt;
-&lt;p&gt;微任务和宏任务皆为异步任务，它们都属于一个队列，主要区别在于他们的执行顺序，Event Loop的走向和取值&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-EventLoop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/%E5%AE%8F%E4%BB%BB%E5%8A%A1%E3%80%81%E5%BE%AE%E4%BB%BB%E5%8A%A1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Js异步有一个机制，就是遇到宏任务，先执行宏任务，将宏任务放入Event Queue，然后在执行微任务，将微任务放入Event Queue，这两个Queue不是一个Queue。&lt;/p&gt;
-&lt;p&gt;当你往外拿的时候先从微任务里拿这个回掉函数，然后再从宏任务的Queue上拿宏任务的回掉函数&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;而宏任务一般是：包括整体代码script，setTimeout，setInterval、setImmediate。&lt;/p&gt;
-&lt;p&gt;微任务：原生Promise(有些实现的promise将then方法放到了宏任务中)、process.nextTick、Object.observe(已废弃)、 MutationObserver 记住就行了&lt;/p&gt;
-&lt;h2 id=&#34;settimeout&#34;&gt;setTimeout&lt;/h2&gt;
-&lt;p&gt;我们经常这么实现延时3秒执行&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;setTimeout(() =&amp;gt; {
-    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;延时3秒&amp;#39;&lt;/span&gt;)
-},&lt;span style=&#34;color:#bd93f9&#34;&gt;3000&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;渐渐的setTimeout用的地方多了，问题也出现了，有时候明明写的延时3秒，实际却5，6秒才执行函数&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;setTimeout(() =&amp;gt; {
-    task()
-},&lt;span style=&#34;color:#bd93f9&#34;&gt;3000&lt;/span&gt;)
-console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;执行console&amp;#39;&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;根据前面我们的结论，setTimeout是异步的，应该先执行console.log这个同步任务，所以我们的结论是：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;// 执行console
-// task()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;去验证一下，结果正确！ 然后我们修改一下前面的代码：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;setTimeout(() =&amp;gt; {
-    task()
-},&lt;span style=&#34;color:#bd93f9&#34;&gt;3000&lt;/span&gt;)
-sleep(&lt;span style=&#34;color:#bd93f9&#34;&gt;10000000&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;乍一看其实差不多，但我们把这段代码在chrome执行一下，却发现控制台执行task()需要的时间远远超过3秒，说好的延时三秒，为啥现在需要这么长时间啊？&lt;/p&gt;
-&lt;p&gt;这时候我们需要重新理解setTimeout的定义。我们先说上述代码是怎么执行的：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;task()进入Event Table并注册,计时开始&lt;/li&gt;
-&lt;li&gt;执行sleep函数，很慢，非常慢，计时仍在继续&lt;/li&gt;
-&lt;li&gt;3秒到了，计时事件timeout完成，task()进入Event Queue，但是sleep也太慢了吧，还没执行完，只好等着&lt;/li&gt;
-&lt;li&gt;sleep终于执行完了，task()终于从Event Queue进入了主线程执行&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;上述的流程走完，我们知道setTimeout这个函数，是经过指定时间后，把要执行的任务(本例中为task())加入到Event Queue中，又因为是单线程任务要一个一个执行，如果前面的任务需要的时间太久，那么只能等着，导致真正的延迟时间远大于3秒&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;我们还经常遇到setTimeout(fn,0)这样的代码，0秒后执行又是什么意思呢？是不是可以立即执行呢？ 答案是不会的，setTimeout(fn,0)的含义是，指定某个任务在主线程最早可得的空闲时间执行，意思就是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。举例说明：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//代码1
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;先执行这里&amp;#39;&lt;/span&gt;)
-setTimeout(() =&amp;gt; {
-    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;执行啦&amp;#39;&lt;/span&gt;)
-},&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
-&lt;span style=&#34;color:#6272a4&#34;&gt;//代码2
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;先执行这里&amp;#39;&lt;/span&gt;)
-setTimeout(() =&amp;gt; {
-    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;执行啦&amp;#39;&lt;/span&gt;)
-},&lt;span style=&#34;color:#bd93f9&#34;&gt;3000&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;代码1的输出结果是：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;先执行这里
-执行啦
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;代码2的输出结果是：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;//先执行这里
-// ... 3s later
-// 执行啦
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;关于setTimeout要补充的是，即便主线程为空，0毫秒实际上也是达不到的。根据HTML的标准，最低是4毫秒&lt;/p&gt;
-&lt;h2 id=&#34;setinterval&#34;&gt;setInterval&lt;/h2&gt;
-&lt;p&gt;上面说完了setTimeout，当然不能错过它的孪生兄弟setInterval。他俩差不多，只不过后者是循环的执行。对于执行顺序来说，setInterval会每隔指定的时间将注册的函数置入Event Queue，如果前面的任务耗时太久，那么同样需要等待&lt;/p&gt;
-&lt;p&gt;唯一需要注意的一点是，对于setInterval(fn,ms)来说，我们已经知道不是每过ms秒会执行一次fn，而是每过ms秒，会有fn进入Event Queue。一旦setInterval的回调函数fn执行时间超过了延迟时间ms，那么就完全看不出来有时间间隔了&lt;/p&gt;
-&lt;h2 id=&#34;promise与processnexttick&#34;&gt;Promise与process.nextTick&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Promise的定义和功能本文不再赘述，可以学习一下 &lt;a href=&#34;https://link.juejin.cn/?target=http%3A%2F%2Fes6.ruanyifeng.com%2F%23docs%2Fpromise&#34;&gt;阮一峰老师的Promise&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;而process.nextTick(callback)类似node.js版的&amp;quot;setTimeout&amp;rdquo;，在事件循环的下一次循环中调用 callback 回调函数&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;不同类型的任务会进入对应的Event Queue，比如&lt;code&gt;setTimeout&lt;/code&gt;和&lt;code&gt;setInterval&lt;/code&gt;会进入相同的Event Queue&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;setTimeout(()=&amp;gt;{
-  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;setTimeout1&amp;#39;&lt;/span&gt;)
-},&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; p &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;((resolve,reject)=&amp;gt;{
-  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Promise1&amp;#39;&lt;/span&gt;)
-  resolve()
-})
-p.then(()=&amp;gt;{
-  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Promise2&amp;#39;&lt;/span&gt;)    
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行结果：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;Promise1
-Promise2
-setTimeout1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Promise参数中的Promise1是同步执行的 其次是因为Promise是microtasks，会在同步任务执行完后会去清空microtasks queues， 最后清空完微任务再去宏任务队列取值&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;.resolve().then(()=&amp;gt;{
-  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Promise1&amp;#39;&lt;/span&gt;)  
-  setTimeout(()=&amp;gt;{
-    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;setTimeout2&amp;#39;&lt;/span&gt;)
-  },&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
-})
-
-setTimeout(()=&amp;gt;{
-  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;setTimeout1&amp;#39;&lt;/span&gt;)
-  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;.resolve().then(()=&amp;gt;{
-    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Promise2&amp;#39;&lt;/span&gt;)    
-  })
-},&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行结果：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;Promise1
-setTimeout1
-Promise2
-setTimeout2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;一开始执行栈的同步任务执行完毕，会去 microtasks queues 找 清空 microtasks queues ，输出Promise1，同时会生成一个异步任务 setTimeout1&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;去宏任务队列查看此时队列是 setTimeout1 在 setTimeout2 之前，因为setTimeout1执行栈一开始的时候就开始异步执行,所以输出setTimeout1&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在执行setTimeout1时会生成Promise2的一个 microtasks ，放入 microtasks queues 中，接着又是一个循环，去清空 microtasks queues ，输出Promise2&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;清空完 microtasks queues ，就又会去宏任务队列取一个，这回取的是setTimeout2&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;最后我们来分析一段较复杂的代码，掌握js的执行机制：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;);
-
-setTimeout(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
-    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;2&amp;#39;&lt;/span&gt;);
-    process.nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
-        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;3&amp;#39;&lt;/span&gt;);
-    })
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(resolve) {
-        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;4&amp;#39;&lt;/span&gt;);
-        resolve();
-    }).then(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
-        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;5&amp;#39;&lt;/span&gt;)
-    })
-})
-process.nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
-    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;6&amp;#39;&lt;/span&gt;);
-})
-&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(resolve) {
-    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;7&amp;#39;&lt;/span&gt;);
-    resolve();
-}).then(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
-    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;8&amp;#39;&lt;/span&gt;)
-})
-
-setTimeout(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
-    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;9&amp;#39;&lt;/span&gt;);
-    process.nextTick(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
-        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;10&amp;#39;&lt;/span&gt;);
-    })
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(resolve) {
-        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;11&amp;#39;&lt;/span&gt;);
-        resolve();
-    }).then(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
-        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;12&amp;#39;&lt;/span&gt;)
-    })
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;第一轮事件循环流程分析如下：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;整体script作为第一个宏任务进入主线程，遇到console.log，输出1&lt;/li&gt;
-&lt;li&gt;遇到setTimeout，其回调函数被分发到宏任务Event Queue中。我们暂且记为setTimeout1&lt;/li&gt;
-&lt;li&gt;遇到process.nextTick()，其回调函数被分发到微任务Event Queue中。我们记为process1&lt;/li&gt;
-&lt;li&gt;遇到Promise，new Promise直接执行，输出7。then被分发到微任务Event Queue中。我们记为then1&lt;/li&gt;
-&lt;li&gt;又遇到了setTimeout，其回调函数被分发到宏任务Event Queue中，我们记为setTimeout2&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;宏任务Event Queue&lt;/th&gt;
-&lt;th&gt;微任务Event Queue&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;setTimeout1&lt;/td&gt;
-&lt;td&gt;process1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;setTimeout2&lt;/td&gt;
-&lt;td&gt;then1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;表是第一轮事件循环宏任务结束时各Event Queue的情况，此时已经输出了1和7&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;我们发现了process1和then1两个微任务&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;执行process1,输出6&lt;/li&gt;
-&lt;li&gt;执行then1，输出8&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;好了，第一轮事件循环正式结束，这一轮的结果是输出1，7，6，8。那么第二轮时间循环从setTimeout1宏任务开始：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;首先输出2。接下来遇到了process.nextTick()，同样将其分发到微任务Event Queue中，记为process2&lt;/li&gt;
-&lt;li&gt;new Promise立即执行输出4，then也分发到微任务Event Queue中，记为then2&lt;/li&gt;
-&lt;/ul&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;宏任务Event Queue&lt;/th&gt;
-&lt;th&gt;微任务Event Queue&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;setTimeout2&lt;/td&gt;
-&lt;td&gt;process3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;then3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;第三轮事件循环宏任务执行结束，执行两个微任务process3和then3。&lt;/p&gt;
-&lt;p&gt;输出10&lt;/p&gt;
-&lt;p&gt;输出12&lt;/p&gt;
-&lt;p&gt;第三轮事件循环结束，第三轮输出9，11，10，12&lt;/p&gt;
-&lt;p&gt;整段代码，共进行了三次事件循环，完整的输出为1，7，6，8，2，4，3，5，9，11，10，12&lt;/p&gt;
-&lt;p&gt;node环境下的事件监听依赖libuv与前端环境不完全相同，输出顺序可能会有误差&lt;/p&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000019313028&#34;&gt;浅析 JS 中的 EventLoop 事件循环（新手向）&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903638238756878&#34;&gt;JS事件循环机制（event loop）之宏任务/微任务&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-eventloop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/ - </description>
         </item>
     
     
