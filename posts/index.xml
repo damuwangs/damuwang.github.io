@@ -6,10 +6,30 @@
     <description>Recent content in Posts on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>《白夜行》读后感</title>
+      <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E7%99%BD%E5%A4%9C%E8%A1%8C%E8%AF%BB%E5%90%8E%E6%84%9F/</link>
+      <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E7%99%BD%E5%A4%9C%E8%A1%8C%E8%AF%BB%E5%90%8E%E6%84%9F/</guid>
+      <description>概述 警察：世恒
+当铺：桐原亮司、父亲、母亲、伙计
+旧城区：雪穗、母亲、房管
+新城区：雪穗、继母
+男校：桐原亮司、友彦
+欧巴桑：两死
+女校：雪穗、她的小跟班
+卖盗版软件的公司（后来搬走改卖硬件）
+交际舞协会
+专利公司
+侦探公司
+人物关系 思考 </description>
+    </item>
     
     <item>
       <title>Vue2-路由传参，页面刷新后参数类型改变</title>
@@ -341,7 +361,7 @@ const express = require(&amp;#39;express&amp;#39;) const app = express() app.use
       <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-demo/</guid>
-      <description>  日期、时间 -日期格式化 -日期计算   校验 -身份证校验 -邮箱校验 -电话校验   字符串   数字 -数字转汉字大写   数组 -数组去重 -计算数组重复元素 -深拷贝   算法   </description>
+      <description>  日期、时间 -日期格式化 -日期计算 -获取当前日期00:00:00到23:59:59   校验 -身份证校验 -邮箱校验 -电话校验   字符串   数字 -数字转汉字大写   数组 -数组去重 -计算数组重复元素 -深拷贝   算法   </description>
     </item>
     
     <item>

@@ -255,7 +255,7 @@ const express = require(&amp;#39;express&amp;#39;) const app = express() app.use
       <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-demo/</guid>
-      <description>  日期、时间 -日期格式化 -日期计算   校验 -身份证校验 -邮箱校验 -电话校验   字符串   数字 -数字转汉字大写   数组 -数组去重 -计算数组重复元素 -深拷贝   算法   </description>
+      <description>  日期、时间 -日期格式化 -日期计算 -获取当前日期00:00:00到23:59:59   校验 -身份证校验 -邮箱校验 -电话校验   字符串   数字 -数字转汉字大写   数组 -数组去重 -计算数组重复元素 -深拷贝   算法   </description>
     </item>
     
     <item>

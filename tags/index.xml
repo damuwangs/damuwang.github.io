@@ -6,10 +6,19 @@
     <description>Recent content in Tags on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>思考</title>
+      <link>https://damuwangs.github.io/tags/%E6%80%9D%E8%80%83/</link>
+      <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/tags/%E6%80%9D%E8%80%83/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>编程</title>
