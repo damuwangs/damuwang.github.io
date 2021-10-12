@@ -12,12 +12,12 @@
     
     
         <item>
-        <title>GitHub Pages&#43;Hugo构建个人博客</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+        <title>GitHubPages&#43;Hugo构建个人博客</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/githubpages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
         <pubDate>Tue, 15 Jun 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/ -&lt;h1 id=&#34;hugo配置&#34;&gt;hugo配置&lt;/h1&gt;
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/githubpages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/githubpages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/ -&lt;h1 id=&#34;hugo配置&#34;&gt;hugo配置&lt;/h1&gt;
 &lt;h2 id=&#34;1安装&#34;&gt;1、安装&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -130,7 +130,7 @@ hugo -d ../damuwangs.github.io
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.waynerv.com/posts/setup-blog-with-hugo-and-github-pages/&#34;&gt;使用 Hugo 和 GitHub Pages 部署个人博客 | Shall We Code? (waynerv.com)&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github-pages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/ - </description>
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/githubpages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/ - </description>
         </item>
     
     

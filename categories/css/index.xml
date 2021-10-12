@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>重绘、回流</title>
+      <title>CSS-重绘、回流</title>
       <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</link>
       <pubDate>Mon, 09 Aug 2021 00:00:00 +0000</pubDate>
       
@@ -30,29 +30,29 @@
     </item>
     
     <item>
-      <title>【待补充】CSS3响应式布局</title>
-      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</link>
+      <title>【待补充】CSS-Less、Sass</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-lesssass/</link>
       <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-lesssass/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>【待补充】Less和Sass</title>
-      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/less%E5%92%8Csass/</link>
+      <title>【待补充】CSS3-响应式布局</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</link>
       <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/less%E5%92%8Csass/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>CSS3动画</title>
-      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%8A%A8%E7%94%BB/</link>
+      <title>CSS3-动画</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3-%E5%8A%A8%E7%94%BB/</link>
       <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%8A%A8%E7%94%BB/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3-%E5%8A%A8%E7%94%BB/</guid>
       <description>一、素转换transform 1.元素位置移动translate() 参数：左(X轴)，顶部(Y轴)单位px
 样例：元素位置移动
 2.元素旋转rotate() 参数：旋转度数(负值是允许的，这样是元素逆时针旋转)，单位deg

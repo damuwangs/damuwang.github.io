@@ -12,29 +12,29 @@
     
     
     <item>
-      <title>CSS-Demo</title>
-      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-demo/</link>
+      <title>Demo-CSS</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-css/</link>
       <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-demo/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-css/</guid>
       <description>  border拼接   </description>
     </item>
     
     <item>
-      <title>Vue-Demo</title>
-      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue-demo/</link>
+      <title>Demo-Vue</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/</link>
       <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue-demo/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/</guid>
       <description>  组件 -Element-UI表单   自定义指令 -防抖 -节流   方法封装 -axios封装Http工具类   </description>
     </item>
     
     <item>
-      <title>JavaScript-Demo</title>
-      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-demo/</link>
+      <title>Demo-JavaScript</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-javascript/</link>
       <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-demo/</guid>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-javascript/</guid>
       <description>  日期、时间 -日期格式化 -日期计算 -获取当前日期00:00:00到23:59:59   校验 -身份证校验 -邮箱校验 -电话校验   字符串   数字 -数字转汉字大写   数组 -数组去重 -计算数组重复元素 -深拷贝   算法   </description>
     </item>
     

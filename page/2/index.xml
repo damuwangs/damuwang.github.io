@@ -13,11 +13,11 @@
     
         <item>
         <title>关于热量消耗与营养摄入的思考</title>
-        <link>https://damuwangs.github.io/posts/%E5%81%A5%E8%BA%AB/%E8%9B%8B%E7%99%BD%E8%B4%A8%E6%91%84%E5%85%A5%E4%B8%8E%E7%83%AD%E9%87%8F%E7%BC%BA%E5%8F%A3%E8%AE%A1%E7%AE%97/</link>
+        <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E8%9B%8B%E7%99%BD%E8%B4%A8%E6%91%84%E5%85%A5%E4%B8%8E%E7%83%AD%E9%87%8F%E7%BC%BA%E5%8F%A3%E8%AE%A1%E7%AE%97/</link>
         <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://damuwangs.github.io/posts/%E5%81%A5%E8%BA%AB/%E8%9B%8B%E7%99%BD%E8%B4%A8%E6%91%84%E5%85%A5%E4%B8%8E%E7%83%AD%E9%87%8F%E7%BC%BA%E5%8F%A3%E8%AE%A1%E7%AE%97/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E5%81%A5%E8%BA%AB/%E8%9B%8B%E7%99%BD%E8%B4%A8%E6%91%84%E5%85%A5%E4%B8%8E%E7%83%AD%E9%87%8F%E7%BC%BA%E5%8F%A3%E8%AE%A1%E7%AE%97/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+        <guid>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E8%9B%8B%E7%99%BD%E8%B4%A8%E6%91%84%E5%85%A5%E4%B8%8E%E7%83%AD%E9%87%8F%E7%BC%BA%E5%8F%A3%E8%AE%A1%E7%AE%97/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E8%9B%8B%E7%99%BD%E8%B4%A8%E6%91%84%E5%85%A5%E4%B8%8E%E7%83%AD%E9%87%8F%E7%BC%BA%E5%8F%A3%E8%AE%A1%E7%AE%97/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
 &lt;p&gt;减脂的基本原理其实非常的简单，日常总热量的摄入要小于总热量的消耗，造成热量亏空，为了达到能量收支的平衡，体内储存的脂肪就会氧化消耗来填补缺失的热量，长此以往，体内储存的脂肪就会被消耗得越来越少&lt;/p&gt;
 &lt;p&gt;人体一天的能量消耗主要有四个方面：基础代谢、体力活动、食物热效应以及生长发育&lt;/p&gt;
 &lt;blockquote&gt;
@@ -79,7 +79,7 @@
 &lt;p&gt;&lt;a href=&#34;http://psychologyandfitness.cn/bmrtdeecalculator/&#34;&gt;基础代谢计算&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.sohu.com/a/380044473_685943&#34;&gt;增肌减脂必知BMR&amp;amp;TDEE计算口诀&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E5%81%A5%E8%BA%AB/%E8%9B%8B%E7%99%BD%E8%B4%A8%E6%91%84%E5%85%A5%E4%B8%8E%E7%83%AD%E9%87%8F%E7%BC%BA%E5%8F%A3%E8%AE%A1%E7%AE%97/ - </description>
+- https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E8%9B%8B%E7%99%BD%E8%B4%A8%E6%91%84%E5%85%A5%E4%B8%8E%E7%83%AD%E9%87%8F%E7%BC%BA%E5%8F%A3%E8%AE%A1%E7%AE%97/ - </description>
         </item>
     
     
@@ -485,7 +485,7 @@ color_list.addEventListener(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;c
     
     
         <item>
-        <title>重绘、回流</title>
+        <title>CSS-重绘、回流</title>
         <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81/</link>
         <pubDate>Mon, 09 Aug 2021 00:00:00 +0000</pubDate>
         
@@ -1246,50 +1246,50 @@ iframe.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span sty
     
     
         <item>
-        <title>【待补充】CSS3响应式布局</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</link>
+        <title>【待补充】CSS-Less、Sass</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-lesssass/</link>
         <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/ -- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/ - </description>
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-lesssass/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-lesssass/ -- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-lesssass/ - </description>
         </item>
     
     
     
         <item>
-        <title>【待补充】Less和Sass</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/less%E5%92%8Csass/</link>
+        <title>【待补充】CSS3-响应式布局</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</link>
         <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/less%E5%92%8Csass/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/less%E5%92%8Csass/ -- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/less%E5%92%8Csass/ - </description>
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/ -- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css3-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/ - </description>
         </item>
     
     
     
         <item>
-        <title>CSS-Demo</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-demo/</link>
+        <title>Demo-CSS</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-css/</link>
         <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-demo/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-demo/ -&lt;ul&gt;
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-css/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-css/ -&lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;border拼接httpscodepeniodamuwangspenvymawzneditors1100&#34;&gt;&lt;a href=&#34;https://codepen.io/damuwangs/pen/vYmaWZN?editors=1100&#34;&gt;border拼接&lt;/a&gt;&lt;/h2&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-demo/ - </description>
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-css/ - </description>
         </item>
     
     
     
         <item>
-        <title>Vue-Demo</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue-demo/</link>
+        <title>Demo-Vue</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/</link>
         <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
         
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue-demo/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue-demo/ -&lt;ul&gt;
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/ -&lt;ul&gt;
 &lt;li&gt;
 &lt;h1 id=&#34;组件&#34;&gt;组件&lt;/h1&gt;
 &lt;h2 id=&#34;-element-ui表单httpscodepeniodamuwangspenjjnbybw&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/JjNByBW&#34;&gt;Element-UI表单&lt;/a&gt;&lt;/h2&gt;
@@ -1304,7 +1304,7 @@ iframe.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span sty
 &lt;h2 id=&#34;-axios封装http工具类httpscodepeniodamuwangspenexxgmww&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/ExXGmww&#34;&gt;axios封装Http工具类&lt;/a&gt;&lt;/h2&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue-demo/ - </description>
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/ - </description>
         </item>
     
     

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>面试</title>
+<title>CSS3-动画</title>
 
 
 
@@ -50,6 +50,10 @@
 
 
 
+  
+    <script src="/js/toc.js"></script>
+  
+
 
 
 
@@ -87,9 +91,11 @@
             
             
             
+                
             
             
-            <a class="a-block nav-link-item false" href="/posts">
+            
+            <a class="a-block nav-link-item active" href="/posts">
                 博客
             </a>
             
@@ -97,11 +103,9 @@
             
             
             
-                
             
             
-            
-            <a class="a-block nav-link-item active" href="/categories">
+            <a class="a-block nav-link-item false" href="/categories">
                 分类
             </a>
             
@@ -137,6 +141,196 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </div><div ref="extraContainer" class="extra-container">
     
     
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%80%e7%b4%a0%e8%bd%ac%e6%8d%a2transform" onclick="onNavClick(`#一素转换transform-nav`)" id="一素转换transform-nav">
+									一、素转换transform
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1%e5%85%83%e7%b4%a0%e4%bd%8d%e7%bd%ae%e7%a7%bb%e5%8a%a8translate" onclick="onNavClick(`#1元素位置移动translate-nav`)" id="1元素位置移动translate-nav">
+									1.元素位置移动translate()
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2%e5%85%83%e7%b4%a0%e6%97%8b%e8%bd%acrotate" onclick="onNavClick(`#2元素旋转rotate-nav`)" id="2元素旋转rotate-nav">
+									2.元素旋转rotate()
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3%e5%85%83%e7%b4%a0%e7%bc%a9%e6%94%bescale" onclick="onNavClick(`#3元素缩放scale-nav`)" id="3元素缩放scale-nav">
+									3.元素缩放scale()
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4%e5%85%83%e7%b4%a0%e5%80%be%e6%96%9cskew" onclick="onNavClick(`#4元素倾斜skew-nav`)" id="4元素倾斜skew-nav">
+									4.元素倾斜skew()
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#5%e5%85%83%e7%b4%a0%e8%bd%ac%e6%8d%a2matrix" onclick="onNavClick(`#5元素转换matrix-nav`)" id="5元素转换matrix-nav">
+									5.元素转换matrix()
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8c%e8%bf%87%e6%b8%a1transition" onclick="onNavClick(`#二过渡transition-nav`)" id="二过渡transition-nav">
+									二、过渡transition
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%89%e5%8a%a8%e7%94%bbanimation" onclick="onNavClick(`#三动画animation-nav`)" id="三动画animation-nav">
+									三、动画animation
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -154,8 +348,6 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
         </a>
         
         
-        
-        
     </div>
 </div>
 <div class="single-column-drawer-container" ref="drawer"
@@ -168,9 +360,11 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 
                 
+                    
                 
                 
-                <a class="a-block drawer-menu-item false" href="/posts">
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
                     博客
                 </a>
                 
@@ -178,11 +372,9 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 
                 
-                    
                 
                 
-                
-                <a class="a-block drawer-menu-item active" href="/categories">
+                <a class="a-block drawer-menu-item false" href="/categories">
                     分类
                 </a>
                 
@@ -197,6 +389,196 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 </a>
                 
             
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%80%e7%b4%a0%e8%bd%ac%e6%8d%a2transform" onclick="onNavClick(`#一素转换transform-nav`)" id="一素转换transform-nav">
+									一、素转换transform
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1%e5%85%83%e7%b4%a0%e4%bd%8d%e7%bd%ae%e7%a7%bb%e5%8a%a8translate" onclick="onNavClick(`#1元素位置移动translate-nav`)" id="1元素位置移动translate-nav">
+									1.元素位置移动translate()
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2%e5%85%83%e7%b4%a0%e6%97%8b%e8%bd%acrotate" onclick="onNavClick(`#2元素旋转rotate-nav`)" id="2元素旋转rotate-nav">
+									2.元素旋转rotate()
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3%e5%85%83%e7%b4%a0%e7%bc%a9%e6%94%bescale" onclick="onNavClick(`#3元素缩放scale-nav`)" id="3元素缩放scale-nav">
+									3.元素缩放scale()
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4%e5%85%83%e7%b4%a0%e5%80%be%e6%96%9cskew" onclick="onNavClick(`#4元素倾斜skew-nav`)" id="4元素倾斜skew-nav">
+									4.元素倾斜skew()
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#5%e5%85%83%e7%b4%a0%e8%bd%ac%e6%8d%a2matrix" onclick="onNavClick(`#5元素转换matrix-nav`)" id="5元素转换matrix-nav">
+									5.元素转换matrix()
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%ba%8c%e8%bf%87%e6%b8%a1transition" onclick="onNavClick(`#二过渡transition-nav`)" id="二过渡transition-nav">
+									二、过渡transition
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%89%e5%8a%a8%e7%94%bbanimation" onclick="onNavClick(`#三动画animation-nav`)" id="三动画animation-nav">
+									三、动画animation
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
             
         </div>
     </div>
@@ -241,41 +623,167 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
             <div id="content">
 <div ref="streamContainer" class="stream-container">
     <div class="post-list-container post-list-container-shadow">
-        <div class="post-item-wrapper post-item-wrapper-no-hover">
-            <div class="post-item post-item-no-gaps">
-                <div class="post-item-info-wrapper">
-                    <div class="post-item-title  post-item-title-small">
-                        <a href="https://damuwangs.github.io/">DaMuWang</a> / 面试
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    CSS3-动画
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-07-30
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/css">CSS</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B">编程</a>
+                                &nbsp;
+                            
+                        
+                        
                     </div>
                 </div>
             </div>
-        </div><a href="/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B42%E6%9C%88/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            面试-2021年2月
-                        </div>
-                        <div class="post-item-meta">
-    2021-06-16
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="一素转换transform">一、素转换transform</h1>
+<h2 id="1元素位置移动translate">1.元素位置移动translate()</h2>
+<p>参数：左(X轴)，顶部(Y轴)单位px</p>
+<p>样例：<a href="https://codepen.io/damuwangs/pen/LYymGqJ">元素位置移动</a></p>
+<h2 id="2元素旋转rotate">2.元素旋转rotate()</h2>
+<p>参数：旋转度数(负值是允许的，这样是元素逆时针旋转)，单位deg</p>
+<p>样例：<a href="https://codepen.io/damuwangs/pen/qBmYZdQ">元素旋转</a></p>
+<h2 id="3元素缩放scale">3.元素缩放scale()</h2>
+<p>参数：宽度缩放倍数、高度缩放倍数无参数</p>
+<p>样例：<a href="https://codepen.io/damuwangs/pen/oNWdxGr">元素缩放</a></p>
+<h2 id="4元素倾斜skew">4.元素倾斜skew()</h2>
+<p>通过设置倾斜将正方形转化成菱形</p>
+<p>参数：X轴，Y轴单位deg</p>
+<p>样例：<a href="https://codepen.io/damuwangs/pen/mdmLPKP">元素倾斜</a></p>
+<h2 id="5元素转换matrix">5.元素转换matrix()</h2>
+<p>方法：将上面的方法合并成一个，matrix 方法有六个参数，包含旋转，缩放，移动（平移）和倾斜功能</p>
+<h1 id="二过渡transition">二、过渡transition</h1>
+<p>属性：</p>
+<ul>
+<li>
+<p>transition-property：规定应用过渡的 CSS 属性的名称</p>
+</li>
+<li>
+<p>transition-duration：定义过渡效果花费的时间。默认是 0</p>
+</li>
+<li>
+<p>transition-timing-function：规定过渡效果的时间曲线。默认是 &ldquo;ease&rdquo;</p>
+<ul>
+<li>linear：规定以相同速度开始至结束的过渡效果（等于 cubic-bezier(0,0,1,1)）</li>
+<li>ease：规定慢速开始，然后变快，然后慢速结束的过渡效果（cubic-bezier(0.25,0.1,0.25,1)）</li>
+<li>ease-in：规定以慢速开始的过渡效果（等于 cubic-bezier(0.42,0,1,1)）</li>
+<li>ease-out：规定以慢速结束的过渡效果（等于 cubic-bezier(0,0,0.58,1)）</li>
+<li>ease-in-out：规定以慢速开始和结束的过渡效果（等于 cubic-bezier(0.42,0,0.58,1)）</li>
+<li>cubic-bezier(n,n,n,n)：在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值</li>
+</ul>
+</li>
+<li>
+<p>transition-delay：规定过渡效果何时开始。默认是 0</p>
+</li>
+</ul>
+<p>样例：<a href="https://codepen.io/damuwangs/pen/ExmLyJy">blog - CSS3动画 - 过渡</a></p>
+<h1 id="三动画animation">三、动画animation</h1>
+<p>属性：</p>
+<ul>
+<li>@keyframes：声明动画</li>
+<li>animation-name：引入动画</li>
+<li>animation-duration： 规定动画完成一个周期所花费的秒或毫秒。默认是 0，单位s</li>
+<li>animation-timing-function：规定动画的速度曲线。默认是 &ldquo;ease&rdquo;，设置同上</li>
+<li>animation-fill-mode：规定当动画不播放时，要应用到元素的样式。</li>
+<li>animation-delay：规定动画何时开始。默认是 0，单位s</li>
+<li>animation-iteration-count：规定动画被播放的次数。
+<ul>
+<li>填写一个数字，默认是 1</li>
+<li>infinite指定动画应该播放无限次</li>
+</ul>
+</li>
+<li>animation-direction：规定动画是否在下一周期逆向地播放，默认是 &ldquo;normal&rdquo;
+<ul>
+<li>normal：默认值。动画按正常播放</li>
+<li>reverse：动画反向播放</li>
+<li>alternate：动画在奇数次（1、3、5&hellip;）正向播放，在偶数次（2、4、6&hellip;）反向播放</li>
+<li>reverse：动画在奇数次（1、3、5&hellip;）反向播放，在偶数次（2、4、6&hellip;）正向播放</li>
+<li>initial：设置该属性为它的默认值</li>
+<li>inherit：从父元素继承该属性</li>
+</ul>
+</li>
+<li>animation-play-state：规定动画是否正在运行或暂停，默认是 &ldquo;running&rdquo;
+<ul>
+<li>paused：指定暂停动画</li>
+<li>running：指定正在运行的动画</li>
+</ul>
+</li>
+</ul>
+<p>样例：<a href="https://codepen.io/damuwangs/pen/xxdjEoz">blog - CSS3动画 - 动画</a></p>
+<h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="https://segmentfault.com/q/1010000003867335">如何理解animation-fill-mode及其使用？</a></p>
+<p><a href="https://c.runoob.com/codedemo/5528">HTML+CSS 绘制太阳系各个行星运行轨迹</a></p>
+<p><a href="https://c.runoob.com/codedemo/5645">CSS 太极旋转图</a></p>
+</blockquote>
 
-                    </div>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-07-30</p>
+                    
                 </div>
             </div>
-        </a></div>
-</div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-javascript/">
+			Next<br>Demo-JavaScript
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/">
+			Previous<br>JavaScript-防抖、节流
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
 
             </div>
+        </div>
+    </div>
+</div>
 
-
-<div id="single-column-footer">
+            </div><div id="single-column-footer">
 Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
 <br>
 Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
@@ -542,6 +1050,9 @@ app = new Vue({
             elem.classList.add("table-hover");
         })
 
+        
+        spy();
+        window.addEventListener('scroll', this.debounce(spy, 250, { 'maxWait': 250 }), false);
         
         
     },
