@@ -6,10 +6,20 @@
     <description>Recent content in VUE on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/categories/vue/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue2-响应式原理</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Wed, 13 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/</guid>
+      <description>概念 参考资料  token详解以及应用原理
+ </description>
+    </item>
     
     <item>
       <title>Vue2-路由传参，页面刷新后参数类型改变</title>

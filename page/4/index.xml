@@ -5,9 +5,741 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Oct 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>JavaScript-闭包</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%97%AD%E5%8C%85/</link>
+        <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%97%AD%E5%8C%85/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%97%AD%E5%8C%85/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;变量的作用域&#34;&gt;变量的作用域&lt;/h2&gt;
+&lt;p&gt;要理解闭包，首先必须理解Javascript特殊的变量作用域&lt;/p&gt;
+&lt;p&gt;变量的作用域无非就是两种：全局变量和局部变量&lt;/p&gt;
+&lt;p&gt;Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; n&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;999&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; f1(){
+  alert(n)
+}
+f1() &lt;span style=&#34;color:#6272a4&#34;&gt;// 999
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在函数外部无法读取函数内的局部变量&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; f1(){
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; n&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;999&lt;/span&gt;
+}
+alert(n); &lt;span style=&#34;color:#6272a4&#34;&gt;// error
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;闭包的描述&#34;&gt;闭包的描述&lt;/h2&gt;
+&lt;p&gt;闭包就是能够读取其他函数内部变量的函数&lt;/p&gt;
+&lt;p&gt;由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成&amp;quot;定义在一个函数内部的函数&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁，f2函数，就是闭包&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; f1(){
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; n&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;999&lt;/span&gt;
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; f2(){
+      alert(n)
+    }
+　　&lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; f2
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; result &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; f1()
+result() &lt;span style=&#34;color:#6272a4&#34;&gt;// 999
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;闭包优缺点&#34;&gt;闭包优缺点&lt;/h2&gt;
+&lt;p&gt;优点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;希望一个变量长期驻扎在内存中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;避免全局变量的污染&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;私有成员的存在&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;缺点：闭包会使变量始终保存在内存中，如果不当使用会增大内存消耗&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;应用场景&#34;&gt;应用场景&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;匿名自执行函数&#34;&gt;匿名自执行函数&lt;/h2&gt;
+&lt;p&gt;我们知道所有的变量，如果不加上var关键字，则默认的会添加到全局对象的属性上去，这样的临时变量加入全局对象有很多坏处，比如：别的函数可能误用这些变量；造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链上遍历的)。除了每次使用变量都是用var关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，比如UI的初始化，那么我们可以使用闭包&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; data&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {    
+    table &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [],    
+    tree &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {}    
+};    
+       
+(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(dm){    
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; dm.table.rows; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;){    
+       &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; row &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; dm.table.rows[i]  
+       &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; j &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;; j &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt; row.cells; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;){    
+           drawCell(i, j)
+       }    
+    }    
+         
+})(data);   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我们创建了一个匿名的函数，并立即执行它，由于外部无法引用它内部的变量，因此在函数执行完后会立刻释放资源，关键是不污染全局对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;结果缓存&#34;&gt;结果缓存&lt;/h2&gt;
+&lt;p&gt;我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象，每次调用都会花费很长时间，那么我们就需要将计算出来的值存储起来，当调用这个函数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; CachedSearchBox &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){    
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; cache &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {},count &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; [];    
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {    
+       attachSearchBox &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(dsid){    
+         &lt;span style=&#34;color:#6272a4&#34;&gt;//如果结果在缓存中
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;           &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt;(dsid &lt;span style=&#34;color:#ff79c6&#34;&gt;in&lt;/span&gt; cache){   
+              &lt;span style=&#34;color:#6272a4&#34;&gt;//直接返回缓存中的对象
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;              &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; cache[dsid]    
+           }    
+           &lt;span style=&#34;color:#6272a4&#34;&gt;//新建 
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;           &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; fsb &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; uikit.webctrl.SearchBox(dsid)   
+        &lt;span style=&#34;color:#6272a4&#34;&gt;//更新缓存
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;           cache[dsid] &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; fsb
+           &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; fsb     
+       }  
+    }
+})()
+CachedSearchBox.attachSearchBox(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;input&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样我们在第二次调用的时候，就会从缓存中读取到该对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;减少全局变量的污染&#34;&gt;减少全局变量的污染&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;//abc为外部匿名函数的返回值
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; abc &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){      
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+        a&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;
+        alert(a)
+    }
+})()
+&lt;span style=&#34;color:#6272a4&#34;&gt;//2 调用一次abc函数，其实是调用里面内部函数的返回值  
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;abc()  
+&lt;span style=&#34;color:#6272a4&#34;&gt;//3
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;abc() 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;封装&#34;&gt;封装&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; person &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){    
+    &lt;span style=&#34;color:#6272a4&#34;&gt;//变量作用域为函数内部，外部无法访问    
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;;              
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {    
+       getName &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){    
+           &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; name;    
+       },    
+       setName &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(newName){    
+           name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; newName  
+       }    
+    }    
+}() 
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 直接访问，结果为undefined         
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;print(person.name) 
+print(person.getName())  
+person.setName(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;abruzzi&amp;#34;&lt;/span&gt;)   
+print(person.getName()) 
+     
+得到结果如下：  
+&lt;span style=&#34;color:#ff79c6&#34;&gt;undefined&lt;/span&gt;  
+&lt;span style=&#34;color:#ff79c6&#34;&gt;default&lt;/span&gt;  
+abruzzi  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;实现类和继承&#34;&gt;实现类和继承&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; Person(){    
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;       
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {    
+       getName &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){    
+           &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; name;    
+       },    
+       setName &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(newName){    
+           name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; newName;    
+       }    
+    }    
+}   
+  
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; p &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Person()
+p.setName(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Tom&amp;#34;&lt;/span&gt;)
+alert(p.getName())
+  
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; Jack &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){}
+&lt;span style=&#34;color:#6272a4&#34;&gt;//继承自Person
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;Jack.prototype &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Person()
+&lt;span style=&#34;color:#6272a4&#34;&gt;//添加私有方法
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;Jack.prototype.Say &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+  alert(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Hello,my name is Jack&amp;#34;&lt;/span&gt;)
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; j &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Jack()
+j.setName(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Jack&amp;#34;&lt;/span&gt;)
+j.Say()
+alert(j.getName())
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我们定义了Person，它就像一个类，我们new一个Person对象，访问它的方法。下面我们定义了Jack，继承Person，并添加自己的方法。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;settimeout传参&#34;&gt;setTimeout传参&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;setTimeout(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(param){
+    alert(param)
+},&lt;span style=&#34;color:#bd93f9&#34;&gt;1000&lt;/span&gt;)
+  
+&lt;span style=&#34;color:#6272a4&#34;&gt;//通过闭包可以实现传参效果
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; func(param){
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+      alert(param)
+  }
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; f1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; func(&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;)
+setTimeout(f1,&lt;span style=&#34;color:#bd93f9&#34;&gt;1000&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;为节点循环绑定click事件&#34;&gt;为节点循环绑定click事件&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; count() {
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; arr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; []
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; i&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+        arr.push(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; i &lt;span style=&#34;color:#ff79c6&#34;&gt;*&lt;/span&gt; i
+        })
+    }
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; arr
+}
+  
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; results &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; count()
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; f1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; results[&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;]
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; f2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; results[&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;]
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; f3 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; results[&lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在上面的例子中，每次循环，都创建了一个新的函数，然后，把创建的3个函数都添加到一个Array中返回了。&lt;/p&gt;
+&lt;p&gt;你可能认为调用f1()，f2()和f3()结果应该是 &lt;code&gt;1 4 9&lt;/code&gt;， 但实际结果是：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;f1() &lt;span style=&#34;color:#6272a4&#34;&gt;// 16
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;f2() &lt;span style=&#34;color:#6272a4&#34;&gt;// 16
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;f3() &lt;span style=&#34;color:#6272a4&#34;&gt;// 16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;全部都是16！原因就在于返回的函数引用了变量i，但它并非立刻执行。等到3个函数都返回时，它们所引用的变量i已经变成了4，因此最终结果为16&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果一定要引用循环变量怎么办？方法是再创建一个函数，用该函数的参数绑定循环变量当前的值，无论该循环变量后续如何更改，已绑定到函数参数的值不变：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; count() {
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; arr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; []
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; i&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;; i&lt;span style=&#34;color:#ff79c6&#34;&gt;++&lt;/span&gt;) {
+        arr.push((&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (n) {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; n &lt;span style=&#34;color:#ff79c6&#34;&gt;*&lt;/span&gt; n
+            }
+        })(i))
+    }
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; arr
+}
+  
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; results &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; count()
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; f1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; results[&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;]
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; f2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; results[&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;]
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; f3 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; results[&lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;]
+  
+f1() &lt;span style=&#34;color:#6272a4&#34;&gt;// 1
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;f2() &lt;span style=&#34;color:#6272a4&#34;&gt;// 4
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;f3() &lt;span style=&#34;color:#6272a4&#34;&gt;// 9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意这里用了一个“创建一个匿名函数并立刻执行”的语法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (x) {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; x &lt;span style=&#34;color:#ff79c6&#34;&gt;*&lt;/span&gt; x
+})(&lt;span style=&#34;color:#bd93f9&#34;&gt;3&lt;/span&gt;) &lt;span style=&#34;color:#6272a4&#34;&gt;// 9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html&#34;&gt;学习Javascript闭包（Closure）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000000652891&#34;&gt;详解JS闭包&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/yunfeifei/p/4019504.html&#34;&gt;全面理解Javascript闭包和闭包的几种写法及用途&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903910902087688&#34;&gt;javascript之闭包七（闭包的应用场景）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903841888993287&#34;&gt;闭包与setTimeout&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/qq_21132509/article/details/80694517&#34;&gt;对JS闭包的理解及常见应用场景&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%97%AD%E5%8C%85/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>面试-2021年2月</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B42%E6%9C%88/</link>
+        <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B42%E6%9C%88/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B42%E6%9C%88/ -&lt;h1 id=&#34;javascript&#34;&gt;JavaScript&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;跨域&#34;&gt;跨域&lt;/h2&gt;
+&lt;p&gt;概念：跨域指浏览器同源策略不允许当前页面所在的源去请求另一个源的数据只要协议，端口，域名中有一个不同就是跨域&lt;/p&gt;
+&lt;p&gt;解决：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;服务端更改header，允许跨域&lt;/li&gt;
+&lt;li&gt;设置代理服务器
+因为客户端请求服务端的数据是存在跨域问题的，而服务器和服务器之间 可以相互请求数据，是没有跨域的概念（如果服务器没有设置禁止跨域的权限问题），也就是说，可以配置一个代理的服务器请求另一个服务器中的数据，然后把请求出来的数据返回到代理服务器中，代理服务器再返回数据给客户端，这样就可以实现跨域访问数据&lt;/li&gt;
+&lt;li&gt;jsonp
+利用script标签的src属性来实现跨域。 通过将前端方法作为参数传递到服务器端，然后由服务器端注入参数之后再返回，实现服务器端向客户端通信。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;getpost区别&#34;&gt;get、post区别&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;get参数url可见，post参数url不可见&lt;/li&gt;
+&lt;li&gt;通过拼接url进行传递参数，post通过body体传递参数&lt;/li&gt;
+&lt;li&gt;get请求可以缓存，post请求不可以缓存&lt;/li&gt;
+&lt;li&gt;get请求页面后退时不产生影响、post请求页面后退时会重新提交请求&lt;/li&gt;
+&lt;li&gt;get一般传输数据大小不超过2k-4k，post请求传输数据的大小可配置&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;数据类型&#34;&gt;数据类型&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;单类型：String、Number、boolean、null、undefined&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;引用类型：object、function、array、Date、RegExp&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;值传递和引用传递&#34;&gt;值传递和引用传递&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;基本类型复制后两个变量完全独立，一方改变都不会影响另一方&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;引用类型复制的时引用，之后的任何一方改变都会映射到另一方&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;闭包&#34;&gt;闭包&lt;/h2&gt;
+&lt;p&gt;定义：当一个函数的返回值是另外一个函数，而返回的那个函数如果调用了父函数内部的变量，且返回的这个函数在外部被执行，就产生了闭包。说白了就是一个函数，能够读取其它函数的内部变量&lt;/p&gt;
+&lt;p&gt;优点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;读取函数内部的变量&lt;/li&gt;
+&lt;li&gt;变量长期保存在内存中，不会再外层函数调用后被自动清除&lt;/li&gt;
+&lt;li&gt;避免全局变量的污染&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;缺点：常驻内存会增大内存使用量，使用不当会造成内存泄漏&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;箭头函数的好处&#34;&gt;箭头函数的好处&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;简洁&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不会改变this本来的绑定&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;事件的冒泡和捕获&#34;&gt;事件的冒泡和捕获&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;节流和防抖&#34;&gt;节流和防抖&lt;/h2&gt;
+&lt;p&gt;防抖：防抖就是将一段时间内连续的多次触发转化为一次触发。一般可以使用在用户输入停止一段时间过后再去获取数据，而不是每次输入都去获取&lt;/p&gt;
+&lt;p&gt;节流：高频事件触发，但在n秒内只会执行一次，如验证码登录时利用setTimeout做的倒计时&lt;/p&gt;
+&lt;p&gt;区别：防抖是将多次执行变为最后一次执行，节流是将多次执行变成每隔一段时间执行&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;dom加载过程中ready和load的区别&#34;&gt;dom加载过程中ready和load的区别&lt;/h2&gt;
+&lt;p&gt;Ready：页面HTML文档解析完成但图片等媒体文件加载完成之前执行
+load：完全加载完成之后执行&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;字符串反转&#34;&gt;字符串反转&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%8D%E8%BD%AC.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;slicesplice的区别&#34;&gt;slice、splice的区别&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/slice.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/splice.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;深拷贝和浅拷贝&#34;&gt;深拷贝和浅拷贝&lt;/h2&gt;
+&lt;p&gt;概念：深拷贝和浅拷贝是只针对Object和Array这样的引用数据类型的。&lt;/p&gt;
+&lt;p&gt;浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。&lt;/p&gt;
+&lt;p&gt;浅拷贝：assign()、concat()、slice()&lt;/p&gt;
+&lt;p&gt;深拷贝：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;JSON.parse(JSON.stringify())&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;手写递归方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;递归方法实现深度克隆原理：遍历对象、数组直到里边都是基本数据类型，然后再去复制，就是深度拷贝&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E6%B7%B1%E6%8B%B7%E8%B4%9D.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;同步和异步&#34;&gt;同步和异步&lt;/h2&gt;
+&lt;p&gt;同步：所有的任务都处在同一队列中，不可以插队，一个任务执行完接着开始执行下一个，相对于浏览器而言，同步的效率过低，一些耗费时间比较长的任务应该用异步来执行。&lt;/p&gt;
+&lt;p&gt;异步：将一个任务放入到异步队列中，当这个任务执行完成之后，再从异步队列中提取出来，插队到同步队列中，拿到异步任务的结果，可以提升代码执行的效率，不需要因为一个耗时长的代码而一直等待&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;缓存&#34;&gt;缓存&lt;/h2&gt;
+&lt;p&gt;cookie sessionStorage和localstorage&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;存储大小&lt;/p&gt;
+&lt;p&gt;cookie数据大小不能超过4K&lt;/p&gt;
+&lt;p&gt;sessionStorage和localStorage可以达到5M或更大&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;有效时间&lt;/p&gt;
+&lt;p&gt;localstorage：浏览器关闭后数据不丢失除非主动删除数据&lt;/p&gt;
+&lt;p&gt;sessionStorage：数据在当前浏览器窗口关闭后自动删除&lt;/p&gt;
+&lt;p&gt;cookie： 过期时间未到一直有效，即使窗口或浏览器关闭&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数据与服务器之间的交互方式&lt;/p&gt;
+&lt;p&gt;cookie：数据会自动传递到服务器，服务器也可以写cookie到客户端&lt;/p&gt;
+&lt;p&gt;sessionStorage和localstorage：仅本地保存，不会发给服务端&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;统计出现最多字符&#34;&gt;统计出现最多字符&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E7%BB%9F%E8%AE%A1%E6%9C%80%E5%A4%9A%E5%87%BA%E7%8E%B0%E7%9A%84%E5%AD%97%E7%AC%A6.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;判断是不是数组&#34;&gt;判断是不是数组&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;instanceof&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/instanceof.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;constructor&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/constructor.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Object.prototype.toString.call&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/prototype.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Array.isArray&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/isArray.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;promise&#34;&gt;Promise&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;概念：解决异步编程的一种方法，替代多层嵌套的回调，Promise是一个构造函数，用域封装异步操作并可以获得成功或失败的结果&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Promise all：将多个Promise实例包装成一个新的Promise实例，当所有状态都变成成功时all的状态才变为成功，如果其中一个状态为失败则返回失败结果&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;执行顺序问题&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/Promise.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;原型链&#34;&gt;原型链&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;this指向&#34;&gt;this指向&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;ajax&#34;&gt;ajax&lt;/h2&gt;
+&lt;p&gt;原理：&lt;/p&gt;
+&lt;p&gt;好处：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;小程序api&#34;&gt;小程序API&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;jquery选择器&#34;&gt;Jquery选择器&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;递归计算1100求和&#34;&gt;递归计算1~100求和&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;css&#34;&gt;Css&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;pxrememvwvh区别&#34;&gt;px,rem,em,vw,vh区别&lt;/h2&gt;
+&lt;p&gt;px：绝对单位，页面按精确像素展示&lt;/p&gt;
+&lt;p&gt;em：相对单位，基准点为父节点字体的大小，如果自身定义了font-size按自身来计算&lt;/p&gt;
+&lt;p&gt;rem：相对单位，可理解为“root em”相对根节点html的字体大小来计算&lt;/p&gt;
+&lt;p&gt;vw：视窗宽度，1vw等于视窗宽度的1%&lt;/p&gt;
+&lt;p&gt;vh：视窗高度，1vh相当于视窗高度的1%&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;box-sizing属性&#34;&gt;box-sizing属性&lt;/h2&gt;
+&lt;p&gt;在标准模式下的盒模型下，盒子总宽度/高度 = width/height+padding+border+margin&lt;/p&gt;
+&lt;p&gt;在怪异模式下的盒模型下，盒子的总宽度和高度是包含内边距padding和边框border宽度在内的，盒子总宽度/高度=width/height + margin = 内容区宽度/高度 + padding + border + margin;&lt;/p&gt;
+&lt;p&gt;box-sizing有两个值一个是content-box，另一个是border-box&lt;/p&gt;
+&lt;p&gt;当设置为box-sizing:content-box时，将采用标准模式解析计算&lt;/p&gt;
+&lt;p&gt;当设置为box-sizing:border-box时，将采用怪异模式解析计算&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;元素居中&#34;&gt;元素居中&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;margin和width实现
+在容器上定义一个固定的宽度，然后配合margin左右的值为auto&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;inline-block和父元素text-align&lt;/p&gt;
+&lt;p&gt;仅inline-block属性是无法让元素水平居中，他的关键之处要在元素的父容器中设置text-align的属性为“center”，这样才能达到效果：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;自适应方案&#34;&gt;自适应方案&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;固定一个某些宽度，使用一个模式，加上少许的媒体查询&lt;/li&gt;
+&lt;li&gt;使用flexbox&lt;/li&gt;
+&lt;li&gt;使用百分比加媒体查询&lt;/li&gt;
+&lt;li&gt;使用rem&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;vue&#34;&gt;Vue&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;计算属性侦听器区别&#34;&gt;计算属性,侦听器区别&lt;/h2&gt;
+&lt;p&gt;【计算属性】
+概念：计算属性是一个函数，最后函数返回的结果就是计算属性得到的结果
+当我们第一次使用计算属性的时候，会执行计算属性并进行计算，然后将计算的结果缓存起来，后续当外面再去使用计算属性的时候，如果计算属性中使用到的数据没有发生变化，那么就直接读取缓存的结果，不会重新计算&lt;/p&gt;
+&lt;p&gt;场景：计算的内容需要依赖多个属性，如果一个数据反复会被使用，但它计算以来的内容很少发生变化时&lt;/p&gt;
+&lt;p&gt;【侦听器】
+概念：侦听器与data中的属性同名，当属性值发生改变的时候侦听器触发执行&lt;/p&gt;
+&lt;p&gt;场景：在计算开销比较大（计算多次数或者异步处理）的时候&lt;/p&gt;
+&lt;p&gt;补充：immediate: true 刷新加载 立马触发一次handler&lt;/p&gt;
+&lt;p&gt;deep: true 可以深度检测到 person 对象的属性值的变化&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;keep-live&#34;&gt;keep-live&lt;/h2&gt;
+&lt;p&gt;概念：缓存某个组件，或者某个路由。所有在keep-alive标签下的路由都会被缓存。当组件在 &lt;!-- raw HTML omitted --&gt; 内被切换，它的 activated 和 deactivated 这两个生命周期钩子函数将会被对应执行&lt;/p&gt;
+&lt;p&gt;用法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在路由meta配置isKeepAlive:true&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;inlcude/exclude&lt;/p&gt;
+&lt;p&gt;inlcude包含该组件就缓存，exclude不包含该组件就缓存&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;场景：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;节省性能消耗，避免一个组件频繁重新渲染，节省开支&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;保存用户状态&lt;/p&gt;
+&lt;p&gt;比如说：我们在填写收货地址的页面，需要跳转到另一个页面通过定位选择地址信息再返回继续填写，这时候需要缓存收货地址页面，避免跳转页面导致用户数据丢失&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;v-if和v-show的区别&#34;&gt;v-if和v-show的区别&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;v-show 只是简单的控制元素的 display 属性，v-if 条件为真，元素将会被渲染，条件为假，元素会被销毁&lt;/li&gt;
+&lt;li&gt;v-show 有更高的首次渲染开销，而 v-if 的首次渲染开销要小的多&lt;/li&gt;
+&lt;li&gt;v-if 有更高的切换开销，v-show 切换开销小&lt;/li&gt;
+&lt;li&gt;v-if 有配套的 v-else-if 和 v-else，而 v-show 没有&lt;/li&gt;
+&lt;li&gt;v-if 可以搭配 template 使用，而 v-show 不行&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;route和router的区别&#34;&gt;route和router的区别&lt;/h2&gt;
+&lt;p&gt;route相当于当前正在跳转的路由对象，可以从里面获取name,path,params,query等&lt;/p&gt;
+&lt;p&gt;router为VueRouter的实例，相当于一个全局的路由器对象，里面含有很多属性和子对象，例如history对象，经常用的跳转链接就可以用this.$router.push&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;hashhistory路由区别&#34;&gt;hash,history路由区别&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;hash路由在地址栏URL上有#，而history路由没有会好看一点&lt;/li&gt;
+&lt;li&gt;我们进行回车刷新操作，hash路由会加载到地址栏对应的页面，而history路由一般就404报错了（刷新是网络请求，没有后端准备时会报错）。&lt;/li&gt;
+&lt;li&gt;hash路由支持低版本的浏览器，而history路由是HTML5新增的API。&lt;/li&gt;
+&lt;li&gt;hash的特点在于它虽然出现在了URL中，但是不包括在http请求中，所以对于后端是没有一点影响的，所以改变hash不会重新加载页面，所以这也是单页面应用的必备。&lt;/li&gt;
+&lt;li&gt;history运用了浏览器的历史记录栈，之前有back,forward,go方法&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;组件传参方式&#34;&gt;组件传参方式&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;父传子：父组件把数据绑定在引用子组件处的自定义属性上，在子组件中通过props引用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;子传父：在父组件标签处定义自定义事件，在子组件中通过$emit发送自定义事件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;$ref&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;vuex&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;provider inject&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;vuex&#34;&gt;vuex&lt;/h2&gt;
+&lt;p&gt;概念描述：vuex是vue框架的状态管理器，单页面应用组件之间的状态&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;state：对应vue的data，数据是响应式的，组件从store中读取数据，若store发生改变，依赖这个数据的组件也会更新，通过mapState把全局的state和getter映射到当前组件的computed中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;getter：对state进行计算操作，他就是store的计算属性。防止多次计算降低性能。可以在多组件之间复用，若一个状态只在一个组件内使用就可以不用getters&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Mutation：更改store中状态的唯一方法且必须是同步函数。在组件中使用 this.$store.commit(&amp;lsquo;xxx&amp;rsquo;) 提交 mutation，或者使用 mapMutations 辅助函数将组件中的 methods 映射为 store.commit 调用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Action：提交的是 mutation，可以包含任意异步操作。在组件中使用 this.$store.dispatch(&amp;lsquo;xxx&amp;rsquo;) 分发 action，或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Module：将 store 分割成模块，每个模块拥有自己的 state、mutation、action、getter&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;过滤器&#34;&gt;过滤器&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E8%BF%87%E6%BB%A4%E5%99%A8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;避免v-ifv-for同时用&#34;&gt;避免v-if,v-for同时用&lt;/h2&gt;
+&lt;p&gt;v-for 比 v-if 具有更高的优先级，哪怕我们只渲染出一小部分用户的元素,也得在每次重渲染的时候遍历整个列表。&lt;/p&gt;
+&lt;p&gt;因此倾向于将v-if放在容器元素上，先判断再循环&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;vue双向绑定原理&#34;&gt;Vue双向绑定原理&lt;/h2&gt;
+&lt;p&gt;Vue采用数据劫持结合发布者-订阅者模式的方式来实现数据的响应式，vue在初始化的时候，在initState方法中会调取initData方法初始化data数据，对data对象进行遍历，在这个方法中会调observe（监听器，观察者）对用户的数据进行监听，在observe中会对对象new Observe实例化创建监听，在observe中对数据进行判断，如果是数组执行observeArray深度进行监听，继续执行observe方法，如果当前传入的是对象则执行this.walk，对对象进行循环，重新定义对象的属性，这时使用的就是defineReactive，它是vue中的一个核心方法，用来定义响应式。在defineReactive方法中实例化了一个Dep（发布者），通过Object.defineProperty对数据进行拦截，把这些 property 全部转为 getter/setter。get数据的时候，通过dep.depend触发Watcher（订阅者）的依赖收集，收集订阅者，如果数据是数组，执行dependArray，对数组中的每个值通过depend都添加到依赖。set时，会对数据进行比较，如果数据发生了变化会通过dep.notify发布通知，通知watcher，更新视图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/2021-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;修改数据不重发请求&#34;&gt;修改数据不重发请求&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/143929973&#34;&gt;CSS3面试题2020 - 知乎 (zhihu.com)&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B42%E6%9C%88/ - </description>
+        </item>
     
     
     

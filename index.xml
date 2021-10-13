@@ -5,14 +5,50 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Oct 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
-        <title>《白夜行》读后感</title>
+        <title>Vue2-响应式原理</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/</link>
+        <pubDate>Wed, 13 Oct 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/cmj6706/article/details/79032703&#34;&gt;token详解以及应用原理&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>【待补充】关于租房的一些方法论</title>
+        <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/</link>
+        <pubDate>Wed, 13 Oct 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;p&gt;减脂的基本原理其实非常的简单，日常总热量的摄入要小于总热量的消耗，造成热量亏空，为了达到能量收支的平衡，体内储存的脂肪就会氧化消耗来填补缺失的热量，长此以往，体内储存的脂肪就会被消耗得越来越少&lt;/p&gt;
+&lt;p&gt;人体一天的能量消耗主要有四个方面：基础代谢、体力活动、食物热效应以及生长发育&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.boohee.com/food&#34;&gt;热量查询&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://psychologyandfitness.cn/bmrtdeecalculator/&#34;&gt;基础代谢计算&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.sohu.com/a/380044473_685943&#34;&gt;增肌减脂必知BMR&amp;amp;TDEE计算口诀&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>【待补充】《白夜行》读后感</title>
         <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E7%99%BD%E5%A4%9C%E8%A1%8C%E8%AF%BB%E5%90%8E%E6%84%9F/</link>
         <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
         
@@ -1114,6 +1150,21 @@ s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
     
     
         <item>
+        <title>【待补充】2019年青岛</title>
+        <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/2019%E5%B9%B4%E9%9D%92%E5%B2%9B/</link>
+        <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/2019%E5%B9%B4%E9%9D%92%E5%B2%9B/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/2019%E5%B9%B4%E9%9D%92%E5%B2%9B/ -&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/2019%E5%B9%B4%E9%9D%92%E5%B2%9B/ - </description>
+        </item>
+    
+    
+    
+        <item>
         <title>【待补充】乐理</title>
         <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E4%B9%90%E7%90%86/</link>
         <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
@@ -1124,60 +1175,6 @@ s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E4%B9%90%E7%90%86/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>【待补充】甘南藏族自治州</title>
-        <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</link>
-        <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/ -&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>【待补充】甘孜藏族自治州-康定</title>
-        <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/</link>
-        <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/ -&lt;h1 id=&#34;行程&#34;&gt;行程&lt;/h1&gt;
-&lt;p&gt;租车500*5 = 2500 
-车票来回2500 
-酒店两间500 * 5 = 2500 
-油费算五天2000 
-吃饭一天300 * 5 = 1500 
-门票粗略计算 2000 
-零食 1000&lt;/p&gt;
-&lt;p&gt;注意事项&lt;/p&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>【待补充】青岛</title>
-        <link>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/</link>
-        <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/ -&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/ - </description>
         </item>
     
     
