@@ -17,8 +17,17 @@
       <pubDate>Wed, 13 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/</guid>
-      <description>概念 参考资料  token详解以及应用原理
- </description>
+      <description>概述 Vue采用数据劫持结合发布者-订阅者模式的方式来实现数据的响应式，
+监听属性变化
+ Vue在初始化的时候，对data对象进行遍历，在这个方法中会调Observe（监听器，观察者）对用户的数据进行监听 在observe中对数据进行判断，对对象进行循环，使用defineReactive，它是vue中的一个核心方法，用来定义响应式 defineReactive方法中实例化了一个Dep（发布者），通过Object.defineProperty对数据进行拦截，把这些 property 全部转为 getter/setter。get数据的时候，通过dep.depend触发Watcher（订阅者）的依赖收集，收集订阅者；set时，会对数据进行比较，如果数据发生了变化会通过dep.notify发布通知，通知Watcher，更新视图  解析指令
+  Vue在初始化时传入当前Vue实例和html根节点的元素标识，进行模板解析
+  首先会取出模板元素将其转化成fragment编译后统一进行dom挂载，这样做比较高效（此为虚拟dom）
+  循环从fragment取出所有元素子节点，进行指令类型判断（以v-text为例），传入指令类型和属性值调用update方法
+  update方法中会将视图与vue实例的data属性绑定渲染页面数据。
+当data属性值发生变化会被defineReactive监听到，然后通知wctaher绑定新的数据更新视图
+  代码 template &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;!-- 双向绑定 --&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;name&amp;#34;&amp;gt; &amp;lt;/div&amp;gt; 监听属性变化 初始化vue时会传入一个json格式的对象
+let vue = new Vue({ el: &amp;#39;#app&amp;#39;, data: { name: &amp;#34;name&amp;#34;, } }) 取出该对象并遍历data数据，使用Object.defineProperty()方法来监听每一个属性的变化
+observe(value){ if (!value || typeof value !== &amp;#39;object&amp;#39;) { return } //遍历data  Object.keys(value).forEach(key =&amp;gt;{ this.defineReactive(value,key,value[key]) // 代理data中的属性到vue实例上  this.</description>
     </item>
     
     <item>
@@ -41,17 +50,19 @@
       <pubDate>Tue, 12 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E7%99%BD%E5%A4%9C%E8%A1%8C%E8%AF%BB%E5%90%8E%E6%84%9F/</guid>
-      <description>概述 桐原亮司 - 雪穗 警察：世恒
+      <description>概述 桐原亮司 - 雪穗 警察：世恒、古贺久志
 当铺：桐原亮司、父亲、母亲、伙计
-旧城区：雪穗、母亲、房管
+旧城区：雪穗、母亲、房管、寺崎忠夫
 新城区：雪穗、继母
 男校：桐原亮司、友彦
 欧巴桑：两死
 女校：雪穗、她的小跟班
 卖盗版软件的公司（后来搬走改卖硬件）
-交际舞协会
-专利公司
-侦探公司
+交际舞协会：一诚、宫
+专利公司：金枝、绘里
+侦探公司：金枝
+医药公司：康晴，一诚
+医院：典子、藤井、秋吉雄一
 人物关系 思考 </description>
     </item>
     
