@@ -6,10 +6,19 @@
     <description>Recent content in Categories on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UniApp</title>
+      <link>https://damuwangs.github.io/categories/uniapp/</link>
+      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/categories/uniapp/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>VUE</title>

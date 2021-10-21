@@ -6,10 +6,31 @@
     <description>Recent content in Posts on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UniApp-原生插件开发</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</guid>
+      <description>开发环境 Java环境1.8 参考：jdk1.8下载与安装教程
+android环境  软件下载    进入https://www.androiddevtools.cn/下载SDK Tools
+  下载完成点击SDK Manager.exe运行
+  需要下载以下插件
+  环境变量配置    系统变量下添加变量
+ANDROID_SDK_HOME，指向Android SDK根目录   Path新增:
+Android SDK根目录\platform-tools; Android SDK根目录\tools;   命令行测试是否配置成功
+adb (成功后可以看到adb的版本号及命令行说明等信息)   AndroidStudio 参考：Android Studio官网
+demo下载 参考：Android 离线SDK - 正式版
+AndroidStudio运行 项目导入   点击Android Studio菜单选项File—&amp;gt;New—&amp;gt;Import Project
+  导入选择UniPlugin-Hello-As工程，点击OK！等待工程导入完毕
+  导入后切换为Android项目结构，目录如下
+  生成签名文件   点击Build—&amp;gt;Generate Signed Apk</description>
+    </item>
     
     <item>
       <title>【待补充】《白夜行》读后感</title>
@@ -57,8 +78,9 @@ observe(value){ if (!value || typeof value !== &amp;#39;object&amp;#39;) { retur
       <pubDate>Wed, 13 Oct 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/</guid>
-      <description>概念 减脂的基本原理其实非常的简单，日常总热量的摄入要小于总热量的消耗，造成热量亏空，为了达到能量收支的平衡，体内储存的脂肪就会氧化消耗来填补缺失的热量，长此以往，体内储存的脂肪就会被消耗得越来越少
-人体一天的能量消耗主要有四个方面：基础代谢、体力活动、食物热效应以及生长发育
+      <description>小区 昆明城市花园-回迁房
+惠南社区石家围墙西电小区-老小区
+方法论 这里我介绍个成功经验。在58同城租房平台，筛选个人房源的(看到房源下面是机构的基本可以过了，都被扒了一层皮，当然你想合租小而美的单间或者公寓可以找中介)，排序按时间排序(优质的房子肯定不会挂几个月)，然后选定价格区间、户型、地段等，就能找到靠谱的房东直租(概率极大，不排除二房东，中介假冒等)。
 参考资料  热量查询
 基础代谢计算
 增肌减脂必知BMR&amp;amp;TDEE计算口诀

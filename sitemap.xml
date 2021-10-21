@@ -3,18 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://damuwangs.github.io/categories/</loc>
+    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://damuwangs.github.io/</loc>
-    <lastmod>2021-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://damuwangs.github.io/posts/</loc>
-    <lastmod>2021-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://damuwangs.github.io/tags/</loc>
-    <lastmod>2021-10-15T00:00:00+00:00</lastmod>
+    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/categories/uniapp/</loc>
+    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -33,11 +53,6 @@
   </url>
   
   <url>
-    <loc>https://damuwangs.github.io/categories/</loc>
-    <lastmod>2021-10-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://damuwangs.github.io/categories/vue/</loc>
     <lastmod>2021-10-13T00:00:00+00:00</lastmod>
   </url>
@@ -49,11 +64,6 @@
   
   <url>
     <loc>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
-    <lastmod>2021-10-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2021-10-13T00:00:00+00:00</lastmod>
   </url>
   
