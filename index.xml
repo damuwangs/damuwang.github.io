@@ -17,7 +17,7 @@
         <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
         
         <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/ -&lt;h1 id=&#34;开发环境&#34;&gt;开发环境&lt;/h1&gt;
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/ -&lt;h1 id=&#34;一开发环境&#34;&gt;一、开发环境&lt;/h1&gt;
 &lt;h2 id=&#34;java环境18&#34;&gt;Java环境1.8&lt;/h2&gt;
 &lt;p&gt;参考：&lt;a href=&#34;https://blog.csdn.net/weixin_44084189/article/details/98966787/&#34;&gt;jdk1.8下载与安装教程&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;android环境&#34;&gt;android环境&lt;/h2&gt;
@@ -60,7 +60,7 @@ Android SDK根目录&lt;span style=&#34;color:#f1fa8c&#34;&gt;\t&lt;/span&gt;ool
 &lt;p&gt;参考：&lt;a href=&#34;https://developer.android.google.cn/studio/index.html&#34;&gt;Android Studio官网&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;demo下载&#34;&gt;demo下载&lt;/h2&gt;
 &lt;p&gt;参考：&lt;a href=&#34;https://nativesupport.dcloud.net.cn/AppDocs/download/android?id=android-%E7%A6%BB%E7%BA%BFsdk-%E6%AD%A3%E5%BC%8F%E7%89%88&#34;&gt;Android 离线SDK - 正式版&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;androidstudio运行&#34;&gt;AndroidStudio运行&lt;/h1&gt;
+&lt;h1 id=&#34;二androidstudio运行&#34;&gt;二、AndroidStudio运行&lt;/h1&gt;
 &lt;h2 id=&#34;项目导入&#34;&gt;项目导入&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -129,7 +129,7 @@ Android SDK根目录&lt;span style=&#34;color:#f1fa8c&#34;&gt;\t&lt;/span&gt;ool
       keyAlias &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;jks别名&amp;#39;&lt;/span&gt;
       keyPassword &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;jks密码&amp;#39;&lt;/span&gt;
       storeFile file(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;xxx.jks&amp;#39;&lt;/span&gt;)
-  storePassword &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;jks密码&amp;#39;&lt;/span&gt;
+     storePassword &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;jks密码&amp;#39;&lt;/span&gt;
   v1SigningEnabled &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
   v2SigningEnabled &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
   }
@@ -138,18 +138,182 @@ Android SDK根目录&lt;span style=&#34;color:#f1fa8c&#34;&gt;\t&lt;/span&gt;ool
 &lt;li&gt;
 &lt;p&gt;app模块下asssets—&amp;gt;data—&amp;gt;dcloud_control.xml—&amp;gt;appid替换&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;hbuilder&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;apps&amp;gt;&lt;/span&gt;
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;app&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;appid=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;decloud开发者中心申请的appid&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;appver=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/apps&amp;gt;&lt;/span&gt;
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;apps&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;app&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;appid=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;decloud开发者中心申请的appid&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;appver=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/apps&amp;gt;&lt;/span&gt;
 &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/hbuilder&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击Android Studio菜单选项Build—&amp;gt;Rebuild Project编译项目&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装模拟器后点击运行，启动项目&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;启动成功弹出模拟器&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E6%A8%A1%E6%8B%9F%E5%99%A8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;三插件开发&#34;&gt;三、插件开发&lt;/h1&gt;
+&lt;h2 id=&#34;插件注册&#34;&gt;插件注册&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;第一种方式&lt;/p&gt;
+&lt;p&gt;在UniPlugin-Hello-AS工程下 “app” Module根目录assets/dcloud_uniplugins.json文件。 在moudles节点下 添加你要注册的Module 或 Component&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;{
+  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;nativePlugins&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [
+    {
+      &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;plugins&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [
+        {
+          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt;,
+          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;DCloud-RichAlert&amp;#34;&lt;/span&gt;,
+          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;class&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;uni.dcloud.io.uniplugin_richalert.RichAlertModule&amp;#34;&lt;/span&gt;
+        }
+      ]
+    }
+  ]
+}
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第二种方式
+创建一个实体类并实现UniAppHookProxy接口，在onCreate函数中添加组件注册相关参数 或 填写插件需要在启动时初始化的逻辑。&lt;/p&gt;
+&lt;p&gt;在UniPlugin-Hello-AS工程下 “app” Module根目录assets/dcloud_uniplugins.json文件，在hooksClass节点添加你创建实现UniAppHookProxy接口的实体类完整名称填入其中即可 (有些需要初始化操作的需求可以在此处添加逻辑，无特殊操作仅使用第一种方式注册即可无需集成UniAppHookProxy接口)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;RichAlert_AppProxy&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;implements&lt;/span&gt; UniAppHookProxy &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
+    @Override
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;onCreate&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;Application application&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color:#6272a4&#34;&gt;//当前uni应用进程回调 仅触发一次 多进程不会触发
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#6272a4&#34;&gt;//可通过UniSDKEngine注册UniModule或者UniComponent
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
+  
+  @Override
+  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;onSubProcessCreate&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;Application application&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
+      &lt;span style=&#34;color:#6272a4&#34;&gt;//其他子进程初始化回调 可用于初始化需要子进程初始化需要的逻辑
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;{
+  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;nativePlugins&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [
+    {
+      &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;hooksClass&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;uni.dcloud.io.uniplugin_richalert.RichAlert_AppProxy&amp;#34;&lt;/span&gt;,
+      &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;plugins&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [
+        {
+          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt;,
+          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;DCloud-RichAlert&amp;#34;&lt;/span&gt;,
+          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;class&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;uni.dcloud.io.uniplugin_richalert.RichAlertModule&amp;#34;&lt;/span&gt;
+        }
+      ]
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;dcloud_uniplugins.json说明&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;nativePlugins： 插件跟节点 可存放多个插件&lt;/li&gt;
+&lt;li&gt;hooksClass： 生命周期代理（实现AppHookProxy接口类）格式(完整包名加类名)&lt;/li&gt;
+&lt;li&gt;plugins: 插件数组&lt;/li&gt;
+&lt;li&gt;name : 注册名称&lt;/li&gt;
+&lt;li&gt;class : module 或 component 实体类完整名称&lt;/li&gt;
+&lt;li&gt;type : module 或 component类型&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;插件开发&#34;&gt;插件开发&lt;/h1&gt;
-&lt;h1 id=&#34;插件调试&#34;&gt;插件调试&lt;/h1&gt;
-&lt;h2 id=&#34;本地插件注册&#34;&gt;本地插件注册&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;插件类型&#34;&gt;插件类型&lt;/h2&gt;
+&lt;h3 id=&#34;1扩展module&#34;&gt;1、扩展Module&lt;/h3&gt;
+&lt;p&gt;扩展非UI的特定功能，调用原生android方法&lt;/p&gt;
+&lt;h3 id=&#34;2扩展组件-component&#34;&gt;2、扩展组件 Component&lt;/h3&gt;
+&lt;p&gt;使用Android原生控件&lt;/p&gt;
+&lt;p&gt;向JS环境发送一些事件，比如click事件，通过uniapp触发事件，在android进行响应&lt;/p&gt;
+&lt;h3 id=&#34;3unijscallback结果回调&#34;&gt;3、UniJSCallback结果回调&lt;/h3&gt;
+&lt;p&gt;JS调用时，有的场景需要返回一些数据，比如以下例子，返回x、y坐标&lt;/p&gt;
+&lt;h3 id=&#34;5globalevent-事件&#34;&gt;5、globalEvent 事件&lt;/h3&gt;
+&lt;p&gt;用于页面监听持久性事件，例如定位信息，陀螺仪等的变化&lt;/p&gt;
+&lt;h2 id=&#34;插件示例&#34;&gt;插件示例&lt;/h2&gt;
+&lt;p&gt;封装了一个 RichAlertModule, 富文本alert弹窗Module，代码可参考UniPlugin-Hello-AS工程中的uniplugin_richalert模块&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;RichAlertModule&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;extends&lt;/span&gt; UniDestroyableModule &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
+    @UniJSMethod&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;uiThread &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;show&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;JSONObject options&lt;span style=&#34;color:#ff79c6&#34;&gt;,&lt;/span&gt; UniJSCallback jsCallback&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;mUniSDKInstance&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;getContext&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;instanceof&lt;/span&gt; Activity&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
+            RichAlert richAlert &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; RichAlert&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;mUniSDKInstance&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;getContext&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;());&lt;/span&gt;
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
+            richAlert&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;show&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;();&lt;/span&gt;
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
+    @UniJSMethod&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;uiThread &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;dismiss&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
+        destroy&lt;span style=&#34;color:#ff79c6&#34;&gt;();&lt;/span&gt;
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
+
+    @Override
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;destroy&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;alert &lt;span style=&#34;color:#ff79c6&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; alert&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;isShowing&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;())&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
+            UniLogUtils&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;w&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Dismiss the active dialog&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;);&lt;/span&gt;
+            alert&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;dismiss&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;();&lt;/span&gt;
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;HBuilderX 项目中使用RichAlert示例&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// require插件名称  
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; dcRichAlert &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; uni.requireNativePlugin(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;DCloud-RichAlert&amp;#39;&lt;/span&gt;);              
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 使用插件  
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;dcRichAlert.show({  
+    position&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;bottom&amp;#39;&lt;/span&gt;,  
+    title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;提示信息&amp;#34;&lt;/span&gt;,  
+    titleColor&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;#FF0000&amp;#39;&lt;/span&gt;,  
+    content&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;lt;a href=&amp;#39;https://uniapp.dcloud.io/&amp;#39; value=&amp;#39;Hello uni-app&amp;#39;&amp;gt;uni-app&amp;lt;/a&amp;gt; 是一个使用 Vue.js 开发跨平台应用的前端框架!\n免费的\n免费的\n免费的\n重要的事情说三遍&amp;#34;&lt;/span&gt;,  
+    contentAlign&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;left&amp;#39;&lt;/span&gt;,  
+    checkBox&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {  
+        title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;不再提示&amp;#39;&lt;/span&gt;,  
+        isSelected&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;  
+    },  
+    buttons&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [{  
+        title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;取消&amp;#39;&lt;/span&gt;  
+    },  
+    {  
+        title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;否&amp;#39;&lt;/span&gt;  
+    },  
+    {  
+        title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;确认&amp;#39;&lt;/span&gt;,  
+        titleColor&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;#3F51B5&amp;#39;&lt;/span&gt;  
+    }  
+    ]  
+}, result =&amp;gt; {  
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;switch&lt;/span&gt; (result.type) {  
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;  
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;callback---button--&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; result.index);  
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;break&lt;/span&gt;;  
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;checkBox&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;  
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;callback---checkBox--&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; result.isSelected);  
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;break&lt;/span&gt;;  
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;  
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;callback---a--&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; JSON.stringify(result));  
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;break&lt;/span&gt;;  
+        &lt;span style=&#34;color:#ff79c6&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;backCancel&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;  
+            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;callback---backCancel--&amp;#34;&lt;/span&gt;);  
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;break&lt;/span&gt;;  
+   }  
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;四调试与发布&#34;&gt;四、调试与发布&lt;/h1&gt;
+&lt;h2 id=&#34;androidstudio调试&#34;&gt;AndroidStudio调试&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;生成uniapp本地打包App资源&lt;/li&gt;
+&lt;li&gt;把APP资源文件放入到UniPlugin-Hello-AS工程下&lt;/li&gt;
+&lt;li&gt;appid注意 一定要统一否则会导致应用无法正常运行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;hbuilderx调试&#34;&gt;HbuilderX调试&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;生成插件的aar并放入到android目录下&lt;/li&gt;
+&lt;li&gt;创建package.json文件并填写必要的信息。放入到android目录下&lt;/li&gt;
+&lt;li&gt;创建libs文件夹。并放入到android目录下&lt;/li&gt;
+&lt;li&gt;将插件依赖的aar文件放入到插件android目录下&lt;/li&gt;
+&lt;li&gt;将原生插件开发完成，按上图的格式配置到uni-app项目下的“nativeplugins”目录&lt;/li&gt;
+&lt;li&gt;在manifest.json文件的“App原生插件配置”项下点击“选择本地插件”，在列表中选择需要打包生效的插件&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;集成uni-app项目&#34;&gt;集成uni-app项目&lt;/h2&gt;
-&lt;h1 id=&#34;集成运行hbuliderx项目&#34;&gt;集成运行HbuliderX项目&lt;/h1&gt;
 &lt;h2 id=&#34;插件编译及配置&#34;&gt;插件编译及配置&lt;/h2&gt;
 &lt;h2 id=&#34;插件引入&#34;&gt;插件引入&lt;/h2&gt;
 &lt;h2 id=&#34;自定义调试基座&#34;&gt;自定义调试基座&lt;/h2&gt;
@@ -167,6 +331,7 @@ Android SDK根目录&lt;span style=&#34;color:#f1fa8c&#34;&gt;\t&lt;/span&gt;ool
 &lt;/ol&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://nativesupport.dcloud.net.cn/NativePlugin/course/android&#34;&gt;uniapp原生插件开发&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://nativesupport.dcloud.net.cn/AppDocs/usesdk/appkey&#34;&gt;申请Appkey&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://ask.dcloud.net.cn/question/122811&#34;&gt;安卓打包,显示未配置appkey或配置错误&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
