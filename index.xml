@@ -20,13 +20,13 @@
         <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/ -&lt;h1 id=&#34;一开发环境&#34;&gt;一、开发环境&lt;/h1&gt;
 &lt;h2 id=&#34;java环境18&#34;&gt;Java环境1.8&lt;/h2&gt;
 &lt;p&gt;参考：&lt;a href=&#34;https://blog.csdn.net/weixin_44084189/article/details/98966787/&#34;&gt;jdk1.8下载与安装教程&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;android环境&#34;&gt;android环境&lt;/h2&gt;
+&lt;h2 id=&#34;android环境&#34;&gt;Android环境&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;软件下载&lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;进入https://www.androiddevtools.cn/下载SDK Tools&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.androiddevtools.cn&#34;&gt;下载SDK Tools&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/SDKTools.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -299,25 +299,81 @@ Android SDK根目录&lt;span style=&#34;color:#f1fa8c&#34;&gt;\t&lt;/span&gt;ool
 })
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;四调试与发布&#34;&gt;四、调试与发布&lt;/h1&gt;
 &lt;h2 id=&#34;androidstudio调试&#34;&gt;AndroidStudio调试&lt;/h2&gt;
+&lt;p&gt;这种用于上层调用已完成，调试底层android插件&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;生成uniapp本地打包App资源&lt;/li&gt;
-&lt;li&gt;把APP资源文件放入到UniPlugin-Hello-AS工程下&lt;/li&gt;
-&lt;li&gt;appid注意 一定要统一否则会导致应用无法正常运行&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击发行—&amp;gt;原生APP-本地打包—&amp;gt;生成本地打包App资源&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%94%9F%E6%88%90%E6%9C%AC%E5%9C%B0%E6%89%93%E5%8C%85App%E8%B5%84%E6%BA%90.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;编译成功在unpackage目录下生成资源&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E6%9C%AC%E5%9C%B0%E6%89%93%E5%8C%85%E6%88%90%E5%8A%9F.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;把APP资源文件放入到UniPlugin-Hello-AS工程下app  Module根目录assets/apps目录下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E5%AF%BC%E5%85%A5AndroidStudio.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;appid注意 一定要统一否则会导致应用无法正常运行&lt;/p&gt;
+&lt;p&gt;以dcloud_control.xml配置的appid为准&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/AppID%E4%B8%80%E8%87%B4%E6%80%A7.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置好运行项目即可&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;hbuilderx调试&#34;&gt;HbuilderX调试&lt;/h2&gt;
+&lt;p&gt;这种用于底层插件开发完成，调试上层uniapp调用&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;生成插件的aar并放入到android目录下&lt;/li&gt;
-&lt;li&gt;创建package.json文件并填写必要的信息。放入到android目录下&lt;/li&gt;
-&lt;li&gt;创建libs文件夹。并放入到android目录下&lt;/li&gt;
-&lt;li&gt;将插件依赖的aar文件放入到插件android目录下&lt;/li&gt;
-&lt;li&gt;将原生插件开发完成，按上图的格式配置到uni-app项目下的“nativeplugins”目录&lt;/li&gt;
-&lt;li&gt;在manifest.json文件的“App原生插件配置”项下点击“选择本地插件”，在列表中选择需要打包生效的插件&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;androidStudio编译成功，生成aar&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%94%9F%E6%88%90aar.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建&lt;a href=&#34;https://nativesupport.dcloud.net.cn/NativePlugin/course/package&#34;&gt;package.json&lt;/a&gt;文件并填写必要的信息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;{
+  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;RichAlert&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 插件名称
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;DCloud-RichAlert&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 插件标识，需要保证唯一性
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;0.1.3&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 插件版本号
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;示例插件&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 插件描述信息
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;_dp_type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;nativeplugin&amp;#34;&lt;/span&gt;,
+  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;_dp_nativeplugin&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;{
+      &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;android&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;plugins&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [
+              {
+                  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 根据上文插件类型填写module或component
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;DCloud-RichAlert&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 注册插件的名称, 注意：module 的 name 必须以插件id为前缀或和插件id相同
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;class&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;uni.dcloud.io.uniplugin_richalert.RichAlertModule&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// Android项目中dcloud_uniplugins.json中配置的类名
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;              }
+          ],
+          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;integrateType&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;aar&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 可取值aar|jar
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;minSdkVersion&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;16&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 支持的Android最低版本，如21
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建插件文件夹，目录格式如下&lt;/p&gt;
+&lt;p&gt;Dcloud-RichAlert为自定义插件名称，aar文件放在android目录下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E6%8F%92%E4%BB%B6%E7%9B%AE%E5%BD%95.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;配置到uni-app项目下的“nativeplugins”目录&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E6%8F%92%E4%BB%B6%E5%BC%95%E5%85%A5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在manifest.json文件的“App原生插件配置”项下点击“选择本地插件”，在列表中选择需要打包生效的插件&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E5%8A%A0%E8%BD%BD%E6%8F%92%E4%BB%B6.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击运行—&amp;gt;运行到手机或模拟器—&amp;gt;制作自定义调试基座&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;APPID与开发者中心的相同&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E5%88%B6%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%BA%E5%BA%A7.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;制作成功输出以下内容&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%BA%E5%BA%A7%E7%94%9F%E6%88%90.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;uniapp打包时需要点击运行—&amp;gt;运行到手机或模拟器—&amp;gt;运行基座选择—&amp;gt;自定义调试基座&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;集成uni-app项目&#34;&gt;集成uni-app项目&lt;/h2&gt;
-&lt;h2 id=&#34;插件编译及配置&#34;&gt;插件编译及配置&lt;/h2&gt;
-&lt;h2 id=&#34;插件引入&#34;&gt;插件引入&lt;/h2&gt;
-&lt;h2 id=&#34;自定义调试基座&#34;&gt;自定义调试基座&lt;/h2&gt;
-&lt;h2 id=&#34;插件使用&#34;&gt;插件使用&lt;/h2&gt;
 &lt;h1 id=&#34;注意&#34;&gt;注意&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -327,6 +383,17 @@ Android SDK根目录&lt;span style=&#34;color:#f1fa8c&#34;&gt;\t&lt;/span&gt;ool
 &lt;li&gt;
 &lt;p&gt;项目初始化时如果下方一直提示gradle下载中,则可以手动下载放到gradle安装目录(默认为：C:\Users\Administrator.gradle\wrapper\dists)
 替换后重启android Studio正常编译项目&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;关于uniapp自定义基座&lt;/p&gt;
+&lt;p&gt;使用HBuilder/HBuilderX开发应用时，可在手机/模拟器上查看运行效果，点击菜单栏“运行”-&amp;gt;“运行到手机或模拟器”使用。
+此功能会在手机/模拟器上安装“HBuilder”应用（或者叫HBuilder标准运行基座），在应用开发过程中HBuilder/HBuilderX会将应用资源实时同步到基座并刷新，从而实时查看到修改效果。
+上述HBuilder标准运行基座，是由DCloud提前打包好的，使用的是DCloud申请的第三方SDK配置，manifest里大多数设置都无法动态生效，需要再次打包才可以生效。
+例如微信分享，不管开发者在manifest里如何配置，使用HBuilder标准运行基座分享后显示的来源一定是“HBuilder”。
+但开发者真实打包后的手机应用又无法通过运行方式来调试，这导致涉及manifest配置的内容调测变的很困难。&lt;/p&gt;
+&lt;p&gt;为了解决manifest配置相关调试的便利性问题，DCloud提供了制作自定义运行基座的功能，也就是开发者可类似DCloud一样，自己做一个运行基座，里面使用的是自定义的manifest配置。
+开发者打包了自定义运行基座，就可以把这个基座运行到手机/Android模拟器上，进行日志查看。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;在uni-app应用中调用uni-app原生插件也必须使用自定义调试基座&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
