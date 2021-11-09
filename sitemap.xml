@@ -4,22 +4,37 @@
   
   <url>
     <loc>https://damuwangs.github.io/categories/</loc>
-    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://damuwangs.github.io/</loc>
-    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/categories/javascript/</loc>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-mvcmvvm%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://damuwangs.github.io/posts/</loc>
-    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://damuwangs.github.io/tags/</loc>
-    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2021-11-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -29,11 +44,6 @@
   
   <url>
     <loc>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2021-10-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2021-10-20T00:00:00+00:00</lastmod>
   </url>
   
@@ -80,11 +90,6 @@
   <url>
     <loc>https://damuwangs.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
     <lastmod>2021-09-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/categories/javascript/</loc>
-    <lastmod>2021-09-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
