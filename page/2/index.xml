@@ -5,9 +5,280 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 09 Nov 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>JavaScript-this指向</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/</link>
+        <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/ -&lt;h1 id=&#34;this的指向&#34;&gt;this的指向&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;看几个简单的例子:&lt;a href=&#34;https://codepen.io/damuwangs/pen/OJgMPxe?editors=0012&#34;&gt;this指向&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;改变this的指向&#34;&gt;改变this的指向&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+    name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+
+    func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)     
+    },
+
+    func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        setTimeout(  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.func1()
+        },&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+    }
+}
+
+a.func2()     &lt;span style=&#34;color:#6272a4&#34;&gt;// this.func1 is not a function
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在不使用箭头函数的情况下，是会报错的，因为最后调用setTimeout的对象是 window，但是在 window 中并没有 func1 函数&lt;/p&gt;
+&lt;p&gt;我们在改变 this 指向这一节将把这个例子作为 demo 进行改造&lt;/p&gt;
+&lt;h2 id=&#34;箭头函数&#34;&gt;箭头函数&lt;/h2&gt;
+&lt;p&gt;先看箭头函数和普通函数的重要区别：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1、没有自己的this、super、arguments和new.target绑定&lt;/p&gt;
+&lt;p&gt;2、不能使用new来调用&lt;/p&gt;
+&lt;p&gt;3、没有原型对象&lt;/p&gt;
+&lt;p&gt;4、不可以改变this的绑定&lt;/p&gt;
+&lt;p&gt;5、形参名称不能重复&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;箭头函数的 this 始终指向函数定义时的 this，而非执行时，箭头函数需要记着这句话：“箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined”&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+    name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+
+    func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)     
+    },
+
+    func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        setTimeout( () =&amp;gt; {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.func1()
+        },&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+    }
+}
+
+a.func2()     &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;函数内部使用_this--this&#34;&gt;函数内部使用_this = this&lt;/h2&gt;
+&lt;p&gt;先将调用这个函数的对象保存在变量_this中，然后在函数中都使用这个_this，这样_this就不会改变了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;;
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+    name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+    
+    func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)     
+    },
+    
+    func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; _this &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;
+        setTimeout( &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;() {
+            _this.func1()
+        },&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+    }
+}
+
+a.func2()       &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个例子中，在 func2 中，首先设置var _this = this，这里的this 是调用func2的对象 a，为了防止在func2中的 setTimeout 被 window 调用而导致的在 setTimeout 中的 this 为 window。我们将this(指向变量 a)赋值给一个变量 _this，这样，在func2中我们使用this就是指向对象 a 了。&lt;/p&gt;
+&lt;h2 id=&#34;使用applycallbind&#34;&gt;使用apply、call、bind&lt;/h2&gt;
+&lt;h3 id=&#34;使用-apply&#34;&gt;使用 apply&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+    name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+
+    func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)
+    },
+
+    func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+        setTimeout(  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.func1()
+        }.apply(a),&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+    }
+}
+
+a.func2()            &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;使用-call&#34;&gt;使用 call&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+        name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+
+        func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)
+        },
+
+        func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            setTimeout(  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.func1()
+            }.call(a),&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+        }
+    }
+
+    a.func2()            &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;使用-bind&#34;&gt;使用 bind&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+        name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+
+        func1&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)
+        },
+
+        func2&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+            setTimeout(  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
+                &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.func1()
+            }.bind(a)(),&lt;span style=&#34;color:#bd93f9&#34;&gt;100&lt;/span&gt;)
+        }
+    }
+
+    a.func2()            &lt;span style=&#34;color:#6272a4&#34;&gt;// Cherry
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;applycallbind区别&#34;&gt;apply、call、bind区别&lt;/h2&gt;
+&lt;p&gt;其实 apply 和 call 基本类似，他们的区别只是传入的参数不同。所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://link.juejin.cn?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FFunction%2Fapply&#34;&gt;MDN&lt;/a&gt;中定义 apply 如下&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;apply() 方法调用一个函数, 其具有一个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数&lt;/p&gt;
+&lt;p&gt;语法：fun.apply(thisArg, [argsArray])&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;thisArg：在 fun 函数运行时指定的 this 值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;argsArray：一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call&#34;&gt;MDN&lt;/a&gt;中定义call如下&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;call()方法使用一个指定的this值和单独给出的一个或多个参数来调用一个函数&lt;/p&gt;
+&lt;p&gt;语法：function.call(thisArg, arg1, arg2, &amp;hellip;)&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;thisArg：在function函数运行时使用的this值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;arg1, arg2, &amp;hellip;：指定的参数列表&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;我们先来将刚刚的例子使用 bind 试一下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;{
+    name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+    fn &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (a,b) {
+        console.log( a &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; b)
+    }
+}
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; b &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; a.fn;
+b.bind(a,&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我们会发现并没有输出，&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind&#34;&gt;MDN&lt;/a&gt;中定义bind如下&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;所以我们可以看出，bind 是创建一个新的函数，我们必须要手动去调用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;{
+	name &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
+	fn &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (a,b) {
+    	console.log( a &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; b)
+    }
+}
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; b &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; a.fn
+b.bind(a,&lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;)()           &lt;span style=&#34;color:#6272a4&#34;&gt;// 3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;js中的函数调用&#34;&gt;JS中的函数调用&lt;/h1&gt;
+&lt;h3 id=&#34;普通函数调用模式&#34;&gt;普通函数调用模式&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; a() {
+	&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;
+	console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)          &lt;span style=&#34;color:#6272a4&#34;&gt;// windowsName
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;}
+a()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样一个最简单的函数，不属于任何一个对象，就是一个函数，这样的情况在 JavaScript 的在浏览器中的非严格模式默认是属于全局对象 window 的，在严格模式，就是 undefined&lt;/p&gt;
+&lt;p&gt;但这是一个全局的函数，很容易产生命名冲突，所以不建议这样使用&lt;/p&gt;
+&lt;h3 id=&#34;对象中的函数方法调用模式&#34;&gt;对象中的函数（方法）调用模式&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;window&amp;#39;&lt;/span&gt;
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; doSth &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+    console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; student &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {
+    name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;若川&amp;#39;&lt;/span&gt;,
+    doSth&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; doSth,
+    other&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
+        name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;other&amp;#39;&lt;/span&gt;,
+        doSth&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; doSth,
+    }
+}
+student.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;student.other.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;other&amp;#39;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;callapplybind模式&#34;&gt;call、apply、bind模式&lt;/h3&gt;
+&lt;p&gt;同上&lt;a href=&#34;http://localhost:1313/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/#%E4%BD%BF%E7%94%A8applycallbind&#34;&gt;使用apply、call、bind&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;构造函数调用模式&#34;&gt;构造函数调用模式&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果函数调用前使用了 new 关键字, 则是调用了构造函数
+这看起来就像创建了新的函数，但实际上 JavaScript 函数是重新创建的对象：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 构造函数:
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; myFunction(arg1, arg2) {
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.firstName &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; arg1
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.lastName  &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; arg2
+}
+
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; myFunction(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Li&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;);
+a.lastName  &lt;span style=&#34;color:#6272a4&#34;&gt;// 返回 &amp;#34;Cherry&amp;#34;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这就有要说另一个面试经典问题：new 的过程了，(ಥ_ಥ)
+这里就简单的来看一下 new 的过程吧：
+伪代码表示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; myFunction(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Li&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;);
+
+&lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; myFunction{
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; obj &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {};
+    obj.__proto__ &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; myFunction.prototype;
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; result &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; myFunction.call(obj,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Li&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;);
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;typeof&lt;/span&gt; result &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;obj&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;?&lt;/span&gt; result &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; obj;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建一个空对象 obj&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将新创建的空对象的隐式原型指向其构造函数的显示原型&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 call 改变 this 的指向&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；&lt;/p&gt;
+&lt;p&gt;如果返回值是一个新对象的话那么直接直接返回该对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;所以我们可以看到，在 new 的过程中，我们是使用 call 改变了 this 的指向。&lt;/p&gt;
+&lt;h3 id=&#34;原型链中的调用模式&#34;&gt;原型链中的调用模式&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; Student(name){
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; name
+}
+&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; s1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Student(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;若川&amp;#39;&lt;/span&gt;)
+Student.prototype.doSth &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){
+    console.log(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.name)
+}
+s1.doSth() &lt;span style=&#34;color:#6272a4&#34;&gt;// &amp;#39;若川&amp;#39;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;箭头函数调用模式&#34;&gt;箭头函数调用模式&lt;/h3&gt;
+&lt;p&gt;同上&lt;a href=&#34;http://localhost:1313/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0&#34;&gt;箭头函数&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2018/06/javascript-this.html&#34;&gt;JavaScript 的 this 原理&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903496253177863&#34;&gt;this、apply、call、bind&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903746984476686#heading-13&#34;&gt;面试官问：JS的this指向&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/ - </description>
+        </item>
     
     
     
@@ -922,394 +1193,6 @@ Vue.use(Vuex)
 &lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/cmj6706/article/details/79032703&#34;&gt;token详解以及应用原理&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-token/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>JavaScript-跨域</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E8%B7%A8%E5%9F%9F/</link>
-        <pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E8%B7%A8%E5%9F%9F/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E8%B7%A8%E5%9F%9F/ -&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;
-&lt;h2 id=&#34;含义&#34;&gt;含义&lt;/h2&gt;
-&lt;p&gt;1995年，同源政策由 Netscape 公司引入浏览器。目前，所有浏览器都实行这个政策&lt;/p&gt;
-&lt;p&gt;最初，它的含义是指，A网页设置的 Cookie，B网页不能打开，除非这两个网页&amp;quot;同源&amp;rdquo;&lt;/p&gt;
-&lt;p&gt;所谓&amp;quot;同源&amp;quot;指的是&amp;quot;三个相同&amp;rdquo;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;协议相同&lt;/li&gt;
-&lt;li&gt;域名相同&lt;/li&gt;
-&lt;li&gt;端口相同&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;常见跨域场景&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-%E8%B7%A8%E5%9F%9F/%E5%9C%BA%E6%99%AF.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;
-&lt;p&gt;同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。&lt;/p&gt;
-&lt;p&gt;设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。如果其他网站可以读取A网站的 Cookie，会发生什么？&lt;/p&gt;
-&lt;p&gt;很显然，如果 Cookie 包含隐私（比如存款总额），这些信息就会泄漏。更可怕的是，Cookie 往往用来保存用户的登录状态，如果用户没有退出登录，其他网站就可以冒充用户，为所欲为。因为浏览器同时还规定，提交表单不受同源政策的限制&lt;/p&gt;
-&lt;p&gt;由此可见，&amp;ldquo;同源政策&amp;quot;是必需的，否则 Cookie 可以共享，互联网就毫无安全可言了&lt;/p&gt;
-&lt;h2 id=&#34;限制范围&#34;&gt;限制范围&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Cookie、LocalStorage 和 IndexDB 无法读取&lt;/li&gt;
-&lt;li&gt;DOM 无法获得&lt;/li&gt;
-&lt;li&gt;AJAX 请求不能发送&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
-&lt;h2 id=&#34;cors&#34;&gt;CORS&lt;/h2&gt;
-&lt;p&gt;CORS 即是指跨域资源共享。它允许浏览器向非同源服务器，发出 Ajax 请求，从而克服了 Ajax 只能同源使用的限制。这种方式的跨域主要是在后端进行设置&lt;/p&gt;
-&lt;p&gt;这种方式的关键是后端进行设置，即是后端开启 Access-Control-Allow-Origin 为*或对应的origin就可以实现跨域&lt;/p&gt;
-&lt;p&gt;cors.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; xhr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; XMLHttpRequest() xhr.open(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:8002/request&amp;#39;&lt;/span&gt;)
-xhr.send(&lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;server.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
-
-app.use((req, res, next) =&amp;gt; {
-  res.header(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Access-Control-Allow-Origin&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://127.0.0.1:5500&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#6272a4&#34;&gt;// 设置允许哪个域访问
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  next()
-})
-
-app.get(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/request&amp;#39;&lt;/span&gt;, (req, res) =&amp;gt; {
-  res.end(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;server ok&amp;#39;&lt;/span&gt;)
-})
-
-app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8002&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;jsonp&#34;&gt;Jsonp&lt;/h2&gt;
-&lt;p&gt;说明：利用了 script 标签可跨域的特性，在客户端定义一个回调函数（全局函数），请求服务端返回该回调函数的调用，并将服务端的数据以该回调函数参数的形式传递过来，然后该函数就被执行了。该方法需要服务端配合完成&lt;/p&gt;
-&lt;p&gt;优点：兼容性好&lt;/p&gt;
-&lt;p&gt;缺点：由于 script 本身的限制，该跨域方式仅支持 get 请求，且不安全可能遭受 XSS 攻击&lt;/p&gt;
-&lt;p&gt;实现步骤：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;声明一个全局回调函数，参数为服务端返回的 data。&lt;/li&gt;
-&lt;li&gt;创建一个 script 标签，拼接整个请求 api 的地址（要传入回调函数名称如 ?callback=getInfo ），赋值给 script 的 src 属性&lt;/li&gt;
-&lt;li&gt;服务端接受到请求后处理数据，然后将函数名和需要返回的数据拼接成字符串，拼装完成是执行函数的形式。（getInfo(&amp;lsquo;server data&amp;rsquo;)）&lt;/li&gt;
-&lt;li&gt;浏览器接收到服务端的返回结果，调用了声明的回调函数&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;jsonp.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; getInfo(data) {
-  console.log(data) &lt;span style=&#34;color:#6272a4&#34;&gt;// 告诉你一声， jsonp跨域成功
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;}
-
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; script &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;script&amp;#39;&lt;/span&gt;)
-script.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:3000?callback=getInfo&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.appendChild(script)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;server.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
-
-app.get(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;, (req, res) =&amp;gt; {
-  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; { callback } &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; req.query
-  res.end(&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;callback&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;(&amp;#39;告诉你一声， jsonp跨域成功&amp;#39;)`&lt;/span&gt;)
-})
-
-app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;3000&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;封装了一个 jsonp 函数&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; jsonp({ url, params, callback }) {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Promise&lt;/span&gt;((resolve, reject) =&amp;gt; {
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; script &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;script&amp;#39;&lt;/span&gt;)
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 定义全局回调函数
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;[callback] &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (data) {
-      resolve(data)
-      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.removeChild(script) &lt;span style=&#34;color:#6272a4&#34;&gt;// 调用完毕即删除
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    }
-
-    params &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; { callback, ...params } &lt;span style=&#34;color:#6272a4&#34;&gt;// {callback: &amp;#34;getInfo&amp;#34;, name: &amp;#34;jacky&amp;#34;}
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; paramsArr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; []
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; key &lt;span style=&#34;color:#ff79c6&#34;&gt;in&lt;/span&gt; params) {
-      paramsArr.push(&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;key&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;params[key]&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;)
-    }
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// http://localhost:3000/?callback=getInfo&amp;amp;name=jacky
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    script.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;url&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;?&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;${&lt;/span&gt;paramsArr.join(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;amp;&amp;#39;&lt;/span&gt;)&lt;span style=&#34;color:#f1fa8c&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;`&lt;/span&gt; 
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.appendChild(script)
-  })
-}
-
-jsonp({
-  url&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:3000&amp;#39;&lt;/span&gt;,
-  params&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
-    name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;jacky&amp;#39;&lt;/span&gt;,
-  },
-  callback&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;getInfo&amp;#39;&lt;/span&gt;,
-}).then(res =&amp;gt; {
-  console.log(res) &lt;span style=&#34;color:#6272a4&#34;&gt;// 告诉你一声， jsonp跨域成功
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;node-中间件代理&#34;&gt;Node 中间件代理&lt;/h2&gt;
-&lt;p&gt;说明：同源策略是浏览器需要遵循的标准，而如果是服务器向服务器请求就没有跨域一说。&lt;/p&gt;
-&lt;p&gt;这次我们使用 express 中间件 http-proxy-middleware 来代理跨域, 转发请求和响应&lt;/p&gt;
-&lt;p&gt;实现步骤：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;接受客户端请求&lt;/li&gt;
-&lt;li&gt;将请求转发给服务器&lt;/li&gt;
-&lt;li&gt;拿到服务器响应数据&lt;/li&gt;
-&lt;li&gt;将响应转发给客户端&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;index.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; xhr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; XMLHttpRequest()
-xhr.open(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/api/request&amp;#39;&lt;/span&gt;)
-xhr.onreadystatechange &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (xhr.readyState &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;4&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; xhr.status &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;) {
-    console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;请求成功，结果是：&amp;#39;&lt;/span&gt;, xhr.responseText) &lt;span style=&#34;color:#6272a4&#34;&gt;// request success
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  }
-}
-xhr.send(&lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;nodeMdServer.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; { createProxyMiddleware } &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http-proxy-middleware&amp;#39;&lt;/span&gt;)
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
-
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 设置静态资源
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;app.use(express.&lt;span style=&#34;color:#ff79c6&#34;&gt;static&lt;/span&gt;(__dirname))
-
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 使用代理
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;app.use(
-  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/api&amp;#39;&lt;/span&gt;,
-  createProxyMiddleware({
-    target&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:8002&amp;#39;&lt;/span&gt;,
-    pathRewrite&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
-      &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;^/api&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#6272a4&#34;&gt;// 重写路径
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    },
-    changeOrigin&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;,
-  })
-)
-
-app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8001&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;nodeServer.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
-
-app.get(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/request&amp;#39;&lt;/span&gt;, (req, res) =&amp;gt; {
-  res.end(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;request success&amp;#39;&lt;/span&gt;)
-})
-
-app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8002&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;nginx-反向代理&#34;&gt;Nginx 反向代理&lt;/h2&gt;
-&lt;p&gt;说明：实现原理类似于 Node 中间件代理，需要你搭建一个中转 nginx 服务器，用于转发请求。这种方式只需修改 Nginx 的配置即可解决跨域问题，前端除了接口换成对应形式，然后前后端不需要修改作其他修改。&lt;/p&gt;
-&lt;p&gt;实现思路：通过 nginx 配置一个代理服务器（同域不同端口）做跳板机，反向代理要跨域的域名，这样可以修改 cookie 中 domain 信息，方便当前域 cookie 写入，实现跨域登录&lt;/p&gt;
-&lt;p&gt;nginx 目录下修改 nginx.conf&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;// proxy服务器
-server {
-    listen &lt;span style=&#34;color:#bd93f9&#34;&gt;80&lt;/span&gt;;
-    server_name  www.domain1.com;
-    location / {
-        proxy_pass   http://www.domain2.com:&lt;span style=&#34;color:#bd93f9&#34;&gt;8080&lt;/span&gt;;  &lt;span style=&#34;color:#6272a4&#34;&gt;# 反向代理&lt;/span&gt;
-        proxy_cookie_domain www.domain2.com www.domain1.com; &lt;span style=&#34;color:#6272a4&#34;&gt;# 修改cookie里域名&lt;/span&gt;
-        index  index.html index.htm;
-
-        &lt;span style=&#34;color:#6272a4&#34;&gt;# 当用webpack-dev-server等中间件代理接口访问nignx时，此时无浏览器参与，故没有同源限制，下面的跨域配置可不启用&lt;/span&gt;
-        add_header Access-Control-Allow-Origin http://www.domain1.com;  &lt;span style=&#34;color:#6272a4&#34;&gt;# 当前端只跨域不带cookie时，可为*&lt;/span&gt;
-        add_header Access-Control-Allow-Credentials &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;启动 Nginx&lt;/p&gt;
-&lt;p&gt;index.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; xhr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; XMLHttpRequest()
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 前端开关：浏览器是否读写cookie
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;xhr.withCredentials &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 访问nginx中的代理服务器
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;xhr.open(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;get&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://www.domain1.com:81/?user=admin&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;)
-xhr.send()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;server.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; http &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; server &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; http.createServer()
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; qs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;querystring&amp;#39;&lt;/span&gt;)
-server.on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;request&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (req, res) {
-  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; params &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; qs.parse(req.url.substring(&lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;))
-  &lt;span style=&#34;color:#6272a4&#34;&gt;// 向前台写cookie
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  res.writeHead(&lt;span style=&#34;color:#bd93f9&#34;&gt;200&lt;/span&gt;, {
-    &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Set-Cookie&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;l=123456;Path=/;Domain=www.domain2.com;HttpOnly&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#6272a4&#34;&gt;// HttpOnly:脚本无法读取
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  })
-  res.write(JSON.stringify(params))
-  res.end()
-})
-server.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8080&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;postmessage&#34;&gt;PostMessage&lt;/h2&gt;
-&lt;p&gt;postMessage 是 HTML5 XMLHttpRequest Level 2 中的 API，且是为数不多可以跨域操作的 window 属性之一，它可用于解决以下方面的问题：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;页面和其打开的新窗口的数据传递&lt;/li&gt;
-&lt;li&gt;多窗口之间消息传递&lt;/li&gt;
-&lt;li&gt;页面与嵌套的 iframe 消息传递&lt;/li&gt;
-&lt;li&gt;上面三个场景的跨域数据传递&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;总之，它可以允许来自不同源的脚本采用异步方式进行有限的通信，可以实现跨文本档、多窗口、跨域消息传递。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;otherWindow.postMessage(message, targetOrigin, [transfer])&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;otherWindow：其他窗口的一个引用，比如 iframe 的 contentWindow 属性、执行 window.open 返回的窗口对象、或者是命名过或数值索引的 window.frames。&lt;/li&gt;
-&lt;li&gt;message: 将要发送到其他 window 的数据。&lt;/li&gt;
-&lt;li&gt;targetOrigin:通过窗口的 origin 属性来指定哪些窗口能接收到消息事件，其值可以是字符串&amp;rdquo;*&amp;quot;（表示无限制）或者一个 URI。在发送消息的时候，如果目标窗口的协议、主机地址或端口这三者的任意一项不匹配 targetOrigin 提供的值，那么消息就不会被发送；只有三者完全匹配，消息才会被发送。&lt;/li&gt;
-&lt;li&gt;transfer(可选)：是一串和 message 同时传递的 Transferable 对象. 这些对象的所有权将被转移给消息的接收方，而发送一方将不再保有所有权。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这次我们把两个 html 文件挂到两个 server 下，采取 fs 读取的方式引入，运行两个 js 文件&lt;/p&gt;
-&lt;p&gt;postMessage1.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://localhost:8002&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;frameborder&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;frame&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;onLoad&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;load()&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; load() {
-      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; frame &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.getElementById(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;frame&amp;#39;&lt;/span&gt;)
-      frame.contentWindow.postMessage(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;你好，我是postMessage1&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:8002&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#6272a4&#34;&gt;//发送数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.onmessage &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (e) {
-        &lt;span style=&#34;color:#6272a4&#34;&gt;//接受返回数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        console.log(e.data) &lt;span style=&#34;color:#6272a4&#34;&gt;// 你好，我是postMessage2
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      }
-    }
-  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;postMsgServer1.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; fs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
-
-app.get(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;, (req, res) =&amp;gt; {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; html &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; fs.readFileSync(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./postMessage1.html&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;)
-  res.end(html)
-})
-
-app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8001&lt;/span&gt;, (req, res) =&amp;gt; {
-  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;server listening on 8001&amp;#39;&lt;/span&gt;)
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;postMessage2.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.onmessage &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (e) {
-      console.log(e.data) &lt;span style=&#34;color:#6272a4&#34;&gt;// 你好，我是postMessage1
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      e.source.postMessage(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;你好，我是postMessage2&amp;#39;&lt;/span&gt;, e.origin)
-    }
-  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;postMsgServer2.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; fs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
-
-app.get(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;, (req, res) =&amp;gt; {
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; html &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; fs.readFileSync(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;./postMessage2.html&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf8&amp;#39;&lt;/span&gt;)
-  res.end(html)
-})
-
-app.listen(&lt;span style=&#34;color:#bd93f9&#34;&gt;8002&lt;/span&gt;, (req, res) =&amp;gt; {
-  console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;server listening on 8002&amp;#39;&lt;/span&gt;)
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;websocket&#34;&gt;WebSocket&lt;/h2&gt;
-&lt;p&gt;说明：WebSocket 是一种网络通信协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯，长连接方式不受跨域影响&lt;/p&gt;
-&lt;p&gt;由于原生 WebSocket API 使用起来不太方便，我们一般都会使用第三方库如 ws&lt;/p&gt;
-&lt;p&gt;Web 浏览器和服务器都必须实现 WebSockets 协议来建立和维护连接。由于 WebSockets 连接长期存在，与典型的 HTTP 连接不同，对服务器有重要的影响&lt;/p&gt;
-&lt;p&gt;socket.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; socket &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; WebSocket(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ws://localhost:8001&amp;#39;&lt;/span&gt;)
-socket.onopen &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
-  socket.send(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;向服务端发送数据&amp;#39;&lt;/span&gt;)
-}
-socket.onmessage &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (e) {
-  console.log(e.data) &lt;span style=&#34;color:#6272a4&#34;&gt;// 服务端传给你的数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Server.js&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; express &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; WebSocket &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; require(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;ws&amp;#39;&lt;/span&gt;)
-&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; app &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; express()
-
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; wsServer &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; WebSocket.Server({ port&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;8001&lt;/span&gt; })
-wsServer.on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;connection&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (ws) {
-  ws.on(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;message&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; (data) {
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; buf &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; Buffer.from(data);
-    console.log(buf.toString(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// 向服务端发送数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    ws.send(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;服务端传给你的数据&amp;#39;&lt;/span&gt;)
-  })
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;documentdomain--iframe&#34;&gt;document.domain + iframe&lt;/h2&gt;
-&lt;p&gt;说明：这种方式只能用于二级域名相同的情况下。&lt;/p&gt;
-&lt;p&gt;比如 a.test.com 和 b.test.com 就属于二级域名，它们都是 test.com 的子域&lt;/p&gt;
-&lt;p&gt;只需要给页面添加 document.domain =&#39;test.com&amp;rsquo; 表示二级域名都相同就可以实现跨域。&lt;/p&gt;
-&lt;p&gt;比如：页面 a.test.com:3000/test1.html 获取页面 b.test.com:3000/test2.html 中 a 的值&lt;/p&gt;
-&lt;p&gt;test1.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;
-    &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://b.test.com:3000/test2.html&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#50fa7b&#34;&gt;frameborder&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#50fa7b&#34;&gt;onload&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;load()&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;iframe&amp;#34;&lt;/span&gt;
-  &amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.domain &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;test.com&amp;#39;&lt;/span&gt;
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; load() {
-      console.log(iframe.contentWindow.a)
-    }
-  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;test2.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.domain &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;test.com&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;10&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;windowname--iframe&#34;&gt;window.name + iframe&lt;/h2&gt;
-&lt;p&gt;浏览器具有这样一个特性：同一个标签页或者同一个 iframe 框架加载过的页面共享相同的 window.name 属性值。在同个标签页里，name 值在不同的页面加载后也依旧存在，这些页面上 window.name 属性值都是相同的&lt;/p&gt;
-&lt;p&gt;利用这些特性，就可以将这个属性作为在不同页面之间传递数据的介质&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;由于安全原因，浏览器始终会保持 window.name 是 string 类型&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;a.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;
-    &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://localhost:8002/c.html&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#50fa7b&#34;&gt;frameborder&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#50fa7b&#34;&gt;onload&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;load()&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;iframe&amp;#34;&lt;/span&gt;
-  &amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; first &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; load() {
-      &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (first) {
-        &lt;span style=&#34;color:#6272a4&#34;&gt;// 第1次onload(跨域页)成功后，切换到同域代理页面
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; iframe &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.getElementById(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;iframe&amp;#39;&lt;/span&gt;)
-        iframe.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:8001/b.html&amp;#39;&lt;/span&gt;
-        first &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;
-      } &lt;span style=&#34;color:#ff79c6&#34;&gt;else&lt;/span&gt; {
-        &lt;span style=&#34;color:#6272a4&#34;&gt;// 第2次onload(同域b.html页)成功后，读取同域window.name中数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        console.log(iframe.contentWindow.name) &lt;span style=&#34;color:#6272a4&#34;&gt;// 我是c.html里的数据
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      }
-    }
-  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;b.html（不需要往html加内容，默认html结构模板即可）&lt;/p&gt;
-&lt;p&gt;c.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.name &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;我是c.html里的数据&amp;#39;&lt;/span&gt;
-  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;c 页面给 window.name 设置了值, 即便 c 页面销毁，但 name 值不会被销毁；a 页面依旧能够得到 window.name&lt;/p&gt;
-&lt;h2 id=&#34;locationhash--iframe&#34;&gt;location.hash + iframe&lt;/h2&gt;
-&lt;p&gt;说明：实现原理： a.html 欲与 c.html 跨域相互通信，通过中间页 b.html 来实现。 三个页面，不同域之间利用 iframe 的 location.hash 传值，相同域之间直接 js 访问来通信。&lt;/p&gt;
-&lt;p&gt;具体实现步骤：一开始 a.html 给 c.html 传一个 hash 值，然后 c.html 收到 hash 值后，再把 hash 值传递给 b.html，最后 b.html 将结果放到 a.html 的 hash 值中。&lt;/p&gt;
-&lt;p&gt;同样的，a.html 和 b.html 是同域的，都是http://localhost:8001，也就是说 b 的 hash 值可以直接复制给 a 的 hash。c.html 为http://localhost:8002下的&lt;/p&gt;
-&lt;p&gt;a.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;http://localhost:8002/c.html#jackylin&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;style&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;display: none;&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;iframe&lt;/span&gt;&amp;gt;
-  &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.onhashchange &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; () {
-      &lt;span style=&#34;color:#6272a4&#34;&gt;// 检测hash的变化
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      console.log(&lt;span style=&#34;color:#bd93f9&#34;&gt;456&lt;/span&gt;, location.hash) &lt;span style=&#34;color:#6272a4&#34;&gt;// #monkey
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    }
-  &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;script&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;body&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;b.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;window&lt;/span&gt;.parent.parent.location.hash &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; location.hash
-&lt;span style=&#34;color:#6272a4&#34;&gt;// b.html将结果放到a.html的hash值中，b.html可通过parent.parent访问a.html页面
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;c.html&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;console.log(location.hash) &lt;span style=&#34;color:#6272a4&#34;&gt;//  #jackylin
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; iframe &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createElement(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;iframe&amp;#39;&lt;/span&gt;)
-iframe.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;http://localhost:8001/b.html#monkey&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body.appendChild(iframe)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html&#34;&gt;浏览器同源政策及其规避方法&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6861553339994374157#heading-5&#34;&gt;前端跨域解决方案归纳整理&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E8%B7%A8%E5%9F%9F/ - </description>
         </item>
     
     
