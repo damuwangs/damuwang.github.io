@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>React on DaMuWang</title>
+    <link>https://damuwangs.github.io/categories/react/</link>
+    <description>Recent content in React on DaMuWang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 24 Nov 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://damuwangs.github.io/categories/react/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>React-高阶组件</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/</link>
+      <pubDate>Wed, 24 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/</guid>
+      <description>概述 一个高阶组件只是一个包装了另外一个React组件的React组件
+基础高阶组件 装饰器模式 高阶组件可以看做是装饰器模式(Decorator Pattern)在React的实现。即允许向一个现有的对象添加新的功能，同时又不改变其结构，属于包装模式(Wrapper Pattern)的一种
+// 定义高阶组件 const withHeader = (WrappedComponent) =&amp;gt; class extends React.Component { render() { return ( &amp;lt;div&amp;gt; &amp;lt;div className=&amp;#34;demo-header&amp;#34;&amp;gt;高阶组件&amp;lt;/div&amp;gt; &amp;lt;WrappedComponent {...this.props}/&amp;gt; &amp;lt;/div&amp;gt; ) } } // 调用高阶组件 @withHeader class Demo extends React.Component { render() { return ( &amp;lt;div&amp;gt;普通组件&amp;lt;/div&amp;gt; ) } } 组件命名 当通过高阶组件来包装一个组件时，你会丢失原先 WrappedComponent 的名字，可能会给开发和 debug 造成影响
+我们改写一下上述的高阶组件代码，增加了getDisplayName函数以及静态属性displayName，此时再去观察DOM Tree
+// 获取组件名称 function getDisplayName(component) { return component.displayName || component.name || &amp;#39;Component&amp;#39; } // 定义高阶组件 const withHeader = WrappedComponent =&amp;gt; class extends React.</description>
+    </item>
+    
+  </channel>
+</rss>
