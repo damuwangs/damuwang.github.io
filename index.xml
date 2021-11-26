@@ -5,9 +5,81 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Nov 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Html-meta标签</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/html-meta%E6%A0%87%E7%AD%BE/</link>
+        <pubDate>Fri, 26 Nov 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/html-meta%E6%A0%87%E7%AD%BE/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/html-meta%E6%A0%87%E7%AD%BE/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;元数据(metadata)是关于数据的信息&lt;/p&gt;
+&lt;p&gt;标签提供关于HTML文档的元数据。元数据不会显示在页面上，但是对于机器是可读的。&lt;/p&gt;
+&lt;p&gt;典型的情况是，meta元素被用于规定页面的描述、关键词、文档的作者、最后修改时间以及其他元数据。&lt;/p&gt;
+&lt;p&gt;标签始终位于head元素中。&lt;/p&gt;
+&lt;p&gt;元数据可用于浏览器（如何显示内容或重新加载页面），搜索引擎（关键词），或者其他web服务&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;属性&#34;&gt;属性&lt;/h1&gt;
+&lt;h2 id=&#34;必需属性&#34;&gt;必需属性&lt;/h2&gt;
+&lt;p&gt;meta的必须属性是content，并不是说meta标签里一定要有content，而是当有http-equiv或name属性的时候，一定要有content属性对其进行说明。&lt;/p&gt;
+&lt;p&gt;例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;keywords&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;HTML,ASP,PHP,SQL&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;可选属性&#34;&gt;可选属性&lt;/h2&gt;
+&lt;h3 id=&#34;http-equiv&#34;&gt;http-equiv&lt;/h3&gt;
+&lt;p&gt;添加http头部内容，对一些自定义的，或者需要额外添加的http头部内容，需要发送到浏览器中，我们就可以使用这个属性。&lt;/p&gt;
+&lt;p&gt;例如我们不想使用js来重定向，用http头部内容控制，就可以这样控制&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Refresh&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;5;url=http://www.baidu.com&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在页面head中加入这个后，5秒钟后就会跳转到指定的页面&lt;/p&gt;
+&lt;h3 id=&#34;name&#34;&gt;name&lt;/h3&gt;
+&lt;p&gt;供浏览器进行解析，对于一些浏览器兼容性问题，name是最常用的，当然有个前提就是浏览器能够解析你写进去的name属性才可以&lt;/p&gt;
+&lt;p&gt;例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;renderer&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;webkit&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;告诉浏览器，用webkit内核进行解析，前提是浏览器有webkit内核才可以。当然看到这个你可能会有疑问，这个renderer是从哪里冒出来的？这个就是在对应的浏览器的开发文档里就会有表明的，例如这个renderer是在360浏览器里说明的。&lt;a href=&#34;http://se.360.cn/v6/help/meta.html&#34;&gt;360浏览器内核控制Meta标签说明文档&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;meta标签总结&#34;&gt;meta标签总结&lt;/h1&gt;
+&lt;h2 id=&#34;charset&#34;&gt;charset&lt;/h2&gt;
+&lt;p&gt;声明文档使用的字符编码，解决乱码问题主要用的就是它，值得一提的是，这个charset一定要写第一行，不然可能会产生乱码了。&lt;/p&gt;
+&lt;p&gt;chartset有两种写法&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;charset&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;utf-8&amp;#34;&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Content-Type&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;text/html; charset=utf-8&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;seo-优化部分&#34;&gt;SEO 优化部分&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- 页面标题&amp;lt;title&amp;gt;标签(head 头部必须) --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;title&lt;/span&gt;&amp;gt;your title&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;title&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- 页面关键词 keywords --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;keywords&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;your keywords&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- 页面描述内容 description --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;your description&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- 定义网页作者 author --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;author&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;author,email address&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- 定义网页搜索引擎索引方式，robotterms 是一组使用英文逗号「,」分割的值，通常有如下几种取值：none，noindex，nofollow，all，index和follow。 --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;robots&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;index,follow&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;viewport&#34;&gt;viewport&lt;/h2&gt;
+&lt;p&gt;主要影响移动端布局的&lt;/p&gt;
+&lt;p&gt;之前用h5开发移动项目遇到过字体被缩放的特别小的问题，后来新增了viewport属性解决了，具体如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;viewport&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;width=device-width, user-scalable=no&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;content参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;width viewport 宽度(数值/device-width)&lt;/li&gt;
+&lt;li&gt;height viewport 高度(数值/device-height)&lt;/li&gt;
+&lt;li&gt;initial-scale 初始缩放比例&lt;/li&gt;
+&lt;li&gt;maximum-scale 最大缩放比例&lt;/li&gt;
+&lt;li&gt;minimum-scale 最小缩放比例&lt;/li&gt;
+&lt;li&gt;user-scalable 是否允许用户缩放(yes/no)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;各浏览器平台&#34;&gt;各浏览器平台&lt;/h2&gt;
+&lt;p&gt;一些常用的浏览器meta标签设置参考下方链接&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/yc123h/article/details/51356143&#34;&gt;meta标签的作用及整理&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/argenbarbie/p/8026595.html&#34;&gt;chrome手机模拟器显示尺寸不正确&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/html-meta%E6%A0%87%E7%AD%BE/ - </description>
+        </item>
     
     
     
@@ -1230,338 +1302,6 @@ Object.defineProperty()触发getter时会先判断全局静态属性是否存在
 &lt;p&gt;&lt;a href=&#34;%5BGithub%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E6%95%99%E7%A8%8B_%E8%BF%99%E4%B9%9F%E5%A4%AA%E5%8D%97%E4%BA%86%E8%B6%B4%E7%9A%84%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2_github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%5D(https://blog.csdn.net/qq_46941656/article/details/119737804)&#34;&gt;GitHub创建个人访问令牌教程&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>JavaScript-正则</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/</link>
-        <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/ -&lt;ul&gt;
-&lt;li&gt;
-&lt;h1 id=&#34;字符串匹配single-char&#34;&gt;字符串匹配single char&lt;/h1&gt;
-&lt;h2 id=&#34;单个字符&#34;&gt;单个字符&lt;/h2&gt;
-&lt;p&gt;最简单的正则表达式可以由简单的数字和字母组成，没有特殊的语义，纯粹就是一一对应的关系。如想在&amp;rsquo;apple&amp;rsquo;这个单词里找到‘a&amp;rsquo;这个字符，就直接用&lt;code&gt;/a/&lt;/code&gt;这个正则就可以了。&lt;/p&gt;
-&lt;p&gt;但是如果想要匹配特殊字符的话，就要使用元字符&lt;code&gt;\&lt;/code&gt;， 它是转义字符字符，顾名思义，就是让其后续的字符失去其本来的含义。举个例子：&lt;/p&gt;
-&lt;p&gt;我想匹配&lt;code&gt;*&lt;/code&gt;这个符号，由于&lt;code&gt;*&lt;/code&gt;这个符号本身是个特殊字符，所以我要利用转义元字符\来让它失去其本来的含义&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;/\*/&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果本来这个字符不是特殊字符，使用转义符号就会让它拥有特殊的含义。我们常常需要匹配一些特殊字符，比如空格，制表符，回车，换行等, 而这些就需要我们使用转义字符来匹配&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;特殊字符&lt;/th&gt;
-&lt;th&gt;正则表达式&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;换行符&lt;/td&gt;
-&lt;td&gt;\n&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;换页符&lt;/td&gt;
-&lt;td&gt;\f&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;回车符&lt;/td&gt;
-&lt;td&gt;\r&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;空白符&lt;/td&gt;
-&lt;td&gt;\s&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;制表符&lt;/td&gt;
-&lt;td&gt;\t&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;垂直制表符&lt;/td&gt;
-&lt;td&gt;\v&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;回退符&lt;/td&gt;
-&lt;td&gt;[\b]&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// \s代表匹配空格，abc为匹配&amp;#39;abc&amp;#39;字符串
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/\sabc/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39; abc&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;多个字符&#34;&gt;多个字符&lt;/h2&gt;
-&lt;p&gt;单个字符的映射关系是一对一的，即正则表达式的被用来筛选匹配的字符只有一个。而这显然是不够的，只要引入集合区间和通配符的方式就可以实现一对多的匹配了。&lt;/p&gt;
-&lt;p&gt;在正则表达式里，集合的定义方式是使用中括号&lt;code&gt;[&lt;/code&gt;和&lt;code&gt;]&lt;/code&gt;。如&lt;code&gt;/[123]/&lt;/code&gt;这个正则就能同时匹配1,2,3三个字符。那如果我想匹配所有的数字怎么办呢？从0写到9显然太过低效，所以元字符-就可以用来表示区间范围，利用&lt;code&gt;/[0-9]/&lt;/code&gt;就能匹配所有的数字, &lt;code&gt;/[a-z]/&lt;/code&gt;则可以匹配所有的英文小写字母。&lt;/p&gt;
-&lt;p&gt;即便有了集合和区间的定义方式，如果要同时匹配多个字符也还是要一一列举，这是低效的。所以在正则表达式里衍生了一批用来同时匹配多个字符的简便正则表达式&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;匹配区间&lt;/th&gt;
-&lt;th&gt;正则表达式&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;除了换行符之外的任何字符&lt;/td&gt;
-&lt;td&gt;.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;单个数字, [0-9]&lt;/td&gt;
-&lt;td&gt;\d&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;除了[0-9]&lt;/td&gt;
-&lt;td&gt;\D&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;包括下划线在内的单个字符，[A-Za-z0-9_]&lt;/td&gt;
-&lt;td&gt;\w&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;非单字字符&lt;/td&gt;
-&lt;td&gt;\W&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;匹配空白字符,包括空格、制表符、换页符和换行符&lt;/td&gt;
-&lt;td&gt;\s&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;匹配非空白字符&lt;/td&gt;
-&lt;td&gt;\S&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// \d代表匹配0-9的数字，[a-z]为匹配所有小写字母
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/\d[a-z]/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;1a2b&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;h1 id=&#34;数量匹配quantifiers&#34;&gt;数量匹配quantifiers&lt;/h1&gt;
-&lt;p&gt;要实现多个字符的匹配我们只要多次循环，重复使用我们的之前的正则规则就可以了。根据循环次数的多与少，我可以分为0次，1次，多次，特定次&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;匹配规则&lt;/th&gt;
-&lt;th&gt;元字符&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;0次或1次&lt;/td&gt;
-&lt;td&gt;?&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;0次或无数次&lt;/td&gt;
-&lt;td&gt;*&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;1次或无数次&lt;/td&gt;
-&lt;td&gt;+&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;特定次数&lt;/td&gt;
-&lt;td&gt;{x}, {min, max}&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&#34;匹配一个或0个字符&#34;&gt;匹配一个或0个字符&lt;/h2&gt;
-&lt;p&gt;元字符&lt;code&gt;?&lt;/code&gt;代表了匹配一个字符或0个字符&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 第一个?前面的字符串可以舍弃，第二个?前面的字符串可拼1个或2个
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/colou?rs?/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;color&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;colors&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;colours&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;colour&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;匹配0个或无数个字符&#34;&gt;匹配0个或无数个字符&lt;/h2&gt;
-&lt;p&gt;元字符&lt;code&gt;*&lt;/code&gt;用来表示匹配0个字符或无数个字符。通常用来过滤某些可有可无的字符串&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// *表示不限制，appl可随意拼接最后一位，也可不拼
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/appl*/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;appl&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;apple&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;元字符&lt;code&gt;+&lt;/code&gt;适用于要匹配同个字符出现1次或多次的情况&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// +限制apple必须出现1次或多次
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/apple+/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;appl&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;apple&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;匹配特定的重复次数&#34;&gt;匹配特定的重复次数&lt;/h2&gt;
-&lt;p&gt;在某些情况下，我们需要匹配特定的重复次数，元字符&lt;code&gt;{&lt;/code&gt;和&lt;code&gt;}&lt;/code&gt;用来给重复匹配设置精确的区间范围。如&amp;rsquo;a&amp;rsquo;我想匹配3次,那么我就使用&lt;code&gt;/a{3}/&lt;/code&gt;这个正则，或者说&amp;rsquo;a&amp;rsquo;我想匹配至少两次就是用&lt;code&gt;/a{2,}/&lt;/code&gt;这个正则。&lt;/p&gt;
-&lt;p&gt;以下是完整的语法：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;-&lt;/span&gt; {x}&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; x次
-&lt;span style=&#34;color:#ff79c6&#34;&gt;-&lt;/span&gt; {min, max}： 介于min次到max次之间
-&lt;span style=&#34;color:#ff79c6&#34;&gt;-&lt;/span&gt; {min, }&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; 至少min次
-&lt;span style=&#34;color:#ff79c6&#34;&gt;-&lt;/span&gt; {&lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;, max}： 至多max次
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 限制a必须重复3次到5次，包括3和5
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/a{3,5}/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;aaaaa&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;h1 id=&#34;位置边界匹配position&#34;&gt;位置边界匹配position&lt;/h1&gt;
-&lt;p&gt;在长文本字符串查找过程中，我们常常需要限制查询的位置。比如我只想在单词的开头结尾查找&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;边界和标志&lt;/th&gt;
-&lt;th&gt;正则表达式&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;单词边界&lt;/td&gt;
-&lt;td&gt;\b&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;非单词边界&lt;/td&gt;
-&lt;td&gt;\B&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;字符串开头&lt;/td&gt;
-&lt;td&gt;^&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;字符串结尾&lt;/td&gt;
-&lt;td&gt;$&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;多行模式&lt;/td&gt;
-&lt;td&gt;m标志&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;忽略大小写&lt;/td&gt;
-&lt;td&gt;i标志&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;全局模式&lt;/td&gt;
-&lt;td&gt;g标志&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&#34;单词边界&#34;&gt;单词边界&lt;/h2&gt;
-&lt;p&gt;单词是构成句子和文章的基本单位，一个常见的使用场景是把文章或句子中的特定单词找出来&lt;/p&gt;
-&lt;p&gt;我想找到&lt;code&gt;cat&lt;/code&gt;这个单词，但是如果只是使用&lt;code&gt;/cat/&lt;/code&gt;这个正则，就会同时匹配到&lt;code&gt;cat&lt;/code&gt;和&lt;code&gt;scattered&lt;/code&gt;这两处文本。这时候我们就需要使用边界正则表达式&lt;code&gt;\b&lt;/code&gt;，其中b是boundary的首字母。在正则引擎里它其实匹配的是能构成单词的字符(\w)和不能构成单词的字符(\W)中间的那个位置。&lt;/p&gt;
-&lt;p&gt;上面的例子改写成&lt;code&gt;/\bcat\b/&lt;/code&gt;这样就能匹配到&lt;code&gt;cat&lt;/code&gt;这个单词了&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 包含cat都会被匹配到
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/cat/&lt;/span&gt;
-console.log(reg1.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;cat&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg1.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;scattered&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  
-&lt;span style=&#34;color:#6272a4&#34;&gt;// \b 设置了单词边界，必须为cat才能被匹配到,因此scattered会返回false
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/\bcat\b/&lt;/span&gt;
-console.log(reg2.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;cat&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg2.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;scattered&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;字符串边界&#34;&gt;字符串边界&lt;/h2&gt;
-&lt;p&gt;元字符&lt;code&gt;^&lt;/code&gt;用来匹配字符串的开头。而元字符&lt;code&gt;$&lt;/code&gt;用来匹配字符串的末尾。注意的是在长文本里，如果要排除换行符的干扰，我们要使用多行模式&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 从I开始0结束，匹配&amp;#39;I am scq000&amp;#39;,忽略大小写，忽略换行符
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; reg1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/^I am scq000$/m&lt;/span&gt;
-console.log(reg1.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;`I am scq000
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;                       I am scq000
-&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;                       I AM SCQ000`&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;h1 id=&#34;分组匹配&#34;&gt;分组匹配&lt;/h1&gt;
-&lt;h2 id=&#34;什么是分组&#34;&gt;什么是分组&lt;/h2&gt;
-&lt;p&gt;通俗来说，我理解的分组就是在正则表达式中用（）包起来的内容代表了一个分组&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 匹配两位数字
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(\d{2})/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;12&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里reg中的&lt;code&gt;(/d{2})&lt;/code&gt;就表示一个分组，匹配两位数字&lt;/p&gt;
-&lt;h2 id=&#34;分组内容的的形式&#34;&gt;分组内容的的形式&lt;/h2&gt;
-&lt;p&gt;一个分组中可以像上面这样有一个具体的表达式，这样可以优雅地表达一个重复的字符串&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 匹配字符串&amp;#39;hahaha&amp;#39;
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg1 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/hahaha/&lt;/span&gt;
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg2 &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(ha){3}/&lt;/span&gt;
-console.log(reg1.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;hahaha&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg2.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;hahaha&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这两个表达式是等效的，但有了分组之后可以更急简洁&lt;/p&gt;
-&lt;p&gt;分组中还可以有多个候选表达式&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 匹配I come from hunan/hubei/zhejiang
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/I come from (hunan|hubei|zhejiang)/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I come from hunan&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;I come from hubei&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也就是说在这个分组中，通过|隔开的几个候选表达式是并列的关系，所以可以把这个|理解为或的意思&lt;/p&gt;
-&lt;h2 id=&#34;分组的分类&#34;&gt;分组的分类&lt;/h2&gt;
-&lt;p&gt;分组有四种类型，我们使用的比较多的都是捕获型分组，只有这种分组才会暂存匹配到的串&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;捕获型&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;非捕获型&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;正向前瞻型&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;反向前瞻型&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;分组的应用&#34;&gt;分组的应用&lt;/h2&gt;
-&lt;h3 id=&#34;1-捕获与引用&#34;&gt;1. 捕获与引用&lt;/h3&gt;
-&lt;p&gt;被正则表达式捕获(匹配)到的字符串会被暂存起来，其中，由分组捕获到的字符串会从1开始编号，于是我们可以引用这些字符串&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(\d{4})-(\d{2})-(\d{2})/&lt;/span&gt;
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; dateStr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;2018-04-18&amp;#39;&lt;/span&gt;
-reg.test(dateStr)  &lt;span style=&#34;color:#6272a4&#34;&gt;//true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$1) &lt;span style=&#34;color:#6272a4&#34;&gt;// 2018
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$2) &lt;span style=&#34;color:#6272a4&#34;&gt;// 04
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$3) &lt;span style=&#34;color:#6272a4&#34;&gt;// 18
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-结合replace方法做字符串自定义替换&#34;&gt;2. 结合replace方法做字符串自定义替换&lt;/h3&gt;
-&lt;p&gt;String.prototype.replace方法的传参中可以直接引用被捕获的串，比如我们想开发中常见的日期格式替换,例如后台给你返回了一个2018/04/18,让你用正则替换为2018-04-18，就可以利用分组&lt;/p&gt;
-&lt;p&gt;这里需要注意的是&lt;code&gt;/&lt;/code&gt;是需要用&lt;code&gt;\&lt;/code&gt;转义的&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; dateStr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;2018/04/18&amp;#39;&lt;/span&gt;;
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(\d{4})\/(\d{2})\/(\d{2})/&lt;/span&gt;;
-dateStr &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; dateStr.replace(reg, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;$1-$2-$3&amp;#39;&lt;/span&gt;)
-console.log(dateStr) &lt;span style=&#34;color:#6272a4&#34;&gt;// 2018-04-18
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3-反向引用&#34;&gt;3. 反向引用&lt;/h3&gt;
-&lt;p&gt;正则表达式里也能进行引用，这称为反向引用&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// \w{3}表示任意的三位字母或数字,\1表示引用第1个分组，这里代表前三个字符
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(\w{3}) is \1/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is kid&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;dik is dik&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is dik&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;dik is kid&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果引用了越界或者不存在的编号的话，就被被解析为普通的表达式&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// \w{3}表示任意的三位字母或数字,\1表示引用第6个分组，这里第6个分组不存在，所以解析成了字符串&amp;#39;\6&amp;#39;
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(\w{3}) is \6/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is kid&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is \6&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;4-非捕获型分组&#34;&gt;4. 非捕获型分组&lt;/h3&gt;
-&lt;p&gt;有的时候只是为了分组并不需要捕获的情况下就可以使用非捕获型分组&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(?:\d{4})-(\d{2})-(\d{2})/&lt;/span&gt;
-&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; date &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;2012-12-21&amp;#39;&lt;/span&gt;
-reg.test(date)
-console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$1) &lt;span style=&#34;color:#6272a4&#34;&gt;// 12
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$2) &lt;span style=&#34;color:#6272a4&#34;&gt;// 21
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;5-正向与反向前瞻型分组&#34;&gt;5. 正向与反向前瞻型分组&lt;/h3&gt;
-&lt;p&gt;正向前瞻型分组：你站在原地往前看，如果前方是指定的东西就返回true，否则为false&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/kid is a (?=doubi)/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is a doubi&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is a shabi&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;反向前瞻型分组：你站在原地往前看，如果前方不是指定的东西则返回true，如果是则返回false&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/kid is a (?!doubi)/&lt;/span&gt;
-console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is a doubi&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// false
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;console.log(reg.test(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;kid is a shabi&amp;#39;&lt;/span&gt;)) &lt;span style=&#34;color:#6272a4&#34;&gt;// true
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;6-前瞻型分组和非捕获型分组的区别&#34;&gt;6. 前瞻型分组和非捕获型分组的区别&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; reg, str &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;kid is a doubi&amp;#34;&lt;/span&gt;;
-reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(kid is a (?:doubi))/&lt;/span&gt;
-reg.test(str)
-console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$1) &lt;span style=&#34;color:#6272a4&#34;&gt;// kid is a doubi
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  
-reg &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;/(kid is a (?=doubi))/&lt;/span&gt;
-reg.test(str)
-console.log(&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;RegExp&lt;/span&gt;.$1) &lt;span style=&#34;color:#6272a4&#34;&gt;// kis is a
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也就是说非捕获型分组匹配到的字符串任然会被外层分组匹配到，而前瞻型不会&lt;/p&gt;
-&lt;p&gt;如果你希望在外层分组中不匹配里面分组的值的话就可以使用前瞻型分组了&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://jex.im/regulex/#!flags=&amp;amp;re=%5E(a%7Cb)*%3F%24&#34;&gt;在线正则工具&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions&#34;&gt;正则表达式中的特殊字符&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903845227659271&#34;&gt;正则表达式不要背&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/wancheng7/p/8906015.html&#34;&gt;JS正则表达式的分组匹配&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/allen2333/p/9835654.html&#34;&gt;正则表达式 - (?!), (?:), (?=)&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E6%AD%A3%E5%88%99/ - </description>
         </item>
     
     
