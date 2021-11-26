@@ -29,7 +29,7 @@
 &amp;lt;meta http-equiv=&amp;#34;Refresh&amp;#34; content=&amp;#34;5;url=http://www.baidu.com&amp;#34; /&amp;gt; 在页面head中加入这个后，5秒钟后就会跳转到指定的页面
 name 供浏览器进行解析，对于一些浏览器兼容性问题，name是最常用的，当然有个前提就是浏览器能够解析你写进去的name属性才可以
 例：
-&amp;lt;meta name=&amp;#34;renderer&amp;#34; content=&amp;#34;webkit&amp;#34;&amp;gt; 告诉浏览器，用webkit内核进行解析，前提是浏览器有webkit内核才可以。当然看到这个你可能会有疑问，这个renderer是从哪里冒出来的？这个就是在对应的浏览器的开发文档里就会有表明的，例如这个renderer是在360浏览器里说明的。360浏览器内核控制Meta标签说明文档
+&amp;lt;meta name=&amp;#34;renderer&amp;#34; content=&amp;#34;webkit&amp;#34;&amp;gt; 这个meta标签的意思就是告诉浏览器，用webkit内核进行解析，前提是浏览器有webkit内核才可以。当然看到这个你可能会有疑问，这个renderer是从哪里冒出来的？这个就是在对应的浏览器的开发文档里就会有表明的，例如这个renderer是在360浏览器里说明的。360浏览器内核控制Meta标签说明文档
 meta标签总结 charset 声明文档使用的字符编码，解决乱码问题主要用的就是它，值得一提的是，这个charset一定要写第一行，不然可能会产生乱码了。
 chartset有两种写法
 &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;meta http-equiv=&amp;#34;Content-Type&amp;#34; content=&amp;#34;text/html; charset=utf-8&amp;#34;&amp;gt; SEO 优化部分 &amp;lt;!-- 页面标题&amp;lt;title&amp;gt;标签(head 头部必须) --&amp;gt; &amp;lt;title&amp;gt;your title&amp;lt;/title&amp;gt; &amp;lt;!-- 页面关键词 keywords --&amp;gt; &amp;lt;meta name=&amp;#34;keywords&amp;#34; content=&amp;#34;your keywords&amp;#34;&amp;gt; &amp;lt;!-- 页面描述内容 description --&amp;gt; &amp;lt;meta name=&amp;#34;description&amp;#34; content=&amp;#34;your description&amp;#34;&amp;gt; &amp;lt;!-- 定义网页作者 author --&amp;gt; &amp;lt;meta name=&amp;#34;author&amp;#34; content=&amp;#34;author,email address&amp;#34;&amp;gt; &amp;lt;!</description>

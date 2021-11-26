@@ -40,7 +40,7 @@
 &lt;p&gt;供浏览器进行解析，对于一些浏览器兼容性问题，name是最常用的，当然有个前提就是浏览器能够解析你写进去的name属性才可以&lt;/p&gt;
 &lt;p&gt;例：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;renderer&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;webkit&amp;#34;&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;告诉浏览器，用webkit内核进行解析，前提是浏览器有webkit内核才可以。当然看到这个你可能会有疑问，这个renderer是从哪里冒出来的？这个就是在对应的浏览器的开发文档里就会有表明的，例如这个renderer是在360浏览器里说明的。&lt;a href=&#34;http://se.360.cn/v6/help/meta.html&#34;&gt;360浏览器内核控制Meta标签说明文档&lt;/a&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个meta标签的意思就是告诉浏览器，用webkit内核进行解析，前提是浏览器有webkit内核才可以。当然看到这个你可能会有疑问，这个renderer是从哪里冒出来的？这个就是在对应的浏览器的开发文档里就会有表明的，例如这个renderer是在360浏览器里说明的。&lt;a href=&#34;http://se.360.cn/v6/help/meta.html&#34;&gt;360浏览器内核控制Meta标签说明文档&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&#34;meta标签总结&#34;&gt;meta标签总结&lt;/h1&gt;
 &lt;h2 id=&#34;charset&#34;&gt;charset&lt;/h2&gt;
 &lt;p&gt;声明文档使用的字符编码，解决乱码问题主要用的就是它，值得一提的是，这个charset一定要写第一行，不然可能会产生乱码了。&lt;/p&gt;
