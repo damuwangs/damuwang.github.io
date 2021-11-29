@@ -5,9 +5,85 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Nov 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>React-Portals</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-portals/</link>
+        <pubDate>Mon, 29 Nov 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-portals/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-portals/ -&lt;h1 id=&#34;为什么需要portals&#34;&gt;为什么需要Portals&lt;/h1&gt;
+&lt;p&gt;Portals能够将子组件渲染到父组件以外的DOM树，他通常用于子组件需要从父组件的容器中脱离出来的场景，有以下场景：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dialog对话框&lt;/li&gt;
+&lt;li&gt;Tooltip文字提示&lt;/li&gt;
+&lt;li&gt;Popover弹出框&lt;/li&gt;
+&lt;li&gt;Loader全局loader&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如某个组件在渲染时，在某种条件下需要显示一个Dialog，最直观的做法，就是直接在JSX中把Dialog画出来，像下面代码的样子&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;foo&amp;#34;&lt;/span&gt;&amp;gt;
+   &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt; ... &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+   { needDialog &lt;span style=&#34;color:#ff79c6&#34;&gt;?&lt;/span&gt; &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;Dialog&lt;/span&gt; /&amp;gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt; }
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;问题是，Dialog最终渲染产生的HTML就与上面JSX产生的HTML产生嵌套了，类似下面这样&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;foo&amp;#34;&lt;/span&gt;&amp;gt;
+   &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt; ... &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+   &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;dialog&amp;#34;&lt;/span&gt;&amp;gt;Dialog Content&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;对于对话框应该是一个独立的组件，通常应该显示在屏幕的最中间，现在Dialog被包在其它组件中，要用CSS的position属性控制Dialog位置，就要从Dialog往上一直到body都没有其它position是relative的元素干扰。还有一点，Dialog的样式，因为包含在其它元素中，各种样式纠缠，CSS样式太容易搞成一坨浆糊了。&lt;/p&gt;
+&lt;p&gt;我们既希望在组件的JSX中选择使用Dialog，把Dialog用的像普通组件一样，但是又希望Dialog内容显示在另一个地方，就需要Portals上场了。&lt;/p&gt;
+&lt;p&gt;Portals就是建立一个“传送门”，让Dialog这样的组件在表示层和其它组件没有任何差异，但是渲染的东西却像经过传送门一样出现在另一个地方&lt;/p&gt;
+&lt;p&gt;当我们需要在正常的DOM结构之外呈现子组件时，React Portals非常有用，而不需要通过React组件树层次结构破坏事件传播的默认行为，这在渲染例如弹窗、提示时非常有用&lt;/p&gt;
+&lt;h1 id=&#34;react-v16的portals支持&#34;&gt;React v16的Portals支持&lt;/h1&gt;
+&lt;p&gt;在某个组件中需要使用modal弹框，大多数情况下可以使用fixed定位让这个弹框全局展示，但是特殊情况下，这个modal弹框可能会显示不正常。这个时候如果使用了portals的方式，使modal的dom结构脱离父组件的容器，就可以规避这种问题&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-typescript&#34; data-lang=&#34;typescript&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 定义弹框组件
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; Modal &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; ({message, isOpen, onClose, children}) &lt;span style=&#34;color:#ff79c6&#34;&gt;=&amp;gt;&lt;/span&gt; {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#ff79c6&#34;&gt;!&lt;/span&gt;isOpen) &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;
+  &lt;span style=&#34;color:#6272a4&#34;&gt;// 创建portals并挂载到body中  
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; ReactDOM.createPortal(
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;div className&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;modal&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;span&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;{message}&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;/span&amp;gt;
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;button onClick&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;{onClose}&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;Close&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;/button&amp;gt;
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;/div&amp;gt;
+  , &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.body)
+}
+&lt;span style=&#34;color:#6272a4&#34;&gt;// 弹框使用
+&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt; Component() {
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; [open, setOpen] &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; useState(&lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;)
+  &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; (
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;div className&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;component&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;button onClick&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;{() &lt;span style=&#34;color:#ff79c6&#34;&gt;=&amp;gt;&lt;/span&gt; setOpen(&lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;)}&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;/button&amp;gt;
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;Modal
+        message&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;
+        isOpen&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;{open}
+        onClose&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;{() &lt;span style=&#34;color:#ff79c6&#34;&gt;=&amp;gt;&lt;/span&gt; setOpen(&lt;span style=&#34;color:#ff79c6&#34;&gt;false&lt;/span&gt;)}
+      &lt;span style=&#34;color:#ff79c6&#34;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;&lt;/span&gt;/div&amp;gt;
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;上面的代码能够保证，无论子组件嵌套多深，这个modal能够和root同一级。使用浏览器检查dom结构，就可以看到如下结构&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/React-Portals/React-Portals.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;portals的事件冒泡&#34;&gt;Portals的事件冒泡&lt;/h1&gt;
+&lt;p&gt;v16之前的React Portals实现方法，有一个小小的缺陷，就是Portals是单向的，内容通过Portals传到另一个出口，在那个出口DOM上发生的事件不会冒泡传送回Portals的父组件的&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;onClick&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;{onDialogClick}&lt;/span&gt;&amp;gt;   
+   &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;Dialog&lt;/span&gt;&amp;gt;
+     What ever shit
+   &amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;Dialog&lt;/span&gt;&amp;gt;
+&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在Dialog画出的内容上点击，onClick是不会被触发的。&lt;/p&gt;
+&lt;p&gt;在v16中，通过Portals渲染出去的DOM，事件是会从传送门的入口端冒出来的，上面的onDialogClick也就会被调用到了&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/29880992&#34;&gt;传送门：React Portal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6892951045685641224&#34;&gt;你真的了解React Portals吗&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-portals/ - </description>
+        </item>
     
     
     
@@ -89,7 +165,7 @@
         <pubDate>Wed, 24 Nov 2021 00:00:00 +0000</pubDate>
         
         <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/ -&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
 &lt;p&gt;一个高阶组件只是一个包装了另外一个React组件的React组件&lt;/p&gt;
 &lt;h1 id=&#34;基础高阶组件&#34;&gt;基础高阶组件&lt;/h1&gt;
 &lt;h2 id=&#34;装饰器模式&#34;&gt;装饰器模式&lt;/h2&gt;
@@ -1251,57 +1327,6 @@ Object.defineProperty()触发getter时会先判断全局静态属性是否存在
 &lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/HH18700418030/article/details/119576206&#34;&gt;vue 路由传参，页面刷新后参数类型改变_且听风吟的博客-CSDN博客&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E5%90%8E%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%B9%E5%8F%98/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>GitHub个人访问令牌创建与使用</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/</link>
-        <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/ -&lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.blog/2020-07-30-token-authentication-requirements-for-api-and-git-operations/&#34;&gt;2020 年 7 月&lt;/a&gt;，GitHub官方宣布对所有经过身份验证的 Git 操作，使用基于令牌的身份验证（例如，个人访问、OAuth 或 GitHub 应用程序安装令牌）。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;从 2021 年 8 月 13 日开始，将在 GitHub.com 上对 Git 操作进行身份验证时不再接受帐户密码&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;因此对于开发人员来说，如果无法再用密码对 GitHub.com 的 Git 操作进行身份验证，则必须通过 HTTPS（推荐）或 SSH 密钥开始使用个人访问令牌，以避免中断&lt;/p&gt;
-&lt;h1 id=&#34;创建个人访问令牌&#34;&gt;创建个人访问令牌&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;h5 id=&#34;登录github点击头像下拉选择settings选项&#34;&gt;登录GitHub点击头像，下拉选择settings选项&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/GitHub%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/Settings.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h5 id=&#34;点击developer-settings菜单进入开发者设置&#34;&gt;点击Developer settings菜单进入开发者设置&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/GitHub%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/DeveloperSettings.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h5 id=&#34;点击personaccesstokens菜单进入个人令牌界面&#34;&gt;点击PersonAccessTokens菜单进入个人令牌界面&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/GitHub%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/PersonalAccessTokens.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h5 id=&#34;点击generatenewtoken生成新的令牌&#34;&gt;点击GenerateNewToken生成新的令牌&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/GitHub%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/newToken.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;令牌过期使用git拉取代码会报一个鉴权失败的错误，无法推送代码&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;修改本地git账户配置&#34;&gt;修改本地Git账户配置&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;h5 id=&#34;进入控制面板-凭据管理器点击windows凭据&#34;&gt;进入控制面板-凭据管理器，点击Windows凭据&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/GitHub%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/Windows%E5%87%AD%E6%8D%AE.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;h5 id=&#34;可以看到普通凭据列表有一堆地址找到github对应的普通凭据&#34;&gt;可以看到普通凭据列表有一堆地址，找到GitHub对应的普通凭据&lt;/h5&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/GitHub%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/%E6%99%AE%E9%80%9A%E5%87%AD%E6%8D%AE.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;点击编辑设置密码为GitHub申请的个人令牌&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;%5BGithub%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E6%95%99%E7%A8%8B_%E8%BF%99%E4%B9%9F%E5%A4%AA%E5%8D%97%E4%BA%86%E8%B6%B4%E7%9A%84%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2_github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%5D(https://blog.csdn.net/qq_46941656/article/details/119737804)&#34;&gt;GitHub创建个人访问令牌教程&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/github%E4%B8%AA%E4%BA%BA%E8%AE%BF%E9%97%AE%E4%BB%A4%E7%89%8C%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8/ - </description>
         </item>
     
     
