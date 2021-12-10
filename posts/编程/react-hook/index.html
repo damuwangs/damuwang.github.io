@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>编程</title>
+<title>React-Hook</title>
 
 
 
@@ -50,6 +50,10 @@
 
 
 
+  
+    <script src="/js/toc.js"></script>
+  
+
 
 
 
@@ -87,9 +91,11 @@
             
             
             
+                
             
             
-            <a class="a-block nav-link-item false" href="/posts">
+            
+            <a class="a-block nav-link-item active" href="/posts">
                 博客
             </a>
             
@@ -107,11 +113,9 @@
             
             
             
-                
             
             
-            
-            <a class="a-block nav-link-item active" href="/tags">
+            <a class="a-block nav-link-item false" href="/tags">
                 标签
             </a>
             
@@ -137,6 +141,60 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </div><div ref="extraContainer" class="extra-container">
     
     
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81portals" onclick="onNavClick(`#为什么需要portals-nav`)" id="为什么需要portals-nav">
+									为什么需要Portals
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -154,24 +212,6 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
         </a>
         
         
-        
-            <div class="pagination-indicator">
-                <span style="text-align: center">
-                    1<br><div style="display: inline-block; transform: rotate(-28deg)">-</div><br>4
-                </span>
-            </div>
-            
-            
-
-            
-            <a class="pagination-action" href="/tags/%E7%BC%96%E7%A8%8B/page/2/">
-                <i class="material-icons pagination-action-icon">
-                    chevron_right
-                </i>
-            </a>
-            
-        
-        
     </div>
 </div>
 <div class="single-column-drawer-container" ref="drawer"
@@ -184,9 +224,11 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 
                 
+                    
                 
                 
-                <a class="a-block drawer-menu-item false" href="/posts">
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
                     博客
                 </a>
                 
@@ -204,15 +246,67 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 
                 
-                    
                 
                 
-                
-                <a class="a-block drawer-menu-item active" href="/tags">
+                <a class="a-block drawer-menu-item false" href="/tags">
                     标签
                 </a>
                 
             
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81portals" onclick="onNavClick(`#为什么需要portals-nav`)" id="为什么需要portals-nav">
+									为什么需要Portals
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" onclick="onNavClick(`#参考资料-nav`)" id="参考资料-nav">
+									参考资料
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
             
         </div>
     </div>
@@ -257,244 +351,94 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
             <div id="content">
 <div ref="streamContainer" class="stream-container">
     <div class="post-list-container post-list-container-shadow">
-        <div class="post-item-wrapper post-item-wrapper-no-hover">
-            <div class="post-item post-item-no-gaps">
-                <div class="post-item-info-wrapper">
-                    <div class="post-item-title  post-item-title-small">
-                        <a href="https://damuwangs.github.io/">DaMuWang</a> / 编程
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    React-Hook
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-12-09
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/react">React</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%BC%96%E7%A8%8B">编程</a>
+                                &nbsp;
+                            
+                        
+                        
                     </div>
                 </div>
             </div>
-        </div><a href="/posts/%E7%BC%96%E7%A8%8B/react-hook/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            React-Hook
-                        </div>
-                        <div class="post-item-meta">
-    2021-12-09
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="为什么需要portals">为什么需要Portals</h1>
+<p>Portals能够将子组件渲染到父组件以外的DOM树，他通常用于子组件需要从父组件的容器中脱离出来的场景，有以下场景：</p>
+<h1 id="参考资料">参考资料</h1>
+<blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/29880992">传送门：React Portal</a></p>
+<p><a href="https://juejin.cn/post/6892951045685641224">你真的了解React Portals吗</a></p>
+</blockquote>
 
-                    </div>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-12-09</p>
+                    
                 </div>
             </div>
-        </a><a href="/posts/%E7%BC%96%E7%A8%8B/react-renderprops/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            React-RenderProps
-                        </div>
-                        <div class="post-item-meta">
-    2021-12-09
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            
+            
+            <nav class="post-pagination">
 
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/%E7%BC%96%E7%A8%8B/react-portals/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            React-Portals
-                        </div>
-                        <div class="post-item-meta">
-    2021-11-29
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-renderprops/">
+			Previous<br>React-RenderProps
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
 
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/%E7%BC%96%E7%A8%8B/html-meta%E6%A0%87%E7%AD%BE/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            Html-meta标签
-                        </div>
-                        <div class="post-item-meta">
-    2021-11-26
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/%E7%BC%96%E7%A8%8B/react-%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            React-高阶组件
-                        </div>
-                        <div class="post-item-meta">
-    2021-11-24
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/%E7%BC%96%E7%A8%8B/uniapp-app%E7%AD%BE%E5%90%8D/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            UniApp-App签名
-                        </div>
-                        <div class="post-item-meta">
-    2021-11-09
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/%E7%BC%96%E7%A8%8B/javascript-mvcmvvm%E6%A8%A1%E5%BC%8F/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            JavaScript-MVC、MVVM模式
-                        </div>
-                        <div class="post-item-meta">
-    2021-11-08
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            UniApp-原生插件开发
-                        </div>
-                        <div class="post-item-meta">
-    2021-10-20
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            Vue2-响应式原理
-                        </div>
-                        <div class="post-item-meta">
-    2021-10-13
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/%E7%BC%96%E7%A8%8B/vue2-%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E5%90%8E%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%B9%E5%8F%98/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            Vue2-路由传参，页面刷新后参数类型改变
-                        </div>
-                        <div class="post-item-meta">
-    2021-09-30
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
 
-                    </div>
-                </div>
-            </div>
-        </a></div>
-</div>
+
 
             </div>
-
-<div class="pagination">
-    
-    <a class="pagination-action" style="opacity:0">
-    
-        <i class="material-icons pagination-action-icon">
-            chevron_left
-        </i>
-    </a>
-
-        <div class="pagination-indicator">
-            <span>1/4</span>
         </div>
-
-        
-        <a class="pagination-action" href="/tags/%E7%BC%96%E7%A8%8B/page/2/"
-           style="opacity:1">
-        
-                <i class="material-icons pagination-action-icon">
-                    chevron_right
-                </i>
-            </a>
+    </div>
 </div>
 
-
-<div id="single-column-footer">
+            </div><div id="single-column-footer">
 Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
 <br>
 Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
@@ -761,6 +705,9 @@ app = new Vue({
             elem.classList.add("table-hover");
         })
 
+        
+        spy();
+        window.addEventListener('scroll', this.debounce(spy, 250, { 'maxWait': 250 }), false);
         
         
     },

@@ -5,9 +5,45 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Dec 2021 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>React-Hook</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-hook/</link>
+        <pubDate>Thu, 09 Dec 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-hook/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-hook/ -&lt;h1 id=&#34;为什么需要portals&#34;&gt;为什么需要Portals&lt;/h1&gt;
+&lt;p&gt;Portals能够将子组件渲染到父组件以外的DOM树，他通常用于子组件需要从父组件的容器中脱离出来的场景，有以下场景：&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/29880992&#34;&gt;传送门：React Portal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6892951045685641224&#34;&gt;你真的了解React Portals吗&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-hook/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>React-RenderProps</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-renderprops/</link>
+        <pubDate>Thu, 09 Dec 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-renderprops/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-renderprops/ -&lt;h1 id=&#34;为什么需要portals&#34;&gt;为什么需要Portals&lt;/h1&gt;
+&lt;p&gt;Portals能够将子组件渲染到父组件以外的DOM树，他通常用于子组件需要从父组件的容器中脱离出来的场景，有以下场景：&lt;/p&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/29880992&#34;&gt;传送门：React Portal&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6892951045685641224&#34;&gt;你真的了解React Portals吗&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-renderprops/ - </description>
+        </item>
     
     
     
@@ -1263,70 +1299,6 @@ Object.defineProperty()触发getter时会先判断全局静态属性是否存在
 &lt;p&gt;&lt;a href=&#34;https://codepen.io/damuwangs/pen/RwZPKjw&#34;&gt;codepen-Vue2-响应式原理&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>【待补充】关于租房的一些方法论</title>
-        <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/</link>
-        <pubDate>Wed, 13 Oct 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/ -&lt;h1 id=&#34;小区&#34;&gt;小区&lt;/h1&gt;
-&lt;p&gt;昆明城市花园-回迁房&lt;/p&gt;
-&lt;p&gt;惠南社区石家围墙西电小区-老小区&lt;/p&gt;
-&lt;h1 id=&#34;方法论&#34;&gt;方法论&lt;/h1&gt;
-&lt;p&gt;这里我介绍个成功经验。在58同城租房平台，筛选个人房源的(看到房源下面是机构的基本可以过了，都被扒了一层皮，当然你想合租小而美的单间或者公寓可以找中介)，排序按时间排序(优质的房子肯定不会挂几个月)，然后选定价格区间、户型、地段等，就能找到靠谱的房东直租(概率极大，不排除二房东，中介假冒等)。&lt;/p&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.boohee.com/food&#34;&gt;热量查询&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://psychologyandfitness.cn/bmrtdeecalculator/&#34;&gt;基础代谢计算&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.sohu.com/a/380044473_685943&#34;&gt;增肌减脂必知BMR&amp;amp;TDEE计算口诀&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Vue2-路由传参，页面刷新后参数类型改变</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E5%90%8E%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%B9%E5%8F%98/</link>
-        <pubDate>Thu, 30 Sep 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E5%90%8E%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%B9%E5%8F%98/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E5%90%8E%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%B9%E5%8F%98/ -&lt;h1 id=&#34;问题描述&#34;&gt;问题描述&lt;/h1&gt;
-&lt;p&gt;今天发现一个小问题，列表通过路由传递的 number 类型参数，用 === 来判断&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Number&lt;/span&gt;(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$route.query.type) &lt;span style=&#34;color:#ff79c6&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;结果发现有时候为 true ，有时候为 false&lt;/p&gt;
-&lt;p&gt;进入页面，打印参数类型：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;number
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;刷新页面，打印参数类型：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;string
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;后来发现，原因是：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;vue-router 传参，不管是 params 形式还是query形式传参，在页面刷新后，params 和 query
-对象中的属性所对应的属性值都会被浏览器自身强制转换为string类型
-(这一点与浏览器的sessionStorage和localStorage存储对象，对象会被转为string类型，不谋而合)，破环原先属性值的数据类型&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
-&lt;p&gt;将参数强制转为 Number类型：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Number&lt;/span&gt;(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.$route.query.type)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;总结&#34;&gt;总结&lt;/h1&gt;
-&lt;p&gt;1、number数据类型：页面刷新后，其类型会转换为 string 类型。&lt;/p&gt;
-&lt;p&gt;所以，在路由刷新页面，在使用时，不管页面是否刷新，都对传递过来的属性值做一次Number()转换；&lt;/p&gt;
-&lt;p&gt;2、string数据类型：页面刷新后，其类型依然为string类型；&lt;/p&gt;
-&lt;p&gt;3、boolean数据类型：页面刷新后，其类型会转换为string类型。&lt;/p&gt;
-&lt;p&gt;所以，在路由刷新页面，在使用时，不管页面是否刷新，都对传递过来的属性值做一次Boolean()转换；&lt;/p&gt;
-&lt;p&gt;4、undefined数据类型：页面刷新后，其类型依然为undefined类型；&lt;/p&gt;
-&lt;p&gt;5、null数据类型：页面刷新后，其类型依然为null类型；&lt;/p&gt;
-&lt;p&gt;6、object数据类型：页面刷新后，其类型会转换为string类型；&lt;/p&gt;
-&lt;p&gt;所以，在路由跳转传参页面对属性值做一次JSON.stringify()预处理，然后在路由刷新页面对该值进行JSON.parse()转换。&lt;/p&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/HH18700418030/article/details/119576206&#34;&gt;vue 路由传参，页面刷新后参数类型改变_且听风吟的博客-CSDN博客&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E5%90%8E%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%B9%E5%8F%98/ - </description>
         </item>
     
     
