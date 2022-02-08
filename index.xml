@@ -5,9 +5,253 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 08 Feb 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>面试-2021年12月</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B412%E6%9C%88/</link>
+        <pubDate>Tue, 08 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B412%E6%9C%88/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B412%E6%9C%88/ -&lt;h1 id=&#34;javascript&#34;&gt;JavaScript&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;移动端事件延迟&#34;&gt;移动端事件延迟&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		移动端点击事件会不会有延迟，会有什么隐患，怎样解决&lt;/p&gt;
+&lt;p&gt;​		我的思路：click事件没有延迟，直接触发。但 touch事件（比如 touchStart、touchEnd）有300毫秒的延迟，用来判断是单击还是双击、缩放。隐患是容易造		成“点击穿透”（这个原理简单，写起来费劲，木哥你自己百度一下就知道了）。解决思路，一是尽量写成click事件，避免写成touch事件，就不会有延迟了，		二是在容易受影响的代码里专门写一写 if判断，避免误操作。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;前端路由的理解&#34;&gt;前端路由的理解&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：&lt;/p&gt;
+&lt;p&gt;​		JSP、ASP 是多页面应用，由服务端决定返回哪个页面，还有最早的 H5 网站，也是这样的，每个页面相互独立，容易受网络波动影响，肯定速度慢呀，半天		出不来页面，用户体验性差。而且每个页面都要重复引用相同的 js 文件、css资源文件，加载速度就慢。&lt;/p&gt;
+&lt;p&gt;​		SPA单页面应用就比较友好了，采用组件化的方式，只有一个公共页面，每次只切换渲染页面的一部分，由前端进行路由控制，用户等待时间短。Angular、		Vue、React，都是这么干的。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;promise&#34;&gt;Promise&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Promise 可不可以中断&lt;/p&gt;
+&lt;p&gt;我的思路：严格的说不能中断，但可以借助 pending 和 reject 来达到中断效果。（木哥你具体再问我吧，写起来费劲）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;有一个业务，需要发出两个不同的异步请求，得到所有结果后才去走下一步业务逻辑，如果用 Promise做的话，咋做&lt;/p&gt;
+&lt;p&gt;我的思路：尽量别用 Promise.all()，推荐使用 Promise.allSettled() 方法。（木哥你具体再问我吧，写起来费劲）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;es6&#34;&gt;ES6&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ES6新增了哪些方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ES6的扩展运算符，用没用过&lt;/p&gt;
+&lt;p&gt;我的思路：用过，用来传参，或者给对象赋值，或者用来给数组进行脱壳。传参时放到最后，别放前面。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ES6 的数组新增方法&lt;/p&gt;
+&lt;p&gt;我的思路：find()方法、forEach()方法、map()方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;npm是什么&#34;&gt;npm是什么&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：node 的包管理器，用户可以上传自己写的代码包，供其他人下载使用，体现的是开源精神。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;怎样用浏览器来做缓存&#34;&gt;怎样用浏览器来做缓存&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：&lt;/p&gt;
+&lt;p&gt;​		cookie（5kb），localStorage（5mb），SessionStorage（5mb），indexdDB（无限大）。&lt;/p&gt;
+&lt;p&gt;​		localStorage 只要不清理缓存，会长期有效，具体方法有 set、get、clear。&lt;/p&gt;
+&lt;p&gt;​		SessionStorage 只适合单次会话，关闭浏览器窗口，就失效了。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;两个标签页同时访问-localstorage里的同一个变量会有延迟吗浏览器是如何处理的&#34;&gt;两个标签页同时访问 localStorage里的同一个变量，会有延迟吗？浏览器是如何处理的&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：不会，不是不会，是我不会。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;css&#34;&gt;Css&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;flex布局&#34;&gt;flex布局&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：早忘了，不会。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;媒体查询&#34;&gt;媒体查询&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：早忘了，不会。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;元素浮动&#34;&gt;元素浮动&lt;/h2&gt;
+&lt;p&gt;什么时候会出现元素的浮动现象&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：早忘了，不会。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;js动画css动画&#34;&gt;JS动画、CSS动画&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：JS动画复杂，适合做精确控制的大型特效。CSS动画简单，适合做小小的展示。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;canvas-画布&#34;&gt;canvas 画布&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：早忘了，不会。不过我印象里百度的 Echarts 就是渲染在 canvas上的。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;vue&#34;&gt;Vue&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;生命周期的理解&#34;&gt;生命周期的理解&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：总共11个钩子函数，说完也就差不多了。创建前后、挂载前后、修改前后、销毁前后，还有keep-alive的激活钩子和冻结钩子，以及用来捕获错误		的 errorCaptured 钩子（单词不一定对哈哈）。建议在 created 钩子中请求数据，此时页面未渲染，不会闪动，如果在 mounted 钩子中请求数据，此时页面		早已渲染完毕，重新加载数据会造成页面闪动。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;为啥vue的属性要写成函数的形式而不是对象的形式&#34;&gt;为啥Vue的属性要写成函数的形式而不是对象的形式&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：Vue根实例是单例，data 属性可以是对象写法或函数写法，但组件里的 data只能采用函数写法。&lt;/p&gt;
+&lt;p&gt;​		因为直接创建的对象，只有独一份数据，不同父组件使用时，一定会出现数据混乱。而函数返回的对象，每次返回的是不同的对象，不会出现数据污染。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;vue项目怎样引入模块&#34;&gt;Vue项目怎样引入模块&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：export、import、from。需要注意的是ES6的模块引入是静态引入，便于实现代码的静态分析。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;给对象添加一个新属性时页面不刷新咋办&#34;&gt;给对象添加一个新属性时，页面不刷新咋办&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：Vue.set()方法，Object.assign() 方法，还有 forceUpdate()方法。说明：它们底层调用的其实都是 ES5 的Object.defineProperty() 方法，采用get、		set方式实现的数据响应化，不过这种方式有天然缺陷，只能对单个属性进行监听。而当对象新增key、删除key、数组内部变化时，此时监听不到，Vue无法		响应，页面刷新失灵。Vue2本身专门打了补丁解决这个问题，但解决的并不好。这是Vue2本身的设计缺陷，Vue3不存在这个问题，因为Vue3采用了Proxy代		理的方式实现数据响应化，对对象整体进行监听，可以实现深层监听。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;vue解决跨域&#34;&gt;Vue解决跨域&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：用脚手架 vue-cli打 jsonp插件、在后端配置响应头标签允许跨域、Proxy代理服务器配置参数 。&lt;/p&gt;
+&lt;p&gt;​		开发过程中通过 webpack起一个本地 devServer作为代理服务器，转发前端请求。&lt;/p&gt;
+&lt;p&gt;​		项目部署时尽量放到服务器同一个域下。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;vue项目权限控制&#34;&gt;Vue项目权限控制&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：菜单、路由之类的权限，可能经常变化，不要写死，尽量在后台配置，前台根据后台的配置，再进行精确控制。后台接口的权限一般采用 jwt 来鉴		权，完整写法是 Json Web Token，木哥可以详细了解一下，很有意思的。前台向后台发送请求时，可以使用 axios的 interceptor过滤器，在过滤器里带上		Token，传给后台接口。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;vue代码里key的作用是啥&#34;&gt;Vue代码里，key的作用是啥&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：胡扯了一堆，记不清了&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;vue3比-vue2好在哪里&#34;&gt;Vue3比 Vue2好在哪里&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：Vue2的代码采用选项式写法（options），代码量大时维护起来费眼睛，半天才能找到地方。而Vue3的代码采用组合式写法（composition），便		于后期排查错误，但其实最重要的是便于实现 Tree-Shaking 摇树机制（涉及到 ts的类型推断、静态分析），减小代码的打包体积。需要注意的是，Vue3里面		能够向下兼容Vue2的写法。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;对vue-router的理解&#34;&gt;对Vue-Router的理解&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：胡扯了一堆，反正就那样。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;项目里面怎么用-axios&#34;&gt;项目里面怎么用 axios&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：建议封装成一个公共方法，入参越简单越好，最好是一个 api 名称、一个参数对象就行了。把请求头、错误捕获这些公共代码提取出来，每个组件		调用时，就不用写那一堆重复代码了，多简单。封装完后，在 main.js里挂到 Vue实例的原型 prototype上，这样组件里用 “this.$+方法名”直接调用就行。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;mvvm的理解&#34;&gt;MVVM的理解&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：MV是单向绑定，数据模型驱动视图。VM也是单向绑定，视图驱动数据模型。MVVM合起来就是双向数据绑定。（开课吧视频关于Vue源码解析有		详细介绍，确实有用，涉及到了 响应化原理和 v-model的原理），反正胡扯一堆。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;其它&#34;&gt;其它&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;webpack构建流程&#34;&gt;webpack构建流程&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：早忘了，不会。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;git-解决冲突&#34;&gt;Git 解决冲突&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：提-推-拉-解-提-推，胡扯一堆就行。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;用过-svn-吗&#34;&gt;用过 svn 吗&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：没用过，不会。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;tcp的三次握手四次挥手&#34;&gt;TCP的三次握手、四次挥手&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：以前看过，忘了，不会。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;前端安全漏洞攻击吗&#34;&gt;前端安全漏洞攻击吗&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​		我的思路：处理过掌上华池的安全漏洞扫描。跨站脚本攻击、跨站请求伪造、SQL注入什么的，胡扯一堆。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/143929973&#34;&gt;CSS3面试题2020 - 知乎 (zhihu.com)&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B412%E6%9C%88/ - </description>
+        </item>
     
     
     
@@ -1077,33 +1321,6 @@ Android SDK根目录&lt;span style=&#34;color:#f1fa8c&#34;&gt;\t&lt;/span&gt;ool
 &lt;p&gt;&lt;a href=&#34;https://ask.dcloud.net.cn/question/122811&#34;&gt;安卓打包,显示未配置appkey或配置错误&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>【待补充】《白夜行》读后感</title>
-        <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E7%99%BD%E5%A4%9C%E8%A1%8C%E8%AF%BB%E5%90%8E%E6%84%9F/</link>
-        <pubDate>Fri, 15 Oct 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E7%99%BD%E5%A4%9C%E8%A1%8C%E8%AF%BB%E5%90%8E%E6%84%9F/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E7%99%BD%E5%A4%9C%E8%A1%8C%E8%AF%BB%E5%90%8E%E6%84%9F/ -&lt;h1 id=&#34;人物关系图&#34;&gt;人物关系图&lt;/h1&gt;
-&lt;h2 id=&#34;桐原亮司---雪穗&#34;&gt;桐原亮司 - 雪穗&lt;/h2&gt;
-&lt;p&gt;警察：笹垣、古贺久志&lt;/p&gt;
-&lt;p&gt;当铺：桐原亮司、桐原洋介（恋幼癖）、桐原弥生子、松浦勇&lt;/p&gt;
-&lt;p&gt;旧城区：西本雪穗、西本文代、房管、寺崎忠夫&lt;/p&gt;
-&lt;p&gt;新城区：唐泽礼子、礼子&lt;/p&gt;
-&lt;p&gt;男校：桐原亮司、友彦、奈美江&lt;/p&gt;
-&lt;p&gt;欧巴桑：西口奈美江、花冈夕子&lt;/p&gt;
-&lt;p&gt;女校：雪穗、川岛江利子、藤村都子、中道正晴（雪穗数学家教）、香苗&lt;/p&gt;
-&lt;p&gt;卖盗版软件的公司（后来搬走改卖硬件）&lt;/p&gt;
-&lt;p&gt;交际舞协会：一诚、高宫诚&lt;/p&gt;
-&lt;p&gt;侦探公司、专利公司：金枝、绘里、高宫诚、三泽千都留&lt;/p&gt;
-&lt;p&gt;医药公司：康晴，一诚、筱冢美佳&lt;/p&gt;
-&lt;p&gt;医院：典子、藤井、秋吉雄一&lt;/p&gt;
-&lt;h1 id=&#34;情节梳理&#34;&gt;情节梳理&lt;/h1&gt;
-&lt;h1 id=&#34;读后感&#34;&gt;读后感&lt;/h1&gt;
-- https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E7%99%BD%E5%A4%9C%E8%A1%8C%E8%AF%BB%E5%90%8E%E6%84%9F/ - </description>
         </item>
     
     

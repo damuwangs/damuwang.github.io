@@ -6,10 +6,19 @@
     <description>Recent content in Categories on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 08 Feb 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>面试</title>
+      <link>https://damuwangs.github.io/categories/%E9%9D%A2%E8%AF%95/</link>
+      <pubDate>Tue, 08 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/categories/%E9%9D%A2%E8%AF%95/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>React</title>
@@ -80,15 +89,6 @@
       <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/categories/demo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>面试</title>
-      <link>https://damuwangs.github.io/categories/%E9%9D%A2%E8%AF%95/</link>
-      <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://damuwangs.github.io/categories/%E9%9D%A2%E8%AF%95/</guid>
       <description></description>
     </item>
     
