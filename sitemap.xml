@@ -123,6 +123,16 @@
   </url>
   
   <url>
+    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/</loc>
+    <lastmod>2021-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/tags/%E6%97%85%E8%A1%8C/</loc>
+    <lastmod>2021-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E5%90%8E%E5%8F%82%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%B9%E5%8F%98/</loc>
     <lastmod>2021-09-30T00:00:00+00:00</lastmod>
   </url>
@@ -153,32 +163,12 @@
   </url>
   
   <url>
-    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/2019%E5%B9%B4%E9%9D%92%E5%B2%9B/</loc>
-    <lastmod>2021-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E4%B9%90%E7%90%86/</loc>
     <lastmod>2021-08-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</loc>
-    <lastmod>2021-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/</loc>
-    <lastmod>2021-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E8%9B%8B%E7%99%BD%E8%B4%A8%E6%91%84%E5%85%A5%E4%B8%8E%E7%83%AD%E9%87%8F%E7%BC%BA%E5%8F%A3%E8%AE%A1%E7%AE%97/</loc>
-    <lastmod>2021-08-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://damuwangs.github.io/tags/%E6%97%85%E8%A1%8C/</loc>
     <lastmod>2021-08-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -290,6 +280,46 @@
   <url>
     <loc>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/githubpages&#43;hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2021-06-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</loc>
+    <lastmod>2021-05-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E4%BC%8A%E7%8A%81/</loc>
+    <lastmod>2010-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%A4%A9%E6%B4%A5/</loc>
+    <lastmod>2010-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%A8%81%E6%B5%B7/</loc>
+    <lastmod>2010-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E6%BC%A0%E6%B2%B3/</loc>
+    <lastmod>2010-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%83%9F%E5%8F%B0/</loc>
+    <lastmod>2010-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E8%8B%8F%E5%B7%9E/</loc>
+    <lastmod>2010-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/</loc>
+    <lastmod>2010-01-01T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>
