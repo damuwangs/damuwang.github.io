@@ -6,10 +6,67 @@
     <description>Recent content in 待补充 on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Feb 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/tags/%E5%BE%85%E8%A1%A5%E5%85%85/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>【待补充】Vue2-权限控制</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/</link>
+      <pubDate>Wed, 09 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/</guid>
+      <description>概念  官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM
+ 参考资料  Vue.nextTick 的原理和用途
+ </description>
+    </item>
+    
+    <item>
+      <title>【待补充】Vue2-框架搭建</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Wed, 09 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</guid>
+      <description>概念  官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM
+ 参考资料  Vue.nextTick 的原理和用途
+ </description>
+    </item>
+    
+    <item>
+      <title>【待补充】Vue3-和Vue2的区别</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E5%92%8Cvue2%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Wed, 09 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E5%92%8Cvue2%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <description>优势 不同  官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM
+ 参考资料  Vue.nextTick 的原理和用途
+ </description>
+    </item>
+    
+    <item>
+      <title>【待补充】React-Hook</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-hook/</link>
+      <pubDate>Thu, 09 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-hook/</guid>
+      <description>为什么需要Portals Portals能够将子组件渲染到父组件以外的DOM树，他通常用于子组件需要从父组件的容器中脱离出来的场景，有以下场景：
+参考资料  传送门：React Portal
+你真的了解React Portals吗
+ </description>
+    </item>
+    
+    <item>
+      <title>【待补充】React-RenderProps</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-renderprops/</link>
+      <pubDate>Thu, 09 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-renderprops/</guid>
+      <description>为什么需要Portals Portals能够将子组件渲染到父组件以外的DOM树，他通常用于子组件需要从父组件的容器中脱离出来的场景，有以下场景：
+参考资料  传送门：React Portal
+你真的了解React Portals吗
+ </description>
+    </item>
     
     <item>
       <title>【待补充】关于租房的一些方法论</title>

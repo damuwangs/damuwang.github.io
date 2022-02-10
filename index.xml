@@ -5,47 +5,104 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Feb 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
-        <title>面试-2021年12月</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B412%E6%9C%88/</link>
+        <title>【待补充】Vue2-权限控制</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/</link>
+        <pubDate>Wed, 09 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000012861862&#34;&gt;Vue.nextTick 的原理和用途&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>【待补充】Vue2-框架搭建</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</link>
+        <pubDate>Wed, 09 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000012861862&#34;&gt;Vue.nextTick 的原理和用途&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>【待补充】Vue3-和Vue2的区别</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E5%92%8Cvue2%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+        <pubDate>Wed, 09 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E5%92%8Cvue2%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E5%92%8Cvue2%E7%9A%84%E5%8C%BA%E5%88%AB/ -&lt;h1 id=&#34;优势&#34;&gt;优势&lt;/h1&gt;
+&lt;h1 id=&#34;不同&#34;&gt;不同&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000012861862&#34;&gt;Vue.nextTick 的原理和用途&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E5%92%8Cvue2%E7%9A%84%E5%8C%BA%E5%88%AB/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>面试-2022年3月</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2022%E5%B9%B43%E6%9C%88/</link>
         <pubDate>Tue, 08 Feb 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B412%E6%9C%88/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B412%E6%9C%88/ -&lt;h1 id=&#34;javascript&#34;&gt;JavaScript&lt;/h1&gt;
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2022%E5%B9%B43%E6%9C%88/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2022%E5%B9%B43%E6%9C%88/ -&lt;h1 id=&#34;javascript&#34;&gt;JavaScript&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;移动端事件延迟&#34;&gt;移动端事件延迟&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/qq_45516629/article/details/105053755&#34;&gt;移动端点击（click）事件延迟问题的解决方法&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		移动端点击事件会不会有延迟，会有什么隐患，怎样解决&lt;/p&gt;
-&lt;p&gt;​		我的思路：click事件没有延迟，直接触发。但 touch事件（比如 touchStart、touchEnd）有300毫秒的延迟，用来判断是单击还是双击、缩放。隐患是容易造		成“点击穿透”（这个原理简单，写起来费劲，木哥你自己百度一下就知道了）。解决思路，一是尽量写成click事件，避免写成touch事件，就不会有延迟了，		二是在容易受影响的代码里专门写一写 if判断，避免误操作。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;前端路由的理解&#34;&gt;前端路由的理解&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/29fb3ec0611c&#34;&gt;关于前端路由的一点理解&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：&lt;/p&gt;
-&lt;p&gt;​		JSP、ASP 是多页面应用，由服务端决定返回哪个页面，还有最早的 H5 网站，也是这样的，每个页面相互独立，容易受网络波动影响，肯定速度慢呀，半天		出不来页面，用户体验性差。而且每个页面都要重复引用相同的 js 文件、css资源文件，加载速度就慢。&lt;/p&gt;
-&lt;p&gt;​		SPA单页面应用就比较友好了，采用组件化的方式，只有一个公共页面，每次只切换渲染页面的一部分，由前端进行路由控制，用户等待时间短。Angular、		Vue、React，都是这么干的。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;promise&#34;&gt;Promise&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;../javascript-%E5%BC%82%E6%AD%A5%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/#promise&#34;&gt;JavaScript-异步解决方案-Promise&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Promise 可不可以中断&lt;/p&gt;
-&lt;p&gt;我的思路：严格的说不能中断，但可以借助 pending 和 reject 来达到中断效果。（木哥你具体再问我吧，写起来费劲）&lt;/p&gt;
+&lt;p&gt;Promise 可不可以中断？&lt;/p&gt;
+&lt;p&gt;严格的说不能中断，但可以借助 pending 和 reject 来达到中断效果&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;有一个业务，需要发出两个不同的异步请求，得到所有结果后才去走下一步业务逻辑，如果用 Promise做的话，咋做&lt;/p&gt;
-&lt;p&gt;我的思路：尽量别用 Promise.all()，推荐使用 Promise.allSettled() 方法。（木哥你具体再问我吧，写起来费劲）&lt;/p&gt;
+&lt;p&gt;有一个业务，需要发出两个不同的异步请求，得到所有结果后才去走下一步业务逻辑，如果用 Promise做的话，咋做？&lt;/p&gt;
+&lt;p&gt;尽量别用Promise.all()，推荐使用 Promise.allSettled()方法&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/c6f49d9b7e8d&#34;&gt;Promise.all &amp;amp; Promise.allSettled&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -54,209 +111,172 @@
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;es6&#34;&gt;ES6&lt;/h2&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;ES6新增了哪些方法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;ES6的扩展运算符，用没用过&lt;/p&gt;
-&lt;p&gt;我的思路：用过，用来传参，或者给对象赋值，或者用来给数组进行脱壳。传参时放到最后，别放前面。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;ES6 的数组新增方法&lt;/p&gt;
-&lt;p&gt;我的思路：find()方法、forEach()方法、map()方法&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/6fa57c2d5a5c&#34;&gt;前端基础：ES6+ 常用语法&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;npm是什么&#34;&gt;npm是什么&lt;/h2&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;​		我的思路：node 的包管理器，用户可以上传自己写的代码包，供其他人下载使用，体现的是开源精神。&lt;/p&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;怎样用浏览器来做缓存&#34;&gt;怎样用浏览器来做缓存&lt;/h2&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;​		我的思路：&lt;/p&gt;
-&lt;p&gt;​		cookie（5kb），localStorage（5mb），SessionStorage（5mb），indexdDB（无限大）。&lt;/p&gt;
-&lt;p&gt;​		localStorage 只要不清理缓存，会长期有效，具体方法有 set、get、clear。&lt;/p&gt;
-&lt;p&gt;​		SessionStorage 只适合单次会话，关闭浏览器窗口，就失效了。&lt;/p&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;两个标签页同时访问-localstorage里的同一个变量会有延迟吗浏览器是如何处理的&#34;&gt;两个标签页同时访问 localStorage里的同一个变量，会有延迟吗？浏览器是如何处理的&lt;/h2&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;​		我的思路：不会，不是不会，是我不会。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;css&#34;&gt;Css&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;flex布局&#34;&gt;flex布局&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html&#34;&gt;Flex 布局教程：语法篇&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.ruanyifeng.com/blog/2015/07/flex-examples.html&#34;&gt;Flex 布局教程：实例篇&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：早忘了，不会。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;媒体查询&#34;&gt;媒体查询&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.runoob.com/css3/css3-mediaqueries.html&#34;&gt;CSS3 多媒体查询&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：早忘了，不会。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;元素浮动&#34;&gt;元素浮动&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.runoob.com/css/css-float.html&#34;&gt;CSS Float(浮动)&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;什么时候会出现元素的浮动现象&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：早忘了，不会。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;js动画css动画&#34;&gt;JS动画、CSS动画&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.runoob.com/css3/css3-animations.html&#34;&gt;CSS3 动画&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我的思路：JS动画复杂，适合做精确控制的大型特效。CSS动画简单，适合做小小的展示&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：JS动画复杂，适合做精确控制的大型特效。CSS动画简单，适合做小小的展示。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;canvas-画布&#34;&gt;canvas 画布&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.runoob.com/html/html5-canvas.html&#34;&gt;HTML5 Canvas&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：早忘了，不会。不过我印象里百度的 Echarts 就是渲染在 canvas上的。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;vue&#34;&gt;Vue&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;生命周期的理解&#34;&gt;生命周期的理解&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/672e967e201c&#34;&gt;Vue - 生命周期详解&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/%E9%9D%A2%E8%AF%95-2022%E5%B9%B43%E6%9C%88/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：总共11个钩子函数，说完也就差不多了。创建前后、挂载前后、修改前后、销毁前后，还有keep-alive的激活钩子和冻结钩子，以及用来捕获错误		的 errorCaptured 钩子（单词不一定对哈哈）。建议在 created 钩子中请求数据，此时页面未渲染，不会闪动，如果在 mounted 钩子中请求数据，此时页面		早已渲染完毕，重新加载数据会造成页面闪动。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;为啥vue的属性要写成函数的形式而不是对象的形式&#34;&gt;为啥Vue的属性要写成函数的形式而不是对象的形式&lt;/h2&gt;
+&lt;p&gt;Vue根实例是单例，data 属性可以是对象写法或函数写法，但组件里的 data只能采用函数写法。&lt;/p&gt;
+&lt;p&gt;因为直接创建的对象，只有独一份数据，不同父组件使用时，一定会出现数据混乱。而函数返回的对象，每次返回的是不同的对象，不会出现数据污染。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：Vue根实例是单例，data 属性可以是对象写法或函数写法，但组件里的 data只能采用函数写法。&lt;/p&gt;
-&lt;p&gt;​		因为直接创建的对象，只有独一份数据，不同父组件使用时，一定会出现数据混乱。而函数返回的对象，每次返回的是不同的对象，不会出现数据污染。&lt;/p&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;vue项目怎样引入模块&#34;&gt;Vue项目怎样引入模块&lt;/h2&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;​		我的思路：export、import、from。需要注意的是ES6的模块引入是静态引入，便于实现代码的静态分析。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;给对象添加一个新属性时页面不刷新咋办&#34;&gt;给对象添加一个新属性时，页面不刷新咋办&lt;/h2&gt;
+&lt;p&gt;我的思路：Vue.set()方法，Object.assign() 方法，还有 forceUpdate()方法。&lt;/p&gt;
+&lt;p&gt;说明：它们底层调用的其实都是 ES5 的Object.defineProperty() 方法，采用get、set方式实现的数据响应化，不过这种方式有天然缺陷，只能对单个属性进行监听。而当对象新增key、删除key、数组内部变化时，此时监听不到，Vue无法响应，页面刷新失灵。Vue2本身专门打了补丁解决这个问题，但解决的并不好。这是Vue2本身的设计缺陷，Vue3不存在这个问题，因为Vue3采用了Proxy代理的方式实现数据响应化，对对象整体进行监听，可以实现深层监听。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：Vue.set()方法，Object.assign() 方法，还有 forceUpdate()方法。说明：它们底层调用的其实都是 ES5 的Object.defineProperty() 方法，采用get、		set方式实现的数据响应化，不过这种方式有天然缺陷，只能对单个属性进行监听。而当对象新增key、删除key、数组内部变化时，此时监听不到，Vue无法		响应，页面刷新失灵。Vue2本身专门打了补丁解决这个问题，但解决的并不好。这是Vue2本身的设计缺陷，Vue3不存在这个问题，因为Vue3采用了Proxy代		理的方式实现数据响应化，对对象整体进行监听，可以实现深层监听。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;vue解决跨域&#34;&gt;Vue解决跨域&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000016199721&#34;&gt;webpack开发配置API代理解决跨域问题-devServer&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：用脚手架 vue-cli打 jsonp插件、在后端配置响应头标签允许跨域、Proxy代理服务器配置参数 。&lt;/p&gt;
-&lt;p&gt;​		开发过程中通过 webpack起一个本地 devServer作为代理服务器，转发前端请求。&lt;/p&gt;
-&lt;p&gt;​		项目部署时尽量放到服务器同一个域下。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;vue项目权限控制&#34;&gt;Vue项目权限控制&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;../vue2-token&#34;&gt;Vue2-token&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;../vue2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6&#34;&gt;Vue2-权限控制&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：菜单、路由之类的权限，可能经常变化，不要写死，尽量在后台配置，前台根据后台的配置，再进行精确控制。后台接口的权限一般采用 jwt 来鉴		权，完整写法是 Json Web Token，木哥可以详细了解一下，很有意思的。前台向后台发送请求时，可以使用 axios的 interceptor过滤器，在过滤器里带上		Token，传给后台接口。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;vue代码里key的作用是啥&#34;&gt;Vue代码里，key的作用是啥&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;key 的作用主要是为了高效的更新虚拟 DOM。另外 vue 中在使用相同标签 名元素的过渡切换时，也会使用到 key 属性，其目的也是为了让 vue 可以区分它们。否则 vue 只会替换其内部属性而不会触发过渡效果&lt;/li&gt;
+&lt;li&gt;key 不能用 index 代替，index 在同一个页面会有重复的情况，违背了高效&lt;a href=&#34;https://www.zhihu.com/search?q=%E6%B8%B2%E6%9F%93&amp;amp;search_source=Entity&amp;amp;hybrid_search_source=Entity&amp;amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A441397069%7D&#34;&gt;渲染&lt;/a&gt;的初衷。&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：胡扯了一堆，记不清了&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;vue3比-vue2好在哪里&#34;&gt;Vue3比 Vue2好在哪里&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;../vue3-%E5%92%8Cvue2%E7%9A%84%E5%8C%BA%E5%88%AB&#34;&gt;Vue3-和Vue2的区别&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：Vue2的代码采用选项式写法（options），代码量大时维护起来费眼睛，半天才能找到地方。而Vue3的代码采用组合式写法（composition），便		于后期排查错误，但其实最重要的是便于实现 Tree-Shaking 摇树机制（涉及到 ts的类型推断、静态分析），减小代码的打包体积。需要注意的是，Vue3里面		能够向下兼容Vue2的写法。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;对vue-router的理解&#34;&gt;对Vue-Router的理解&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/q879936814/article/details/103028992?spm=1001.2101.3001.6661.1&amp;amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&amp;amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1.pc_relevant_default&amp;amp;utm_relevant_index=1&#34;&gt;vue-router基本理解&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Vue Router是Vue.js的官方路由。它与 Vue.js 核心深度集成，让用 Vue.js 构建单页应用变得轻而易举。功能包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;嵌套路由映射&lt;/li&gt;
+&lt;li&gt;动态路由选择&lt;/li&gt;
+&lt;li&gt;模块化、基于组件的路由配置&lt;/li&gt;
+&lt;li&gt;路由参数、查询、通配符&lt;/li&gt;
+&lt;li&gt;路由守卫&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：胡扯了一堆，反正就那样。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;项目里面怎么用-axios&#34;&gt;项目里面怎么用 axios&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://codepen.io/damuwangs/pen/ExXGmww&#34;&gt;Vue-Demo-使用axios封装Http工具类&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：建议封装成一个公共方法，入参越简单越好，最好是一个 api 名称、一个参数对象就行了。把请求头、错误捕获这些公共代码提取出来，每个组件		调用时，就不用写那一堆重复代码了，多简单。封装完后，在 main.js里挂到 Vue实例的原型 prototype上，这样组件里用 “this.$+方法名”直接调用就行。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;mvvm的理解&#34;&gt;MVVM的理解&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;../javascript-mvcmvvm%E6%A8%A1%E5%BC%8F&#34;&gt;JavaScript-MVC、MVVM模式&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：MV是单向绑定，数据模型驱动视图。VM也是单向绑定，视图驱动数据模型。MVVM合起来就是双向数据绑定。（开课吧视频关于Vue源码解析有		详细介绍，确实有用，涉及到了 响应化原理和 v-model的原理），反正胡扯一堆。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;其它&#34;&gt;其它&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;h2 id=&#34;webpack构建流程&#34;&gt;webpack构建流程&lt;/h2&gt;
+&lt;h2 id=&#34;webpack构建流程1&#34;&gt;webpack构建流程1&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://kdocs.cn/l/sqBhRGjkFOYm&#34;&gt;webpack&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：早忘了，不会。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;h2 id=&#34;git-解决冲突&#34;&gt;Git 解决冲突&lt;/h2&gt;
+&lt;h2 id=&#34;git-和svn的区别&#34;&gt;Git 和SVN的区别&lt;/h2&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：提-推-拉-解-提-推，胡扯一堆就行。&lt;/p&gt;
-&lt;hr&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;h2 id=&#34;用过-svn-吗&#34;&gt;用过 svn 吗&lt;/h2&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;​		我的思路：没用过，不会。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;tcp的三次握手四次挥手&#34;&gt;TCP的三次握手、四次挥手&lt;/h2&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：以前看过，忘了，不会。&lt;/p&gt;
 &lt;hr&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;h2 id=&#34;前端安全漏洞攻击吗&#34;&gt;前端安全漏洞攻击吗&lt;/h2&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;​		我的思路：处理过掌上华池的安全漏洞扫描。跨站脚本攻击、跨站请求伪造、SQL注入什么的，胡扯一堆。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/143929973&#34;&gt;CSS3面试题2020 - 知乎 (zhihu.com)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/qq_45516629/article/details/105053755&#34;&gt;移动端点击（click）事件延迟问题的解决方法&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B412%E6%9C%88/ - </description>
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2022%E5%B9%B43%E6%9C%88/ - </description>
         </item>
     
     
     
         <item>
-        <title>React-Hook</title>
+        <title>【待补充】React-Hook</title>
         <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-hook/</link>
         <pubDate>Thu, 09 Dec 2021 00:00:00 +0000</pubDate>
         
@@ -274,7 +294,7 @@
     
     
         <item>
-        <title>React-RenderProps</title>
+        <title>【待补充】React-RenderProps</title>
         <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-renderprops/</link>
         <pubDate>Thu, 09 Dec 2021 00:00:00 +0000</pubDate>
         
@@ -851,671 +871,6 @@ compose可以帮助我们组合任意个高阶函数，例如compose(a,b,c)返�
 &lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/u011974987/article/details/52415037&#34;&gt;Android中签名、证书、公钥密钥的概念及使用&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-app%E7%AD%BE%E5%90%8D/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>JavaScript-MVC、MVVM模式</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-mvcmvvm%E6%A8%A1%E5%BC%8F/</link>
-        <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-mvcmvvm%E6%A8%A1%E5%BC%8F/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-mvcmvvm%E6%A8%A1%E5%BC%8F/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
-&lt;p&gt;模型（Model）：指数据模型，泛指后端进行的各种业务逻辑处理和数据操控，主要围绕数据库系统展开。后端的处理通常会非常复杂&lt;/p&gt;
-&lt;p&gt;视图（View）：视图部分，通常指html等用来对用户展示的一部分&lt;/p&gt;
-&lt;p&gt;控制器（Controller）：负责根据用户从&amp;quot;视图层&amp;quot;输入的指令，选取&amp;quot;数据层&amp;quot;中的数据，然后对其进行相应的操作，产生最终结果&lt;/p&gt;
-&lt;p&gt;视图模型（ViewModel）：由前端开发人员组织生成和维护的视图数据层。在这一层，前端开发者对从后端获取的 Model 数据进行转换处理，做二次封装，以生成符合 View 层使用预期的视图数据模型。需要注意的是 ViewModel 所封装出来的数据模型包括视图的状态和行为两部分，而 Model 层的数据模型是只包含状态的，比如页面的这一块展示什么，那一块展示什么这些都属于视图状态（展示），而页面加载进来时发生什么，点击这一块发生什么，这一块滚动时发生什么这些都属于视图行为（交互），视图状态和行为都封装在了 ViewModel 里。这样的封装使得 ViewModel 可以完整地去描述 View 层。由于实现了双向绑定，ViewModel 的内容会实时展现在 View 层，这是激动人心的，因为前端开发者再也不必低效又麻烦地通过操纵 DOM 去更新视图，MVVM 框架已经把最脏最累的一块做好了，我们开发者只需要处理和维护 ViewModel，更新数据视图就会自动得到相应更新，真正实现数据驱动开发。看到了吧，View 层展现的不是 Model 层的数据，而是 ViewModel 的数据，由 ViewModel 负责与 Model 层交互，这就完全解耦了 View 层和 Model 层，这个解耦是至关重要的，它是前后端分离方案实施的重要一环&lt;/p&gt;
-&lt;h1 id=&#34;mvc&#34;&gt;MVC&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-MVC%E3%80%81MVP%E3%80%81MVVM%E6%A8%A1%E5%BC%8F/MVC.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;用户端操作View ，Js监听事件绑定DOM数据，传送指令到 Controller&lt;/li&gt;
-&lt;li&gt;Controller 完成业务逻辑后，要求 Model 改变数据状态&lt;/li&gt;
-&lt;li&gt;Model 将新的数据发送到 View，通过JS操作DOM为View赋值，用户得到反馈&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果前端没有框架，只使用原生的html+js，MVC模式可以这样理解：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;将html看成view&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;js看成controller，负责处理用户与应用的交互，响应对view的操作（对事件的监听），调用Model对数据进行操作，完成model与view的同步（根据model的改变，通过选择器对view进行操作）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;将js的ajax当做Model，也就是数据层，通过ajax从服务器获取数据&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;mvvm&#34;&gt;MVVM&lt;/h1&gt;
-&lt;p&gt;就像分析MVC是如何合理分配工作的一样，我们需要数据所以有了M，我们需要界面所以有了V，而我们需要找一个地方把M赋值给V来显示，所以有了C，然而我们忽略了一个很重要的操作：&lt;strong&gt;数据解析&lt;/strong&gt;。在MVC出生的年代，手机APP的数据往往都比较简单，没有现在那么复杂，所以那时的数据解析很可能一步就解决了，所以既然有这样一个问题要处理，而面向对象的思想就是用类和对象来解决问题，显然V和M早就被定义死了，它们都不应该处理“解析数据”的问题，理所应当的，“解析数据”这个问题就交给C来完成了。而现在的手机App功能越来越复杂，数据结构也越来越复杂，所以数据解析也就没那么简单了。如果我们继续按照MVC的设计思路，将数据解析的部分放到了Controller里面，那么Controller就将变得相当臃肿。还有相当重要的一点：Controller被设计出来并不是处理数据解析的。1、管理自己的生命周期；2、处理Controller之间的跳转；3、实现Controller容器。这里面根本没有“数据解析”这一项，所以显然，数据解析也不应该由Controller来完成。那么我们的MVC中，M、V、C都不应该处理数据解析，那么由谁来呢？这个问题实际上在面向对象的时候相当好回答：既然目前没有类能够处理这个问题，那么就创建一个新的类出来解决不就好了？所以我们聪明的开发者们就专门为数据解析创建出了一个新的类：ViewModel。这就是MVVM的诞生&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-MVC%E3%80%81MVP%E3%80%81MVVM%E6%A8%A1%E5%BC%8F/MVVM.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;用户端操作View，ViewModel监听视图变化，触发绑定事件&lt;/li&gt;
-&lt;li&gt;ViewModel组织好数据，请求服务端处理业务逻辑调用Model层操作数据&lt;/li&gt;
-&lt;li&gt;服务端处理完数据及逻辑后，要求 Model 改变数据状态&lt;/li&gt;
-&lt;li&gt;ViewModel组装结果数据后自动绑定到View层，用户得到反馈&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-MVC%E3%80%81MVP%E3%80%81MVVM%E6%A8%A1%E5%BC%8F/MVVM%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;思考&#34;&gt;思考&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;ViewModel和Controller的区别&lt;/p&gt;
-&lt;p&gt;Controller所要担任的任务更加全面，包括了很多的业务逻辑。而ViewModel则简化甚至剔除了业务逻辑，主要的工作就只是把Model中的数据组装成适合View使用的数据&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;前端MVVM对比MVC的优点&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;MVC开发者在代码中大量调用相同的 DOM API, 处理繁琐 ，操作冗余，使得代码难以维护&lt;/p&gt;
-&lt;p&gt;大量的DOM 操作使页面渲染性能降低，加载速度变慢，影响用户体验&lt;/p&gt;
-&lt;p&gt;当 Model 频繁发生变化，开发者需要主动更新到View ；当用户的操作导致 Model 发生变化，开发者同样需要将变化的数据同步到Model 中，这样的工作不仅繁琐，而且很难维护复杂多变的数据状态&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;数据驱动： 在以前的模式中，总是先处理业务数据，然后根据的数据变化，去获取DOM的引用然后更新DOM，也是通过DOM来获取用户输入，最后再进行数据的更新。而在MVVM中数据和业务逻辑处于一个独立且抽象的View Model中，ViewModel只要关注数据和业务逻辑，不需要和DOM之间打交道。由数据自动去驱动DOM去自动更新DOM，DOM的改变又同时自动反馈到数据，数据成为主导因素，这样使得在业务逻辑处理只要关心数据，方便且简单&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html&#34;&gt;MVC，MVP 和 MVVM 的图示&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/iovec/p/7840228.html&#34;&gt;前后端分手大师——MVVM 模式&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/7088249276de&#34;&gt;前端MVVM理论-MVVM&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/qq_42068550/article/details/89480350&#34;&gt;MVC和MVVM的区别&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-mvcmvvm%E6%A8%A1%E5%BC%8F/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>UniApp-原生插件开发</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</link>
-        <pubDate>Wed, 20 Oct 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/ -&lt;h1 id=&#34;一开发环境&#34;&gt;一、开发环境&lt;/h1&gt;
-&lt;h2 id=&#34;java环境18&#34;&gt;Java环境1.8&lt;/h2&gt;
-&lt;p&gt;参考：&lt;a href=&#34;https://blog.csdn.net/weixin_44084189/article/details/98966787/&#34;&gt;jdk1.8下载与安装教程&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;android环境&#34;&gt;Android环境&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;软件下载&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.androiddevtools.cn&#34;&gt;下载SDK Tools&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/SDKTools.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;下载完成点击SDK Manager.exe运行&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/SDKManager.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;需要下载以下插件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E6%8F%92%E4%BB%B6%E4%B8%8B%E8%BD%BD.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;环境变量配置&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;系统变量下添加变量&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ANDROID_SDK_HOME，指向Android SDK根目录
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Path新增:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Android SDK根目录&lt;span style=&#34;color:#f1fa8c&#34;&gt;\p&lt;/span&gt;latform-tools;
-Android SDK根目录&lt;span style=&#34;color:#f1fa8c&#34;&gt;\t&lt;/span&gt;ools;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;命令行测试是否配置成功&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;adb &lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;成功后可以看到adb的版本号及命令行说明等信息&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;androidstudio&#34;&gt;AndroidStudio&lt;/h2&gt;
-&lt;p&gt;参考：&lt;a href=&#34;https://developer.android.google.cn/studio/index.html&#34;&gt;Android Studio官网&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;demo下载&#34;&gt;demo下载&lt;/h2&gt;
-&lt;p&gt;参考：&lt;a href=&#34;https://nativesupport.dcloud.net.cn/AppDocs/download/android?id=android-%E7%A6%BB%E7%BA%BFsdk-%E6%AD%A3%E5%BC%8F%E7%89%88&#34;&gt;Android 离线SDK - 正式版&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;二androidstudio运行&#34;&gt;二、AndroidStudio运行&lt;/h1&gt;
-&lt;h2 id=&#34;项目导入&#34;&gt;项目导入&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;点击Android Studio菜单选项File—&amp;gt;New—&amp;gt;Import Project&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E5%AF%BC%E5%85%A51.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;导入选择UniPlugin-Hello-As工程，点击OK！等待工程导入完毕&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E5%AF%BC%E5%85%A52.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;导入后切换为Android项目结构，目录如下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%9B%AE%E5%BD%95.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;生成签名文件&#34;&gt;生成签名文件&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;点击Build—&amp;gt;Generate Signed Apk&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%94%9F%E6%88%90%E7%AD%BE%E5%90%8D.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;默认选择APK点击下一步&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%94%9F%E6%88%90%E7%AD%BE%E5%90%8D2.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;选择生成位置（选择为app模块根目录），输入密码和别名点击下一步&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%94%9F%E6%88%90%E7%AD%BE%E5%90%8D3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;选择类型（默认为debug）点击完成，成功生成.jks文件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%94%9F%E6%88%90%E7%AD%BE%E5%90%8D4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;申请appkey&#34;&gt;申请Appkey&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;进入jdk bin目录执行指令输入密码读取签名信息&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;keytool -list -v -keystore d:&lt;span style=&#34;color:#f1fa8c&#34;&gt;\1&lt;/span&gt;23.jks -- d:&lt;span style=&#34;color:#f1fa8c&#34;&gt;\1&lt;/span&gt;23.jks为签名文件位置
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E8%AF%BB%E5%8F%96%E7%AD%BE%E5%90%8D%E4%BF%A1%E6%81%AF.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;登录&lt;a href=&#34;https://dev.dcloud.net.cn/&#34;&gt;开发者中心&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在左侧菜单中选择我创建的应用，点击需要申请的应用&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E6%88%91%E5%88%9B%E5%BB%BA%E7%9A%84%E5%BA%94%E7%94%A8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在应用管理界面选择离线打包Key管理，根据需要选择对应平台，输入包名和SHA1，确认无误点击保存，即可获取到对应平台的App&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%94%9F%E6%88%90appKey.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;配置及运行&#34;&gt;配置及运行&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;app模块下的AndroidMainfest.xml替换dcloud_appkey对应值&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;meta-data&lt;/span&gt;
-    &lt;span style=&#34;color:#50fa7b&#34;&gt;android:name=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;dcloud_appkey&amp;#34;&lt;/span&gt;
-    &lt;span style=&#34;color:#50fa7b&#34;&gt;android:value=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;decloud开发者中心申请的appkey&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;app模块下build.gradle修改签名配置&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;signingConfigs {
-    config {
-      keyAlias &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;jks别名&amp;#39;&lt;/span&gt;
-      keyPassword &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;jks密码&amp;#39;&lt;/span&gt;
-      storeFile file(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;xxx.jks&amp;#39;&lt;/span&gt;)
-     storePassword &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;jks密码&amp;#39;&lt;/span&gt;
-  v1SigningEnabled &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
-  v2SigningEnabled &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;app模块下asssets—&amp;gt;data—&amp;gt;dcloud_control.xml—&amp;gt;appid替换&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;hbuilder&amp;gt;&lt;/span&gt;
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;apps&amp;gt;&lt;/span&gt;
-      &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;app&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;appid=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;decloud开发者中心申请的appid&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;appver=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;/&amp;gt;&lt;/span&gt;
-  &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/apps&amp;gt;&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;lt;/hbuilder&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;点击Android Studio菜单选项Build—&amp;gt;Rebuild Project编译项目&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;安装模拟器后点击运行，启动项目&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;启动成功弹出模拟器&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E6%A8%A1%E6%8B%9F%E5%99%A8.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;三插件开发&#34;&gt;三、插件开发&lt;/h1&gt;
-&lt;h2 id=&#34;插件注册&#34;&gt;插件注册&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;第一种方式&lt;/p&gt;
-&lt;p&gt;在UniPlugin-Hello-AS工程下 “app” Module根目录assets/dcloud_uniplugins.json文件。 在moudles节点下 添加你要注册的Module 或 Component&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;{
-  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;nativePlugins&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [
-    {
-      &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;plugins&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [
-        {
-          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt;,
-          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;DCloud-RichAlert&amp;#34;&lt;/span&gt;,
-          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;class&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;uni.dcloud.io.uniplugin_richalert.RichAlertModule&amp;#34;&lt;/span&gt;
-        }
-      ]
-    }
-  ]
-}
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;第二种方式
-创建一个实体类并实现UniAppHookProxy接口，在onCreate函数中添加组件注册相关参数 或 填写插件需要在启动时初始化的逻辑。&lt;/p&gt;
-&lt;p&gt;在UniPlugin-Hello-AS工程下 “app” Module根目录assets/dcloud_uniplugins.json文件，在hooksClass节点添加你创建实现UniAppHookProxy接口的实体类完整名称填入其中即可 (有些需要初始化操作的需求可以在此处添加逻辑，无特殊操作仅使用第一种方式注册即可无需集成UniAppHookProxy接口)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;RichAlert_AppProxy&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;implements&lt;/span&gt; UniAppHookProxy &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
-    @Override
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;onCreate&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;Application application&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
-        &lt;span style=&#34;color:#6272a4&#34;&gt;//当前uni应用进程回调 仅触发一次 多进程不会触发
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      &lt;span style=&#34;color:#6272a4&#34;&gt;//可通过UniSDKEngine注册UniModule或者UniComponent
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
-  
-  @Override
-  &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;onSubProcessCreate&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;Application application&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
-      &lt;span style=&#34;color:#6272a4&#34;&gt;//其他子进程初始化回调 可用于初始化需要子进程初始化需要的逻辑
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
-&lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;{
-  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;nativePlugins&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [
-    {
-      &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;hooksClass&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;uni.dcloud.io.uniplugin_richalert.RichAlert_AppProxy&amp;#34;&lt;/span&gt;,
-      &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;plugins&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [
-        {
-          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt;,
-          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;DCloud-RichAlert&amp;#34;&lt;/span&gt;,
-          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;class&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;uni.dcloud.io.uniplugin_richalert.RichAlertModule&amp;#34;&lt;/span&gt;
-        }
-      ]
-    }
-  ]
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;dcloud_uniplugins.json说明&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;nativePlugins： 插件跟节点 可存放多个插件&lt;/li&gt;
-&lt;li&gt;hooksClass： 生命周期代理（实现AppHookProxy接口类）格式(完整包名加类名)&lt;/li&gt;
-&lt;li&gt;plugins: 插件数组&lt;/li&gt;
-&lt;li&gt;name : 注册名称&lt;/li&gt;
-&lt;li&gt;class : module 或 component 实体类完整名称&lt;/li&gt;
-&lt;li&gt;type : module 或 component类型&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;插件类型&#34;&gt;插件类型&lt;/h2&gt;
-&lt;h3 id=&#34;1扩展module&#34;&gt;1、扩展Module&lt;/h3&gt;
-&lt;p&gt;扩展非UI的特定功能，调用原生android方法&lt;/p&gt;
-&lt;h3 id=&#34;2扩展组件-component&#34;&gt;2、扩展组件 Component&lt;/h3&gt;
-&lt;p&gt;使用Android原生控件&lt;/p&gt;
-&lt;p&gt;向JS环境发送一些事件，比如click事件，通过uniapp触发事件，在android进行响应&lt;/p&gt;
-&lt;h3 id=&#34;3unijscallback结果回调&#34;&gt;3、UniJSCallback结果回调&lt;/h3&gt;
-&lt;p&gt;JS调用时，有的场景需要返回一些数据，比如以下例子，返回x、y坐标&lt;/p&gt;
-&lt;h3 id=&#34;5globalevent-事件&#34;&gt;5、globalEvent 事件&lt;/h3&gt;
-&lt;p&gt;用于页面监听持久性事件，例如定位信息，陀螺仪等的变化&lt;/p&gt;
-&lt;h2 id=&#34;插件示例&#34;&gt;插件示例&lt;/h2&gt;
-&lt;p&gt;封装了一个 RichAlertModule, 富文本alert弹窗Module，代码可参考UniPlugin-Hello-AS工程中的uniplugin_richalert模块&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;RichAlertModule&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;extends&lt;/span&gt; UniDestroyableModule &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
-    @UniJSMethod&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;uiThread &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt;
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;show&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;JSONObject options&lt;span style=&#34;color:#ff79c6&#34;&gt;,&lt;/span&gt; UniJSCallback jsCallback&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;mUniSDKInstance&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;getContext&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;instanceof&lt;/span&gt; Activity&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
-            &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
-            RichAlert richAlert &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; RichAlert&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;mUniSDKInstance&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;getContext&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;());&lt;/span&gt;
-            &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
-            richAlert&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;show&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;();&lt;/span&gt;
-            &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;...&lt;/span&gt;
-    @UniJSMethod&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;uiThread &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;)&lt;/span&gt;
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;dismiss&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
-        destroy&lt;span style=&#34;color:#ff79c6&#34;&gt;();&lt;/span&gt;
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
-
-    @Override
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#8be9fd&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;destroy&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;alert &lt;span style=&#34;color:#ff79c6&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; alert&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;isShowing&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;())&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;{&lt;/span&gt;
-            UniLogUtils&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;w&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;Dismiss the active dialog&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;);&lt;/span&gt;
-            alert&lt;span style=&#34;color:#ff79c6&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#50fa7b&#34;&gt;dismiss&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;();&lt;/span&gt;
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
-
-&lt;span style=&#34;color:#ff79c6&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;HBuilderX 项目中使用RichAlert示例&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// require插件名称  
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; dcRichAlert &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; uni.requireNativePlugin(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;DCloud-RichAlert&amp;#39;&lt;/span&gt;);              
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 使用插件  
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;dcRichAlert.show({  
-    position&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;bottom&amp;#39;&lt;/span&gt;,  
-    title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;提示信息&amp;#34;&lt;/span&gt;,  
-    titleColor&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;#FF0000&amp;#39;&lt;/span&gt;,  
-    content&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;&amp;lt;a href=&amp;#39;https://uniapp.dcloud.io/&amp;#39; value=&amp;#39;Hello uni-app&amp;#39;&amp;gt;uni-app&amp;lt;/a&amp;gt; 是一个使用 Vue.js 开发跨平台应用的前端框架!\n免费的\n免费的\n免费的\n重要的事情说三遍&amp;#34;&lt;/span&gt;,  
-    contentAlign&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;left&amp;#39;&lt;/span&gt;,  
-    checkBox&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {  
-        title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;不再提示&amp;#39;&lt;/span&gt;,  
-        isSelected&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;true&lt;/span&gt;  
-    },  
-    buttons&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [{  
-        title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;取消&amp;#39;&lt;/span&gt;  
-    },  
-    {  
-        title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;否&amp;#39;&lt;/span&gt;  
-    },  
-    {  
-        title&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;确认&amp;#39;&lt;/span&gt;,  
-        titleColor&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;#3F51B5&amp;#39;&lt;/span&gt;  
-    }  
-    ]  
-}, result =&amp;gt; {  
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;switch&lt;/span&gt; (result.type) {  
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;button&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;  
-            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;callback---button--&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; result.index);  
-            &lt;span style=&#34;color:#ff79c6&#34;&gt;break&lt;/span&gt;;  
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;checkBox&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;  
-            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;callback---checkBox--&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; result.isSelected);  
-            &lt;span style=&#34;color:#ff79c6&#34;&gt;break&lt;/span&gt;;  
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;  
-            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;callback---a--&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt; JSON.stringify(result));  
-            &lt;span style=&#34;color:#ff79c6&#34;&gt;break&lt;/span&gt;;  
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;backCancel&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;  
-            console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;callback---backCancel--&amp;#34;&lt;/span&gt;);  
-            &lt;span style=&#34;color:#ff79c6&#34;&gt;break&lt;/span&gt;;  
-   }  
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;四调试与发布&#34;&gt;四、调试与发布&lt;/h1&gt;
-&lt;h2 id=&#34;androidstudio调试&#34;&gt;AndroidStudio调试&lt;/h2&gt;
-&lt;p&gt;这种用于上层调用已完成，调试底层android插件&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;点击发行—&amp;gt;原生APP-本地打包—&amp;gt;生成本地打包App资源&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%94%9F%E6%88%90%E6%9C%AC%E5%9C%B0%E6%89%93%E5%8C%85App%E8%B5%84%E6%BA%90.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;编译成功在unpackage目录下生成资源&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E6%9C%AC%E5%9C%B0%E6%89%93%E5%8C%85%E6%88%90%E5%8A%9F.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;把APP资源文件放入到UniPlugin-Hello-AS工程下app  Module根目录assets/apps目录下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E5%AF%BC%E5%85%A5AndroidStudio.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;appid注意 一定要统一否则会导致应用无法正常运行&lt;/p&gt;
-&lt;p&gt;以dcloud_control.xml配置的appid为准&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/AppID%E4%B8%80%E8%87%B4%E6%80%A7.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;配置好运行项目即可&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;hbuilderx调试&#34;&gt;HbuilderX调试&lt;/h2&gt;
-&lt;p&gt;这种用于底层插件开发完成，调试上层uniapp调用&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;androidStudio编译成功，生成aar&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E7%94%9F%E6%88%90aar.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;创建&lt;a href=&#34;https://nativesupport.dcloud.net.cn/NativePlugin/course/package&#34;&gt;package.json&lt;/a&gt;文件并填写必要的信息&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;{
-  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;RichAlert&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 插件名称
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;DCloud-RichAlert&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 插件标识，需要保证唯一性
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;0.1.3&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 插件版本号
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;description&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;示例插件&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 插件描述信息
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;_dp_type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;nativeplugin&amp;#34;&lt;/span&gt;,
-  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;_dp_nativeplugin&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt;{
-      &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;android&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
-          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;plugins&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; [
-              {
-                  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 根据上文插件类型填写module或component
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;DCloud-RichAlert&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 注册插件的名称, 注意：module 的 name 必须以插件id为前缀或和插件id相同
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                  &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;class&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;uni.dcloud.io.uniplugin_richalert.RichAlertModule&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// Android项目中dcloud_uniplugins.json中配置的类名
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;              }
-          ],
-          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;integrateType&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;aar&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#6272a4&#34;&gt;// 可取值aar|jar
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;          &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;minSdkVersion&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;16&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 支持的Android最低版本，如21
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;      }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;创建插件文件夹，目录格式如下&lt;/p&gt;
-&lt;p&gt;Dcloud-RichAlert为自定义插件名称，aar文件放在android目录下&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E6%8F%92%E4%BB%B6%E7%9B%AE%E5%BD%95.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;配置到uni-app项目下的“nativeplugins”目录&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E6%8F%92%E4%BB%B6%E5%BC%95%E5%85%A5.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;在manifest.json文件的“App原生插件配置”项下点击“选择本地插件”，在列表中选择需要打包生效的插件&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E5%8A%A0%E8%BD%BD%E6%8F%92%E4%BB%B6.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;点击运行—&amp;gt;运行到手机或模拟器—&amp;gt;制作自定义调试基座&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;APPID与开发者中心的相同&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E5%88%B6%E4%BD%9C%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%BA%E5%BA%A7.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;制作成功输出以下内容&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%BA%E5%BA%A7%E7%94%9F%E6%88%90.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;uniapp打包时需要点击运行—&amp;gt;运行到手机或模拟器—&amp;gt;运行基座选择—&amp;gt;自定义调试基座&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&#34;注意&#34;&gt;注意&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;如果出现Android SDK路径不对问题，请在Android Studio中鼠标右键UniPlugin-Hello-AS选择Open Module Settings, 在SDK Location 中设置相关环境路径&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/UniApp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/SDKLocation.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;项目初始化时如果下方一直提示gradle下载中,则可以手动下载放到gradle安装目录(默认为：C:\Users\Administrator.gradle\wrapper\dists)
-替换后重启android Studio正常编译项目&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;关于uniapp自定义基座&lt;/p&gt;
-&lt;p&gt;使用HBuilder/HBuilderX开发应用时，可在手机/模拟器上查看运行效果，点击菜单栏“运行”-&amp;gt;“运行到手机或模拟器”使用。
-此功能会在手机/模拟器上安装“HBuilder”应用（或者叫HBuilder标准运行基座），在应用开发过程中HBuilder/HBuilderX会将应用资源实时同步到基座并刷新，从而实时查看到修改效果。
-上述HBuilder标准运行基座，是由DCloud提前打包好的，使用的是DCloud申请的第三方SDK配置，manifest里大多数设置都无法动态生效，需要再次打包才可以生效。
-例如微信分享，不管开发者在manifest里如何配置，使用HBuilder标准运行基座分享后显示的来源一定是“HBuilder”。
-但开发者真实打包后的手机应用又无法通过运行方式来调试，这导致涉及manifest配置的内容调测变的很困难。&lt;/p&gt;
-&lt;p&gt;为了解决manifest配置相关调试的便利性问题，DCloud提供了制作自定义运行基座的功能，也就是开发者可类似DCloud一样，自己做一个运行基座，里面使用的是自定义的manifest配置。
-开发者打包了自定义运行基座，就可以把这个基座运行到手机/Android模拟器上，进行日志查看。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;在uni-app应用中调用uni-app原生插件也必须使用自定义调试基座&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://nativesupport.dcloud.net.cn/NativePlugin/course/android&#34;&gt;uniapp原生插件开发&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://nativesupport.dcloud.net.cn/AppDocs/usesdk/appkey&#34;&gt;申请Appkey&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://ask.dcloud.net.cn/question/122811&#34;&gt;安卓打包,显示未配置appkey或配置错误&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-%E5%8E%9F%E7%94%9F%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Vue2-响应式原理</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/</link>
-        <pubDate>Wed, 13 Oct 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/ -&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;
-&lt;p&gt;Vue采用数据劫持结合发布者-订阅者模式的方式来实现数据的响应式，&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;监听属性变化&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Vue在初始化的时候，对data对象进行遍历，在这个方法中会调Observe（监听器，观察者）对用户的数据进行监听&lt;/li&gt;
-&lt;li&gt;在observe中对数据进行判断，对对象进行循环，使用defineReactive，它是vue中的一个核心方法，用来定义响应式&lt;/li&gt;
-&lt;li&gt;defineReactive方法中实例化了一个Dep（发布者），通过Object.defineProperty对数据进行拦截，把这些 property 全部转为 getter/setter。get数据的时候，通过dep.depend触发Watcher（订阅者）的依赖收集，收集订阅者；set时，会对数据进行比较，如果数据发生了变化会通过dep.notify发布通知，通知Watcher，更新视图&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;解析指令&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Vue在初始化时传入当前Vue实例和html根节点的元素标识，进行模板解析&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;首先会取出模板元素将其转化成fragment编译后统一进行dom挂载，这样做比较高效（此为虚拟dom）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;循环从fragment取出所有元素子节点，进行指令类型判断（以v-text为例），传入指令类型和属性值调用update方法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;update方法中会将视图与vue实例的data属性绑定渲染页面数据。&lt;/p&gt;
-&lt;p&gt;当data属性值发生变化会被defineReactive监听到，然后通知wctaher绑定新的数据更新视图&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/Vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%9B%BE%E8%A7%A3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;代码&#34;&gt;代码&lt;/h1&gt;
-&lt;h2 id=&#34;template&#34;&gt;template&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;app&amp;#34;&lt;/span&gt;&amp;gt;
-    &lt;span style=&#34;color:#6272a4&#34;&gt;&amp;lt;!-- 双向绑定 --&amp;gt;&lt;/span&gt;
-    &amp;lt;&lt;span style=&#34;color:#ff79c6&#34;&gt;input&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#50fa7b&#34;&gt;v-model&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&amp;gt;
-&amp;lt;/&lt;span style=&#34;color:#ff79c6&#34;&gt;div&lt;/span&gt;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;监听属性变化&#34;&gt;监听属性变化&lt;/h2&gt;
-&lt;p&gt;初始化vue时会传入一个json格式的对象&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; vue &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Vue({
-    el&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;#app&amp;#39;&lt;/span&gt;,
-    data&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; {
-        name&lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;,
-    }
-})
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;取出该对象并遍历data数据，使用Object.defineProperty()方法来监听每一个属性的变化&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;observe(value){
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#ff79c6&#34;&gt;!&lt;/span&gt;value &lt;span style=&#34;color:#ff79c6&#34;&gt;||&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;typeof&lt;/span&gt; value &lt;span style=&#34;color:#ff79c6&#34;&gt;!==&lt;/span&gt; &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;object&amp;#39;&lt;/span&gt;) {
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt;
-    }
-    &lt;span style=&#34;color:#6272a4&#34;&gt;//遍历data
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Object&lt;/span&gt;.keys(value).forEach(key =&amp;gt;{
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.defineReactive(value,key,value[key])
-        &lt;span style=&#34;color:#6272a4&#34;&gt;// 代理data中的属性到vue实例上
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.proxyData(key)
-    })
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用defineReactive，用来定义响应式&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;defineReactive(data, key, value){
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.observe(value) &lt;span style=&#34;color:#6272a4&#34;&gt;//递归解决数据嵌套
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; dep &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Dep()
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Object&lt;/span&gt;.defineProperty(data, key, {
-        get(){
-            Dep.target &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; dep.addDep(Dep.target)
-            &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; value
-        },
-        set(newVal){
-            &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (newVal &lt;span style=&#34;color:#ff79c6&#34;&gt;==&lt;/span&gt; value) {
-                &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt;
-            }
-            value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; newVal
-            dep.notify()
-        }
-    })
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;因为要实现数据动态绑定所以定义了Dep(依赖管理器)和Watcher(依赖)
-Watcher为Dep的子对象，当Watcher初始化时会将当前Watcher实例放进Dep的静态属性target中，然后再读取当前vue实例的数据，触发Object.defineProperty()的getter
-Object.defineProperty()触发getter时会先判断全局静态属性是否存在，如果存在则添加Watcher依赖
-当数据发生变化时，触发Object.defineProperty()的setter,如果新旧数据没有发生变化则直接return,如果新旧数据发生变化则调用Dep的notify方法循环获取所有依赖进行update&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// Dep 用来管理依赖(Watcher)
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;class&lt;/span&gt; Dep {
-    constructor(){
-        &lt;span style=&#34;color:#6272a4&#34;&gt;// 这里存放若干依赖(Watcher),一个Watcher对应一个key
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.deps &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; [] 
-    }
-
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 添加依赖
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    addDep(dep){
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.deps.push(dep)
-    }
-
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 通知所有依赖
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    notify(){
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.deps.forEach(dep =&amp;gt;{dep.update()})
-    }
-}
-
-&lt;span style=&#34;color:#6272a4&#34;&gt;// 依赖
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#ff79c6&#34;&gt;class&lt;/span&gt; Watcher {
-    constructor(vm, key, callback){
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.vm &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; vm
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.key &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; key
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.callback &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; callback
-        
-        &lt;span style=&#34;color:#6272a4&#34;&gt;// 将当前Watcher实例指定到Dep静态属性target
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        Dep.target &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.vm[&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.key] &lt;span style=&#34;color:#6272a4&#34;&gt;// 触发getter,添加依赖
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        Dep.target &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;null&lt;/span&gt;
-        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Watcher&amp;#39;&lt;/span&gt;);
-    }
-
-    update(){
-        console.log(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;属性更新了&amp;#39;&lt;/span&gt;)
-        &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.callback.call(&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.vm, &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.vm[&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.key])
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;解析指令&#34;&gt;解析指令&lt;/h2&gt;
-&lt;p&gt;在数据相应话之后会进行模板的解析，传入当前页面元素和vue实例。首先将元素转化成fragment&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 取出宿主元素将其转换成fragment编译后统一进行dom挂载,这样做比较高效
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;node2Fragment(el){
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// fragment详细解释查看参考资料
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; frag &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;document&lt;/span&gt;.createDocumentFragment()
-    &lt;span style=&#34;color:#6272a4&#34;&gt;//将el中所有子元素搬家至frag中
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;let&lt;/span&gt; child
-    &lt;span style=&#34;color:#6272a4&#34;&gt;//每次拿出el里面的首个元素赋值给child,然后把child放进frag
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;while&lt;/span&gt; (child &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; el.firstChild) {
-        frag.appendChild(child)
-    }
-    &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; frag
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;解析指令&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;compile(el){
-    &lt;span style=&#34;color:#6272a4&#34;&gt;//获取元素子节点
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; childNodes &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; el.childNodes 
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 将结果转换成数组进行遍历
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Array&lt;/span&gt;.from(childNodes).forEach(node =&amp;gt; {
-        &lt;span style=&#34;color:#6272a4&#34;&gt;//类型判断（nodeType详细解析查看参考资料）
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (node.nodeType &lt;span style=&#34;color:#ff79c6&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;1&lt;/span&gt;) {
-            &lt;span style=&#34;color:#6272a4&#34;&gt;// 元素
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#6272a4&#34;&gt;// 查找k-, @, :
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; nodeAttrs &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; node.attributes &lt;span style=&#34;color:#6272a4&#34;&gt;//拿出节点所有属性
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;Array&lt;/span&gt;.from(nodeAttrs).forEach(attr =&amp;gt; {
-                &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; attrName &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; attr.name &lt;span style=&#34;color:#6272a4&#34;&gt;// 属性名：v-model
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; attrValue &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; attr.value &lt;span style=&#34;color:#6272a4&#34;&gt;// 属性值：name
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (attrName.indexOf(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;v-&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#ff79c6&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;) {
-                    &lt;span style=&#34;color:#6272a4&#34;&gt;//如果是指令则截取掉前缀v-
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; dir &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; attrName.substring(&lt;span style=&#34;color:#bd93f9&#34;&gt;2&lt;/span&gt;)
-                    &lt;span style=&#34;color:#6272a4&#34;&gt;// 执行指令
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                    &lt;span style=&#34;color:#6272a4&#34;&gt;// this[dir] = this.model()
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;                    &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;[dir] &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;[dir](node, &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.vm, attrValue)
-                }              
-            })
-        }
-        &lt;span style=&#34;color:#6272a4&#34;&gt;//递归子节点
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#ff79c6&#34;&gt;if&lt;/span&gt; (node.childNodes &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; node.childNodes.length &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#bd93f9&#34;&gt;0&lt;/span&gt;) {
-            &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.compile(node)
-        }
-    })
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;绑定视图&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;model(node, vm, attrValue){
-	&lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;.update(node, vm, attrValue, &lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;model&amp;#39;&lt;/span&gt;) 
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 视图对模型的响应
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    node.addEventListener(&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;input&amp;#39;&lt;/span&gt;,e =&amp;gt; {
-        vm[attrValue] &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; e.target.value
-    })
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过wctaher监听数据变化更新视图&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;// 参数：节点、vue实例、指令值(name)、指令类型(model)
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;update(node, vm, attrValue, dir){
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 根据指令名称+Updater拼接要执行的修改方法(类似java的反射)
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#6272a4&#34;&gt;// updateFn = modelUpdater
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;const&lt;/span&gt; updateFn &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ff79c6&#34;&gt;this&lt;/span&gt;[dir&lt;span style=&#34;color:#ff79c6&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#f1fa8c&#34;&gt;&amp;#39;Updater&amp;#39;&lt;/span&gt;]
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 第一次更新
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    updateFn &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; updateFn(node, vm[attrValue])
-    &lt;span style=&#34;color:#6272a4&#34;&gt;// 依赖收集
-&lt;/span&gt;&lt;span style=&#34;color:#6272a4&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ff79c6&#34;&gt;new&lt;/span&gt; Watcher(vm, attrValue, &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(value){
-        updateFn &lt;span style=&#34;color:#ff79c6&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; updateFn(node, value)
-    })
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;绑定新数据刷新视图&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;modelUpdater(node, value){
-    node.value &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; value
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.w3school.com.cn/jsref/prop_node_nodetype.asp&#34;&gt;HTML DOM nodeType 属性&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/8ff10b4cf929&#34;&gt;Document.createDocumentFragment()&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://codepen.io/damuwangs/pen/RwZPKjw&#34;&gt;codepen-Vue2-响应式原理&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/ - </description>
         </item>
     
     

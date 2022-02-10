@@ -6,33 +6,67 @@
     <description>Recent content in 编程 on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Feb 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://damuwangs.github.io/tags/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>面试-2021年12月</title>
-      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B412%E6%9C%88/</link>
-      <pubDate>Tue, 08 Feb 2022 00:00:00 +0000</pubDate>
+      <title>【待补充】Vue2-权限控制</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/</link>
+      <pubDate>Wed, 09 Feb 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B412%E6%9C%88/</guid>
-      <description>JavaScript   移动端事件延迟   ​	移动端点击事件会不会有延迟，会有什么隐患，怎样解决
-​	我的思路：click事件没有延迟，直接触发。但 touch事件（比如 touchStart、touchEnd）有300毫秒的延迟，用来判断是单击还是双击、缩放。隐患是容易造	成“点击穿透”（这个原理简单，写起来费劲，木哥你自己百度一下就知道了）。解决思路，一是尽量写成click事件，避免写成touch事件，就不会有延迟了，	二是在容易受影响的代码里专门写一写 if判断，避免误操作。
-   前端路由的理解   ​	我的思路：
-​	JSP、ASP 是多页面应用，由服务端决定返回哪个页面，还有最早的 H5 网站，也是这样的，每个页面相互独立，容易受网络波动影响，肯定速度慢呀，半天	出不来页面，用户体验性差。而且每个页面都要重复引用相同的 js 文件、css资源文件，加载速度就慢。
-​	SPA单页面应用就比较友好了，采用组件化的方式，只有一个公共页面，每次只切换渲染页面的一部分，由前端进行路由控制，用户等待时间短。Angular、	Vue、React，都是这么干的。
-   Promise   Promise 可不可以中断
-我的思路：严格的说不能中断，但可以借助 pending 和 reject 来达到中断效果。（木哥你具体再问我吧，写起来费劲）
-  有一个业务，需要发出两个不同的异步请求，得到所有结果后才去走下一步业务逻辑，如果用 Promise做的话，咋做
-我的思路：尽量别用 Promise.all()，推荐使用 Promise.allSettled() 方法。（木哥你具体再问我吧，写起来费劲）
-       ES6   ES6新增了哪些方法
-  ES6的扩展运算符，用没用过
-我的思路：用过，用来传参，或者给对象赋值，或者用来给数组进行脱壳。传参时放到最后，别放前面。</description>
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/</guid>
+      <description>概念  官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM
+ 参考资料  Vue.nextTick 的原理和用途
+ </description>
     </item>
     
     <item>
-      <title>React-Hook</title>
+      <title>【待补充】Vue2-框架搭建</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Wed, 09 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</guid>
+      <description>概念  官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM
+ 参考资料  Vue.nextTick 的原理和用途
+ </description>
+    </item>
+    
+    <item>
+      <title>【待补充】Vue3-和Vue2的区别</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E5%92%8Cvue2%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Wed, 09 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue3-%E5%92%8Cvue2%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <description>优势 不同  官方文档说明：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM
+ 参考资料  Vue.nextTick 的原理和用途
+ </description>
+    </item>
+    
+    <item>
+      <title>面试-2022年3月</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2022%E5%B9%B43%E6%9C%88/</link>
+      <pubDate>Tue, 08 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2022%E5%B9%B43%E6%9C%88/</guid>
+      <description>JavaScript   移动端事件延迟 移动端点击（click）事件延迟问题的解决方法
+     前端路由的理解 关于前端路由的一点理解
+     Promise JavaScript-异步解决方案-Promise
+  Promise 可不可以中断？
+严格的说不能中断，但可以借助 pending 和 reject 来达到中断效果
+  有一个业务，需要发出两个不同的异步请求，得到所有结果后才去走下一步业务逻辑，如果用 Promise做的话，咋做？
+尽量别用Promise.all()，推荐使用 Promise.allSettled()方法
+Promise.all &amp;amp; Promise.allSettled
+       ES6 前端基础：ES6+ 常用语法
+   Css   flex布局 Flex 布局教程：语法篇
+Flex 布局教程：实例篇
+     媒体查询 CSS3 多媒体查询
+     元素浮动 CSS Float(浮动)</description>
+    </item>
+    
+    <item>
+      <title>【待补充】React-Hook</title>
       <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-hook/</link>
       <pubDate>Thu, 09 Dec 2021 00:00:00 +0000</pubDate>
       
@@ -44,7 +78,7 @@
     </item>
     
     <item>
-      <title>React-RenderProps</title>
+      <title>【待补充】React-RenderProps</title>
       <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-renderprops/</link>
       <pubDate>Thu, 09 Dec 2021 00:00:00 +0000</pubDate>
       

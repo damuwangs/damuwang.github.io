@@ -964,11 +964,11 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <h2 id="异步">异步</h2>
 <p>将一个任务放入到异步队列中，当这个任务执行完成之后，再从异步队列中提取出来，插队到同步队列中，拿到异步任务的结果，可以提升代码执行的效率，不需要因为一个耗时长的代码而一直等待</p>
 <h1 id="回调函数">回调函数</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">ajax(url, () =&gt; {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">ajax(url, () =&gt; {
     <span style="color:#6272a4">// 处理逻辑
 </span><span style="color:#6272a4"></span>})
 </code></pre></div><p>假设多个请求存在依赖性，可能就会写出如下代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">ajax(url, () =&gt; {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">ajax(url, () =&gt; {
     <span style="color:#6272a4">// 处理逻辑
 </span><span style="color:#6272a4"></span>    ajax(url1, () =&gt; {
         <span style="color:#6272a4">// 处理逻辑
