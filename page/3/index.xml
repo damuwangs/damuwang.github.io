@@ -12,21 +12,6 @@
     
     
         <item>
-        <title>【待补充】乐理</title>
-        <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E4%B9%90%E7%90%86/</link>
-        <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E4%B9%90%E7%90%86/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E4%B9%90%E7%90%86/ -&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/formercoding/p/12906640.html&#34;&gt;JS事件循环（Event Loop）&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E4%B9%90%E7%90%86/ - </description>
-        </item>
-    
-    
-    
-        <item>
         <title>关于热量消耗与营养摄入的思考</title>
         <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E8%9B%8B%E7%99%BD%E8%B4%A8%E6%91%84%E5%85%A5%E4%B8%8E%E7%83%AD%E9%87%8F%E7%BC%BA%E5%8F%A3%E8%AE%A1%E7%AE%97/</link>
         <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
@@ -1294,6 +1279,56 @@ iframe.src &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; &lt;span sty
 &lt;/li&gt;
 &lt;/ul&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-css/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Demo-Vue</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/</link>
+        <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/ -&lt;ul&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;规范&#34;&gt;规范&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;组件&#34;&gt;组件&lt;/h1&gt;
+&lt;h2 id=&#34;-element-ui表单httpscodepeniodamuwangspenjjnbybw&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/JjNByBW&#34;&gt;Element-UI表单&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;路由&#34;&gt;路由&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;状态&#34;&gt;状态&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;缓存&#34;&gt;缓存&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;方法封装&#34;&gt;方法封装&lt;/h1&gt;
+&lt;h2 id=&#34;-axios封装http工具类httpscodepeniodamuwangspenexxgmww&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/ExXGmww&#34;&gt;axios封装Http工具类&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;数据字典&#34;&gt;数据字典&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;自定义指令&#34;&gt;自定义指令&lt;/h1&gt;
+&lt;h2 id=&#34;-防抖httpscodepeniodamuwangspenmdmjwre&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/mdmjwre&#34;&gt;防抖&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;-节流httpscodepeniodamuwangspenjompwgv&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/jOmpwgv&#34;&gt;节流&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;css&#34;&gt;CSS&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;第三方插件&#34;&gt;第三方插件&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;打包&#34;&gt;打包&lt;/h1&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/ - </description>
         </item>
     
     
