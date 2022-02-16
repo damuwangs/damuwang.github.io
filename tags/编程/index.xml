@@ -437,7 +437,7 @@ const express = require(&amp;#39;express&amp;#39;) const app = express() app.use
       <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/</guid>
-      <description>  规范   组件 -Element-UI表单   路由   状态   缓存   方法封装 -axios封装Http工具类   数据字典   自定义指令 -防抖 -节流   CSS   第三方插件   打包   </description>
+      <description>  规范   组件 -Element-UI表单   路由 -Vue-Demo-路由   状态   缓存   方法封装 -axios封装Http工具类   数据字典   自定义指令 -防抖 -节流   CSS   第三方插件   打包   </description>
     </item>
     
     <item>
