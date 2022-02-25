@@ -437,7 +437,7 @@ const express = require(&amp;#39;express&amp;#39;) const app = express() app.use
       <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/</guid>
-      <description>  规范   组件 -Element-UI表单   路由 -Vue-Demo-路由   状态   缓存   方法封装 -axios封装Http工具类   数据字典   自定义指令 -防抖 -节流   CSS   第三方插件   打包   </description>
+      <description>  规范   组件 -Element-UI表单   路由 -Vue-Demo-路由   状态、缓存 -Vue-Demo-状态、缓存   方法封装 -axios封装Http工具类   数据字典   自定义指令 -防抖 -节流   CSS   第三方插件   打包   </description>
     </item>
     
     <item>
@@ -531,11 +531,11 @@ const express = require(&amp;#39;express&amp;#39;) const app = express() app.use
  ​	简而言之，异步接信息的运行机制如下
  所有同步任务都在主线程上执行，形成一个执行栈（execution context stack） 主线程之外，还存在一个&amp;quot;任务队列&amp;rdquo;（task queue）。只要异步任务有了运行结果，就在&amp;quot;任务队列&amp;quot;之中放置一个事件 一旦&amp;quot;执行栈&amp;quot;中的所有同步任务执行完毕，系统就会读取&amp;quot;任务队列&amp;rdquo;，看看里面有哪些事件。那些对应的异步任务，于是结束等待状态，进入执行栈，开始执行 主线程不断重复上面的第三步  事件循环说明 简单来说，Vue 在修改数据后，视图不会立刻更新，而是等同一事件循环中的所有数据变化完成之后，再统一进行视图更新
 //改变数据 vm.message = &amp;#39;changed&amp;#39; //想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新 console.log(vm.$el.textContent) // 并不会得到&amp;#39;changed&amp;#39;  //这样可以，nextTick里面的代码会在DOM更新后执行 Vue.nextTick(function(){ console.log(vm.$el.textContent) // 可以得到&amp;#39;changed&amp;#39; })   本次更新循环
- 首先修改数据，这是同步任务。同一事件循环的所有同步任务都在主线程上执行，形成一个执行栈，此时还未设计DOM Vue开启一个异步队列，并缓冲再次事件循环中发生的所有数据改变。如果同一个watcher被多次执行，只会被推入到队列中一次    下次更新循环
+ 首先修改数据，这是同步任务。同一事件循环的所有同步任务都在主线程上执行，形成一个执行栈，此时还未涉及DOM Vue开启一个异步队列，并缓冲再次事件循环中发生的所有数据改变。如果同一个watcher被多次执行，只会被推入到队列中一次    下次更新循环
  同步任务执行完毕，开始执行异步watcher队列的任务，更新DOM。Vue在内部尝试对异步队列使用原生的Promise.then和messageChannel方法，如果执行环境不支持，会采用setTimeOut(fn,0)代替    下次更新循环结束之后
 此时通过Vue.nextTick获取到改变后的DOM。通过setTimeOut(fn,0)也可以同样获取到
   简单总结事件循环：
- 同步代码执行 查找异步队列，推入执行栈，执行Vue.nextTick[事件1] 查找异步队列，推入执行栈，执行Vue.nextTick[事件2]  总之，异步是单独的一个tick，不会和同步在同一个tick里发生，也是DOM不会马上改变的原有</description>
+ 同步代码执行 查找异步队列，推入执行栈，执行Vue.nextTick[事件1] 查找异步队列，推入执行栈，执行Vue.nextTick[事件2]  总之，异步是单独的一个tick，不会和同步在同一个tick里发生，也是DOM不会马上改变的原因</description>
     </item>
     
     <item>

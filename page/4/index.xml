@@ -809,7 +809,7 @@ console.log(state.foo) &lt;span style=&#34;color:#6272a4&#34;&gt;// 3
 &lt;li&gt;
 &lt;p&gt;本次更新循环&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;首先修改数据，这是同步任务。同一事件循环的所有同步任务都在主线程上执行，形成一个执行栈，此时还未设计DOM&lt;/li&gt;
+&lt;li&gt;首先修改数据，这是同步任务。同一事件循环的所有同步任务都在主线程上执行，形成一个执行栈，此时还未涉及DOM&lt;/li&gt;
 &lt;li&gt;Vue开启一个异步队列，并缓冲再次事件循环中发生的所有数据改变。如果同一个watcher被多次执行，只会被推入到队列中一次&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
@@ -830,7 +830,7 @@ console.log(state.foo) &lt;span style=&#34;color:#6272a4&#34;&gt;// 3
 &lt;li&gt;查找异步队列，推入执行栈，执行Vue.nextTick[事件1]&lt;/li&gt;
 &lt;li&gt;查找异步队列，推入执行栈，执行Vue.nextTick[事件2]&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;总之，异步是单独的一个tick，不会和同步在同一个tick里发生，也是DOM不会马上改变的原有&lt;/p&gt;
+&lt;p&gt;总之，异步是单独的一个tick，不会和同步在同一个tick里发生，也是DOM不会马上改变的原因&lt;/p&gt;
 &lt;h1 id=&#34;应用场景&#34;&gt;应用场景&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;在 created 和 mounted 阶段，如果需要操作渲染后的试图，也要使用 nextTick 方法。&lt;/li&gt;
@@ -1437,7 +1437,7 @@ result() &lt;span style=&#34;color:#6272a4&#34;&gt;// 999
 &lt;h2 id=&#34;结果缓存&#34;&gt;结果缓存&lt;/h2&gt;
 &lt;p&gt;我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象，每次调用都会花费很长时间，那么我们就需要将计算出来的值存储起来，当调用这个函数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; CachedSearchBox &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; (&lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(){    
-    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; cache &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {},count &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; [];    
+    &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;var&lt;/span&gt; cache &lt;span style=&#34;color:#ff79c6&#34;&gt;=&lt;/span&gt; {}
     &lt;span style=&#34;color:#ff79c6&#34;&gt;return&lt;/span&gt; {    
        attachSearchBox &lt;span style=&#34;color:#ff79c6&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#8be9fd;font-style:italic&#34;&gt;function&lt;/span&gt;(dsid){    
          &lt;span style=&#34;color:#6272a4&#34;&gt;//如果结果在缓存中
