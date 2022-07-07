@@ -1703,7 +1703,7 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <ol>
 <li>禁用缩放： 浏览器禁用默认的双击缩放行为并且去掉300ms 的点击延迟</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;viewport&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;user-scalable=no&#34;</span>&gt;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">meta</span> <span style="color:#4070a0">name</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;viewport&#34;</span> <span style="color:#4070a0">content</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;user-scalable=no&#34;</span>&gt;
 </span></span></code></pre></div><ol start="2">
 <li>利用touch事件自己封装这个事件解决300ms 延迟</li>
 </ol>
@@ -1712,31 +1712,31 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <p>当我们手指离开屏幕， 用离开的时间减去触摸的时间</p>
 <p>如果时间小于150ms，并且没有滑动过屏幕， 那么我们就定义为点击</p>
 <p>代码如下:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span> <span style="color:#6272a4">//封装tap，解决click 300ms 延时
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span> <span style="color:#8be9fd;font-style:italic">function</span> tap (obj, callback) {
-</span></span><span style="display:flex;"><span>         <span style="color:#8be9fd;font-style:italic">var</span> isMove <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
-</span></span><span style="display:flex;"><span>         <span style="color:#8be9fd;font-style:italic">var</span> startTime <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; <span style="color:#6272a4">// 记录触摸时候的时间变量
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>         obj.addEventListener(<span style="color:#f1fa8c">&#39;touchstart&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (e) {
-</span></span><span style="display:flex;"><span>             startTime <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">Date</span>.now(); <span style="color:#6272a4">// 记录触摸时间
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>         });
-</span></span><span style="display:flex;"><span>         obj.addEventListener(<span style="color:#f1fa8c">&#39;touchmove&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (e) {
-</span></span><span style="display:flex;"><span>             isMove <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;  <span style="color:#6272a4">// 看看是否有滑动，有滑动算拖拽，不算点击
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>         });
-</span></span><span style="display:flex;"><span>         obj.addEventListener(<span style="color:#f1fa8c">&#39;touchend&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (e) {
-</span></span><span style="display:flex;"><span> 	        <span style="color:#6272a4">// 如果手指触摸和离开时间小于150ms 算点击
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>             <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>isMove <span style="color:#ff79c6">&amp;&amp;</span> (<span style="color:#8be9fd;font-style:italic">Date</span>.now() <span style="color:#ff79c6">-</span> startTime) <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">150</span>) {  
-</span></span><span style="display:flex;"><span>                 callback <span style="color:#ff79c6">&amp;&amp;</span> callback(); <span style="color:#6272a4">// 执行回调函数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>             }
-</span></span><span style="display:flex;"><span>             isMove <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;  <span style="color:#6272a4">//  取反 重置
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>             startTime <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span> <span style="color:#60a0b0;font-style:italic">//封装tap，解决click 300ms 延时
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span> <span style="color:#007020;font-weight:bold">function</span> tap (obj, callback) {
+</span></span><span style="display:flex;"><span>         <span style="color:#007020;font-weight:bold">var</span> isMove <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>         <span style="color:#007020;font-weight:bold">var</span> startTime <span style="color:#666">=</span> <span style="color:#40a070">0</span>; <span style="color:#60a0b0;font-style:italic">// 记录触摸时候的时间变量
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>         obj.addEventListener(<span style="color:#4070a0">&#39;touchstart&#39;</span>, <span style="color:#007020;font-weight:bold">function</span> (e) {
+</span></span><span style="display:flex;"><span>             startTime <span style="color:#666">=</span> <span style="color:#007020">Date</span>.now(); <span style="color:#60a0b0;font-style:italic">// 记录触摸时间
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>         });
+</span></span><span style="display:flex;"><span>         obj.addEventListener(<span style="color:#4070a0">&#39;touchmove&#39;</span>, <span style="color:#007020;font-weight:bold">function</span> (e) {
+</span></span><span style="display:flex;"><span>             isMove <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span>;  <span style="color:#60a0b0;font-style:italic">// 看看是否有滑动，有滑动算拖拽，不算点击
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>         });
+</span></span><span style="display:flex;"><span>         obj.addEventListener(<span style="color:#4070a0">&#39;touchend&#39;</span>, <span style="color:#007020;font-weight:bold">function</span> (e) {
+</span></span><span style="display:flex;"><span> 	        <span style="color:#60a0b0;font-style:italic">// 如果手指触摸和离开时间小于150ms 算点击
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>             <span style="color:#007020;font-weight:bold">if</span> (<span style="color:#666">!</span>isMove <span style="color:#666">&amp;&amp;</span> (<span style="color:#007020">Date</span>.now() <span style="color:#666">-</span> startTime) <span style="color:#666">&lt;</span> <span style="color:#40a070">150</span>) {  
+</span></span><span style="display:flex;"><span>                 callback <span style="color:#666">&amp;&amp;</span> callback(); <span style="color:#60a0b0;font-style:italic">// 执行回调函数
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>             }
+</span></span><span style="display:flex;"><span>             isMove <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">false</span>;  <span style="color:#60a0b0;font-style:italic">//  取反 重置
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>             startTime <span style="color:#666">=</span> <span style="color:#40a070">0</span>;
 </span></span><span style="display:flex;"><span>         });
 </span></span><span style="display:flex;"><span> }
-</span></span><span style="display:flex;"><span> <span style="color:#6272a4">//调用  
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span> tap(div, <span style="color:#8be9fd;font-style:italic">function</span>(){   <span style="color:#6272a4">// 执行代码  });
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
-</span></span><span style="display:flex;"><span><span style="color:#bd93f9">3.</span> 使用插件：fastclick 插件解决300ms 延迟
+</span></span><span style="display:flex;"><span> <span style="color:#60a0b0;font-style:italic">//调用  
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span> tap(div, <span style="color:#007020;font-weight:bold">function</span>(){   <span style="color:#60a0b0;font-style:italic">// 执行代码  });
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#40a070">3.</span> 使用插件<span style="">：</span>fastclick 插件解决300ms 延迟
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>[移动端点击（click）事件延迟问题的解决方法](https<span style="color:#ff79c6">:</span><span style="color:#6272a4">//blog.csdn.net/qq_45516629/article/details/105053755)
+</span></span><span style="display:flex;"><span>[移动端点击<span style="">（</span>click<span style="">）</span>事件延迟问题的解决方法](https<span style="color:#666">:</span><span style="color:#60a0b0;font-style:italic">//blog.csdn.net/qq_45516629/article/details/105053755)
 </span></span></span></code></pre></div></li>
 </ul>
 <hr>

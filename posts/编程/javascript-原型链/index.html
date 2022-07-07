@@ -683,21 +683,21 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <h2 id="理解原型对象">理解原型对象</h2>
 <p>无论什么时候，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。在默认情况下，所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。</p>
 <p>使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。换句话说不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型对象中</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> Person() {}
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> Person() {}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Person.prototype.name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;Nicholas&#39;</span>
-</span></span><span style="display:flex;"><span>Person.prototype.age <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">19</span>
-</span></span><span style="display:flex;"><span>Person.prototype.sayName <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-</span></span><span style="display:flex;"><span>    console.log(<span style="color:#ff79c6">this</span>.name)
+</span></span><span style="display:flex;"><span>Person.prototype.name <span style="color:#666">=</span> <span style="color:#4070a0">&#39;Nicholas&#39;</span>
+</span></span><span style="display:flex;"><span>Person.prototype.age <span style="color:#666">=</span> <span style="color:#40a070">19</span>
+</span></span><span style="display:flex;"><span>Person.prototype.sayName <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> person1 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Person()
-</span></span><span style="display:flex;"><span>person1.sayName() <span style="color:#6272a4">// 输出：Nicholas
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> person2 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Person()
-</span></span><span style="display:flex;"><span>person2.sayName() <span style="color:#6272a4">// 输出：Nicholas
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
-</span></span><span style="display:flex;"><span>console.log(person1.sayName <span style="color:#ff79c6">==</span> person2.sayName) <span style="color:#6272a4">// 输出：true
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">let</span> person1 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Person()
+</span></span><span style="display:flex;"><span>person1.sayName() <span style="color:#60a0b0;font-style:italic">// 输出：Nicholas
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">let</span> person2 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Person()
+</span></span><span style="display:flex;"><span>person2.sayName() <span style="color:#60a0b0;font-style:italic">// 输出：Nicholas
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span>console.log(person1.sayName <span style="color:#666">==</span> person2.sayName) <span style="color:#60a0b0;font-style:italic">// 输出：true
 </span></span></span></code></pre></div><p>我们将sayName()方法和所有属性直接添加到Person的prototype属性中，构造函数变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说，person1和person2访问的都是同一组属性和同一个sayName()函数</p>
 <p>创建了自定义构造函数之后，其原型对象默认只会取得constructor属性，至于其它方法，则都是从Object继承而来。当调用构造函数创建一个新实例后，该实例内部将包含一个指针（内部属性）____proto____指向构造函数的原型对象，需要明确的是，这个连接存在与实例和构造函数的原型之间，而不是存在与实例与构造函数之间</p>
 <p><img src="/img/JavaScript-%E5%8E%9F%E5%9E%8B%E9%93%BE/%E5%8E%9F%E5%9E%8B%E5%85%B3%E7%B3%BB.png" alt=""></p>
@@ -710,19 +710,19 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <li>
 <h2 id="注意事项">注意事项</h2>
 <p>虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型的值。如果我们在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性，该属性将会屏蔽原型中的那个属性</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> Person() {}
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> Person() {}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Person.prototype.name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;Nicholas&#39;</span>
-</span></span><span style="display:flex;"><span>Person.prototype.age <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">19</span>
-</span></span><span style="display:flex;"><span>Person.prototype.sayName <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-</span></span><span style="display:flex;"><span>    console.log(<span style="color:#ff79c6">this</span>.name)
+</span></span><span style="display:flex;"><span>Person.prototype.name <span style="color:#666">=</span> <span style="color:#4070a0">&#39;Nicholas&#39;</span>
+</span></span><span style="display:flex;"><span>Person.prototype.age <span style="color:#666">=</span> <span style="color:#40a070">19</span>
+</span></span><span style="display:flex;"><span>Person.prototype.sayName <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> person1 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Person()
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> person2 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Person()
-</span></span><span style="display:flex;"><span>person1.name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;王大木&#39;</span>
-</span></span><span style="display:flex;"><span>console.log(person1.name) <span style="color:#6272a4">// &#39;王大木&#39; ——————来自实例
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>console.log(person2.name) <span style="color:#6272a4">// &#39;Nicholas&#39; ——————来自原型
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">let</span> person1 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Person()
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">let</span> person2 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Person()
+</span></span><span style="display:flex;"><span>person1.name <span style="color:#666">=</span> <span style="color:#4070a0">&#39;王大木&#39;</span>
+</span></span><span style="display:flex;"><span>console.log(person1.name) <span style="color:#60a0b0;font-style:italic">// &#39;王大木&#39; ——————来自实例
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>console.log(person2.name) <span style="color:#60a0b0;font-style:italic">// &#39;Nicholas&#39; ——————来自原型
 </span></span></span></code></pre></div><p>在这个例子中，person1的name被一个新的值给屏蔽了。但无论访问person1.name还是访问person2.name都能正常的返回值，即分别是&rsquo;王大木&rsquo;（来自对象实例）和&rsquo;Nicholas&rsquo;（来自原型）。当console.log()中访问person1.name时，需要读取它的值，因此就会在这个实例上搜索一个名为name的属性。这个属性确实存在，于是就返回它的值而不必再搜搜索原型了。当以同样的方式访问person2.name时，并没有实例上发现该属性，因此就会继续搜索原型，结果在那里找到了name属性。</p>
 <p>当为对象实例添加一个属性时，这个属性就会屏蔽原型对象中保存的同名属性，换句话说，添加这个属性只会阻止我们访问原型中的属性，但不会修改那个属性。即使这个属性设置为null，也只会在实例中设置这个属性，而不会恢复其指向原型的连接</p>
 </li>
@@ -733,27 +733,27 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <h2 id="理解原型链">理解原型链</h2>
 <p><img src="/img/JavaScript-%E5%8E%9F%E5%9E%8B%E9%93%BE/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%9B%BE%E7%A4%BA.png" alt=""></p>
 <p>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。那么，假如我们让原型对象等于另一个类型的实例，结果会怎么样呢？显然，此时的原型对象将包含一个指向另一个原型的指针，相应的，另一个原型中也包含指向另一个构造函数的指针。假如另一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进，就够成了实例与原型的链条。这就是所谓原型链的基本概念</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> SuperType() {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.property <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;SuperType&#39;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> SuperType() {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">this</span>.property <span style="color:#666">=</span> <span style="color:#4070a0">&#39;SuperType&#39;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>SuperType.prototype.getSuperValue <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>.property
+</span></span><span style="display:flex;"><span>SuperType.prototype.getSuperValue <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">this</span>.property
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> SubType() {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.subProperty <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;SubType&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> SubType() {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">this</span>.subProperty <span style="color:#666">=</span> <span style="color:#4070a0">&#39;SubType&#39;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 继承了 SuperType
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>SubType.prototype <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SuperType()
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 继承了 SuperType
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>SubType.prototype <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> SuperType()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>SubType.prototype.getSubValue <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>.subProperty
+</span></span><span style="display:flex;"><span>SubType.prototype.getSubValue <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">this</span>.subProperty
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> instancce <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SubType()
-</span></span><span style="display:flex;"><span>console.log(instancce.getSuperValue()) <span style="color:#6272a4">// 输出：SuperType
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">let</span> instancce <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> SubType()
+</span></span><span style="display:flex;"><span>console.log(instancce.getSuperValue()) <span style="color:#60a0b0;font-style:italic">// 输出：SuperType
 </span></span></span></code></pre></div><p>以上代码定义了两个类型：SuperType和SubType。每个类型分别有一个属性和一个方法。它们的主要区别是SubType继承了SuperType，而继承时通过创建SuperType的实例，并将实例赋值给SubType.prototype实现的。实现的本质是重写原型对象，代之以一个新类型的实例。换句话说，原来存在于SuperType的实例中的所有属性和方法，现在也存在与于SubType中了。在确立了继承关系之后，我们给SubType.prototype添加了一个方法，这样就继承了SuperType的属性和方法的基础上又添加了一个新方法</p>
 <p><img src="/img/JavaScript-%E5%8E%9F%E5%9E%8B%E9%93%BE/%E5%8E%9F%E5%9E%8B%E9%93%BE.png" alt=""></p>
 <p>在上面代码中，我们没有使用SubType默认提供的原型，而是给它换了一个新的原型，这个新原型就是SuperType的实例。于是，新原型不仅具有作为一个SuperType的实例所拥有的全部属性和方法，而且内部还有一个指针，指向了SuperType的原型。最终结果就是这样：instance指向SubType的原型，SubType的原型又指向了SuperType的原型。getSuperValue()方法仍然还在SuperType.prototype中，但prototype则位于subType.prototype中。这是因为prototype是一个实例属性，而getSuperValue()则时一个原型方法。既然SubType.prototype现在是superType的实例，那么prototype当然就位于该实例中了</p>
@@ -778,83 +778,83 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <ol>
 <li>
 <p>子类型有时候需要重写超类型中的某个方法，或者添加超类型中不存在的某个方法。但不管怎样，给原型添加方法的代码一定要放在替换原型的语句之后</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> SuperType() {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.property <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;SuperType&#39;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> SuperType() {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">this</span>.property <span style="color:#666">=</span> <span style="color:#4070a0">&#39;SuperType&#39;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>SuperType.prototype.getSuperValue <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>.property
+</span></span><span style="display:flex;"><span>SuperType.prototype.getSuperValue <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">this</span>.property
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> SubType() {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.subProperty <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;SubType&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> SubType() {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">this</span>.subProperty <span style="color:#666">=</span> <span style="color:#4070a0">&#39;SubType&#39;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 继承了 SuperType
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>SubType.prototype <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SuperType()
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 继承了 SuperType
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>SubType.prototype <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> SuperType()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 添加新方法
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>SubType.prototype.getSubValue <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>.subProperty
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 添加新方法
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>SubType.prototype.getSubValue <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">this</span>.subProperty
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 重写超类型中的方法
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>SubType.prototype.getSuperValue <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#39;重写SuperType&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 重写超类型中的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>SubType.prototype.getSuperValue <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#4070a0">&#39;重写SuperType&#39;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> instancce <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SubType()
-</span></span><span style="display:flex;"><span>console.log(instancce.getSuperValue()) <span style="color:#6272a4">// 输出： 重写SuperType
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">let</span> instancce <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> SubType()
+</span></span><span style="display:flex;"><span>console.log(instancce.getSuperValue()) <span style="color:#60a0b0;font-style:italic">// 输出： 重写SuperType
 </span></span></span></code></pre></div><p>以上代码中，第一个方法getSubValue()被添加到了SubType中，第二个方法getSuperValue是原型中已经存在的一个方法，但重写这个方法会屏蔽原来的那个方法。换句话说，当通过SubType的实例调用getSuperValue()时，调用的就是这个重新定义的方法，但通过SuperType的实例调用getSuperValue()时，还会继续调用原来的那个方法。这里要格外注意的时，必须在用SuperType的实例替换原型之后，再定义这两个方法</p>
 </li>
 <li>
 <p>通过原型链实现继承时，不能使用对象字面量创建原型方法。因为这样做就会重写原型链</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> SuperType() {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.property <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;SuperType&#39;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> SuperType() {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">this</span>.property <span style="color:#666">=</span> <span style="color:#4070a0">&#39;SuperType&#39;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>SuperType.prototype.getSuperValue <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>.property
+</span></span><span style="display:flex;"><span>SuperType.prototype.getSuperValue <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">this</span>.property
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> SubType() {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.subProperty <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;SubType&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> SubType() {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">this</span>.subProperty <span style="color:#666">=</span> <span style="color:#4070a0">&#39;SubType&#39;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 继承了 SuperType
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>SubType.prototype <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SuperType()
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 继承了 SuperType
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>SubType.prototype <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> SuperType()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 使用字面量添加新方法，会导致上一行代码无效
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>SubType.prototype  <span style="color:#ff79c6">=</span> {
-</span></span><span style="display:flex;"><span>    getSubValue <span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">function</span> () {
-</span></span><span style="display:flex;"><span>       <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">this</span>.subProperty
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 使用字面量添加新方法，会导致上一行代码无效
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>SubType.prototype  <span style="color:#666">=</span> {
+</span></span><span style="display:flex;"><span>    getSubValue <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>       <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">this</span>.subProperty
 </span></span><span style="display:flex;"><span>   }
 </span></span><span style="display:flex;"><span>} 
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> instancce <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SubType()
-</span></span><span style="display:flex;"><span>console.log(instancce.getSuperValue()) <span style="color:#6272a4">// 输出： error
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">let</span> instancce <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> SubType()
+</span></span><span style="display:flex;"><span>console.log(instancce.getSuperValue()) <span style="color:#60a0b0;font-style:italic">// 输出： error
 </span></span></span></code></pre></div><p>以上代码展示了刚刚把SuperType的实例赋值给原型，接着又将原型替换成一个对象字面量而导致报错。由于现在的原型包含的是一个Object的实例，而非SuperType的实例，因此我们设想中的原型链已经被切断，SubType和SuperType之间已经没有关系了</p>
 </li>
 <li>
 <p>在通过原型实现继承时，原型实际上会变成另一个类型的实例。于是原先的实例属性也就顺理成章的变成了现在的原型属性了</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> SuperType() {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.color <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;red&#39;</span>,<span style="color:#f1fa8c">&#39;blue&#39;</span>,<span style="color:#f1fa8c">&#39;green&#39;</span>]
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> SuperType() {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">this</span>.color <span style="color:#666">=</span> [<span style="color:#4070a0">&#39;red&#39;</span>,<span style="color:#4070a0">&#39;blue&#39;</span>,<span style="color:#4070a0">&#39;green&#39;</span>]
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> SubType() {
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> SubType() {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 继承了 SuperType
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>SubType.prototype <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SuperType()
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 继承了 SuperType
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>SubType.prototype <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> SuperType()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> instance1 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SubType()
-</span></span><span style="display:flex;"><span>instance1.color.push(<span style="color:#f1fa8c">&#39;black&#39;</span>)
-</span></span><span style="display:flex;"><span>console.log(instance1.color) <span style="color:#6272a4">// 输出：[ &#39;red&#39;, &#39;blue&#39;, &#39;green&#39;, &#39;black&#39; ]
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> instance2 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SubType()
-</span></span><span style="display:flex;"><span>console.log(instance2.color) <span style="color:#6272a4">// 输出：[ &#39;red&#39;, &#39;blue&#39;, &#39;green&#39;, &#39;black&#39; ]
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">let</span> instance1 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> SubType()
+</span></span><span style="display:flex;"><span>instance1.color.push(<span style="color:#4070a0">&#39;black&#39;</span>)
+</span></span><span style="display:flex;"><span>console.log(instance1.color) <span style="color:#60a0b0;font-style:italic">// 输出：[ &#39;red&#39;, &#39;blue&#39;, &#39;green&#39;, &#39;black&#39; ]
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">let</span> instance2 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> SubType()
+</span></span><span style="display:flex;"><span>console.log(instance2.color) <span style="color:#60a0b0;font-style:italic">// 输出：[ &#39;red&#39;, &#39;blue&#39;, &#39;green&#39;, &#39;black&#39; ]
 </span></span></span></code></pre></div><p>这个例子中SuberType构造函数定义了一个color属性，该属性包含一个数组（引用类型值）SuperType的每个实例都会又各自包含自己数组的color属性。当SubType通过原型链继承了SuperType之后，SuperType.prototype就变成了SuperType的一个实例，因此它也拥有了一个它自己的color属性，就跟专门创建了一个SubType.prototype.color属性一样。但结果是什么呢？结果是SubType的所有实例都会共享这一个color属性。而我们对instance1.color的修改能够通过instance2.color反应出来，这就充分证实了这一点</p>
 </li>
 <li>

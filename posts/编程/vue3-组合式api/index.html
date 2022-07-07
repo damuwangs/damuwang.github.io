@@ -1186,137 +1186,137 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </table>
 <h2 id="代码">代码</h2>
 <h3 id="appvue">app.vue</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">template</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;    
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">Search</span> <span style="color:#ff79c6">@search</span><span style="color:#f1fa8c">=&#34;search&#34;</span>/&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">Panel</span> <span style="color:#ff79c6">:</span><span style="color:#50fa7b">listData</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;listData&#39;</span> <span style="color:#ff79c6">@loadMore</span><span style="color:#f1fa8c">=&#34;loadMore&#34;</span>/&gt;
-</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#ff79c6">div</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">template</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span>&gt;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> app from <span style="color:#f1fa8c">&#34;./app.js&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> Search from <span style="color:#f1fa8c">&#34;./components/Search.vue&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> Panel from <span style="color:#f1fa8c">&#34;./components/Panel.vue&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> {
-</span></span><span style="display:flex;"><span>  name<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;app&#34;</span>,
-</span></span><span style="display:flex;"><span>  components<span style="color:#ff79c6">:</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;app&#34;</span>&gt;    
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#062873;font-weight:bold">Search</span> <span style="color:#062873;font-weight:bold">@search</span><span style="color:#4070a0">=&#34;search&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#062873;font-weight:bold">Panel</span> <span style="color:#666">:</span><span style="color:#4070a0">listData</span><span style="color:#666">=</span><span style="color:#4070a0">&#39;listData&#39;</span> <span style="color:#062873;font-weight:bold">@loadMore</span><span style="color:#4070a0">=&#34;loadMore&#34;</span>/&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> app from <span style="color:#4070a0">&#34;./app.js&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> Search from <span style="color:#4070a0">&#34;./components/Search.vue&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> Panel from <span style="color:#4070a0">&#34;./components/Panel.vue&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
+</span></span><span style="display:flex;"><span>  name<span style="color:#666">:</span> <span style="color:#4070a0">&#34;app&#34;</span>,
+</span></span><span style="display:flex;"><span>  components<span style="color:#666">:</span> {
 </span></span><span style="display:flex;"><span>    Search,
 </span></span><span style="display:flex;"><span>    Panel
 </span></span><span style="display:flex;"><span>  },   
 </span></span><span style="display:flex;"><span>  setup(props, context){
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> {search, loadMore, listData} <span style="color:#ff79c6">=</span> app(props, context)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">const</span> {search, loadMore, listData} <span style="color:#666">=</span> app(props, context)
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> {
 </span></span><span style="display:flex;"><span>      search,
 </span></span><span style="display:flex;"><span>      loadMore,
 </span></span><span style="display:flex;"><span>      listData
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
 </span></span></code></pre></div><h3 id="appjs">app.js</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { ref} from <span style="color:#f1fa8c">&#34;@vue/composition-api&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#8be9fd;font-style:italic">function</span> app(props, context) {
-</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">let</span> listData <span style="color:#ff79c6">=</span> ref([]) <span style="color:#6272a4">// 定义响应式变量,切记下方赋值/取值时修改的是.value属性！
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  <span style="color:#6272a4">// 初始化列表
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  <span style="color:#ff79c6">const</span> loadData <span style="color:#ff79c6">=</span> () =&gt; {      
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> [{title<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#39;标题一&#39;</span>, author<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;作者一&#39;</span>},{title<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#39;标题二&#39;</span>, author<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;作者二&#39;</span>},{title<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#39;标题三&#39;</span>, author<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;作者三&#39;</span>},{title<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#39;标题四&#39;</span>, author<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;作者四&#39;</span>},{title<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#39;标题五&#39;</span>, author<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;作者五&#39;</span>}]
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> { ref} from <span style="color:#4070a0">&#34;@vue/composition-api&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> <span style="color:#007020;font-weight:bold">function</span> app(props, context) {
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">let</span> listData <span style="color:#666">=</span> ref([]) <span style="color:#60a0b0;font-style:italic">// 定义响应式变量,切记下方赋值/取值时修改的是.value属性！
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#60a0b0;font-style:italic">// 初始化列表
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">const</span> loadData <span style="color:#666">=</span> () =&gt; {      
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> [{title<span style="color:#666">:</span><span style="color:#4070a0">&#39;标题一&#39;</span>, author<span style="color:#666">:</span> <span style="color:#4070a0">&#39;作者一&#39;</span>},{title<span style="color:#666">:</span><span style="color:#4070a0">&#39;标题二&#39;</span>, author<span style="color:#666">:</span> <span style="color:#4070a0">&#39;作者二&#39;</span>},{title<span style="color:#666">:</span><span style="color:#4070a0">&#39;标题三&#39;</span>, author<span style="color:#666">:</span> <span style="color:#4070a0">&#39;作者三&#39;</span>},{title<span style="color:#666">:</span><span style="color:#4070a0">&#39;标题四&#39;</span>, author<span style="color:#666">:</span> <span style="color:#4070a0">&#39;作者四&#39;</span>},{title<span style="color:#666">:</span><span style="color:#4070a0">&#39;标题五&#39;</span>, author<span style="color:#666">:</span> <span style="color:#4070a0">&#39;作者五&#39;</span>}]
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// 加载更多
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  <span style="color:#ff79c6">const</span> loadMore <span style="color:#ff79c6">=</span> () =&gt; {   
-</span></span><span style="display:flex;"><span>    listData.value <span style="color:#ff79c6">=</span> [...listData.value, ...[{title<span style="color:#ff79c6">:</span><span style="color:#f1fa8c">&#39;标题X&#39;</span>, author<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;作者X&#39;</span>}]]
+</span></span><span style="display:flex;"><span>  <span style="color:#60a0b0;font-style:italic">// 加载更多
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">const</span> loadMore <span style="color:#666">=</span> () =&gt; {   
+</span></span><span style="display:flex;"><span>    listData.value <span style="color:#666">=</span> [...listData.value, ...[{title<span style="color:#666">:</span><span style="color:#4070a0">&#39;标题X&#39;</span>, author<span style="color:#666">:</span> <span style="color:#4070a0">&#39;作者X&#39;</span>}]]
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// 搜索
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  <span style="color:#ff79c6">const</span> search <span style="color:#ff79c6">=</span> (searchVal) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (searchVal) {
-</span></span><span style="display:flex;"><span>      listData.value <span style="color:#ff79c6">=</span> listData.value.filter(item =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (item.title.indexOf(searchVal) <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">0</span>) {
-</span></span><span style="display:flex;"><span>          <span style="color:#ff79c6">return</span> item
+</span></span><span style="display:flex;"><span>  <span style="color:#60a0b0;font-style:italic">// 搜索
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">const</span> search <span style="color:#666">=</span> (searchVal) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">if</span> (searchVal) {
+</span></span><span style="display:flex;"><span>      listData.value <span style="color:#666">=</span> listData.value.filter(item =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">if</span> (item.title.indexOf(searchVal) <span style="color:#666">&gt;=</span> <span style="color:#40a070">0</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#007020;font-weight:bold">return</span> item
 </span></span><span style="display:flex;"><span>        } 
 </span></span><span style="display:flex;"><span>      })         
-</span></span><span style="display:flex;"><span>    } <span style="color:#ff79c6">else</span> {
-</span></span><span style="display:flex;"><span>      listData.value <span style="color:#ff79c6">=</span> loadData()
+</span></span><span style="display:flex;"><span>    } <span style="color:#007020;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>      listData.value <span style="color:#666">=</span> loadData()
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">return</span> {
 </span></span><span style="display:flex;"><span>    listData,
 </span></span><span style="display:flex;"><span>    loadMore,
 </span></span><span style="display:flex;"><span>    search
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="panelvue">panel.vue</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">template</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;weui-panel weui-panel_access&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">div</span> <span style="color:#ff79c6">v-for</span><span style="color:#f1fa8c">=&#34;(n,index) in listData&#34; :key=&#34;index&#34; class=&#34;weui-panel__bd&#34;&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">      &lt;a href=&#34;javascript:void(0);&#34; class=&#34;weui-media-box weui-media-box_appmsg&#34;&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        &lt;div class=&#34;weui-media-box__bd&#34;&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">          &lt;h4 class=&#34;weui-media-box__title&#34; v-text=&#34;n.title&#34;&gt;&lt;/h4&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">          &lt;p class=&#34;weui-media-box__desc&#34; v-text=&#34;n.author&#34;&gt;&lt;/p&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        &lt;/div&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">      &lt;/a&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &lt;/div&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &lt;div @click=&#34;loadMore&#34; class=&#34;weui-panel__ft&#34;&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">      &lt;a href=&#34;javascript:void(0);&#34; class=&#34;weui-cell weui-cell_access weui-cell_link&#34;&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        &lt;div class=&#34;weui-cell__bd&#34;&gt;查看更多&lt;/div&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        &lt;span class=&#34;weui-cell__ft&#34;</span>&gt;&lt;/<span style="color:#ff79c6">span</span>&gt;
-</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#ff79c6">a</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#ff79c6">div</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#ff79c6">div</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">template</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span>&gt;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { reactive, toRefs} from <span style="color:#f1fa8c">&#34;@vue/composition-api&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> pane from <span style="color:#f1fa8c">&#34;./pane.js&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> {
-</span></span><span style="display:flex;"><span>  props<span style="color:#ff79c6">:</span>[<span style="color:#f1fa8c">&#39;listData&#39;</span>],
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;weui-panel weui-panel_access&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#062873;font-weight:bold">v-for</span><span style="color:#4070a0">=&#34;(n,index) in listData&#34; :key=&#34;index&#34; class=&#34;weui-panel__bd&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">      &lt;a href=&#34;javascript:void(0);&#34; class=&#34;weui-media-box weui-media-box_appmsg&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;div class=&#34;weui-media-box__bd&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">          &lt;h4 class=&#34;weui-media-box__title&#34; v-text=&#34;n.title&#34;&gt;&lt;/h4&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">          &lt;p class=&#34;weui-media-box__desc&#34; v-text=&#34;n.author&#34;&gt;&lt;/p&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">      &lt;/a&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">    &lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">    &lt;div @click=&#34;loadMore&#34; class=&#34;weui-panel__ft&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">      &lt;a href=&#34;javascript:void(0);&#34; class=&#34;weui-cell weui-cell_access weui-cell_link&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;div class=&#34;weui-cell__bd&#34;&gt;查看更多&lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;span class=&#34;weui-cell__ft&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">span</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> { reactive, toRefs} from <span style="color:#4070a0">&#34;@vue/composition-api&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> pane from <span style="color:#4070a0">&#34;./pane.js&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
+</span></span><span style="display:flex;"><span>  props<span style="color:#666">:</span>[<span style="color:#4070a0">&#39;listData&#39;</span>],
 </span></span><span style="display:flex;"><span>  setup(props, context) {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> {loadMore} <span style="color:#ff79c6">=</span> pane(props, context)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> state <span style="color:#ff79c6">=</span> reactive({
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">const</span> {loadMore} <span style="color:#666">=</span> pane(props, context)
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">const</span> state <span style="color:#666">=</span> reactive({
 </span></span><span style="display:flex;"><span>    })     
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> {
 </span></span><span style="display:flex;"><span>      ...toRefs(state),
 </span></span><span style="display:flex;"><span>      loadMore
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
 </span></span></code></pre></div><h3 id="paneljs">panel.js</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#8be9fd;font-style:italic">function</span> pane(props, context) {
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> loadMore <span style="color:#ff79c6">=</span> () =&gt; {
-</span></span><span style="display:flex;"><span>    context.emit(<span style="color:#f1fa8c">&#34;loadMore&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> <span style="color:#007020;font-weight:bold">function</span> pane(props, context) {
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">const</span> loadMore <span style="color:#666">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    context.emit(<span style="color:#4070a0">&#34;loadMore&#34;</span>)
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">return</span> {
 </span></span><span style="display:flex;"><span>    loadMore
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="searchvue">search.vue</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">template</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">div</span> <span style="color:#ff79c6">:</span><span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;[&#39;weui-search-bar&#39;, {&#39;weui-search-bar_focusing&#39;:isFocus}]&#34;</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;searchBar&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">form</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;weui-search-bar__form&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>      &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;weui-search-bar__box&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#ff79c6">i</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;weui-icon-search&#34;</span>&gt;&lt;/<span style="color:#ff79c6">i</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#ff79c6">input</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ff79c6">v-model</span><span style="color:#f1fa8c">=&#34;searchValue&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">          ref=&#34;inputElement&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">          type=&#34;search&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">          class=&#34;weui-search-bar__input&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">          id=&#34;searchInput&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">          placeholder=&#34;搜索&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">          required
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        /&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        &lt;a href=&#34;javascript:&#34; class=&#34;weui-icon-clear&#34; id=&#34;searchClear&#34;&gt;&lt;/a&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">      &lt;/div&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">      &lt;label @click=&#34;toggle&#34; class=&#34;weui-search-bar__label&#34; id=&#34;searchText&#34;&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        &lt;i class=&#34;weui-icon-search&#34;&gt;&lt;/i&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">        &lt;span&gt;搜索&lt;/span&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">      &lt;/label&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &lt;/form&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">    &lt;a @click=&#34;toggle&#34; href=&#34;javascript:&#34; class=&#34;weui-search-bar__cancel-btn&#34; id=&#34;searchCancel&#34;</span>&gt;<span style="color:#50fa7b">取消</span>&lt;/<span style="color:#ff79c6">a</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#ff79c6">div</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">template</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">script</span>&gt;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> search from <span style="color:#f1fa8c">&#34;./search.js&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#666">:</span><span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;[&#39;weui-search-bar&#39;, {&#39;weui-search-bar_focusing&#39;:isFocus}]&#34;</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;searchBar&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#062873;font-weight:bold">form</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;weui-search-bar__form&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;weui-search-bar__box&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#062873;font-weight:bold">i</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;weui-icon-search&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">i</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#062873;font-weight:bold">input</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#062873;font-weight:bold">v-model</span><span style="color:#4070a0">=&#34;searchValue&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">          ref=&#34;inputElement&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">          type=&#34;search&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">          class=&#34;weui-search-bar__input&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">          id=&#34;searchInput&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">          placeholder=&#34;搜索&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">          required
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        /&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;a href=&#34;javascript:&#34; class=&#34;weui-icon-clear&#34; id=&#34;searchClear&#34;&gt;&lt;/a&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">      &lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">      &lt;label @click=&#34;toggle&#34; class=&#34;weui-search-bar__label&#34; id=&#34;searchText&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;i class=&#34;weui-icon-search&#34;&gt;&lt;/i&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;span&gt;搜索&lt;/span&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">      &lt;/label&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">    &lt;/form&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">    &lt;a @click=&#34;toggle&#34; href=&#34;javascript:&#34; class=&#34;weui-search-bar__cancel-btn&#34; id=&#34;searchCancel&#34;</span>&gt;<span style="color:#4070a0">取消</span>&lt;/<span style="color:#062873;font-weight:bold">a</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> search from <span style="color:#4070a0">&#34;./search.js&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
 </span></span><span style="display:flex;"><span>  setup(props, context) {
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> {searchValue, isFocus, inputElement,  toggle} <span style="color:#ff79c6">=</span> search(props, context)
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">const</span> {searchValue, isFocus, inputElement,  toggle} <span style="color:#666">=</span> search(props, context)
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> {
 </span></span><span style="display:flex;"><span>      toggle,
 </span></span><span style="display:flex;"><span>      searchValue, 
 </span></span><span style="display:flex;"><span>      isFocus, 
@@ -1324,33 +1324,33 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
 </span></span></code></pre></div><h3 id="searchjs">search.js</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> {reactive, toRefs, watch} from <span style="color:#f1fa8c">&#34;@vue/composition-api&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#8be9fd;font-style:italic">function</span> search(props, context) {
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> search <span style="color:#ff79c6">=</span> reactive({
-</span></span><span style="display:flex;"><span>    searchValue<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;&#34;</span>,
-</span></span><span style="display:flex;"><span>    isFocus<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
-</span></span><span style="display:flex;"><span>    inputElement<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">null</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> {reactive, toRefs, watch} from <span style="color:#4070a0">&#34;@vue/composition-api&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> <span style="color:#007020;font-weight:bold">function</span> search(props, context) {
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">const</span> search <span style="color:#666">=</span> reactive({
+</span></span><span style="display:flex;"><span>    searchValue<span style="color:#666">:</span> <span style="color:#4070a0">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    isFocus<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">false</span>,
+</span></span><span style="display:flex;"><span>    inputElement<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">null</span>
 </span></span><span style="display:flex;"><span>  })
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">const</span> searchRefs <span style="color:#ff79c6">=</span> toRefs(search); <span style="color:#6272a4">// 定义一个新的对象，它本身不具备响应性，但是它的字段全部是ref变量
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  <span style="color:#6272a4">// 切换搜索框状态的方法
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  <span style="color:#ff79c6">const</span> toggle <span style="color:#ff79c6">=</span> () =&gt; {
-</span></span><span style="display:flex;"><span>    search.inputElement.focus() <span style="color:#6272a4">// 让点击搜索后出现的输入框自动聚焦
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    search.isFocus <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">!</span>search.isFocus
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">const</span> searchRefs <span style="color:#666">=</span> toRefs(search); <span style="color:#60a0b0;font-style:italic">// 定义一个新的对象，它本身不具备响应性，但是它的字段全部是ref变量
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#60a0b0;font-style:italic">// 切换搜索框状态的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">const</span> toggle <span style="color:#666">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    search.inputElement.focus() <span style="color:#60a0b0;font-style:italic">// 让点击搜索后出现的输入框自动聚焦
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    search.isFocus <span style="color:#666">=</span> <span style="color:#666">!</span>search.isFocus
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// 监听搜索框的值
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  watch(
+</span></span><span style="display:flex;"><span>  <span style="color:#60a0b0;font-style:italic">// 监听搜索框的值
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  watch(
 </span></span><span style="display:flex;"><span>    () =&gt; {
-</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> search.searchValue
+</span></span><span style="display:flex;"><span>      <span style="color:#007020;font-weight:bold">return</span> search.searchValue
 </span></span><span style="display:flex;"><span>    },
 </span></span><span style="display:flex;"><span>    () =&gt; {
-</span></span><span style="display:flex;"><span>      context.emit(<span style="color:#f1fa8c">&#34;search&#34;</span>, search.searchValue)
+</span></span><span style="display:flex;"><span>      context.emit(<span style="color:#4070a0">&#34;search&#34;</span>, search.searchValue)
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  )
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> {
-</span></span><span style="display:flex;"><span>    ...searchRefs, <span style="color:#6272a4">// 在这里结构toRefs对象才能继续保持响应式
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    toggle
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">return</span> {
+</span></span><span style="display:flex;"><span>    ...searchRefs, <span style="color:#60a0b0;font-style:italic">// 在这里结构toRefs对象才能继续保持响应式
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    toggle
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h1 id="响应式">响应式</h1>
@@ -1361,9 +1361,9 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <p>参数：</p>
 <p>1、props</p>
 <p>响应式的，当传入新的 prop 时，它将被更新</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> {
-</span></span><span style="display:flex;"><span>  props<span style="color:#ff79c6">:</span> {
-</span></span><span style="display:flex;"><span>    title<span style="color:#ff79c6">:</span> <span style="color:#8be9fd;font-style:italic">String</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
+</span></span><span style="display:flex;"><span>  props<span style="color:#666">:</span> {
+</span></span><span style="display:flex;"><span>    title<span style="color:#666">:</span> <span style="color:#007020">String</span>
 </span></span><span style="display:flex;"><span>  },
 </span></span><span style="display:flex;"><span>  setup(props) {
 </span></span><span style="display:flex;"><span>    console.log(props.title)j
@@ -1371,75 +1371,75 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>2、context</p>
 <p>context是一个普通的 JavaScript 对象，它暴露组件的三个 property</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
 </span></span><span style="display:flex;"><span>  setup(props, context) {
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// Attribute (非响应式对象)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    console.log(context.attrs)
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// Attribute (非响应式对象)
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    console.log(context.attrs)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 插槽 (非响应式对象)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    console.log(context.slots)
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 插槽 (非响应式对象)
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    console.log(context.slots)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 触发事件 (方法)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    console.log(context.emit)
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 触发事件 (方法)
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    console.log(context.emit)
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>attrs和slots是有状态的对象，它们总是会随组件本身的更新而更新。这意味着你应该避免对它们进行解构，并始终以 attrs.x或slots.x的方式引用 property。请注意，与props不同，attrs和slots是非响应式的。如果你打算根据attrs或slots更改应用副作用，那么应该在onUpdated生命周期钩子中执行此操作</p>
 <p>setup注册生命周期钩子</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> {onMounted} from <span style="color:#f1fa8c">&#34;@vue/composition-api&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#8be9fd;font-style:italic">function</span> pane(props, context) {
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> {onMounted} from <span style="color:#4070a0">&#34;@vue/composition-api&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> <span style="color:#007020;font-weight:bold">function</span> pane(props, context) {
 </span></span><span style="display:flex;"><span>  onMounted(() =&gt; {
-</span></span><span style="display:flex;"><span>  	<span style="color:#6272a4">// 业务逻辑
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  })
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> {    
+</span></span><span style="display:flex;"><span>  	<span style="color:#60a0b0;font-style:italic">// 业务逻辑
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  })
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">return</span> {    
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>watch响应式更改</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> {watch} from <span style="color:#f1fa8c">&#34;@vue/composition-api&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#8be9fd;font-style:italic">function</span> search(props, context) {
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> {watch} from <span style="color:#4070a0">&#34;@vue/composition-api&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> <span style="color:#007020;font-weight:bold">function</span> search(props, context) {
 </span></span><span style="display:flex;"><span>  watch(
 </span></span><span style="display:flex;"><span>    () =&gt; {
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// 监听的值	
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#ff79c6">return</span> search.searchValue
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">// 监听的值	
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">return</span> search.searchValue
 </span></span><span style="display:flex;"><span>    },
 </span></span><span style="display:flex;"><span>    () =&gt; {
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// 业务逻辑
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      context.emit(<span style="color:#f1fa8c">&#34;search&#34;</span>, search.searchValue)
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">// 业务逻辑
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      context.emit(<span style="color:#4070a0">&#34;search&#34;</span>, search.searchValue)
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  )
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">return</span> {
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>独立的computed属性</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> {computed} from <span style="color:#f1fa8c">&#34;@vue/composition-api&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">export</span> <span style="color:#ff79c6">default</span> <span style="color:#8be9fd;font-style:italic">function</span> search(props, context) {
-</span></span><span style="display:flex;"><span>  newsComputed<span style="color:#ff79c6">:</span> computed(() =&gt; {
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// 业务逻辑
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  })
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> {  
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> {computed} from <span style="color:#4070a0">&#34;@vue/composition-api&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> <span style="color:#007020;font-weight:bold">function</span> search(props, context) {
+</span></span><span style="display:flex;"><span>  newsComputed<span style="color:#666">:</span> computed(() =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">// 业务逻辑
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  })
+</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">return</span> {  
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div></li>
 <li>
 <h2 id="ref">ref</h2>
 <p>创建单个对象的响应对象，取值/赋值时需要使用.value</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> count <span style="color:#ff79c6">=</span> ref(<span style="color:#bd93f9">0</span>)
-</span></span><span style="display:flex;"><span>console.log(count.value) <span style="color:#6272a4">// 0
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>count.value<span style="color:#ff79c6">++</span>
-</span></span><span style="display:flex;"><span>console.log(count.value) <span style="color:#6272a4">// 1
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> count <span style="color:#666">=</span> ref(<span style="color:#40a070">0</span>)
+</span></span><span style="display:flex;"><span>console.log(count.value) <span style="color:#60a0b0;font-style:italic">// 0
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>count.value<span style="color:#666">++</span>
+</span></span><span style="display:flex;"><span>console.log(count.value) <span style="color:#60a0b0;font-style:italic">// 1
 </span></span></span></code></pre></div></li>
 <li>
 <h2 id="torefs">toRefs</h2>
 <p>从组合式函数返回响应式对象</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> state <span style="color:#ff79c6">=</span> reactive({
-</span></span><span style="display:flex;"><span>  foo<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">1</span>,
-</span></span><span style="display:flex;"><span>  bar<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">2</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> state <span style="color:#666">=</span> reactive({
+</span></span><span style="display:flex;"><span>  foo<span style="color:#666">:</span> <span style="color:#40a070">1</span>,
+</span></span><span style="display:flex;"><span>  bar<span style="color:#666">:</span> <span style="color:#40a070">2</span>
 </span></span><span style="display:flex;"><span>})
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> stateAsRefs <span style="color:#ff79c6">=</span> toRefs(state)
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// ref 和原始 property 已经“链接”起来了
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>state.foo<span style="color:#ff79c6">++</span>
-</span></span><span style="display:flex;"><span>console.log(stateAsRefs.foo.value) <span style="color:#6272a4">// 2
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>stateAsRefs.foo.value<span style="color:#ff79c6">++</span>
-</span></span><span style="display:flex;"><span>console.log(state.foo) <span style="color:#6272a4">// 3
+</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> stateAsRefs <span style="color:#666">=</span> toRefs(state)
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// ref 和原始 property 已经“链接”起来了
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>state.foo<span style="color:#666">++</span>
+</span></span><span style="display:flex;"><span>console.log(stateAsRefs.foo.value) <span style="color:#60a0b0;font-style:italic">// 2
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>stateAsRefs.foo.value<span style="color:#666">++</span>
+</span></span><span style="display:flex;"><span>console.log(state.foo) <span style="color:#60a0b0;font-style:italic">// 3
 </span></span></span></code></pre></div></li>
 </ul>
 <h1 id="参考资料">参考资料</h1>

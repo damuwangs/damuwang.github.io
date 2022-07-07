@@ -582,44 +582,44 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <p><img src="/img/Vue2-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%9B%BE%E8%A7%A3.png" alt=""></p>
 <h1 id="代码">代码</h1>
 <h2 id="template">template</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;app&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">&lt;!-- 双向绑定 --&gt;</span>
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">input</span> <span style="color:#50fa7b">type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text&#34;</span> <span style="color:#50fa7b">v-model</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;name&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">div</span>&gt;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;app&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">&lt;!-- 双向绑定 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#062873;font-weight:bold">input</span> <span style="color:#4070a0">type</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;text&#34;</span> <span style="color:#4070a0">v-model</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;name&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
 </span></span></code></pre></div><h2 id="监听属性变化">监听属性变化</h2>
 <p>初始化vue时会传入一个json格式的对象</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> vue <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Vue({
-</span></span><span style="display:flex;"><span>    el<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;#app&#39;</span>,
-</span></span><span style="display:flex;"><span>    data<span style="color:#ff79c6">:</span> {
-</span></span><span style="display:flex;"><span>        name<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;name&#34;</span>,
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">let</span> vue <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Vue({
+</span></span><span style="display:flex;"><span>    el<span style="color:#666">:</span> <span style="color:#4070a0">&#39;#app&#39;</span>,
+</span></span><span style="display:flex;"><span>    data<span style="color:#666">:</span> {
+</span></span><span style="display:flex;"><span>        name<span style="color:#666">:</span> <span style="color:#4070a0">&#34;name&#34;</span>,
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>})
 </span></span></code></pre></div><p>取出该对象并遍历data数据，使用Object.defineProperty()方法来监听每一个属性的变化</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>observe(value){
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>value <span style="color:#ff79c6">||</span> <span style="color:#ff79c6">typeof</span> value <span style="color:#ff79c6">!==</span> <span style="color:#f1fa8c">&#39;object&#39;</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>observe(value){
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">if</span> (<span style="color:#666">!</span>value <span style="color:#666">||</span> <span style="color:#007020;font-weight:bold">typeof</span> value <span style="color:#666">!==</span> <span style="color:#4070a0">&#39;object&#39;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">return</span>
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">//遍历data
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">Object</span>.keys(value).forEach(key =&gt;{
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.defineReactive(value,key,value[key])
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 代理data中的属性到vue实例上
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">this</span>.proxyData(key)
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">//遍历data
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020">Object</span>.keys(value).forEach(key =&gt;{
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.defineReactive(value,key,value[key])
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">// 代理data中的属性到vue实例上
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#007020;font-weight:bold">this</span>.proxyData(key)
 </span></span><span style="display:flex;"><span>    })
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>使用defineReactive，用来定义响应式</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>defineReactive(data, key, value){
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">this</span>.observe(value) <span style="color:#6272a4">//递归解决数据嵌套
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">const</span> dep <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Dep()
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">Object</span>.defineProperty(data, key, {
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>defineReactive(data, key, value){
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">this</span>.observe(value) <span style="color:#60a0b0;font-style:italic">//递归解决数据嵌套
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">const</span> dep <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Dep()
+</span></span><span style="display:flex;"><span>    <span style="color:#007020">Object</span>.defineProperty(data, key, {
 </span></span><span style="display:flex;"><span>        get(){
-</span></span><span style="display:flex;"><span>            Dep.target <span style="color:#ff79c6">&amp;&amp;</span> dep.addDep(Dep.target)
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> value
+</span></span><span style="display:flex;"><span>            Dep.target <span style="color:#666">&amp;&amp;</span> dep.addDep(Dep.target)
+</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">return</span> value
 </span></span><span style="display:flex;"><span>        },
 </span></span><span style="display:flex;"><span>        set(newVal){
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (newVal <span style="color:#ff79c6">==</span> value) {
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">if</span> (newVal <span style="color:#666">==</span> value) {
+</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">return</span>
 </span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>            value <span style="color:#ff79c6">=</span> newVal
+</span></span><span style="display:flex;"><span>            value <span style="color:#666">=</span> newVal
 </span></span><span style="display:flex;"><span>            dep.notify()
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    })
@@ -628,110 +628,110 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 Watcher为Dep的子对象，当Watcher初始化时会将当前Watcher实例放进Dep的静态属性target中，然后再读取当前vue实例的数据，触发Object.defineProperty()的getter
 Object.defineProperty()触发getter时会先判断全局静态属性是否存在，如果存在则添加Watcher依赖
 当数据发生变化时，触发Object.defineProperty()的setter,如果新旧数据没有发生变化则直接return,如果新旧数据发生变化则调用Dep的notify方法循环获取所有依赖进行update</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#6272a4">// Dep 用来管理依赖(Watcher)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">class</span> Dep {
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// Dep 用来管理依赖(Watcher)
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">class</span> Dep {
 </span></span><span style="display:flex;"><span>    constructor(){
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 这里存放若干依赖(Watcher),一个Watcher对应一个key
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">this</span>.deps <span style="color:#ff79c6">=</span> [] 
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">// 这里存放若干依赖(Watcher),一个Watcher对应一个key
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#007020;font-weight:bold">this</span>.deps <span style="color:#666">=</span> [] 
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 添加依赖
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    addDep(dep){
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.deps.push(dep)
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 添加依赖
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    addDep(dep){
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.deps.push(dep)
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 通知所有依赖
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    notify(){
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.deps.forEach(dep =&gt;{dep.update()})
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 通知所有依赖
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    notify(){
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.deps.forEach(dep =&gt;{dep.update()})
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 依赖
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">class</span> Watcher {
+</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 依赖
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">class</span> Watcher {
 </span></span><span style="display:flex;"><span>    constructor(vm, key, callback){
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.vm <span style="color:#ff79c6">=</span> vm
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.key <span style="color:#ff79c6">=</span> key
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.callback <span style="color:#ff79c6">=</span> callback
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.vm <span style="color:#666">=</span> vm
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.key <span style="color:#666">=</span> key
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.callback <span style="color:#666">=</span> callback
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 将当前Watcher实例指定到Dep静态属性target
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        Dep.target <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.vm[<span style="color:#ff79c6">this</span>.key] <span style="color:#6272a4">// 触发getter,添加依赖
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        Dep.target <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">null</span>
-</span></span><span style="display:flex;"><span>        console.log(<span style="color:#f1fa8c">&#39;Watcher&#39;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">// 将当前Watcher实例指定到Dep静态属性target
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        Dep.target <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.vm[<span style="color:#007020;font-weight:bold">this</span>.key] <span style="color:#60a0b0;font-style:italic">// 触发getter,添加依赖
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        Dep.target <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">null</span>
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#4070a0">&#39;Watcher&#39;</span>);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    update(){
-</span></span><span style="display:flex;"><span>        console.log(<span style="color:#f1fa8c">&#39;属性更新了&#39;</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.callback.call(<span style="color:#ff79c6">this</span>.vm, <span style="color:#ff79c6">this</span>.vm[<span style="color:#ff79c6">this</span>.key])
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#4070a0">&#39;属性更新了&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.callback.call(<span style="color:#007020;font-weight:bold">this</span>.vm, <span style="color:#007020;font-weight:bold">this</span>.vm[<span style="color:#007020;font-weight:bold">this</span>.key])
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="解析指令">解析指令</h2>
 <p>在数据相应话之后会进行模板的解析，传入当前页面元素和vue实例。首先将元素转化成fragment</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#6272a4">// 取出宿主元素将其转换成fragment编译后统一进行dom挂载,这样做比较高效
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>node2Fragment(el){
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// fragment详细解释查看参考资料
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">const</span> frag <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.createDocumentFragment()
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">//将el中所有子元素搬家至frag中
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">let</span> child
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">//每次拿出el里面的首个元素赋值给child,然后把child放进frag
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">while</span> (child <span style="color:#ff79c6">=</span> el.firstChild) {
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 取出宿主元素将其转换成fragment编译后统一进行dom挂载,这样做比较高效
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>node2Fragment(el){
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// fragment详细解释查看参考资料
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">const</span> frag <span style="color:#666">=</span> <span style="color:#007020">document</span>.createDocumentFragment()
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">//将el中所有子元素搬家至frag中
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">let</span> child
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">//每次拿出el里面的首个元素赋值给child,然后把child放进frag
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">while</span> (child <span style="color:#666">=</span> el.firstChild) {
 </span></span><span style="display:flex;"><span>        frag.appendChild(child)
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> frag
+</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> frag
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>解析指令</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>compile(el){
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">//获取元素子节点
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">const</span> childNodes <span style="color:#ff79c6">=</span> el.childNodes 
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 将结果转换成数组进行遍历
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">Array</span>.from(childNodes).forEach(node =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">//类型判断（nodeType详细解析查看参考资料）
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (node.nodeType <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">1</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 元素
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#6272a4">// 查找k-, @, :
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#ff79c6">const</span> nodeAttrs <span style="color:#ff79c6">=</span> node.attributes <span style="color:#6272a4">//拿出节点所有属性
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>            <span style="color:#8be9fd;font-style:italic">Array</span>.from(nodeAttrs).forEach(attr =&gt; {
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">const</span> attrName <span style="color:#ff79c6">=</span> attr.name <span style="color:#6272a4">// 属性名：v-model
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                <span style="color:#ff79c6">const</span> attrValue <span style="color:#ff79c6">=</span> attr.value <span style="color:#6272a4">// 属性值：name
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                <span style="color:#ff79c6">if</span> (attrName.indexOf(<span style="color:#f1fa8c">&#39;v-&#39;</span>) <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>) {
-</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">//如果是指令则截取掉前缀v-
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                    <span style="color:#ff79c6">const</span> dir <span style="color:#ff79c6">=</span> attrName.substring(<span style="color:#bd93f9">2</span>)
-</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// 执行指令
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                    <span style="color:#6272a4">// this[dir] = this.model()
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>                    <span style="color:#ff79c6">this</span>[dir] <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#ff79c6">this</span>[dir](node, <span style="color:#ff79c6">this</span>.vm, attrValue)
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>compile(el){
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">//获取元素子节点
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">const</span> childNodes <span style="color:#666">=</span> el.childNodes 
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 将结果转换成数组进行遍历
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020">Array</span>.from(childNodes).forEach(node =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">//类型判断（nodeType详细解析查看参考资料）
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#007020;font-weight:bold">if</span> (node.nodeType <span style="color:#666">===</span> <span style="color:#40a070">1</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#60a0b0;font-style:italic">// 元素
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>            <span style="color:#60a0b0;font-style:italic">// 查找k-, @, :
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>            <span style="color:#007020;font-weight:bold">const</span> nodeAttrs <span style="color:#666">=</span> node.attributes <span style="color:#60a0b0;font-style:italic">//拿出节点所有属性
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>            <span style="color:#007020">Array</span>.from(nodeAttrs).forEach(attr =&gt; {
+</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">const</span> attrName <span style="color:#666">=</span> attr.name <span style="color:#60a0b0;font-style:italic">// 属性名：v-model
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>                <span style="color:#007020;font-weight:bold">const</span> attrValue <span style="color:#666">=</span> attr.value <span style="color:#60a0b0;font-style:italic">// 属性值：name
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>                <span style="color:#007020;font-weight:bold">if</span> (attrName.indexOf(<span style="color:#4070a0">&#39;v-&#39;</span>) <span style="color:#666">==</span> <span style="color:#40a070">0</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#60a0b0;font-style:italic">//如果是指令则截取掉前缀v-
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>                    <span style="color:#007020;font-weight:bold">const</span> dir <span style="color:#666">=</span> attrName.substring(<span style="color:#40a070">2</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#60a0b0;font-style:italic">// 执行指令
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>                    <span style="color:#60a0b0;font-style:italic">// this[dir] = this.model()
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>                    <span style="color:#007020;font-weight:bold">this</span>[dir] <span style="color:#666">&amp;&amp;</span> <span style="color:#007020;font-weight:bold">this</span>[dir](node, <span style="color:#007020;font-weight:bold">this</span>.vm, attrValue)
 </span></span><span style="display:flex;"><span>                }              
 </span></span><span style="display:flex;"><span>            })
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">//递归子节点
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span> (node.childNodes <span style="color:#ff79c6">&amp;&amp;</span> node.childNodes.length <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>.compile(node)
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">//递归子节点
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#007020;font-weight:bold">if</span> (node.childNodes <span style="color:#666">&amp;&amp;</span> node.childNodes.length <span style="color:#666">&gt;</span> <span style="color:#40a070">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.compile(node)
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    })
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>绑定视图</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>model(node, vm, attrValue){
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">this</span>.update(node, vm, attrValue, <span style="color:#f1fa8c">&#39;model&#39;</span>) 
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 视图对模型的响应
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    node.addEventListener(<span style="color:#f1fa8c">&#39;input&#39;</span>,e =&gt; {
-</span></span><span style="display:flex;"><span>        vm[attrValue] <span style="color:#ff79c6">=</span> e.target.value
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>model(node, vm, attrValue){
+</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">this</span>.update(node, vm, attrValue, <span style="color:#4070a0">&#39;model&#39;</span>) 
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 视图对模型的响应
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    node.addEventListener(<span style="color:#4070a0">&#39;input&#39;</span>,e =&gt; {
+</span></span><span style="display:flex;"><span>        vm[attrValue] <span style="color:#666">=</span> e.target.value
 </span></span><span style="display:flex;"><span>    })
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>通过wctaher监听数据变化更新视图</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#6272a4">// 参数：节点、vue实例、指令值(name)、指令类型(model)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>update(node, vm, attrValue, dir){
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 根据指令名称+Updater拼接要执行的修改方法(类似java的反射)
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// updateFn = modelUpdater
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">const</span> updateFn <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">this</span>[dir<span style="color:#ff79c6">+</span><span style="color:#f1fa8c">&#39;Updater&#39;</span>]
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 第一次更新
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    updateFn <span style="color:#ff79c6">&amp;&amp;</span> updateFn(node, vm[attrValue])
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 依赖收集
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#ff79c6">new</span> Watcher(vm, attrValue, <span style="color:#8be9fd;font-style:italic">function</span>(value){
-</span></span><span style="display:flex;"><span>        updateFn <span style="color:#ff79c6">&amp;&amp;</span> updateFn(node, value)
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 参数：节点、vue实例、指令值(name)、指令类型(model)
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>update(node, vm, attrValue, dir){
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 根据指令名称+Updater拼接要执行的修改方法(类似java的反射)
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// updateFn = modelUpdater
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">const</span> updateFn <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>[dir<span style="color:#666">+</span><span style="color:#4070a0">&#39;Updater&#39;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 第一次更新
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    updateFn <span style="color:#666">&amp;&amp;</span> updateFn(node, vm[attrValue])
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 依赖收集
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">new</span> Watcher(vm, attrValue, <span style="color:#007020;font-weight:bold">function</span>(value){
+</span></span><span style="display:flex;"><span>        updateFn <span style="color:#666">&amp;&amp;</span> updateFn(node, value)
 </span></span><span style="display:flex;"><span>    })
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>绑定新数据刷新视图</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>modelUpdater(node, value){
-</span></span><span style="display:flex;"><span>    node.value <span style="color:#ff79c6">=</span> value
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>modelUpdater(node, value){
+</span></span><span style="display:flex;"><span>    node.value <span style="color:#666">=</span> value
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h1 id="参考资料">参考资料</h1>
 <blockquote>

@@ -788,103 +788,103 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <ul>
 <li>
 <h3 id="非立即执行版">非立即执行版</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;!DOCTYPE html&gt;</span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">html</span> <span style="color:#50fa7b">lang</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;en&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">head</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">charset</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;UTF-8&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;viewport&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">http-equiv</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;X-UA-Compatible&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ie=edge&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">title</span>&gt;防抖&lt;/<span style="color:#ff79c6">title</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">head</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">body</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">button</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;debounce&#34;</span>&gt;点我防抖！&lt;/<span style="color:#ff79c6">button</span>&gt;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#007020">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">html</span> <span style="color:#4070a0">lang</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">head</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">meta</span> <span style="color:#4070a0">charset</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">meta</span> <span style="color:#4070a0">name</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;viewport&#34;</span> <span style="color:#4070a0">content</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">meta</span> <span style="color:#4070a0">http-equiv</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;X-UA-Compatible&#34;</span> <span style="color:#4070a0">content</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;ie=edge&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">title</span>&gt;防抖&lt;/<span style="color:#062873;font-weight:bold">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">body</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">button</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;debounce&#34;</span>&gt;点我防抖！&lt;/<span style="color:#062873;font-weight:bold">button</span>&gt;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">script</span>&gt;
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">window</span>.onload <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>() {
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// 1、获取这个按钮，并绑定事件
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#8be9fd;font-style:italic">var</span> myDebounce <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.getElementById(<span style="color:#f1fa8c">&#34;debounce&#34;</span>);
-</span></span><span style="display:flex;"><span>      myDebounce.addEventListener(<span style="color:#f1fa8c">&#34;click&#34;</span>, debounce(sayDebounce));
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#007020">window</span>.onload <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">// 1、获取这个按钮，并绑定事件
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">var</span> myDebounce <span style="color:#666">=</span> <span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;debounce&#34;</span>);
+</span></span><span style="display:flex;"><span>      myDebounce.addEventListener(<span style="color:#4070a0">&#34;click&#34;</span>, debounce(sayDebounce));
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 2、防抖功能函数，接受传参
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">function</span> debounce(fn) {
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// 4、创建一个标记用来存放定时器的返回值
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#8be9fd;font-style:italic">let</span> timeout <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">null</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">function</span>() {
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 5、每次当用户点击/输入的时候，把前一个定时器清除
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        clearTimeout(timeout);
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 6、然后创建一个新的 setTimeout，
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// 这样就能保证点击按钮后的 interval 间隔内
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// 如果用户还点击了的话，就不会执行 fn 函数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        timeout <span style="color:#ff79c6">=</span> setTimeout(() =&gt; {
-</span></span><span style="display:flex;"><span>          fn.call(<span style="color:#ff79c6">this</span>, arguments);
-</span></span><span style="display:flex;"><span>        }, <span style="color:#bd93f9">1000</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 2、防抖功能函数，接受传参
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">function</span> debounce(fn) {
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">// 4、创建一个标记用来存放定时器的返回值
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">let</span> timeout <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">null</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">// 5、每次当用户点击/输入的时候，把前一个定时器清除
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        clearTimeout(timeout);
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">// 6、然后创建一个新的 setTimeout，
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#60a0b0;font-style:italic">// 这样就能保证点击按钮后的 interval 间隔内
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#60a0b0;font-style:italic">// 如果用户还点击了的话，就不会执行 fn 函数
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        timeout <span style="color:#666">=</span> setTimeout(() =&gt; {
+</span></span><span style="display:flex;"><span>          fn.call(<span style="color:#007020;font-weight:bold">this</span>, arguments);
+</span></span><span style="display:flex;"><span>        }, <span style="color:#40a070">1000</span>);
 </span></span><span style="display:flex;"><span>      };
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 3、需要进行防抖的事件处理
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">function</span> sayDebounce() {
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// ... 有些需要防抖的工作，在这里执行
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      console.log(<span style="color:#f1fa8c">&#34;防抖成功！&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 3、需要进行防抖的事件处理
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">function</span> sayDebounce() {
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">// ... 有些需要防抖的工作，在这里执行
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      console.log(<span style="color:#4070a0">&#34;防抖成功！&#34;</span>);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#ff79c6">script</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">body</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">html</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">html</span>&gt;
 </span></span></code></pre></div><p>创建一个定时器，如果在规定时间内重复触发该事件，就会调用clearTimeout清除掉上一个定时器，重置定时器</p>
 <p>也就是说，这件事本来就是需要等待的，并非立即执行的，如果用户反复点击，那只好重新等待了</p>
 </li>
 <li>
 <h3 id="立即执行版">立即执行版</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;!DOCTYPE html&gt;</span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">html</span> <span style="color:#50fa7b">lang</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;en&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">head</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">charset</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;UTF-8&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;viewport&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">http-equiv</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;X-UA-Compatible&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ie=edge&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">title</span>&gt;防抖&lt;/<span style="color:#ff79c6">title</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">head</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">body</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">button</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;debounce&#34;</span>&gt;点我防抖！&lt;/<span style="color:#ff79c6">button</span>&gt;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#007020">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">html</span> <span style="color:#4070a0">lang</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">head</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">meta</span> <span style="color:#4070a0">charset</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">meta</span> <span style="color:#4070a0">name</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;viewport&#34;</span> <span style="color:#4070a0">content</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">meta</span> <span style="color:#4070a0">http-equiv</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;X-UA-Compatible&#34;</span> <span style="color:#4070a0">content</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;ie=edge&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">title</span>&gt;防抖&lt;/<span style="color:#062873;font-weight:bold">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">body</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">button</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;debounce&#34;</span>&gt;点我防抖！&lt;/<span style="color:#062873;font-weight:bold">button</span>&gt;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">script</span>&gt;
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">window</span>.onload <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>() {
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// 1、获取这个按钮，并绑定事件
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#8be9fd;font-style:italic">var</span> myDebounce <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.getElementById(<span style="color:#f1fa8c">&#34;debounce&#34;</span>);
-</span></span><span style="display:flex;"><span>      myDebounce.addEventListener(<span style="color:#f1fa8c">&#34;click&#34;</span>, debounce(sayDebounce));
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#007020">window</span>.onload <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">// 1、获取这个按钮，并绑定事件
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">var</span> myDebounce <span style="color:#666">=</span> <span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;debounce&#34;</span>);
+</span></span><span style="display:flex;"><span>      myDebounce.addEventListener(<span style="color:#4070a0">&#34;click&#34;</span>, debounce(sayDebounce));
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 2、防抖功能函数，接受传参
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">function</span> debounce(fn) {
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// 4、创建一个标记用来存放定时器的返回值
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#8be9fd;font-style:italic">let</span> timeout <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">null</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">//5.创建一个判断是否可点击值
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#8be9fd;font-style:italic">let</span> doit <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">function</span>() {
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 5、当doit为真，既用户重复点击时，清除定时器
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span>(doit)clearTimeout(timeout);
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">//6.当doit为false时，既用户可点击，再将doit设为true，防止用户重复点击
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">else</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 2、防抖功能函数，接受传参
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">function</span> debounce(fn) {
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">// 4、创建一个标记用来存放定时器的返回值
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">let</span> timeout <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">null</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">//5.创建一个判断是否可点击值
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">let</span> doit <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">// 5、当doit为真，既用户重复点击时，清除定时器
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#007020;font-weight:bold">if</span>(doit)clearTimeout(timeout);
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">//6.当doit为false时，既用户可点击，再将doit设为true，防止用户重复点击
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#007020;font-weight:bold">else</span>{
 </span></span><span style="display:flex;"><span>            fn();
-</span></span><span style="display:flex;"><span>            doit <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>            doit <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span>;
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">//7.设置定时器，这样就能保证点击按钮后的 interval 间隔内
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#6272a4">// 如果用户还点击了的话，就不会执行 将doit设为false函数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        timeout <span style="color:#ff79c6">=</span> setTimeout(() =&gt; {
-</span></span><span style="display:flex;"><span>          doit <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
-</span></span><span style="display:flex;"><span>        }, <span style="color:#bd93f9">1000</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">//7.设置定时器，这样就能保证点击按钮后的 interval 间隔内
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#60a0b0;font-style:italic">// 如果用户还点击了的话，就不会执行 将doit设为false函数
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        timeout <span style="color:#666">=</span> setTimeout(() =&gt; {
+</span></span><span style="display:flex;"><span>          doit <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>        }, <span style="color:#40a070">1000</span>);
 </span></span><span style="display:flex;"><span>      };
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 3、需要进行防抖的事件处理
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">function</span> sayDebounce() {
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// ... 有些需要防抖的工作，在这里执行
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      console.log(<span style="color:#f1fa8c">&#34;防抖成功！&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 3、需要进行防抖的事件处理
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">function</span> sayDebounce() {
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">// ... 有些需要防抖的工作，在这里执行
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      console.log(<span style="color:#4070a0">&#34;防抖成功！&#34;</span>);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#ff79c6">script</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">body</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">html</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">html</span>&gt;
 </span></span></code></pre></div></li>
 </ul>
 <h1 id="节流">节流</h1>
@@ -898,53 +898,53 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <li>监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断；</li>
 </ul>
 <h2 id="实例-1">实例</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;!DOCTYPE html&gt;</span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">html</span> <span style="color:#50fa7b">lang</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;en&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">head</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">charset</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;UTF-8&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;viewport&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">http-equiv</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;X-UA-Compatible&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;ie=edge&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">title</span>&gt;节流&lt;/<span style="color:#ff79c6">title</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">head</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">body</span>&gt;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#007020">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">html</span> <span style="color:#4070a0">lang</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">head</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">meta</span> <span style="color:#4070a0">charset</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">meta</span> <span style="color:#4070a0">name</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;viewport&#34;</span> <span style="color:#4070a0">content</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">meta</span> <span style="color:#4070a0">http-equiv</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;X-UA-Compatible&#34;</span> <span style="color:#4070a0">content</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;ie=edge&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">title</span>&gt;节流&lt;/<span style="color:#062873;font-weight:bold">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">body</span>&gt;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">button</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;throttle&#34;</span>&gt;点我节流！&lt;/<span style="color:#ff79c6">button</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">button</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;throttle&#34;</span>&gt;点我节流！&lt;/<span style="color:#062873;font-weight:bold">button</span>&gt;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#ff79c6">script</span>&gt;
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">window</span>.onload <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">function</span>() {
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// 1、获取按钮，绑定点击事件
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#8be9fd;font-style:italic">var</span> myThrottle <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">document</span>.getElementById(<span style="color:#f1fa8c">&#34;throttle&#34;</span>);
-</span></span><span style="display:flex;"><span>      myThrottle.addEventListener(<span style="color:#f1fa8c">&#34;click&#34;</span>, throttle(sayThrottle));
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#007020">window</span>.onload <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">// 1、获取按钮，绑定点击事件
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">var</span> myThrottle <span style="color:#666">=</span> <span style="color:#007020">document</span>.getElementById(<span style="color:#4070a0">&#34;throttle&#34;</span>);
+</span></span><span style="display:flex;"><span>      myThrottle.addEventListener(<span style="color:#4070a0">&#34;click&#34;</span>, throttle(sayThrottle));
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 2、节流函数体
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">function</span> throttle(fn) {
-</span></span><span style="display:flex;"><span>      <span style="color:#6272a4">// 4、通过闭包保存一个标记
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>      <span style="color:#8be9fd;font-style:italic">let</span> canRun <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span> <span style="color:#8be9fd;font-style:italic">function</span>() {
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 5、在函数开头判断标志是否为 true，不为 true 则中断函数
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">if</span>(<span style="color:#ff79c6">!</span>canRun) {
-</span></span><span style="display:flex;"><span>          <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 2、节流函数体
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">function</span> throttle(fn) {
+</span></span><span style="display:flex;"><span>      <span style="color:#60a0b0;font-style:italic">// 4、通过闭包保存一个标记
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      <span style="color:#007020;font-weight:bold">let</span> canRun <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">// 5、在函数开头判断标志是否为 true，不为 true 则中断函数
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#007020;font-weight:bold">if</span>(<span style="color:#666">!</span>canRun) {
+</span></span><span style="display:flex;"><span>          <span style="color:#007020;font-weight:bold">return</span>;
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 6、将 canRun 设置为 false，防止执行之前再被执行
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        canRun <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 7、定时器
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        setTimeout( () =&gt; {
-</span></span><span style="display:flex;"><span>          fn.call(<span style="color:#ff79c6">this</span>, arguments);
-</span></span><span style="display:flex;"><span>          <span style="color:#6272a4">// 8、执行完事件（比如调用完接口）之后，重新将这个标志设置为 true
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>          canRun <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
-</span></span><span style="display:flex;"><span>        }, <span style="color:#bd93f9">1000</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">// 6、将 canRun 设置为 false，防止执行之前再被执行
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        canRun <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">// 7、定时器
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        setTimeout( () =&gt; {
+</span></span><span style="display:flex;"><span>          fn.call(<span style="color:#007020;font-weight:bold">this</span>, arguments);
+</span></span><span style="display:flex;"><span>          <span style="color:#60a0b0;font-style:italic">// 8、执行完事件（比如调用完接口）之后，重新将这个标志设置为 true
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>          canRun <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span>;
+</span></span><span style="display:flex;"><span>        }, <span style="color:#40a070">1000</span>);
 </span></span><span style="display:flex;"><span>      };
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 3、需要节流的事件
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#8be9fd;font-style:italic">function</span> sayThrottle() {
-</span></span><span style="display:flex;"><span>      console.log(<span style="color:#f1fa8c">&#34;节流成功！&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 3、需要节流的事件
+</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">function</span> sayThrottle() {
+</span></span><span style="display:flex;"><span>      console.log(<span style="color:#4070a0">&#34;节流成功！&#34;</span>);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#ff79c6">script</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">body</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">html</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">html</span>&gt;
 </span></span></code></pre></div><p>从这个例子可以看出，节流可以防止在某时间间隔内重复发送请求！其和防抖有点相似，但其有本质的区别，虽然都是防止重复触发事件！</p>
 <p><strong>防抖是需要等待多久时间才能再触发一次事件！</strong></p>
 <p><strong>节流是多久时间内只能触发一次事件！</strong></p>
