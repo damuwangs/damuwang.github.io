@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工程化 on DaMuWang</title>
+    <link>https://damuwangs.github.io/categories/%E5%B7%A5%E7%A8%8B%E5%8C%96/</link>
+    <description>Recent content in 工程化 on DaMuWang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://damuwangs.github.io/categories/%E5%B7%A5%E7%A8%8B%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Webpack4-基础与配置</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/webpack4-%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 21 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/webpack4-%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%85%8D%E7%BD%AE/</guid>
+      <description>概念 安装与配置 插件 权限实现 用户登录成功时会调用GetMenuInfo，获取当前登录账户的所有权限，并将权限放入全局状态和缓存
+/** * @description: 查询当前登录用户权限数据 * @param {object} data 登录返回token * @return {promise} */ GetMenuInfo: ({ commit }, data) =&amp;gt; { return new Promise((resolve, reject) =&amp;gt; { let subData = { &amp;#39;tk&amp;#39;: data.v.token } // 请求服务端返回当前登录用户的权限数据 base.getMenuInfo(subData).then(response =&amp;gt; { // 保存system到state中 commit(&amp;#39;SET_SYSTEMS&amp;#39;, response.data.v.SystemList) storage.setLocalStorage(&amp;#39;SYSTEMS&amp;#39;, response.data.v.SystemList) // 保存menu到state中 commit(&amp;#39;SET_MENUS&amp;#39;, response.data.v.MenuList) storage.setLocalStorage(&amp;#39;MENUS&amp;#39;, response.data.v.MenuList) // 保存function到state中 commit(&amp;#39;SET_FUNCTIONS&amp;#39;, response.data.v.FunctionList) storage.setLocalStorage(&amp;#39;FUNCTIONS&amp;#39;, response.data.v.FunctionList) resolve() }).catch(error =&amp;gt; { reject(error) }) }) 退出时会清空所有全局状态和缓存
+菜单权限 系统左侧菜单用的element_ui的menu导航</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -821,15 +821,15 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <li>栈空</li>
 </ul>
 <p>看一段代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#ff79c6">const</span> bar <span style="color:#ff79c6">=</span> () =&gt; console.log(<span style="color:#f1fa8c">&#39;bar&#39;</span>)
-<span style="color:#ff79c6">const</span> baz <span style="color:#ff79c6">=</span> () =&gt; console.log(<span style="color:#f1fa8c">&#39;baz&#39;</span>)
-<span style="color:#ff79c6">const</span> foo <span style="color:#ff79c6">=</span> () =&gt; {
-	console.log(<span style="color:#f1fa8c">&#39;foo&#39;</span>)
-	bar()
-	baz()
-}
-foo()
-</code></pre></div><p>这段代码在 调用栈中的运行顺序如下图：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#ff79c6">const</span> bar <span style="color:#ff79c6">=</span> () =&gt; console.log(<span style="color:#f1fa8c">&#39;bar&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> baz <span style="color:#ff79c6">=</span> () =&gt; console.log(<span style="color:#f1fa8c">&#39;baz&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> foo <span style="color:#ff79c6">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>	console.log(<span style="color:#f1fa8c">&#39;foo&#39;</span>)
+</span></span><span style="display:flex;"><span>	bar()
+</span></span><span style="display:flex;"><span>	baz()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>foo()
+</span></span></code></pre></div><p>这段代码在 调用栈中的运行顺序如下图：</p>
 <p><img src="/img/JavaScript-EventLoop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/%E8%B0%83%E7%94%A8%E6%A0%88.png" alt=""></p>
 <p>上面我们讨论的其实都是同步代码，代码在运行的时候只用 调用栈 解释就可以了</p>
 <p>那么，假如我们发起了一个网络请求(request)，或者设置了一个定时器延时(setTimeout)，一段时间后的代码（回调函数）肯定不是直接被加到调用栈吧？</p>
@@ -867,23 +867,23 @@ foo()
 <p>微任务：原生Promise(有些实现的promise将then方法放到了宏任务中)、process.nextTick、Object.observe(已废弃)、 MutationObserver 记住就行了</p>
 <h2 id="settimeout">setTimeout</h2>
 <p>我们经常这么实现延时3秒执行</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setTimeout(() =&gt; {
-    console.log(<span style="color:#f1fa8c">&#39;延时3秒&#39;</span>)
-},<span style="color:#bd93f9">3000</span>)
-</code></pre></div><p>渐渐的setTimeout用的地方多了，问题也出现了，有时候明明写的延时3秒，实际却5，6秒才执行函数</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setTimeout(() =&gt; {
-    task()
-},<span style="color:#bd93f9">3000</span>)
-console.log(<span style="color:#f1fa8c">&#39;执行console&#39;</span>)
-</code></pre></div><p>根据前面我们的结论，setTimeout是异步的，应该先执行console.log这个同步任务，所以我们的结论是：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">// 执行console
-// task()
-</code></pre></div><p>去验证一下，结果正确！ 然后我们修改一下前面的代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setTimeout(() =&gt; {
-    task()
-},<span style="color:#bd93f9">3000</span>)
-sleep(<span style="color:#bd93f9">10000000</span>)
-</code></pre></div><p>乍一看其实差不多，但我们把这段代码在chrome执行一下，却发现控制台执行task()需要的时间远远超过3秒，说好的延时三秒，为啥现在需要这么长时间啊？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>setTimeout(() =&gt; {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;延时3秒&#39;</span>)
+</span></span><span style="display:flex;"><span>},<span style="color:#bd93f9">3000</span>)
+</span></span></code></pre></div><p>渐渐的setTimeout用的地方多了，问题也出现了，有时候明明写的延时3秒，实际却5，6秒才执行函数</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>setTimeout(() =&gt; {
+</span></span><span style="display:flex;"><span>    task()
+</span></span><span style="display:flex;"><span>},<span style="color:#bd93f9">3000</span>)
+</span></span><span style="display:flex;"><span>console.log(<span style="color:#f1fa8c">&#39;执行console&#39;</span>)
+</span></span></code></pre></div><p>根据前面我们的结论，setTimeout是异步的，应该先执行console.log这个同步任务，所以我们的结论是：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>// 执行console
+</span></span><span style="display:flex;"><span>// task()
+</span></span></code></pre></div><p>去验证一下，结果正确！ 然后我们修改一下前面的代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>setTimeout(() =&gt; {
+</span></span><span style="display:flex;"><span>    task()
+</span></span><span style="display:flex;"><span>},<span style="color:#bd93f9">3000</span>)
+</span></span><span style="display:flex;"><span>sleep(<span style="color:#bd93f9">10000000</span>)
+</span></span></code></pre></div><p>乍一看其实差不多，但我们把这段代码在chrome执行一下，却发现控制台执行task()需要的时间远远超过3秒，说好的延时三秒，为啥现在需要这么长时间啊？</p>
 <p>这时候我们需要重新理解setTimeout的定义。我们先说上述代码是怎么执行的：</p>
 <ul>
 <li>task()进入Event Table并注册,计时开始</li>
@@ -894,21 +894,21 @@ sleep(<span style="color:#bd93f9">10000000</span>)
 <p>上述的流程走完，我们知道setTimeout这个函数，是经过指定时间后，把要执行的任务(本例中为task())加入到Event Queue中，又因为是单线程任务要一个一个执行，如果前面的任务需要的时间太久，那么只能等着，导致真正的延迟时间远大于3秒</p>
 <hr>
 <p>我们还经常遇到setTimeout(fn,0)这样的代码，0秒后执行又是什么意思呢？是不是可以立即执行呢？ 答案是不会的，setTimeout(fn,0)的含义是，指定某个任务在主线程最早可得的空闲时间执行，意思就是不用再等多少秒了，只要主线程执行栈内的同步任务全部执行完成，栈为空就马上执行。举例说明：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#6272a4">//代码1
-</span><span style="color:#6272a4"></span>console.log(<span style="color:#f1fa8c">&#39;先执行这里&#39;</span>)
-setTimeout(() =&gt; {
-    console.log(<span style="color:#f1fa8c">&#39;执行啦&#39;</span>)
-},<span style="color:#bd93f9">0</span>)
-<span style="color:#6272a4">//代码2
-</span><span style="color:#6272a4"></span>console.log(<span style="color:#f1fa8c">&#39;先执行这里&#39;</span>)
-setTimeout(() =&gt; {
-    console.log(<span style="color:#f1fa8c">&#39;执行啦&#39;</span>)
-},<span style="color:#bd93f9">3000</span>)
-</code></pre></div><p>代码1的输出结果是：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">先执行这里
-执行啦
-</code></pre></div><p>代码2的输出结果是：</p>
-<pre><code>//先执行这里
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#6272a4">//代码1
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>console.log(<span style="color:#f1fa8c">&#39;先执行这里&#39;</span>)
+</span></span><span style="display:flex;"><span>setTimeout(() =&gt; {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;执行啦&#39;</span>)
+</span></span><span style="display:flex;"><span>},<span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">//代码2
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>console.log(<span style="color:#f1fa8c">&#39;先执行这里&#39;</span>)
+</span></span><span style="display:flex;"><span>setTimeout(() =&gt; {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;执行啦&#39;</span>)
+</span></span><span style="display:flex;"><span>},<span style="color:#bd93f9">3000</span>)
+</span></span></code></pre></div><p>代码1的输出结果是：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>先执行这里
+</span></span><span style="display:flex;"><span>执行啦
+</span></span></code></pre></div><p>代码2的输出结果是：</p>
+<pre tabindex="0"><code>//先执行这里
 // ... 3s later
 // 执行啦
 </code></pre><p>关于setTimeout要补充的是，即便主线程为空，0毫秒实际上也是达不到的。根据HTML的标准，最低是4毫秒</p>
@@ -918,43 +918,43 @@ setTimeout(() =&gt; {
 <h2 id="promise与processnexttick">Promise与process.nextTick</h2>
 <ul>
 <li>Promise的定义和功能本文不再赘述，可以学习一下 <a href="https://link.juejin.cn/?target=http%3A%2F%2Fes6.ruanyifeng.com%2F%23docs%2Fpromise">阮一峰老师的Promise</a></li>
-<li>而process.nextTick(callback)类似node.js版的&quot;setTimeout&rdquo;，在事件循环的下一次循环中调用 callback 回调函数</li>
+<li>而process.nextTick(callback)类似node.js版的&quot;setTimeout&quot;，在事件循环的下一次循环中调用 callback 回调函数</li>
 </ul>
 <p>不同类型的任务会进入对应的Event Queue，比如<code>setTimeout</code>和<code>setInterval</code>会进入相同的Event Queue</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setTimeout(()=&gt;{
-  console.log(<span style="color:#f1fa8c">&#39;setTimeout1&#39;</span>)
-},<span style="color:#bd93f9">0</span>)
-<span style="color:#8be9fd;font-style:italic">let</span> p <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve,reject)=&gt;{
-  console.log(<span style="color:#f1fa8c">&#39;Promise1&#39;</span>)
-  resolve()
-})
-p.then(()=&gt;{
-  console.log(<span style="color:#f1fa8c">&#39;Promise2&#39;</span>)    
-})
-</code></pre></div><p>执行结果：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">Promise1
-Promise2
-setTimeout1
-</code></pre></div><p>Promise参数中的Promise1是同步执行的 其次是因为Promise是microtasks，会在同步任务执行完后会去清空microtasks queues， 最后清空完微任务再去宏任务队列取值</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">Promise</span>.resolve().then(()=&gt;{
-  console.log(<span style="color:#f1fa8c">&#39;Promise1&#39;</span>)  
-  setTimeout(()=&gt;{
-    console.log(<span style="color:#f1fa8c">&#39;setTimeout2&#39;</span>)
-  },<span style="color:#bd93f9">0</span>)
-})
-
-setTimeout(()=&gt;{
-  console.log(<span style="color:#f1fa8c">&#39;setTimeout1&#39;</span>)
-  <span style="color:#8be9fd;font-style:italic">Promise</span>.resolve().then(()=&gt;{
-    console.log(<span style="color:#f1fa8c">&#39;Promise2&#39;</span>)    
-  })
-},<span style="color:#bd93f9">0</span>)
-</code></pre></div><p>执行结果：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">Promise1
-setTimeout1
-Promise2
-setTimeout2
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>setTimeout(()=&gt;{
+</span></span><span style="display:flex;"><span>  console.log(<span style="color:#f1fa8c">&#39;setTimeout1&#39;</span>)
+</span></span><span style="display:flex;"><span>},<span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> p <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>((resolve,reject)=&gt;{
+</span></span><span style="display:flex;"><span>  console.log(<span style="color:#f1fa8c">&#39;Promise1&#39;</span>)
+</span></span><span style="display:flex;"><span>  resolve()
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>p.then(()=&gt;{
+</span></span><span style="display:flex;"><span>  console.log(<span style="color:#f1fa8c">&#39;Promise2&#39;</span>)    
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>执行结果：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>Promise1
+</span></span><span style="display:flex;"><span>Promise2
+</span></span><span style="display:flex;"><span>setTimeout1
+</span></span></code></pre></div><p>Promise参数中的Promise1是同步执行的 其次是因为Promise是microtasks，会在同步任务执行完后会去清空microtasks queues， 最后清空完微任务再去宏任务队列取值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">Promise</span>.resolve().then(()=&gt;{
+</span></span><span style="display:flex;"><span>  console.log(<span style="color:#f1fa8c">&#39;Promise1&#39;</span>)  
+</span></span><span style="display:flex;"><span>  setTimeout(()=&gt;{
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;setTimeout2&#39;</span>)
+</span></span><span style="display:flex;"><span>  },<span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>setTimeout(()=&gt;{
+</span></span><span style="display:flex;"><span>  console.log(<span style="color:#f1fa8c">&#39;setTimeout1&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">Promise</span>.resolve().then(()=&gt;{
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;Promise2&#39;</span>)    
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>},<span style="color:#bd93f9">0</span>)
+</span></span></code></pre></div><p>执行结果：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>Promise1
+</span></span><span style="display:flex;"><span>setTimeout1
+</span></span><span style="display:flex;"><span>Promise2
+</span></span><span style="display:flex;"><span>setTimeout2
+</span></span></code></pre></div><ul>
 <li>
 <p>一开始执行栈的同步任务执行完毕，会去 microtasks queues 找 清空 microtasks queues ，输出Promise1，同时会生成一个异步任务 setTimeout1</p>
 </li>
@@ -969,43 +969,43 @@ setTimeout2
 </li>
 </ul>
 <p>最后我们来分析一段较复杂的代码，掌握js的执行机制：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">console.log(<span style="color:#f1fa8c">&#39;1&#39;</span>);
-
-setTimeout(<span style="color:#8be9fd;font-style:italic">function</span>() {
-    console.log(<span style="color:#f1fa8c">&#39;2&#39;</span>);
-    process.nextTick(<span style="color:#8be9fd;font-style:italic">function</span>() {
-        console.log(<span style="color:#f1fa8c">&#39;3&#39;</span>);
-    })
-    <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve) {
-        console.log(<span style="color:#f1fa8c">&#39;4&#39;</span>);
-        resolve();
-    }).then(<span style="color:#8be9fd;font-style:italic">function</span>() {
-        console.log(<span style="color:#f1fa8c">&#39;5&#39;</span>)
-    })
-})
-process.nextTick(<span style="color:#8be9fd;font-style:italic">function</span>() {
-    console.log(<span style="color:#f1fa8c">&#39;6&#39;</span>);
-})
-<span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve) {
-    console.log(<span style="color:#f1fa8c">&#39;7&#39;</span>);
-    resolve();
-}).then(<span style="color:#8be9fd;font-style:italic">function</span>() {
-    console.log(<span style="color:#f1fa8c">&#39;8&#39;</span>)
-})
-
-setTimeout(<span style="color:#8be9fd;font-style:italic">function</span>() {
-    console.log(<span style="color:#f1fa8c">&#39;9&#39;</span>);
-    process.nextTick(<span style="color:#8be9fd;font-style:italic">function</span>() {
-        console.log(<span style="color:#f1fa8c">&#39;10&#39;</span>);
-    })
-    <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve) {
-        console.log(<span style="color:#f1fa8c">&#39;11&#39;</span>);
-        resolve();
-    }).then(<span style="color:#8be9fd;font-style:italic">function</span>() {
-        console.log(<span style="color:#f1fa8c">&#39;12&#39;</span>)
-    })
-})
-</code></pre></div><p>第一轮事件循环流程分析如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>console.log(<span style="color:#f1fa8c">&#39;1&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>setTimeout(<span style="color:#8be9fd;font-style:italic">function</span>() {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;2&#39;</span>);
+</span></span><span style="display:flex;"><span>    process.nextTick(<span style="color:#8be9fd;font-style:italic">function</span>() {
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#f1fa8c">&#39;3&#39;</span>);
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve) {
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#f1fa8c">&#39;4&#39;</span>);
+</span></span><span style="display:flex;"><span>        resolve();
+</span></span><span style="display:flex;"><span>    }).then(<span style="color:#8be9fd;font-style:italic">function</span>() {
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#f1fa8c">&#39;5&#39;</span>)
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>process.nextTick(<span style="color:#8be9fd;font-style:italic">function</span>() {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;6&#39;</span>);
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve) {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;7&#39;</span>);
+</span></span><span style="display:flex;"><span>    resolve();
+</span></span><span style="display:flex;"><span>}).then(<span style="color:#8be9fd;font-style:italic">function</span>() {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;8&#39;</span>)
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>setTimeout(<span style="color:#8be9fd;font-style:italic">function</span>() {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;9&#39;</span>);
+</span></span><span style="display:flex;"><span>    process.nextTick(<span style="color:#8be9fd;font-style:italic">function</span>() {
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#f1fa8c">&#39;10&#39;</span>);
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Promise</span>(<span style="color:#8be9fd;font-style:italic">function</span>(resolve) {
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#f1fa8c">&#39;11&#39;</span>);
+</span></span><span style="display:flex;"><span>        resolve();
+</span></span><span style="display:flex;"><span>    }).then(<span style="color:#8be9fd;font-style:italic">function</span>() {
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#f1fa8c">&#39;12&#39;</span>)
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>第一轮事件循环流程分析如下：</p>
 <ul>
 <li>整体script作为第一个宏任务进入主线程，遇到console.log，输出1</li>
 <li>遇到setTimeout，其回调函数被分发到宏任务Event Queue中。我们暂且记为setTimeout1</li>

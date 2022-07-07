@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Vue2-权限控制</title>
+<title>Webpack4-基础与配置</title>
 
 
 
@@ -163,32 +163,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#%e6%9d%83%e9%99%90%e9%85%8d%e7%bd%ae" onclick="onNavClick(`#权限配置-nav`)" id="权限配置-nav">
-									权限配置
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-							
-								
-									<ul>
-								
-							
-						
-						
-							<li>
-								<a href="#devtools" onclick="onNavClick(`#devtools-nav`)" id="devtools-nav">
-									devTools
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
 								</a>
 							</li>
 						
@@ -205,8 +181,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#%e9%85%8d%e7%bd%ae" onclick="onNavClick(`#配置-nav`)" id="配置-nav">
-									配置
+								<a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae" onclick="onNavClick(`#安装与配置-nav`)" id="安装与配置-nav">
+									安装与配置
 								</a>
 							</li>
 						
@@ -220,9 +196,23 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 						
-							
-								</ul>
-							
+						
+						
+							<li>
+								<a href="#%e6%8f%92%e4%bb%b6" onclick="onNavClick(`#插件-nav`)" id="插件-nav">
+									插件
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
 						
 						
 						
@@ -386,32 +376,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#%e6%9d%83%e9%99%90%e9%85%8d%e7%bd%ae" onclick="onNavClick(`#权限配置-nav`)" id="权限配置-nav">
-									权限配置
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-							
-								
-									<ul>
-								
-							
-						
-						
-							<li>
-								<a href="#devtools" onclick="onNavClick(`#devtools-nav`)" id="devtools-nav">
-									devTools
+								<a href="#%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#概念-nav`)" id="概念-nav">
+									概念
 								</a>
 							</li>
 						
@@ -428,8 +394,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#%e9%85%8d%e7%bd%ae" onclick="onNavClick(`#配置-nav`)" id="配置-nav">
-									配置
+								<a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae" onclick="onNavClick(`#安装与配置-nav`)" id="安装与配置-nav">
+									安装与配置
 								</a>
 							</li>
 						
@@ -443,9 +409,23 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 						
-							
-								</ul>
-							
+						
+						
+							<li>
+								<a href="#%e6%8f%92%e4%bb%b6" onclick="onNavClick(`#插件-nav`)" id="插件-nav">
+									插件
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
 						
 						
 						
@@ -580,18 +560,18 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
             >
                 <div class="post-title">
-                    Vue2-权限控制
+                    Webpack4-基础与配置
                     
                     <div class="post-meta">
                         
                         <time itemprop="datePublished">
-                            2022-02-09
+                            2022-03-21
                         </time>
                         
 
                         
                             <i class="material-icons" style="">folder</i>
-                                <a href="/categories/vue">VUE</a>
+                                <a href="/categories/%E5%B7%A5%E7%A8%8B%E5%8C%96">工程化</a>
                                 &nbsp;
                         
 
@@ -611,23 +591,9 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 <div class="post-body" v-pre>
                 
-                    <h1 id="权限配置">权限配置</h1>
-<h2 id="devtools">devTools</h2>
-<p>是一个独立部署的前端权限，接口配置工具。主要分为四层</p>
-<ul>
-<li>平台Platform：确保此工具可以跨项目使用，不用每一个项目再部署一套</li>
-<li>系统system：每个平台下的左侧系统，一般同一个类型的功能会放在一个系统里</li>
-<li>菜单menu：点击后跳转页面的具体菜单</li>
-<li>功能function：主要指页面上的操作按钮，这里会配置对应的后台服务和接口名称</li>
-</ul>
-<h2 id="配置">配置</h2>
-<ol>
-<li>在devTools依次维护平台、系统、菜单和功能项</li>
-<li>系统会预留一个拥有所有权限的管理账户</li>
-<li>登录管理员账户进入系统管理功能新增角色，权限会以树的形式进行多选展示</li>
-<li>进入员工管理功能录入基本信息，角色信息会以一个多选的checkbox进行勾选</li>
-<li>将创建好的员工分配给具体用户</li>
-</ol>
+                    <h1 id="概念">概念</h1>
+<h1 id="安装与配置">安装与配置</h1>
+<h1 id="插件">插件</h1>
 <h1 id="权限实现">权限实现</h1>
 <p>用户登录成功时会调用GetMenuInfo，获取当前登录账户的所有权限，并将权限放入全局状态和缓存</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#6272a4">/**
@@ -795,7 +761,7 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2022-02-09</p>
+		    <p style="color:#777;">Last modified on 2022-03-21</p>
                     
                 </div>
             </div>
@@ -804,14 +770,14 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/webpack4-%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%85%8D%E7%BD%AE/">
-			Next<br>Webpack4-基础与配置
+                <a class="newer-posts">
+			Next<br>No newer posts.
                 </a>
                 
                 
                 
-                <a class="older-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2022%E5%B9%B43%E6%9C%88/">
-			Previous<br>面试-2022年3月
+                <a class="older-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/vue2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/">
+			Previous<br>Vue2-权限控制
                 </a>
                 
             </nav>

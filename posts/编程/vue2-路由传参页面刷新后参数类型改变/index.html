@@ -465,13 +465,13 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                     <h1 id="问题描述">问题描述</h1>
 <p>今天发现一个小问题，列表通过路由传递的 number 类型参数，用 === 来判断</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">Number</span>(<span style="color:#ff79c6">this</span>.$route.query.type) <span style="color:#ff79c6">!==</span> <span style="color:#bd93f9">1</span>
-</code></pre></div><p>结果发现有时候为 true ，有时候为 false</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">Number</span>(<span style="color:#ff79c6">this</span>.$route.query.type) <span style="color:#ff79c6">!==</span> <span style="color:#bd93f9">1</span>
+</span></span></code></pre></div><p>结果发现有时候为 true ，有时候为 false</p>
 <p>进入页面，打印参数类型：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">number
-</code></pre></div><p>刷新页面，打印参数类型：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">string
-</code></pre></div><p>后来发现，原因是：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>number
+</span></span></code></pre></div><p>刷新页面，打印参数类型：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>string
+</span></span></code></pre></div><p>后来发现，原因是：</p>
 <blockquote>
 <p>vue-router 传参，不管是 params 形式还是query形式传参，在页面刷新后，params 和 query
 对象中的属性所对应的属性值都会被浏览器自身强制转换为string类型
@@ -479,8 +479,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </blockquote>
 <h1 id="解决方案">解决方案</h1>
 <p>将参数强制转为 Number类型：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">Number</span>(<span style="color:#ff79c6">this</span>.$route.query.type)
-</code></pre></div><h1 id="总结">总结</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">Number</span>(<span style="color:#ff79c6">this</span>.$route.query.type)
+</span></span></code></pre></div><h1 id="总结">总结</h1>
 <p>1、number数据类型：页面刷新后，其类型会转换为 string 类型。</p>
 <p>所以，在路由刷新页面，在使用时，不管页面是否刷新，都对传递过来的属性值做一次Number()转换；</p>
 <p>2、string数据类型：页面刷新后，其类型依然为string类型；</p>

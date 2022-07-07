@@ -610,10 +610,10 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                     <h1 id="事件流">事件流</h1>
 <p><img src="/img/JavaScript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E3%80%81%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/%E4%BA%8B%E4%BB%B6%E6%B5%81.png" alt=""></p>
 <p>事件冒泡和事件捕获分别由微软和网景公司提出，这两个概念都是为了解决页面中事件流（事件发生顺序）的问题</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;outer&#34;</span>&gt;
-    &lt;<span style="color:#ff79c6">p</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;inner&#34;</span>&gt;Click me!&lt;/<span style="color:#ff79c6">p</span>&gt;
-&lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></div><p>上面的代码当中一个div元素当中有一个p子元素，如果两个元素都有一个click的处理函数，那么我们怎么才能知道哪一个函数会首先被触发呢？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;outer&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">p</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;inner&#34;</span>&gt;Click me!&lt;/<span style="color:#ff79c6">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span></code></pre></div><p>上面的代码当中一个div元素当中有一个p子元素，如果两个元素都有一个click的处理函数，那么我们怎么才能知道哪一个函数会首先被触发呢？</p>
 <p>为了解决这个问题微软和网景提出了两种几乎完全相反的概念</p>
 <h1 id="事件冒泡">事件冒泡</h1>
 <h5 id="概念">概念</h5>
@@ -621,73 +621,72 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <h5 id="样例事件冒泡httpscodepeniodamuwangspenwvebzggeditors1000">样例：<a href="https://codepen.io/damuwangs/pen/wveBZgG?editors=1000">事件冒泡</a></h5>
 <h1 id="阻止事件冒泡">阻止事件冒泡</h1>
 <p>事件的对象有一个stopPropagation()方法可以阻止事件冒泡，我们只需要把上个例子中button的事件处理程序修改如下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">document</span>.getElementById(<span style="color:#f1fa8c">&#34;button&#34;</span>).addEventListener(<span style="color:#f1fa8c">&#34;click&#34;</span>,<span style="color:#8be9fd;font-style:italic">function</span>(event){
-	alert(<span style="color:#f1fa8c">&#34;button&#34;</span>)
-	event.stopPropagation()
-},<span style="color:#ff79c6">false</span>)
-</code></pre></div><h1 id="事件捕获">事件捕获</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">document</span>.getElementById(<span style="color:#f1fa8c">&#34;button&#34;</span>).addEventListener(<span style="color:#f1fa8c">&#34;click&#34;</span>,<span style="color:#8be9fd;font-style:italic">function</span>(event){
+</span></span><span style="display:flex;"><span>	alert(<span style="color:#f1fa8c">&#34;button&#34;</span>)
+</span></span><span style="display:flex;"><span>	event.stopPropagation()
+</span></span><span style="display:flex;"><span>},<span style="color:#ff79c6">false</span>)
+</span></span></code></pre></div><h1 id="事件捕获">事件捕获</h1>
 <h5 id="概念-1">概念</h5>
 <p>网景提出另一种事件流名为<strong>事件捕获</strong>(event capturing)。与事件冒泡相反，事件会从最外层开始发生，直到最具体的元素</p>
 <h5 id="样例事件捕获httpscodepeniodamuwangspenojgpgxn">样例：<a href="https://codepen.io/damuwangs/pen/OJgPGxN">事件捕获</a></h5>
 <h1 id="阻止事件捕获">阻止事件捕获</h1>
 <p>但是我们可以使用DOM3级新增事件stopImmediatePropagation()方法来阻止事件捕获，另外此方法还可以阻止事件冒泡。应用如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">document</span>.getElementById(<span style="color:#f1fa8c">&#34;second&#34;</span>).addEventListener(<span style="color:#f1fa8c">&#34;click&#34;</span>,<span style="color:#8be9fd;font-style:italic">function</span>(event){
-    alert(<span style="color:#f1fa8c">&#34;second&#34;</span>)
-    event.stopImmediatePropagation()
-},<span style="color:#ff79c6">true</span>)
-</code></pre></div><p>那么 stopImmediatePropagation() 和 stopPropagation()的区别在哪儿呢？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">document</span>.getElementById(<span style="color:#f1fa8c">&#34;second&#34;</span>).addEventListener(<span style="color:#f1fa8c">&#34;click&#34;</span>,<span style="color:#8be9fd;font-style:italic">function</span>(event){
+</span></span><span style="display:flex;"><span>    alert(<span style="color:#f1fa8c">&#34;second&#34;</span>)
+</span></span><span style="display:flex;"><span>    event.stopImmediatePropagation()
+</span></span><span style="display:flex;"><span>},<span style="color:#ff79c6">true</span>)
+</span></span></code></pre></div><p>那么 stopImmediatePropagation() 和 stopPropagation()的区别在哪儿呢？</p>
 <p>后者只会阻止冒泡或者是捕获。 但是前者除此之外还会阻止该元素的其他事件发生，但是后者就不会阻止其他事件的发生</p>
 <h1 id="事件委托">事件委托</h1>
 <p>在实际的开发当中，利用事件流的特性，我们可以使用一种叫做事件代理的方法</p>
 <h5 id="样例">样例</h5>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">ul</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;color_list&#34;</span>&gt;        
-    &lt;<span style="color:#ff79c6">li</span>&gt;red&lt;/<span style="color:#ff79c6">li</span>&gt;        
-    &lt;<span style="color:#ff79c6">li</span>&gt;orange&lt;/<span style="color:#ff79c6">li</span>&gt;        
-    &lt;<span style="color:#ff79c6">li</span>&gt;yellow&lt;/<span style="color:#ff79c6">li</span>&gt;        
-    &lt;<span style="color:#ff79c6">li</span>&gt;green&lt;/<span style="color:#ff79c6">li</span>&gt;        
-    &lt;<span style="color:#ff79c6">li</span>&gt;blue&lt;/<span style="color:#ff79c6">li</span>&gt;        
-    &lt;<span style="color:#ff79c6">li</span>&gt;purple&lt;/<span style="color:#ff79c6">li</span>&gt;    
-&lt;/<span style="color:#ff79c6">ul</span>&gt;
-&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;box&#34;</span>&gt;&lt;/<span style="color:#ff79c6">div</span>&gt;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#50fa7b">color_list</span>{            
-    <span style="color:#ff79c6">display</span>: <span style="color:#ff79c6">flex</span>;            
-    <span style="color:#ff79c6">display</span>: <span style="color:#ff79c6">-webkit-</span><span style="color:#ff79c6">flex</span>;        
-}        
-.<span style="color:#50fa7b">color_list</span> <span style="color:#ff79c6">li</span>{            
-    <span style="color:#ff79c6">width</span>: <span style="color:#bd93f9">100</span><span style="color:#8be9fd">px</span>;            
-    <span style="color:#ff79c6">height</span>: <span style="color:#bd93f9">100</span><span style="color:#8be9fd">px</span>;            
-    <span style="color:#ff79c6">list-style</span>: <span style="color:#ff79c6">none</span>;            
-    <span style="color:#ff79c6">text-align</span>: <span style="color:#ff79c6">center</span>;            
-    <span style="color:#ff79c6">line-height</span>: <span style="color:#bd93f9">100</span><span style="color:#8be9fd">px</span>;        
-}
-<span style="color:#ff79c6">//</span><span style="color:#ff79c6">每个li加上对应的颜色</span>，<span style="color:#ff79c6">此处省略</span>
-.<span style="color:#50fa7b">box</span>{            
-    <span style="color:#ff79c6">width</span>: <span style="color:#bd93f9">600</span><span style="color:#8be9fd">px</span>;            
-    <span style="color:#ff79c6">height</span>: <span style="color:#bd93f9">150</span><span style="color:#8be9fd">px</span>;            
-    <span style="color:#ff79c6">background-color</span>: <span style="color:#bd93f9">#cccccc</span>;            
-    <span style="color:#ff79c6">line-height</span>: <span style="color:#bd93f9">150</span><span style="color:#8be9fd">px</span>;            
-    <span style="color:#ff79c6">text-align</span>: <span style="color:#ff79c6">center</span>;        
-}
-
-</code></pre></div><p><img src="/img/JavaScript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E3%80%81%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">ul</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;color_list&#34;</span>&gt;        
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">li</span>&gt;red&lt;/<span style="color:#ff79c6">li</span>&gt;        
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">li</span>&gt;orange&lt;/<span style="color:#ff79c6">li</span>&gt;        
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">li</span>&gt;yellow&lt;/<span style="color:#ff79c6">li</span>&gt;        
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">li</span>&gt;green&lt;/<span style="color:#ff79c6">li</span>&gt;        
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">li</span>&gt;blue&lt;/<span style="color:#ff79c6">li</span>&gt;        
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">li</span>&gt;purple&lt;/<span style="color:#ff79c6">li</span>&gt;    
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">ul</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;box&#34;</span>&gt;&lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#50fa7b">color_list</span>{            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">display</span>: <span style="color:#ff79c6">flex</span>;            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">display</span>: <span style="color:#ff79c6">-webkit-</span><span style="color:#ff79c6">flex</span>;        
+</span></span><span style="display:flex;"><span>}        
+</span></span><span style="display:flex;"><span>.<span style="color:#50fa7b">color_list</span> <span style="color:#ff79c6">li</span>{            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">width</span>: <span style="color:#bd93f9">100</span><span style="color:#8be9fd">px</span>;            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">height</span>: <span style="color:#bd93f9">100</span><span style="color:#8be9fd">px</span>;            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">list-style</span>: <span style="color:#ff79c6">none</span>;            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">text-align</span>: <span style="color:#ff79c6">center</span>;            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">line-height</span>: <span style="color:#bd93f9">100</span><span style="color:#8be9fd">px</span>;        
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">//</span><span style="color:#ff79c6">每个li加上对应的颜色</span>，<span style="color:#ff79c6">此处省略</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#50fa7b">box</span>{            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">width</span>: <span style="color:#bd93f9">600</span><span style="color:#8be9fd">px</span>;            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">height</span>: <span style="color:#bd93f9">150</span><span style="color:#8be9fd">px</span>;            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">background-color</span>: <span style="color:#bd93f9">#cccccc</span>;            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">line-height</span>: <span style="color:#bd93f9">150</span><span style="color:#8be9fd">px</span>;            
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">text-align</span>: <span style="color:#ff79c6">center</span>;        
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><img src="/img/JavaScript-%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E3%80%81%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86.png" alt=""></p>
 <p>我们想要在点击每个 li 标签时，输出li当中的颜色（innerHTML） 。常规做法是遍历每个 li ,然后在每个 li 上绑定一个点击事件：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">let</span> color_list<span style="color:#ff79c6">=</span><span style="color:#8be9fd;font-style:italic">document</span>.querySelector(<span style="color:#f1fa8c">&#34;.color_list&#34;</span>)     
-<span style="color:#8be9fd;font-style:italic">let</span> colors<span style="color:#ff79c6">=</span>color_list.getElementsByTagName(<span style="color:#f1fa8c">&#34;li&#34;</span>)         
-<span style="color:#8be9fd;font-style:italic">let</span> box<span style="color:#ff79c6">=</span><span style="color:#8be9fd;font-style:italic">document</span>.querySelector(<span style="color:#f1fa8c">&#34;.box&#34;</span>)     
-<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd;font-style:italic">let</span> n<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;n<span style="color:#ff79c6">&lt;</span>colors.length;n<span style="color:#ff79c6">++</span>){                
-    colors[n].addEventListener(<span style="color:#f1fa8c">&#34;click&#34;</span>,<span style="color:#8be9fd;font-style:italic">function</span>(){                    
-        console.log(<span style="color:#ff79c6">this</span>.innerHTML)                    
-        box.innerHTML<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;该颜色为 &#34;</span><span style="color:#ff79c6">+</span><span style="color:#ff79c6">this</span>.innerHTML         
-    })            
-}
-</code></pre></div><p>这种做法在 li 较少的时候可以使用，但如果有一万个li，那就会导致性能降低（少了遍历所有 li 节点的操作，性能上肯定更加优化）。这时就需要事件代理出场了，利用事件流的特性，我们只绑定一个事件处理函数也可以完成：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#8be9fd;font-style:italic">function</span> colorChange(e){                   
-    <span style="color:#ff79c6">if</span>(e.target.nodeName.toLowerCase()<span style="color:#ff79c6">===</span><span style="color:#f1fa8c">&#34;li&#34;</span>){                    
-        box.innerHTML<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;该颜色为 &#34;</span><span style="color:#ff79c6">+</span>e.target.innerHTML          
-    }                            
-}            
-color_list.addEventListener(<span style="color:#f1fa8c">&#34;click&#34;</span>,colorChange,<span style="color:#ff79c6">false</span>)
-</code></pre></div><p>由于事件冒泡机制，点击了li后会冒泡到ul，此时就会触发绑定在ul上的点击事件，再利用target找到事件实际发生的元素，就可以达到预期的效果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> color_list<span style="color:#ff79c6">=</span><span style="color:#8be9fd;font-style:italic">document</span>.querySelector(<span style="color:#f1fa8c">&#34;.color_list&#34;</span>)     
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> colors<span style="color:#ff79c6">=</span>color_list.getElementsByTagName(<span style="color:#f1fa8c">&#34;li&#34;</span>)         
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">let</span> box<span style="color:#ff79c6">=</span><span style="color:#8be9fd;font-style:italic">document</span>.querySelector(<span style="color:#f1fa8c">&#34;.box&#34;</span>)     
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span>(<span style="color:#8be9fd;font-style:italic">let</span> n<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;n<span style="color:#ff79c6">&lt;</span>colors.length;n<span style="color:#ff79c6">++</span>){                
+</span></span><span style="display:flex;"><span>    colors[n].addEventListener(<span style="color:#f1fa8c">&#34;click&#34;</span>,<span style="color:#8be9fd;font-style:italic">function</span>(){                    
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#ff79c6">this</span>.innerHTML)                    
+</span></span><span style="display:flex;"><span>        box.innerHTML<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;该颜色为 &#34;</span><span style="color:#ff79c6">+</span><span style="color:#ff79c6">this</span>.innerHTML         
+</span></span><span style="display:flex;"><span>    })            
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这种做法在 li 较少的时候可以使用，但如果有一万个li，那就会导致性能降低（少了遍历所有 li 节点的操作，性能上肯定更加优化）。这时就需要事件代理出场了，利用事件流的特性，我们只绑定一个事件处理函数也可以完成：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> colorChange(e){                   
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span>(e.target.nodeName.toLowerCase()<span style="color:#ff79c6">===</span><span style="color:#f1fa8c">&#34;li&#34;</span>){                    
+</span></span><span style="display:flex;"><span>        box.innerHTML<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;该颜色为 &#34;</span><span style="color:#ff79c6">+</span>e.target.innerHTML          
+</span></span><span style="display:flex;"><span>    }                            
+</span></span><span style="display:flex;"><span>}            
+</span></span><span style="display:flex;"><span>color_list.addEventListener(<span style="color:#f1fa8c">&#34;click&#34;</span>,colorChange,<span style="color:#ff79c6">false</span>)
+</span></span></code></pre></div><p>由于事件冒泡机制，点击了li后会冒泡到ul，此时就会触发绑定在ul上的点击事件，再利用target找到事件实际发生的元素，就可以达到预期的效果</p>
 <p>使用事件代理的好处不仅在于将多个事件处理函数减为一个，而且对于不同的元素可以有不同的处理方法。假如上述列表元素当中添加了其他的元素节点（如：a、span等），我们不必再一次循环给每一个元素绑定事件，直接修改事件代理的事件处理函数即可</p>
 <p>（1）toLowerCase()方法用于把字符串转换为小写。语法：stringObject.toLowerCase()</p>
 <p>返回值：一个新的字符串，在其中 stringObject 的所有大写字符全部被转换为了小写字符。</p>

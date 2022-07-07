@@ -819,40 +819,40 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <h2 id="必需属性">必需属性</h2>
 <p>meta的必须属性是content，并不是说meta标签里一定要有content，而是当有http-equiv或name属性的时候，一定要有content属性对其进行说明。</p>
 <p>例：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;keywords&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;HTML,ASP,PHP,SQL&#34;</span>&gt;
-</code></pre></div><h2 id="可选属性">可选属性</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;keywords&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;HTML,ASP,PHP,SQL&#34;</span>&gt;
+</span></span></code></pre></div><h2 id="可选属性">可选属性</h2>
 <h3 id="http-equiv">http-equiv</h3>
 <p>添加http头部内容，对一些自定义的，或者需要额外添加的http头部内容，需要发送到浏览器中，我们就可以使用这个属性。</p>
 <p>例如我们不想使用js来重定向，用http头部内容控制，就可以这样控制</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">http-equiv</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Refresh&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;5;url=http://www.baidu.com&#34;</span> /&gt;
-</code></pre></div><p>在页面head中加入这个后，5秒钟后就会跳转到指定的页面</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">http-equiv</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Refresh&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;5;url=http://www.baidu.com&#34;</span> /&gt;
+</span></span></code></pre></div><p>在页面head中加入这个后，5秒钟后就会跳转到指定的页面</p>
 <h3 id="name">name</h3>
 <p>供浏览器进行解析，对于一些浏览器兼容性问题，name是最常用的，当然有个前提就是浏览器能够解析你写进去的name属性才可以</p>
 <p>例：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;renderer&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;webkit&#34;</span>&gt;
-</code></pre></div><p>这个meta标签的意思就是告诉浏览器，用webkit内核进行解析，前提是浏览器有webkit内核才可以。当然看到这个你可能会有疑问，这个renderer是从哪里冒出来的？这个就是在对应的浏览器的开发文档里就会有表明的，例如这个renderer是在360浏览器里说明的。<a href="http://se.360.cn/v6/help/meta.html">360浏览器内核控制Meta标签说明文档</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;renderer&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;webkit&#34;</span>&gt;
+</span></span></code></pre></div><p>这个meta标签的意思就是告诉浏览器，用webkit内核进行解析，前提是浏览器有webkit内核才可以。当然看到这个你可能会有疑问，这个renderer是从哪里冒出来的？这个就是在对应的浏览器的开发文档里就会有表明的，例如这个renderer是在360浏览器里说明的。<a href="http://se.360.cn/v6/help/meta.html">360浏览器内核控制Meta标签说明文档</a></p>
 <h1 id="meta标签总结">meta标签总结</h1>
 <h2 id="charset">charset</h2>
 <p>声明文档使用的字符编码，解决乱码问题主要用的就是它，值得一提的是，这个charset一定要写第一行，不然可能会产生乱码了。</p>
 <p>chartset有两种写法</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">charset</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;utf-8&#34;</span>&gt;
-&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">http-equiv</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Content-Type&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text/html; charset=utf-8&#34;</span>&gt;
-</code></pre></div><h2 id="seo-优化部分">SEO 优化部分</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#6272a4">&lt;!-- 页面标题&lt;title&gt;标签(head 头部必须) --&gt;</span>
-&lt;<span style="color:#ff79c6">title</span>&gt;your title&lt;/<span style="color:#ff79c6">title</span>&gt;
-<span style="color:#6272a4">&lt;!-- 页面关键词 keywords --&gt;</span>
-&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;keywords&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;your keywords&#34;</span>&gt;
-<span style="color:#6272a4">&lt;!-- 页面描述内容 description --&gt;</span>
-&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;description&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;your description&#34;</span>&gt;
-<span style="color:#6272a4">&lt;!-- 定义网页作者 author --&gt;</span>
-&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;author&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;author,email address&#34;</span>&gt;
-<span style="color:#6272a4">&lt;!-- 定义网页搜索引擎索引方式，robotterms 是一组使用英文逗号「,」分割的值，通常有如下几种取值：none，noindex，nofollow，all，index和follow。 --&gt;</span>
-&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;robots&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;index,follow&#34;</span>&gt;
-</code></pre></div><h2 id="viewport">viewport</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">charset</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;utf-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">http-equiv</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;Content-Type&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;text/html; charset=utf-8&#34;</span>&gt;
+</span></span></code></pre></div><h2 id="seo-优化部分">SEO 优化部分</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- 页面标题&lt;title&gt;标签(head 头部必须) --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">title</span>&gt;your title&lt;/<span style="color:#ff79c6">title</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- 页面关键词 keywords --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;keywords&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;your keywords&#34;</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- 页面描述内容 description --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;description&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;your description&#34;</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- 定义网页作者 author --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;author&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;author,email address&#34;</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- 定义网页搜索引擎索引方式，robotterms 是一组使用英文逗号「,」分割的值，通常有如下几种取值：none，noindex，nofollow，all，index和follow。 --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;robots&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;index,follow&#34;</span>&gt;
+</span></span></code></pre></div><h2 id="viewport">viewport</h2>
 <p>主要影响移动端布局的</p>
 <p>之前用h5开发移动项目遇到过字体被缩放的特别小的问题，后来新增了viewport属性解决了，具体如下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;viewport&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;width=device-width, user-scalable=no&#34;</span>&gt;
-</code></pre></div><p>content参数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;viewport&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;width=device-width, user-scalable=no&#34;</span>&gt;
+</span></span></code></pre></div><p>content参数：</p>
 <ul>
 <li>width viewport 宽度(数值/device-width)</li>
 <li>height viewport 高度(数值/device-height)</li>
