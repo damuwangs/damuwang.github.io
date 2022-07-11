@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>开发技巧 on DaMuWang</title>
+    <link>https://damuwangs.github.io/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/</link>
+    <description>Recent content in 开发技巧 on DaMuWang</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://damuwangs.github.io/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>开发技巧-上海龙品信息</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7-%E4%B8%8A%E6%B5%B7%E9%BE%99%E5%93%81%E4%BF%A1%E6%81%AF/</link>
+      <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7-%E4%B8%8A%E6%B5%B7%E9%BE%99%E5%93%81%E4%BF%A1%E6%81%AF/</guid>
+      <description>管理平台 左侧树结构 根目录：leftTreeRightTemplate.vue
+根配置：leftTreeRightTemplate.config
+树组件：components=&amp;gt;navigatorTree.vue
+通用列表配置 根目录：list.vue
+根配置：list.config.js
+action配置：list.action.js
+查询条件配置：
+经常用到的配置或方法 权限判断，权限key为权限-&amp;gt;资源管理中配置
+this.$checkPr(&amp;#39;orderList-tab-outStockOrder&amp;#39;) 在子js文件中获取根目录下的变量
+this.getScopeRoot().xxx PDA 独立站 </description>
+    </item>
+    
+  </channel>
+</rss>

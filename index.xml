@@ -5,9 +5,43 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>开发技巧-上海龙品信息</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7-%E4%B8%8A%E6%B5%B7%E9%BE%99%E5%93%81%E4%BF%A1%E6%81%AF/</link>
+        <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7-%E4%B8%8A%E6%B5%B7%E9%BE%99%E5%93%81%E4%BF%A1%E6%81%AF/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7-%E4%B8%8A%E6%B5%B7%E9%BE%99%E5%93%81%E4%BF%A1%E6%81%AF/ -&lt;h1 id=&#34;管理平台&#34;&gt;管理平台&lt;/h1&gt;
+&lt;h2 id=&#34;左侧树结构&#34;&gt;左侧树结构&lt;/h2&gt;
+&lt;p&gt;根目录：&lt;a href=&#34;https://codepen.io/damuwangs/pen/qBoNjgr&#34;&gt;leftTreeRightTemplate.vue&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;根配置：&lt;a href=&#34;https://codepen.io/damuwangs/pen/gOeMRqK?editors=0010&#34;&gt;leftTreeRightTemplate.config&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;树组件：&lt;a href=&#34;&#34;&gt;components=&amp;gt;navigatorTree.vue&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;通用列表配置&#34;&gt;通用列表配置&lt;/h2&gt;
+&lt;p&gt;根目录：&lt;a href=&#34;https://codepen.io/damuwangs/pen/qBoNPpw&#34;&gt;list.vue&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;根配置：&lt;a href=&#34;https://codepen.io/damuwangs/pen/PoRzEBr?editors=0010&#34;&gt;list.config.js&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;action配置：&lt;a href=&#34;https://codepen.io/damuwangs/pen/poLbpxE?editors=0010&#34;&gt;list.action.js&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;查询条件配置：&lt;/p&gt;
+&lt;h2 id=&#34;经常用到的配置或方法&#34;&gt;经常用到的配置或方法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;权限判断，权限key为权限-&amp;gt;资源管理中配置&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.$checkPr(&lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#39;orderList-tab-outStockOrder&amp;#39;&lt;/span&gt;) 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在子js文件中获取根目录下的变量&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.getScopeRoot().xxx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;pda&#34;&gt;PDA&lt;/h1&gt;
+&lt;h1 id=&#34;独立站&#34;&gt;独立站&lt;/h1&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E5%BC%80%E5%8F%91%E6%8A%80%E5%B7%A7-%E4%B8%8A%E6%B5%B7%E9%BE%99%E5%93%81%E4%BF%A1%E6%81%AF/ - </description>
+        </item>
     
     
     
@@ -1369,80 +1403,6 @@ compose可以帮助我们组合任意个高阶函数，例如compose(a,b,c)返�
 &lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/u011974987/article/details/52415037&#34;&gt;Android中签名、证书、公钥密钥的概念及使用&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/uniapp-app%E7%AD%BE%E5%90%8D/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>JavaScript-MVC、MVVM模式</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-mvcmvvm%E6%A8%A1%E5%BC%8F/</link>
-        <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-mvcmvvm%E6%A8%A1%E5%BC%8F/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-mvcmvvm%E6%A8%A1%E5%BC%8F/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
-&lt;p&gt;模型（Model）：指数据模型，泛指后端进行的各种业务逻辑处理和数据操控，主要围绕数据库系统展开。后端的处理通常会非常复杂&lt;/p&gt;
-&lt;p&gt;视图（View）：视图部分，通常指html等用来对用户展示的一部分&lt;/p&gt;
-&lt;p&gt;控制器（Controller）：负责根据用户从&amp;quot;视图层&amp;quot;输入的指令，选取&amp;quot;数据层&amp;quot;中的数据，然后对其进行相应的操作，产生最终结果&lt;/p&gt;
-&lt;p&gt;视图模型（ViewModel）：由前端开发人员组织生成和维护的视图数据层。在这一层，前端开发者对从后端获取的 Model 数据进行转换处理，做二次封装，以生成符合 View 层使用预期的视图数据模型。需要注意的是 ViewModel 所封装出来的数据模型包括视图的状态和行为两部分，而 Model 层的数据模型是只包含状态的，比如页面的这一块展示什么，那一块展示什么这些都属于视图状态（展示），而页面加载进来时发生什么，点击这一块发生什么，这一块滚动时发生什么这些都属于视图行为（交互），视图状态和行为都封装在了 ViewModel 里。这样的封装使得 ViewModel 可以完整地去描述 View 层。由于实现了双向绑定，ViewModel 的内容会实时展现在 View 层，这是激动人心的，因为前端开发者再也不必低效又麻烦地通过操纵 DOM 去更新视图，MVVM 框架已经把最脏最累的一块做好了，我们开发者只需要处理和维护 ViewModel，更新数据视图就会自动得到相应更新，真正实现数据驱动开发。看到了吧，View 层展现的不是 Model 层的数据，而是 ViewModel 的数据，由 ViewModel 负责与 Model 层交互，这就完全解耦了 View 层和 Model 层，这个解耦是至关重要的，它是前后端分离方案实施的重要一环&lt;/p&gt;
-&lt;h1 id=&#34;mvc&#34;&gt;MVC&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-MVC%E3%80%81MVP%E3%80%81MVVM%E6%A8%A1%E5%BC%8F/MVC.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;用户端操作View ，Js监听事件绑定DOM数据，传送指令到 Controller&lt;/li&gt;
-&lt;li&gt;Controller 完成业务逻辑后，要求 Model 改变数据状态&lt;/li&gt;
-&lt;li&gt;Model 将新的数据发送到 View，通过JS操作DOM为View赋值，用户得到反馈&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果前端没有框架，只使用原生的html+js，MVC模式可以这样理解：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;将html看成view&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;js看成controller，负责处理用户与应用的交互，响应对view的操作（对事件的监听），调用Model对数据进行操作，完成model与view的同步（根据model的改变，通过选择器对view进行操作）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;将js的ajax当做Model，也就是数据层，通过ajax从服务器获取数据&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;mvvm&#34;&gt;MVVM&lt;/h1&gt;
-&lt;p&gt;就像分析MVC是如何合理分配工作的一样，我们需要数据所以有了M，我们需要界面所以有了V，而我们需要找一个地方把M赋值给V来显示，所以有了C，然而我们忽略了一个很重要的操作：&lt;strong&gt;数据解析&lt;/strong&gt;。在MVC出生的年代，手机APP的数据往往都比较简单，没有现在那么复杂，所以那时的数据解析很可能一步就解决了，所以既然有这样一个问题要处理，而面向对象的思想就是用类和对象来解决问题，显然V和M早就被定义死了，它们都不应该处理“解析数据”的问题，理所应当的，“解析数据”这个问题就交给C来完成了。而现在的手机App功能越来越复杂，数据结构也越来越复杂，所以数据解析也就没那么简单了。如果我们继续按照MVC的设计思路，将数据解析的部分放到了Controller里面，那么Controller就将变得相当臃肿。还有相当重要的一点：Controller被设计出来并不是处理数据解析的。1、管理自己的生命周期；2、处理Controller之间的跳转；3、实现Controller容器。这里面根本没有“数据解析”这一项，所以显然，数据解析也不应该由Controller来完成。那么我们的MVC中，M、V、C都不应该处理数据解析，那么由谁来呢？这个问题实际上在面向对象的时候相当好回答：既然目前没有类能够处理这个问题，那么就创建一个新的类出来解决不就好了？所以我们聪明的开发者们就专门为数据解析创建出了一个新的类：ViewModel。这就是MVVM的诞生&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-MVC%E3%80%81MVP%E3%80%81MVVM%E6%A8%A1%E5%BC%8F/MVVM.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;用户端操作View，ViewModel监听视图变化，触发绑定事件&lt;/li&gt;
-&lt;li&gt;ViewModel组织好数据，请求服务端处理业务逻辑调用Model层操作数据&lt;/li&gt;
-&lt;li&gt;服务端处理完数据及逻辑后，要求 Model 改变数据状态&lt;/li&gt;
-&lt;li&gt;ViewModel组装结果数据后自动绑定到View层，用户得到反馈&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://damuwangs.github.io/img/JavaScript-MVC%E3%80%81MVP%E3%80%81MVVM%E6%A8%A1%E5%BC%8F/MVVM%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h1 id=&#34;思考&#34;&gt;思考&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;ViewModel和Controller的区别&lt;/p&gt;
-&lt;p&gt;Controller所要担任的任务更加全面，包括了很多的业务逻辑。而ViewModel则简化甚至剔除了业务逻辑，主要的工作就只是把Model中的数据组装成适合View使用的数据&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;前端MVVM对比MVC的优点&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;MVC开发者在代码中大量调用相同的 DOM API, 处理繁琐 ，操作冗余，使得代码难以维护&lt;/p&gt;
-&lt;p&gt;大量的DOM 操作使页面渲染性能降低，加载速度变慢，影响用户体验&lt;/p&gt;
-&lt;p&gt;当 Model 频繁发生变化，开发者需要主动更新到View ；当用户的操作导致 Model 发生变化，开发者同样需要将变化的数据同步到Model 中，这样的工作不仅繁琐，而且很难维护复杂多变的数据状态&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;数据驱动： 在以前的模式中，总是先处理业务数据，然后根据的数据变化，去获取DOM的引用然后更新DOM，也是通过DOM来获取用户输入，最后再进行数据的更新。而在MVVM中数据和业务逻辑处于一个独立且抽象的View Model中，ViewModel只要关注数据和业务逻辑，不需要和DOM之间打交道。由数据自动去驱动DOM去自动更新DOM，DOM的改变又同时自动反馈到数据，数据成为主导因素，这样使得在业务逻辑处理只要关心数据，方便且简单&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html&#34;&gt;MVC，MVP 和 MVVM 的图示&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/iovec/p/7840228.html&#34;&gt;前后端分手大师——MVVM 模式&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/7088249276de&#34;&gt;前端MVVM理论-MVVM&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/qq_42068550/article/details/89480350&#34;&gt;MVC和MVVM的区别&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-mvcmvvm%E6%A8%A1%E5%BC%8F/ - </description>
         </item>
     
     
