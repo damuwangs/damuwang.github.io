@@ -477,7 +477,7 @@ Token的目的是为了减轻服务器的压力，减少频繁的查询数据库
 <li>
 <p>token由服务端生成，设置了失效时间为24小时</p>
 <p>当token过期，前端再发送请求，服务端会返回505，此响应会被http.js的拦截器捕获</p>
-<p>捕获后先弹框提示‘登录信息已过期，请重新登录&rsquo;，接着调用store.js中的ClearLoginInfo方法清空state中全局token，再调用removeToken移除cookie</p>
+<p>捕获后先弹框提示‘登录信息已过期，请重新登录'，接着调用store.js中的ClearLoginInfo方法清空state中全局token，再调用removeToken移除cookie</p>
 </li>
 <li>
 <p>清空完之后会执行跳转，重新回到登录页面重复步骤一</p>
@@ -488,110 +488,110 @@ Token的目的是为了减轻服务器的压力，减少频繁的查询数据库
 </ol>
 <p>代码</p>
 <p>auth.js</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> Cookies from <span style="color:#4070a0">&#39;js-cookie&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> TokenKey <span style="color:#666">=</span> <span style="color:#4070a0">&#39;sxmanage-auth-token&#39;</span><span style="color:#60a0b0;font-style:italic">// tokenKey为固定字符串
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 根据TokenKey获取cookie中的token信息
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">function</span> getToken () {
-</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">return</span> Cookies.get(TokenKey)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 设置将token设置到cookie中
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">function</span> setToken (token) {
-</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">return</span> Cookies.set(TokenKey, token)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 根据tTokenKey移除cookie中的token信息
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">function</span> removeToken () {
-</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">return</span> Cookies.remove(TokenKey)
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>http.js</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> axios from <span style="color:#4070a0">&#39;axios&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> store from <span style="color:#4070a0">&#39;@/store&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> service <span style="color:#666">=</span> axios.create({
-</span></span><span style="display:flex;"><span>    timeout<span style="color:#666">:</span> <span style="color:#40a070">30000</span>, <span style="color:#60a0b0;font-style:italic">// request timeout
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    withCredentials<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">true</span>
-</span></span><span style="display:flex;"><span>})
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// resposne interceptor
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>service.interceptors.response.use(
-</span></span><span style="display:flex;"><span>    response =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">const</span> res <span style="color:#666">=</span> response.data
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">if</span> (res.c <span style="color:#666">===</span> <span style="color:#40a070">505</span>)  {
-</span></span><span style="display:flex;"><span>            alert(<span style="color:#4070a0">&#39;登录信息已过期，请重新登录&#39;</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#60a0b0;font-style:italic">// 清除数据
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>            store.dispatch(<span style="color:#4070a0">&#39;ClearLoginInfo&#39;</span>).then(() =&gt; {
-</span></span><span style="display:flex;"><span>                <span style="color:#60a0b0;font-style:italic">// 跳转到登录页面
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>                router.push(<span style="color:#4070a0">&#39;/login&#39;</span>)
-</span></span><span style="display:flex;"><span>            })
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">return</span> response
-</span></span><span style="display:flex;"><span>    }, error =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020">Promise</span>.reject(error)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><p>store.js</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> Vuex from <span style="color:#4070a0">&#39;vuex&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> Vue from <span style="color:#4070a0">&#39;vue&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> { base } from <span style="color:#4070a0">&#39;@/api/base&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> { getToken, setToken, removeToken} from <span style="color:#4070a0">&#39;@/utils/auth&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Vue.use(Vuex)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> state <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>  token<span style="color:#666">:</span> getToken()
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> getters <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>  token<span style="color:#666">:</span> state =&gt; state.token
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> mutations <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>  SET_TOKEN<span style="color:#666">:</span> (state, token) =&gt; {
-</span></span><span style="display:flex;"><span>    state.token <span style="color:#666">=</span> token
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> actions <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#60a0b0;font-style:italic">/** 登录 */</span>
-</span></span><span style="display:flex;"><span>  Login<span style="color:#666">:</span> ({ commit, dispatch }, userInfo) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Promise</span>((resolve, reject) =&gt; {
-</span></span><span style="display:flex;"><span>      base.login(userInfo).then(response =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">if</span> (response.data.c <span style="color:#666">===</span> <span style="color:#40a070">200</span>) {
-</span></span><span style="display:flex;"><span>          <span style="color:#60a0b0;font-style:italic">// 先清除数据
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>          dispatch(<span style="color:#4070a0">&#39;ClearLoginInfo&#39;</span>)
-</span></span><span style="display:flex;"><span>          <span style="color:#60a0b0;font-style:italic">// 再保存数据
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>          dispatch(<span style="color:#4070a0">&#39;SaveLoginInfo&#39;</span>, response.data)
-</span></span><span style="display:flex;"><span>          resolve(response.data)
-</span></span><span style="display:flex;"><span>        } <span style="color:#007020;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>          reject(response.data.c)
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>      })
-</span></span><span style="display:flex;"><span>    })
-</span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#60a0b0;font-style:italic">// 保存登录信息
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  SaveLoginInfo<span style="color:#666">:</span> ({ commit }, data) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// state保存token
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    commit(<span style="color:#4070a0">&#39;SET_TOKEN&#39;</span>, data.v.token)
-</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 保存token到cookie中
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    setToken(data.v.token)
-</span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#60a0b0;font-style:italic">/** 清除数据 */</span>
-</span></span><span style="display:flex;"><span>  ClearLoginInfo<span style="color:#666">:</span> ({ commit }) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 清除数据
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    commit(<span style="color:#4070a0">&#39;SET_TOKEN&#39;</span>, <span style="color:#4070a0">&#39;&#39;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">// 清除cookie中的token
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    removeToken()
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> <span style="color:#007020;font-weight:bold">new</span> Vuex.Store({
-</span></span><span style="display:flex;"><span>  state,
-</span></span><span style="display:flex;"><span>  getters,
-</span></span><span style="display:flex;"><span>  mutations,
-</span></span><span style="display:flex;"><span>  actions
-</span></span><span style="display:flex;"><span>})
-</span></span></code></pre></div><h1 id="参考资料">参考资料</h1>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">import</span> Cookies from <span style="color:#4070a0">&#39;js-cookie&#39;</span>
+
+<span style="color:#007020;font-weight:bold">const</span> TokenKey <span style="color:#666">=</span> <span style="color:#4070a0">&#39;sxmanage-auth-token&#39;</span><span style="color:#60a0b0;font-style:italic">// tokenKey为固定字符串
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#60a0b0;font-style:italic">// 根据TokenKey获取cookie中的token信息
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">function</span> getToken () {
+  <span style="color:#007020;font-weight:bold">return</span> Cookies.get(TokenKey)
+}
+<span style="color:#60a0b0;font-style:italic">// 设置将token设置到cookie中
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">function</span> setToken (token) {
+  <span style="color:#007020;font-weight:bold">return</span> Cookies.set(TokenKey, token)
+}
+<span style="color:#60a0b0;font-style:italic">// 根据tTokenKey移除cookie中的token信息
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">function</span> removeToken () {
+  <span style="color:#007020;font-weight:bold">return</span> Cookies.remove(TokenKey)
+}
+</code></pre></div><p>http.js</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">import</span> axios from <span style="color:#4070a0">&#39;axios&#39;</span>
+<span style="color:#007020;font-weight:bold">import</span> store from <span style="color:#4070a0">&#39;@/store&#39;</span>
+
+<span style="color:#007020;font-weight:bold">const</span> service <span style="color:#666">=</span> axios.create({
+    timeout<span style="color:#666">:</span> <span style="color:#40a070">30000</span>, <span style="color:#60a0b0;font-style:italic">// request timeout
+</span><span style="color:#60a0b0;font-style:italic"></span>    withCredentials<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">true</span>
+})
+
+<span style="color:#60a0b0;font-style:italic">// resposne interceptor
+</span><span style="color:#60a0b0;font-style:italic"></span>service.interceptors.response.use(
+    response =&gt; {
+        <span style="color:#007020;font-weight:bold">const</span> res <span style="color:#666">=</span> response.data
+        <span style="color:#007020;font-weight:bold">if</span> (res.c <span style="color:#666">===</span> <span style="color:#40a070">505</span>)  {
+            alert(<span style="color:#4070a0">&#39;登录信息已过期，请重新登录&#39;</span>)
+            <span style="color:#60a0b0;font-style:italic">// 清除数据
+</span><span style="color:#60a0b0;font-style:italic"></span>            store.dispatch(<span style="color:#4070a0">&#39;ClearLoginInfo&#39;</span>).then(() =&gt; {
+                <span style="color:#60a0b0;font-style:italic">// 跳转到登录页面
+</span><span style="color:#60a0b0;font-style:italic"></span>                router.push(<span style="color:#4070a0">&#39;/login&#39;</span>)
+            })
+        }
+        <span style="color:#007020;font-weight:bold">return</span> response
+    }, error =&gt; {
+        <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020">Promise</span>.reject(error)
+    }
+)
+</code></pre></div><p>store.js</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">import</span> Vuex from <span style="color:#4070a0">&#39;vuex&#39;</span>
+<span style="color:#007020;font-weight:bold">import</span> Vue from <span style="color:#4070a0">&#39;vue&#39;</span>
+<span style="color:#007020;font-weight:bold">import</span> { base } from <span style="color:#4070a0">&#39;@/api/base&#39;</span>
+<span style="color:#007020;font-weight:bold">import</span> { getToken, setToken, removeToken} from <span style="color:#4070a0">&#39;@/utils/auth&#39;</span>
+
+Vue.use(Vuex)
+
+<span style="color:#007020;font-weight:bold">const</span> state <span style="color:#666">=</span> {
+  token<span style="color:#666">:</span> getToken()
+}
+
+<span style="color:#007020;font-weight:bold">const</span> getters <span style="color:#666">=</span> {
+  token<span style="color:#666">:</span> state =&gt; state.token
+}
+
+<span style="color:#007020;font-weight:bold">const</span> mutations <span style="color:#666">=</span> {
+  SET_TOKEN<span style="color:#666">:</span> (state, token) =&gt; {
+    state.token <span style="color:#666">=</span> token
+  }
+}
+
+<span style="color:#007020;font-weight:bold">const</span> actions <span style="color:#666">=</span> {
+  <span style="color:#60a0b0;font-style:italic">/** 登录 */</span>
+  Login<span style="color:#666">:</span> ({ commit, dispatch }, userInfo) =&gt; {
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Promise</span>((resolve, reject) =&gt; {
+      base.login(userInfo).then(response =&gt; {
+        <span style="color:#007020;font-weight:bold">if</span> (response.data.c <span style="color:#666">===</span> <span style="color:#40a070">200</span>) {
+          <span style="color:#60a0b0;font-style:italic">// 先清除数据
+</span><span style="color:#60a0b0;font-style:italic"></span>          dispatch(<span style="color:#4070a0">&#39;ClearLoginInfo&#39;</span>)
+          <span style="color:#60a0b0;font-style:italic">// 再保存数据
+</span><span style="color:#60a0b0;font-style:italic"></span>          dispatch(<span style="color:#4070a0">&#39;SaveLoginInfo&#39;</span>, response.data)
+          resolve(response.data)
+        } <span style="color:#007020;font-weight:bold">else</span> {
+          reject(response.data.c)
+        }
+      })
+    })
+  },
+  <span style="color:#60a0b0;font-style:italic">// 保存登录信息
+</span><span style="color:#60a0b0;font-style:italic"></span>  SaveLoginInfo<span style="color:#666">:</span> ({ commit }, data) =&gt; {
+    <span style="color:#60a0b0;font-style:italic">// state保存token
+</span><span style="color:#60a0b0;font-style:italic"></span>    commit(<span style="color:#4070a0">&#39;SET_TOKEN&#39;</span>, data.v.token)
+    <span style="color:#60a0b0;font-style:italic">// 保存token到cookie中
+</span><span style="color:#60a0b0;font-style:italic"></span>    setToken(data.v.token)
+  },
+  <span style="color:#60a0b0;font-style:italic">/** 清除数据 */</span>
+  ClearLoginInfo<span style="color:#666">:</span> ({ commit }) =&gt; {
+    <span style="color:#60a0b0;font-style:italic">// 清除数据
+</span><span style="color:#60a0b0;font-style:italic"></span>    commit(<span style="color:#4070a0">&#39;SET_TOKEN&#39;</span>, <span style="color:#4070a0">&#39;&#39;</span>)
+    <span style="color:#60a0b0;font-style:italic">// 清除cookie中的token
+</span><span style="color:#60a0b0;font-style:italic"></span>    removeToken()
+  }
+}
+
+<span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> <span style="color:#007020;font-weight:bold">new</span> Vuex.Store({
+  state,
+  getters,
+  mutations,
+  actions
+})
+</code></pre></div><h1 id="参考资料">参考资料</h1>
 <blockquote>
 <p><a href="https://blog.csdn.net/cmj6706/article/details/79032703">token详解以及应用原理</a></p>
 </blockquote>
@@ -613,8 +613,8 @@ Token的目的是为了减轻服务器的压力，减少频繁的查询数据库
                 
                 
                 
-                <a class="older-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/css-lesssass/">
-			Previous<br>【待补充】CSS-Less、Sass
+                <a class="older-posts" href="https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E8%B7%A8%E5%9F%9F/">
+			Previous<br>JavaScript-跨域
                 </a>
                 
             </nav>

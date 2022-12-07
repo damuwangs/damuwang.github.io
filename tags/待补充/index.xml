@@ -14,8 +14,9 @@
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-hook/</guid>
       <description>为什么需要Portals Portals能够将子组件渲染到父组件以外的DOM树，他通常用于子组件需要从父组件的容器中脱离出来的场景，有以下场景：
-参考资料 传送门：React Portal
-你真的了解React Portals吗</description>
+参考资料  传送门：React Portal
+你真的了解React Portals吗
+ </description>
     </item>
     
     <item>
@@ -25,22 +26,9 @@
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/react-renderprops/</guid>
       <description>为什么需要Portals Portals能够将子组件渲染到父组件以外的DOM树，他通常用于子组件需要从父组件的容器中脱离出来的场景，有以下场景：
-参考资料 传送门：React Portal
-你真的了解React Portals吗</description>
-    </item>
-    
-    <item>
-      <title>【待补充】关于租房的一些方法论</title>
-      <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/</link>
-      <pubDate>Wed, 13 Oct 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%A7%9F%E6%88%BF%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E8%AE%BA/</guid>
-      <description>小区 昆明城市花园-回迁房
-惠南社区石家围墙西电小区-老小区
-方法论 这里我介绍个成功经验。在58同城租房平台，筛选个人房源的(看到房源下面是机构的基本可以过了，都被扒了一层皮，当然你想合租小而美的单间或者公寓可以找中介)，排序按时间排序(优质的房子肯定不会挂几个月)，然后选定价格区间、户型、地段等，就能找到靠谱的房东直租(概率极大，不排除二房东，中介假冒等)。
-参考资料 热量查询
-基础代谢计算
-增肌减脂必知BMR&amp;amp;TDEE计算口诀</description>
+参考资料  传送门：React Portal
+你真的了解React Portals吗
+ </description>
     </item>
     
     <item>
@@ -51,16 +39,8 @@
       <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%AD%9C%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E-%E5%BA%B7%E5%AE%9A/</guid>
       <description>行程 租车500*5 = 2500 车票来回2500 酒店两间500 * 5 = 2500 油费算五天2000 吃饭一天300 * 5 = 1500 门票粗略计算 2000 零食 1000
 注意事项
-参考资料 JS事件循环（Event Loop）</description>
-    </item>
-    
-    <item>
-      <title>【待补充】乐理</title>
-      <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E4%B9%90%E7%90%86/</link>
-      <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E4%B9%90%E7%90%86/</guid>
-      <description>参考资料 JS事件循环（Event Loop）</description>
+参考资料  JS事件循环（Event Loop）
+ </description>
     </item>
     
     <item>
@@ -87,7 +67,8 @@
       <pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%94%98%E5%8D%97%E8%97%8F%E6%97%8F%E8%87%AA%E6%B2%BB%E5%B7%9E/</guid>
-      <description>参考资料 JS事件循环（Event Loop）</description>
+      <description>参考资料  JS事件循环（Event Loop）
+ </description>
     </item>
     
     <item>
@@ -96,7 +77,8 @@
       <pubDate>Fri, 01 Jan 2010 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E4%BC%8A%E7%8A%81/</guid>
-      <description>参考资料 JS事件循环（Event Loop）</description>
+      <description>参考资料  JS事件循环（Event Loop）
+ </description>
     </item>
     
     <item>
@@ -105,7 +87,8 @@
       <pubDate>Fri, 01 Jan 2010 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%A4%A9%E6%B4%A5/</guid>
-      <description>参考资料 JS事件循环（Event Loop）</description>
+      <description>参考资料  JS事件循环（Event Loop）
+ </description>
     </item>
     
     <item>
@@ -114,7 +97,8 @@
       <pubDate>Fri, 01 Jan 2010 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E5%A8%81%E6%B5%B7/</guid>
-      <description>参考资料 JS事件循环（Event Loop）</description>
+      <description>参考资料  JS事件循环（Event Loop）
+ </description>
     </item>
     
     <item>
@@ -123,7 +107,8 @@
       <pubDate>Fri, 01 Jan 2010 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E6%BC%A0%E6%B2%B3/</guid>
-      <description>参考资料 JS事件循环（Event Loop）</description>
+      <description>参考资料  JS事件循环（Event Loop）
+ </description>
     </item>
     
     <item>
@@ -132,7 +117,8 @@
       <pubDate>Fri, 01 Jan 2010 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E7%83%9F%E5%8F%B0/</guid>
-      <description>参考资料 JS事件循环（Event Loop）</description>
+      <description>参考资料  JS事件循环（Event Loop）
+ </description>
     </item>
     
     <item>
@@ -141,7 +127,8 @@
       <pubDate>Fri, 01 Jan 2010 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E8%8B%8F%E5%B7%9E/</guid>
-      <description>参考资料 JS事件循环（Event Loop）</description>
+      <description>参考资料  JS事件循环（Event Loop）
+ </description>
     </item>
     
     <item>
@@ -150,7 +137,8 @@
       <pubDate>Fri, 01 Jan 2010 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E6%97%85%E8%A1%8C/%E9%9D%92%E5%B2%9B/</guid>
-      <description>参考资料 JS事件循环（Event Loop）</description>
+      <description>参考资料  JS事件循环（Event Loop）
+ </description>
     </item>
     
   </channel>

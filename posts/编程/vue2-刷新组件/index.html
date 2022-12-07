@@ -561,119 +561,119 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <ol>
 <li>
 <p>修改app.vue，利用 v-if 可以刷新页面的属性，同时使用 provide 和 inject 将祖先节点的数据传递给子代节点</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;app&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#062873;font-weight:bold">router-view</span> <span style="color:#062873;font-weight:bold">v-if</span><span style="color:#4070a0">=&#34;isRouterAlive&#34;</span>&gt;<span style="">&lt;/</span><span style="color:#4070a0">router</span><span style="color:#062873;font-weight:bold">-view</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
-</span></span><span style="display:flex;"><span>    name<span style="color:#666">:</span> <span style="color:#4070a0">&#39;App&#39;</span>,
-</span></span><span style="display:flex;"><span>    provide (){
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">return</span> {
-</span></span><span style="display:flex;"><span>            reload<span style="color:#666">:</span><span style="color:#007020;font-weight:bold">this</span>.reload
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    data(){
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">return</span> {
-</span></span><span style="display:flex;"><span>            isRouterAlive<span style="color:#666">:</span><span style="color:#007020;font-weight:bold">true</span>
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    methods<span style="color:#666">:</span>{
-</span></span><span style="display:flex;"><span>        reload (){
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.isRouterAlive <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">false</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>(){
-</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">this</span>.isRouterAlive <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span>
-</span></span><span style="display:flex;"><span>            })
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>   }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
-</span></span></code></pre></div></li>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vue" data-lang="vue">&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
+    &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">id</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;app&#34;</span>&gt;
+        &lt;<span style="color:#062873;font-weight:bold">router-view</span> <span style="color:#062873;font-weight:bold">v-if</span><span style="color:#4070a0">=&#34;isRouterAlive&#34;</span>&gt;<span style="">&lt;/</span><span style="color:#4070a0">router</span><span style="color:#062873;font-weight:bold">-view</span>&gt;
+    &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
+
+&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+<span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
+    name<span style="color:#666">:</span> <span style="color:#4070a0">&#39;App&#39;</span>,
+    provide (){
+        <span style="color:#007020;font-weight:bold">return</span> {
+            reload<span style="color:#666">:</span><span style="color:#007020;font-weight:bold">this</span>.reload
+        }
+    },
+    data(){
+        <span style="color:#007020;font-weight:bold">return</span> {
+            isRouterAlive<span style="color:#666">:</span><span style="color:#007020;font-weight:bold">true</span>
+        }
+    },
+    methods<span style="color:#666">:</span>{
+        reload (){
+            <span style="color:#007020;font-weight:bold">this</span>.isRouterAlive <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">false</span>
+            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>(){
+                <span style="color:#007020;font-weight:bold">this</span>.isRouterAlive <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span>
+            })
+        }
+   }
+}
+&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+</code></pre></div></li>
 <li>
 <p>在要刷新的子路由页面引入inject,然后执行reload事件即可刷新页面</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {    
-</span></span><span style="display:flex;"><span>    inject<span style="color:#666">:</span>[<span style="color:#4070a0">&#39;reload&#39;</span>],
-</span></span><span style="display:flex;"><span>    data() {
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">return</span> {}
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    methods<span style="color:#666">:</span> {
-</span></span><span style="display:flex;"><span>        reflesh(){
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.reload()
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {    
+    inject<span style="color:#666">:</span>[<span style="color:#4070a0">&#39;reload&#39;</span>],
+    data() {
+        <span style="color:#007020;font-weight:bold">return</span> {}
+    },
+    methods<span style="color:#666">:</span> {
+        reflesh(){
+            <span style="color:#007020;font-weight:bold">this</span>.reload()
+        }
+    }
+}
+</code></pre></div></li>
 </ol>
 <h2 id="forceupdate">forceUpdate</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
-</span></span><span style="display:flex;"><span>    methods<span style="color:#666">:</span> {
-</span></span><span style="display:flex;"><span>        handleUpdateClick() {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.$forceUpdate()
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>由于一些嵌套特别深的数据，导致数据更新了，但是页面却没有重新渲染。我遇到的一个情况是，v-for遍历数据渲染，当方法中处理相应数组数据时，数组改变了，但是页面却没有重新渲染</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
+    methods<span style="color:#666">:</span> {
+        handleUpdateClick() {
+            <span style="color:#007020;font-weight:bold">this</span>.$forceUpdate()
+        }
+    }
+}
+</code></pre></div><p>由于一些嵌套特别深的数据，导致数据更新了，但是页面却没有重新渲染。我遇到的一个情况是，v-for遍历数据渲染，当方法中处理相应数组数据时，数组改变了，但是页面却没有重新渲染</p>
 <p>解决方法：运用 <code>this.$forceUpdate()</code>强制刷新，解决v-for更新数据不重新渲染页面</p>
 <p>官方解释：迫使 Vue 实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件</p>
 <h2 id="修改组件key值">修改组件key值</h2>
 <p>key-changing的原理很简单，vue使用<code>key</code>标记组件身份，当<code>key</code>改变时就是释放原始组件，重新加载新的组件</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>        <span style="color:#60a0b0;font-style:italic">&lt;!--</span> 父组件 <span style="color:#666">--&gt;</span>
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>            &lt;<span style="color:#062873;font-weight:bold">button</span> <span style="color:#062873;font-weight:bold">@click</span><span style="color:#4070a0">=&#34;reLoad&#34;</span>&gt;<span style="color:#4070a0">点击重新渲染子组件</span>&lt;/<span style="color:#062873;font-weight:bold">button</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>        <span style="">&lt;!--</span> <span style="color:#4070a0">内容库子组件</span> <span style="">--</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#062873;font-weight:bold">lib-window</span> <span style="color:#062873;font-weight:bold">:key</span><span style="color:#4070a0">=&#34;time&#34;</span> <span style="color:#062873;font-weight:bold">:channelCode</span><span style="color:#4070a0">=&#34;searchChannelCode&#34;</span>&gt;<span style="color:#666">&lt;</span><span style="">/lib-window&gt;</span>
-</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> children from <span style="color:#4070a0">&#39;@/components/parent/children&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
-</span></span><span style="display:flex;"><span>    name<span style="color:#666">:</span> <span style="color:#4070a0">&#39;contentLib&#39;</span>,
-</span></span><span style="display:flex;"><span>    components<span style="color:#666">:</span> { libWindow },
-</span></span><span style="display:flex;"><span>    data () {
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">return</span> {
-</span></span><span style="display:flex;"><span>            time<span style="color:#666">:</span> <span style="color:#4070a0">&#39;&#39;</span>
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    methods<span style="color:#666">:</span> {
-</span></span><span style="display:flex;"><span>        reLoad () {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.time <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>().getTime()
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
-</span></span></code></pre></div><h2 id="eventhub">eventHub</h2>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vue" data-lang="vue">&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
+    &lt;<span style="color:#062873;font-weight:bold">div</span>&gt;
+        <span style="color:#60a0b0;font-style:italic">&lt;!--</span> 父组件 <span style="color:#666">--&gt;</span>
+        &lt;<span style="color:#062873;font-weight:bold">div</span>&gt;
+            &lt;<span style="color:#062873;font-weight:bold">button</span> <span style="color:#062873;font-weight:bold">@click</span><span style="color:#4070a0">=&#34;reLoad&#34;</span>&gt;<span style="color:#4070a0">点击重新渲染子组件</span>&lt;/<span style="color:#062873;font-weight:bold">button</span>&gt;
+        &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+        <span style="">&lt;!--</span> <span style="color:#4070a0">内容库子组件</span> <span style="">--</span>&gt;
+        &lt;<span style="color:#062873;font-weight:bold">lib-window</span> <span style="color:#062873;font-weight:bold">:key</span><span style="color:#4070a0">=&#34;time&#34;</span> <span style="color:#062873;font-weight:bold">:channelCode</span><span style="color:#4070a0">=&#34;searchChannelCode&#34;</span>&gt;<span style="color:#666">&lt;</span><span style="">/lib-window&gt;</span>
+    &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
+ 
+&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+<span style="color:#007020;font-weight:bold">import</span> children from <span style="color:#4070a0">&#39;@/components/parent/children&#39;</span>
+<span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
+    name<span style="color:#666">:</span> <span style="color:#4070a0">&#39;contentLib&#39;</span>,
+    components<span style="color:#666">:</span> { libWindow },
+    data () {
+        <span style="color:#007020;font-weight:bold">return</span> {
+            time<span style="color:#666">:</span> <span style="color:#4070a0">&#39;&#39;</span>
+        }
+    },
+    methods<span style="color:#666">:</span> {
+        reLoad () {
+            <span style="color:#007020;font-weight:bold">this</span>.time <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>().getTime()
+        }
+    }
+}
+&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+</code></pre></div><h2 id="eventhub">eventHub</h2>
 <p>一般比较适合毫无关系的页面之间的刷新，如页面添加了keep-alive缓存，但是又需要在特定操作下重新初始化数据</p>
 <ul>
 <li>
 <p>main.js</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 给Vue函数添加一个原型属性$eventHub
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>Vue.prototype.$eventHub <span style="color:#666">=</span> Vue.prototype.$eventHub <span style="color:#666">||</span> <span style="color:#007020;font-weight:bold">new</span> Vue()
-</span></span></code></pre></div></li>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#60a0b0;font-style:italic">// 给Vue函数添加一个原型属性$eventHub
+</span><span style="color:#60a0b0;font-style:italic"></span>Vue.prototype.$eventHub <span style="color:#666">=</span> Vue.prototype.$eventHub <span style="color:#666">||</span> <span style="color:#007020;font-weight:bold">new</span> Vue()
+</code></pre></div></li>
 <li>
 <p>页面A</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 一般情况下为了避免重名需要给事件名后面加唯一标记
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">let</span> timestamp <span style="color:#666">=</span> <span style="color:#007020">Date</span>.parse(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>())
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 通过路由传参将timestamp传给目标页面
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">this</span>.$router.push({path<span style="color:#666">:</span> <span style="color:#4070a0">&#39;/xxx&#39;</span>, query<span style="color:#666">:</span> {timestamp<span style="color:#666">:</span> timestamp}})
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 父组件发送一个全局事件
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">this</span>.$eventHub.$emit(<span style="color:#4070a0">&#39;refresh&#39;</span> <span style="color:#666">+</span> timestamp)
-</span></span></code></pre></div></li>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#60a0b0;font-style:italic">// 一般情况下为了避免重名需要给事件名后面加唯一标记
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">let</span> timestamp <span style="color:#666">=</span> <span style="color:#007020">Date</span>.parse(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>())
+<span style="color:#60a0b0;font-style:italic">// 通过路由传参将timestamp传给目标页面
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">this</span>.$router.push({path<span style="color:#666">:</span> <span style="color:#4070a0">&#39;/xxx&#39;</span>, query<span style="color:#666">:</span> {timestamp<span style="color:#666">:</span> timestamp}})
+<span style="color:#60a0b0;font-style:italic">// 父组件发送一个全局事件
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">this</span>.$eventHub.$emit(<span style="color:#4070a0">&#39;refresh&#39;</span> <span style="color:#666">+</span> timestamp)
+</code></pre></div></li>
 <li>
 <p>页面B</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 接受路由参数
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">let</span> timestamp <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>.$route.query.timestamp
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 接收全局事件
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">this</span>.$eventHub.$on(<span style="color:#4070a0">&#39;refresh&#39;</span> <span style="color:#666">+</span> timestamp, (params) =&gt; {
-</span></span><span style="display:flex;"><span>	<span style="color:#60a0b0;font-style:italic">// 初始化数据方法
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">this</span>.fetchData()
-</span></span><span style="display:flex;"><span>})
-</span></span></code></pre></div></li>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#60a0b0;font-style:italic">// 接受路由参数
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">let</span> timestamp <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>.$route.query.timestamp
+<span style="color:#60a0b0;font-style:italic">// 接收全局事件
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">this</span>.$eventHub.$on(<span style="color:#4070a0">&#39;refresh&#39;</span> <span style="color:#666">+</span> timestamp, (params) =&gt; {
+	<span style="color:#60a0b0;font-style:italic">// 初始化数据方法
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">this</span>.fetchData()
+})
+</code></pre></div></li>
 </ul>
 <h1 id="参考资料">参考资料</h1>
 <blockquote>

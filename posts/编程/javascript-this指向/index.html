@@ -1009,24 +1009,24 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </blockquote>
 <p>看几个简单的例子:<a href="https://codepen.io/damuwangs/pen/OJgMPxe?editors=0012">this指向</a></p>
 <h1 id="改变this的指向">改变this的指向</h1>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;windowsName&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>    name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>        console.log(<span style="color:#007020;font-weight:bold">this</span>.name)     
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>        setTimeout(  <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.func1()
-</span></span><span style="display:flex;"><span>        },<span style="color:#40a070">100</span>)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>a.func2()     <span style="color:#60a0b0;font-style:italic">// this.func1 is not a function
-</span></span></span></code></pre></div><p>在不使用箭头函数的情况下，是会报错的，因为最后调用setTimeout的对象是 window，但是在 window 中并没有 func1 函数</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;windowsName&#34;</span>;
+
+<span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
+    name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
+
+    func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+        console.log(<span style="color:#007020;font-weight:bold">this</span>.name)     
+    },
+
+    func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+        setTimeout(  <span style="color:#007020;font-weight:bold">function</span> () {
+            <span style="color:#007020;font-weight:bold">this</span>.func1()
+        },<span style="color:#40a070">100</span>)
+    }
+}
+
+a.func2()     <span style="color:#60a0b0;font-style:italic">// this.func1 is not a function
+</span></code></pre></div><p>在不使用箭头函数的情况下，是会报错的，因为最后调用setTimeout的对象是 window，但是在 window 中并没有 func1 函数</p>
 <p>我们在改变 this 指向这一节将把这个例子作为 demo 进行改造</p>
 <h2 id="箭头函数">箭头函数</h2>
 <p>先看箭头函数和普通函数的重要区别：</p>
@@ -1038,93 +1038,93 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <p>5、形参名称不能重复</p>
 </blockquote>
 <p>箭头函数的 this 始终指向函数定义时的 this，而非执行时，箭头函数需要记着这句话：“箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined”</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;windowsName&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>    name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>        console.log(<span style="color:#007020;font-weight:bold">this</span>.name)     
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>        setTimeout( () =&gt; {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.func1()
-</span></span><span style="display:flex;"><span>        },<span style="color:#40a070">100</span>)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>a.func2()     <span style="color:#60a0b0;font-style:italic">// Cherry
-</span></span></span></code></pre></div><h2 id="函数内部使用_this--this">函数内部使用_this = this</h2>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;windowsName&#34;</span>
+<span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
+    name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
+
+    func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+        console.log(<span style="color:#007020;font-weight:bold">this</span>.name)     
+    },
+
+    func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+        setTimeout( () =&gt; {
+            <span style="color:#007020;font-weight:bold">this</span>.func1()
+        },<span style="color:#40a070">100</span>)
+    }
+}
+
+a.func2()     <span style="color:#60a0b0;font-style:italic">// Cherry
+</span></code></pre></div><h2 id="函数内部使用_this--this">函数内部使用_this = this</h2>
 <p>先将调用这个函数的对象保存在变量_this中，然后在函数中都使用这个_this，这样_this就不会改变了</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;windowsName&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>    name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>        console.log(<span style="color:#007020;font-weight:bold">this</span>.name)     
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">var</span> _this <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>
-</span></span><span style="display:flex;"><span>        setTimeout( <span style="color:#007020;font-weight:bold">function</span>() {
-</span></span><span style="display:flex;"><span>            _this.func1()
-</span></span><span style="display:flex;"><span>        },<span style="color:#40a070">100</span>)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>a.func2()       <span style="color:#60a0b0;font-style:italic">// Cherry
-</span></span></span></code></pre></div><p>这个例子中，在 func2 中，首先设置var _this = this，这里的this 是调用func2的对象 a，为了防止在func2中的 setTimeout 被 window 调用而导致的在 setTimeout 中的 this 为 window。我们将this(指向变量 a)赋值给一个变量 _this，这样，在func2中我们使用this就是指向对象 a 了。</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;windowsName&#34;</span>;
+
+<span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
+    name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
+    
+    func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+        console.log(<span style="color:#007020;font-weight:bold">this</span>.name)     
+    },
+    
+    func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+        <span style="color:#007020;font-weight:bold">var</span> <span style="color:#40a070">_</span><span style="color:#007020;font-weight:bold">this</span> <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>
+        setTimeout( <span style="color:#007020;font-weight:bold">function</span>() {
+            <span style="color:#40a070">_</span><span style="color:#007020;font-weight:bold">this</span>.func1()
+        },<span style="color:#40a070">100</span>)
+    }
+}
+
+a.func2()       <span style="color:#60a0b0;font-style:italic">// Cherry
+</span></code></pre></div><p>这个例子中，在 func2 中，首先设置var _this = this，这里的this 是调用func2的对象 a，为了防止在func2中的 setTimeout 被 window 调用而导致的在 setTimeout 中的 this 为 window。我们将this(指向变量 a)赋值给一个变量 _this，这样，在func2中我们使用this就是指向对象 a 了。</p>
 <h2 id="使用applycallbind">使用apply、call、bind</h2>
 <h3 id="使用-apply">使用 apply</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>    name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>        console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>        setTimeout(  <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.func1()
-</span></span><span style="display:flex;"><span>        }.apply(a),<span style="color:#40a070">100</span>)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>a.func2()            <span style="color:#60a0b0;font-style:italic">// Cherry
-</span></span></span></code></pre></div><h3 id="使用-call">使用 call</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>        name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>            console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>            setTimeout(  <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">this</span>.func1()
-</span></span><span style="display:flex;"><span>            }.call(a),<span style="color:#40a070">100</span>)
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    a.func2()            <span style="color:#60a0b0;font-style:italic">// Cherry
-</span></span></span></code></pre></div><h3 id="使用-bind">使用 bind</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>        name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>            console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>            setTimeout(  <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">this</span>.func1()
-</span></span><span style="display:flex;"><span>            }.bind(a)(),<span style="color:#40a070">100</span>)
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    a.func2()            <span style="color:#60a0b0;font-style:italic">// Cherry
-</span></span></span></code></pre></div><h2 id="applycallbind区别">apply、call、bind区别</h2>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
+    name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
+
+    func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+        console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
+    },
+
+    func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+        setTimeout(  <span style="color:#007020;font-weight:bold">function</span> () {
+            <span style="color:#007020;font-weight:bold">this</span>.func1()
+        }.apply(a),<span style="color:#40a070">100</span>)
+    }
+}
+
+a.func2()            <span style="color:#60a0b0;font-style:italic">// Cherry
+</span></code></pre></div><h3 id="使用-call">使用 call</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">    <span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
+        name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
+
+        func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+            console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
+        },
+
+        func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+            setTimeout(  <span style="color:#007020;font-weight:bold">function</span> () {
+                <span style="color:#007020;font-weight:bold">this</span>.func1()
+            }.call(a),<span style="color:#40a070">100</span>)
+        }
+    }
+
+    a.func2()            <span style="color:#60a0b0;font-style:italic">// Cherry
+</span></code></pre></div><h3 id="使用-bind">使用 bind</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">    <span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> {
+        name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
+
+        func1<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+            console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
+        },
+
+        func2<span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> () {
+            setTimeout(  <span style="color:#007020;font-weight:bold">function</span> () {
+                <span style="color:#007020;font-weight:bold">this</span>.func1()
+            }.bind(a)(),<span style="color:#40a070">100</span>)
+        }
+    }
+
+    a.func2()            <span style="color:#60a0b0;font-style:italic">// Cherry
+</span></code></pre></div><h2 id="applycallbind区别">apply、call、bind区别</h2>
 <p>其实 apply 和 call 基本类似，他们的区别只是传入的参数不同。所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组</p>
 <p><a href="https://link.juejin.cn?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FFunction%2Fapply">MDN</a>中定义 apply 如下</p>
 <blockquote>
@@ -1156,81 +1156,81 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </blockquote>
 <hr>
 <p>我们先来将刚刚的例子使用 bind 试一下</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span>{
-</span></span><span style="display:flex;"><span>    name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
-</span></span><span style="display:flex;"><span>    fn <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> (a,b) {
-</span></span><span style="display:flex;"><span>        console.log( a <span style="color:#666">+</span> b)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> b <span style="color:#666">=</span> a.fn;
-</span></span><span style="display:flex;"><span>b.bind(a,<span style="color:#40a070">1</span>,<span style="color:#40a070">2</span>)
-</span></span></code></pre></div><p>我们会发现并没有输出，<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">MDN</a>中定义bind如下</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span>{
+    name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
+    fn <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> (a,b) {
+        console.log( a <span style="color:#666">+</span> b)
+    }
+}
+
+<span style="color:#007020;font-weight:bold">var</span> b <span style="color:#666">=</span> a.fn;
+b.bind(a,<span style="color:#40a070">1</span>,<span style="color:#40a070">2</span>)
+</code></pre></div><p>我们会发现并没有输出，<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">MDN</a>中定义bind如下</p>
 <blockquote>
 <p>创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列</p>
 </blockquote>
 <p>所以我们可以看出，bind 是创建一个新的函数，我们必须要手动去调用</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span>{
-</span></span><span style="display:flex;"><span>	name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
-</span></span><span style="display:flex;"><span>	fn <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> (a,b) {
-</span></span><span style="display:flex;"><span>    	console.log( a <span style="color:#666">+</span> b)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> b <span style="color:#666">=</span> a.fn
-</span></span><span style="display:flex;"><span>b.bind(a,<span style="color:#40a070">1</span>,<span style="color:#40a070">2</span>)()           <span style="color:#60a0b0;font-style:italic">// 3
-</span></span></span></code></pre></div><h1 id="js中的函数调用">JS中的函数调用</h1>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span>{
+	name <span style="color:#666">:</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>,
+	fn <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span> (a,b) {
+    	console.log( a <span style="color:#666">+</span> b)
+    }
+}
+
+<span style="color:#007020;font-weight:bold">var</span> b <span style="color:#666">=</span> a.fn
+b.bind(a,<span style="color:#40a070">1</span>,<span style="color:#40a070">2</span>)()           <span style="color:#60a0b0;font-style:italic">// 3
+</span></code></pre></div><h1 id="js中的函数调用">JS中的函数调用</h1>
 <h3 id="普通函数调用模式">普通函数调用模式</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;windowsName&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> a() {
-</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>
-</span></span><span style="display:flex;"><span>	console.log(<span style="color:#007020;font-weight:bold">this</span>.name)          <span style="color:#60a0b0;font-style:italic">// windowsName
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>}
-</span></span><span style="display:flex;"><span>a()
-</span></span></code></pre></div><p>这样一个最简单的函数，不属于任何一个对象，就是一个函数，这样的情况在 JavaScript 的在浏览器中的非严格模式默认是属于全局对象 window 的，在严格模式，就是 undefined</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;windowsName&#34;</span>
+<span style="color:#007020;font-weight:bold">function</span> a() {
+	<span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;Cherry&#34;</span>
+	console.log(<span style="color:#007020;font-weight:bold">this</span>.name)          <span style="color:#60a0b0;font-style:italic">// windowsName
+</span><span style="color:#60a0b0;font-style:italic"></span>}
+a()
+</code></pre></div><p>这样一个最简单的函数，不属于任何一个对象，就是一个函数，这样的情况在 JavaScript 的在浏览器中的非严格模式默认是属于全局对象 window 的，在严格模式，就是 undefined</p>
 <p>但这是一个全局的函数，很容易产生命名冲突，所以不建议这样使用</p>
 <h3 id="对象中的函数方法调用模式">对象中的函数（方法）调用模式</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#39;window&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> doSth <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>(){
-</span></span><span style="display:flex;"><span>    console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> student <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>    name<span style="color:#666">:</span> <span style="color:#4070a0">&#39;若川&#39;</span>,
-</span></span><span style="display:flex;"><span>    doSth<span style="color:#666">:</span> doSth,
-</span></span><span style="display:flex;"><span>    other<span style="color:#666">:</span> {
-</span></span><span style="display:flex;"><span>        name<span style="color:#666">:</span> <span style="color:#4070a0">&#39;other&#39;</span>,
-</span></span><span style="display:flex;"><span>        doSth<span style="color:#666">:</span> doSth,
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>student.doSth() <span style="color:#60a0b0;font-style:italic">// &#39;若川&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>student.other.doSth() <span style="color:#60a0b0;font-style:italic">// &#39;other&#39;
-</span></span></span></code></pre></div><h3 id="callapplybind模式">call、apply、bind模式</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#39;window&#39;</span>
+<span style="color:#007020;font-weight:bold">var</span> doSth <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>(){
+    console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
+}
+<span style="color:#007020;font-weight:bold">var</span> student <span style="color:#666">=</span> {
+    name<span style="color:#666">:</span> <span style="color:#4070a0">&#39;若川&#39;</span>,
+    doSth<span style="color:#666">:</span> doSth,
+    other<span style="color:#666">:</span> {
+        name<span style="color:#666">:</span> <span style="color:#4070a0">&#39;other&#39;</span>,
+        doSth<span style="color:#666">:</span> doSth,
+    }
+}
+student.doSth() <span style="color:#60a0b0;font-style:italic">// &#39;若川&#39;
+</span><span style="color:#60a0b0;font-style:italic"></span>student.other.doSth() <span style="color:#60a0b0;font-style:italic">// &#39;other&#39;
+</span></code></pre></div><h3 id="callapplybind模式">call、apply、bind模式</h3>
 <p>同上<a href="http://localhost:1313/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/#%E4%BD%BF%E7%94%A8applycallbind">使用apply、call、bind</a></p>
 <h3 id="构造函数调用模式">构造函数调用模式</h3>
 <blockquote>
 <p>如果函数调用前使用了 new 关键字, 则是调用了构造函数
 这看起来就像创建了新的函数，但实际上 JavaScript 函数是重新创建的对象：</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 构造函数:
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">function</span> myFunction(arg1, arg2) {
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">this</span>.firstName <span style="color:#666">=</span> arg1
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">this</span>.lastName  <span style="color:#666">=</span> arg2
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> myFunction(<span style="color:#4070a0">&#34;Li&#34;</span>,<span style="color:#4070a0">&#34;Cherry&#34;</span>);
-</span></span><span style="display:flex;"><span>a.lastName  <span style="color:#60a0b0;font-style:italic">// 返回 &#34;Cherry&#34;
-</span></span></span></code></pre></div><p>这就有要说另一个面试经典问题：new 的过程了，(ಥ_ಥ)
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#60a0b0;font-style:italic">// 构造函数:
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">function</span> myFunction(arg1, arg2) {
+    <span style="color:#007020;font-weight:bold">this</span>.firstName <span style="color:#666">=</span> arg1
+    <span style="color:#007020;font-weight:bold">this</span>.lastName  <span style="color:#666">=</span> arg2
+}
+
+<span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> myFunction(<span style="color:#4070a0">&#34;Li&#34;</span>,<span style="color:#4070a0">&#34;Cherry&#34;</span>);
+a.lastName  <span style="color:#60a0b0;font-style:italic">// 返回 &#34;Cherry&#34;
+</span></code></pre></div><p>这就有要说另一个面试经典问题：new 的过程了，(ಥ_ಥ)
 这里就简单的来看一下 new 的过程吧：
 伪代码表示：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> myFunction(<span style="color:#4070a0">&#34;Li&#34;</span>,<span style="color:#4070a0">&#34;Cherry&#34;</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">new</span> myFunction{
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">var</span> obj <span style="color:#666">=</span> {};
-</span></span><span style="display:flex;"><span>    obj.__proto__ <span style="color:#666">=</span> myFunction.prototype;
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">var</span> result <span style="color:#666">=</span> myFunction.call(obj,<span style="color:#4070a0">&#34;Li&#34;</span>,<span style="color:#4070a0">&#34;Cherry&#34;</span>);
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">typeof</span> result <span style="color:#666">===</span> <span style="color:#4070a0">&#39;obj&#39;</span><span style="color:#666">?</span> result <span style="color:#666">:</span> obj;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><ol>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> myFunction(<span style="color:#4070a0">&#34;Li&#34;</span>,<span style="color:#4070a0">&#34;Cherry&#34;</span>);
+
+<span style="color:#007020;font-weight:bold">new</span> myFunction{
+    <span style="color:#007020;font-weight:bold">var</span> obj <span style="color:#666">=</span> {};
+    obj.<span style="color:#40a070">__</span>proto__ <span style="color:#666">=</span> myFunction.prototype;
+    <span style="color:#007020;font-weight:bold">var</span> result <span style="color:#666">=</span> myFunction.call(obj,<span style="color:#4070a0">&#34;Li&#34;</span>,<span style="color:#4070a0">&#34;Cherry&#34;</span>);
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">typeof</span> result <span style="color:#666">===</span> <span style="color:#4070a0">&#39;obj&#39;</span><span style="color:#666">?</span> result <span style="color:#666">:</span> obj;
+}
+</code></pre></div><ol>
 <li>
 <p>创建一个空对象 obj</p>
 </li>
@@ -1247,15 +1247,15 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </ol>
 <p>所以我们可以看到，在 new 的过程中，我们是使用 call 改变了 this 的指向。</p>
 <h3 id="原型链中的调用模式">原型链中的调用模式</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> Student(name){
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">this</span>.name <span style="color:#666">=</span> name
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> s1 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Student(<span style="color:#4070a0">&#39;若川&#39;</span>)
-</span></span><span style="display:flex;"><span>Student.prototype.doSth <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>(){
-</span></span><span style="display:flex;"><span>    console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>s1.doSth() <span style="color:#60a0b0;font-style:italic">// &#39;若川&#39;
-</span></span></span></code></pre></div><h3 id="箭头函数调用模式">箭头函数调用模式</h3>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">function</span> Student(name){
+    <span style="color:#007020;font-weight:bold">this</span>.name <span style="color:#666">=</span> name
+}
+<span style="color:#007020;font-weight:bold">var</span> s1 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Student(<span style="color:#4070a0">&#39;若川&#39;</span>)
+Student.prototype.doSth <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>(){
+    console.log(<span style="color:#007020;font-weight:bold">this</span>.name)
+}
+s1.doSth() <span style="color:#60a0b0;font-style:italic">// &#39;若川&#39;
+</span></code></pre></div><h3 id="箭头函数调用模式">箭头函数调用模式</h3>
 <p>同上<a href="http://localhost:1313/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0">箭头函数</a></p>
 <h1 id="参考资料">参考资料</h1>
 <blockquote>
@@ -1281,8 +1281,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 
                 
-                <a class="older-posts" href="https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E4%B9%90%E7%90%86/">
-			Previous<br>【待补充】乐理
+                <a class="older-posts" href="https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%83%AD%E9%87%8F%E6%B6%88%E8%80%97%E4%B8%8E%E8%90%A5%E5%85%BB%E6%91%84%E5%85%A5%E7%9A%84%E6%80%9D%E8%80%83/">
+			Previous<br>关于热量消耗与营养摄入的思考
                 </a>
                 
             </nav>

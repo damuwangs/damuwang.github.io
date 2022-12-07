@@ -572,17 +572,17 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </ol>
 <h2 id="事件循环说明">事件循环说明</h2>
 <p>简单来说，Vue 在修改数据后，视图不会立刻更新，而是等<strong>同一事件循环</strong>中的所有数据变化完成之后，再统一进行视图更新</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//改变数据
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>vm.message <span style="color:#666">=</span> <span style="color:#4070a0">&#39;changed&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>console.log(vm.$el.textContent) <span style="color:#60a0b0;font-style:italic">// 并不会得到&#39;changed&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//这样可以，nextTick里面的代码会在DOM更新后执行
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>Vue.nextTick(<span style="color:#007020;font-weight:bold">function</span>(){
-</span></span><span style="display:flex;"><span>    console.log(vm.$el.textContent) <span style="color:#60a0b0;font-style:italic">// 可以得到&#39;changed&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>})
-</span></span></code></pre></div><p><img src="/img/Vue2-nextTick/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF.png" alt=""></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#60a0b0;font-style:italic">//改变数据
+</span><span style="color:#60a0b0;font-style:italic"></span>vm.message <span style="color:#666">=</span> <span style="color:#4070a0">&#39;changed&#39;</span>
+
+<span style="color:#60a0b0;font-style:italic">//想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新
+</span><span style="color:#60a0b0;font-style:italic"></span>console.log(vm.$el.textContent) <span style="color:#60a0b0;font-style:italic">// 并不会得到&#39;changed&#39;
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#60a0b0;font-style:italic">//这样可以，nextTick里面的代码会在DOM更新后执行
+</span><span style="color:#60a0b0;font-style:italic"></span>Vue.nextTick(<span style="color:#007020;font-weight:bold">function</span>(){
+    console.log(vm.$el.textContent) <span style="color:#60a0b0;font-style:italic">// 可以得到&#39;changed&#39;
+</span><span style="color:#60a0b0;font-style:italic"></span>})
+</code></pre></div><p><img src="/img/Vue2-nextTick/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF.png" alt=""></p>
 <ol>
 <li>
 <p>本次更新循环</p>
@@ -616,165 +616,165 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <blockquote>
 <p>官方文档说明：注意 mounted 不会承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用 vm.$nextTick 替换掉 mounted</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>created(){
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">let</span> that<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">this</span>
-</span></span><span style="display:flex;"><span>    that.$nextTick(
-</span></span><span style="display:flex;"><span>    	<span style="color:#007020;font-weight:bold">function</span>(){  
-</span></span><span style="display:flex;"><span>    		<span style="color:#60a0b0;font-style:italic">//不使用this.$nextTick()方法会报错
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        	that.$refs.aa.innerHTML <span style="color:#666">=</span> <span style="color:#4070a0">&#34;created中更改了按钮内容&#34;</span> <span style="color:#60a0b0;font-style:italic">// 写入到DOM元素
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        }
-</span></span><span style="display:flex;"><span>    })
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><ol start="2">
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">created(){
+    <span style="color:#007020;font-weight:bold">let</span> that<span style="color:#666">=</span><span style="color:#007020;font-weight:bold">this</span>
+    that.$nextTick(
+    	<span style="color:#007020;font-weight:bold">function</span>(){  
+    		<span style="color:#60a0b0;font-style:italic">//不使用this.$nextTick()方法会报错
+</span><span style="color:#60a0b0;font-style:italic"></span>        	that.$refs.aa.innerHTML <span style="color:#666">=</span> <span style="color:#4070a0">&#34;created中更改了按钮内容&#34;</span> <span style="color:#60a0b0;font-style:italic">// 写入到DOM元素
+</span><span style="color:#60a0b0;font-style:italic"></span>        }
+    })
+}
+</code></pre></div><ol start="2">
 <li>当项目中你想在改变 DOM 元素的数据后基于新的 dom 做点什么，对新 DOM 一系列的 js 操作都需要放进 Vue.nextTick()的回调函数中；通俗的理解是：更改数据后当你想立即使用 js 操作新的视图的时候需要使用它</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;app&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">ref</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;msgDiv&#34;</span>&gt;{{msg}}&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>      	&lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#062873;font-weight:bold">v-if</span><span style="color:#4070a0">=&#34;msg1&#34;</span>&gt;<span style="color:#4070a0">Message</span> <span style="color:#4070a0">got</span> <span style="color:#4070a0">outside</span> <span style="">$</span><span style="color:#4070a0">nextTick</span><span style="color:#666">:</span> {{<span style="color:#4070a0">msg1</span>}}&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>      	&lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#062873;font-weight:bold">v-if</span><span style="color:#4070a0">=&#34;msg2&#34;</span>&gt;<span style="color:#4070a0">Message</span> <span style="color:#4070a0">got</span> <span style="color:#4070a0">inside</span> <span style="">$</span><span style="color:#4070a0">nextTick</span><span style="color:#666">:</span> {{<span style="color:#4070a0">msg2</span>}}&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>      	&lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#062873;font-weight:bold">v-if</span><span style="color:#4070a0">=&#34;msg3&#34;</span>&gt;<span style="color:#4070a0">Message</span> <span style="color:#4070a0">got</span> <span style="color:#4070a0">outside</span> <span style="">$</span><span style="color:#4070a0">nextTick</span><span style="color:#666">:</span> {{<span style="color:#4070a0">msg3</span>}}&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>      	&lt;<span style="color:#062873;font-weight:bold">button</span> <span style="color:#062873;font-weight:bold">@click</span><span style="color:#4070a0">=&#34;changeMsg&#34;</span>&gt;<span style="color:#4070a0">Change</span> <span style="color:#4070a0">the</span> <span style="color:#4070a0">Message</span>&lt;/<span style="color:#062873;font-weight:bold">button</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
-</span></span><span style="display:flex;"><span>    data () {
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">return</span> {
-</span></span><span style="display:flex;"><span>            msg<span style="color:#666">:</span> <span style="color:#4070a0">&#39;Hello Vue.&#39;</span>,
-</span></span><span style="display:flex;"><span>            msg1<span style="color:#666">:</span> <span style="color:#4070a0">&#39;&#39;</span>,
-</span></span><span style="display:flex;"><span>            msg2<span style="color:#666">:</span> <span style="color:#4070a0">&#39;&#39;</span>,
-</span></span><span style="display:flex;"><span>            msg3<span style="color:#666">:</span> <span style="color:#4070a0">&#39;&#39;</span>
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    methods<span style="color:#666">:</span>{
-</span></span><span style="display:flex;"><span>        changeMsg() {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.msg <span style="color:#666">=</span> <span style="color:#4070a0">&#34;Hello world.&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.msg1 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>.$refs.msgDiv.innerHTML
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(() =&gt; {
-</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">this</span>.msg2 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>.$refs.msgDiv.innerHTML
-</span></span><span style="display:flex;"><span>            })
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.msg3 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>.$refs.msgDiv.innerHTML
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}    
-</span></span></code></pre></div><p>点击前</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vue" data-lang="vue">&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
+    &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;app&#34;</span>&gt;
+        &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">ref</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;msgDiv&#34;</span>&gt;{{msg}}&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+      	&lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#062873;font-weight:bold">v-if</span><span style="color:#4070a0">=&#34;msg1&#34;</span>&gt;<span style="color:#4070a0">Message</span> <span style="color:#4070a0">got</span> <span style="color:#4070a0">outside</span> <span style="">$</span><span style="color:#4070a0">nextTick</span><span style="color:#666">:</span> {{<span style="color:#4070a0">msg1</span>}}&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+      	&lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#062873;font-weight:bold">v-if</span><span style="color:#4070a0">=&#34;msg2&#34;</span>&gt;<span style="color:#4070a0">Message</span> <span style="color:#4070a0">got</span> <span style="color:#4070a0">inside</span> <span style="">$</span><span style="color:#4070a0">nextTick</span><span style="color:#666">:</span> {{<span style="color:#4070a0">msg2</span>}}&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+      	&lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#062873;font-weight:bold">v-if</span><span style="color:#4070a0">=&#34;msg3&#34;</span>&gt;<span style="color:#4070a0">Message</span> <span style="color:#4070a0">got</span> <span style="color:#4070a0">outside</span> <span style="">$</span><span style="color:#4070a0">nextTick</span><span style="color:#666">:</span> {{<span style="color:#4070a0">msg3</span>}}&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+      	&lt;<span style="color:#062873;font-weight:bold">button</span> <span style="color:#062873;font-weight:bold">@click</span><span style="color:#4070a0">=&#34;changeMsg&#34;</span>&gt;<span style="color:#4070a0">Change</span> <span style="color:#4070a0">the</span> <span style="color:#4070a0">Message</span>&lt;/<span style="color:#062873;font-weight:bold">button</span>&gt;
+    &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
+ 
+&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+<span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
+    data () {
+        <span style="color:#007020;font-weight:bold">return</span> {
+            msg<span style="color:#666">:</span> <span style="color:#4070a0">&#39;Hello Vue.&#39;</span>,
+            msg1<span style="color:#666">:</span> <span style="color:#4070a0">&#39;&#39;</span>,
+            msg2<span style="color:#666">:</span> <span style="color:#4070a0">&#39;&#39;</span>,
+            msg3<span style="color:#666">:</span> <span style="color:#4070a0">&#39;&#39;</span>
+        }
+    },
+    methods<span style="color:#666">:</span>{
+        changeMsg() {
+            <span style="color:#007020;font-weight:bold">this</span>.msg <span style="color:#666">=</span> <span style="color:#4070a0">&#34;Hello world.&#34;</span>
+            <span style="color:#007020;font-weight:bold">this</span>.msg1 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>.$refs.msgDiv.innerHTML
+            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(() =&gt; {
+                <span style="color:#007020;font-weight:bold">this</span>.msg2 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>.$refs.msgDiv.innerHTML
+            })
+            <span style="color:#007020;font-weight:bold">this</span>.msg3 <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">this</span>.$refs.msgDiv.innerHTML
+        }
+    }
+}    
+</code></pre></div><p>点击前</p>
 <p><img src="/img/Vue2-nextTick/%E7%82%B9%E5%87%BB%E5%89%8D.png" alt=""></p>
 <p>点击后</p>
 <p><img src="/img/Vue2-nextTick/%E7%82%B9%E5%87%BB%E5%90%8E.png" alt=""></p>
 <p>从图中可以得知：msg1和msg3显示的内容还是变换之前的，而msg2显示的内容是变换之后的</p>
 <h1 id="通过一个实例理解nexttick">通过一个实例理解nextTick</h1>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;content&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#062873;font-weight:bold">ul</span>&gt;
-</span></span><span style="display:flex;"><span>            &lt;<span style="color:#062873;font-weight:bold">li</span> <span style="color:#062873;font-weight:bold">v-for</span><span style="color:#4070a0">=&#34;item in list1&#34; :key=&#34;item&#34;&gt;{{item}}&lt;/li&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;/ul&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;ul&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">       	    &lt;li v-for=&#34;item in list2&#34; :key=&#34;item&#34;&gt;{{item}}&lt;/li&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;/ul&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;ol&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">            &lt;li v-for=&#34;item in list3&#34; :key=&#34;item&#34;&gt;{{item}}&lt;/li&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;/ol&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;ol&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">            &lt;li v-for=&#34;item in list4&#34; :key=&#34;item&#34;&gt;{{item}}&lt;/li&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;/ol&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">        &lt;ol&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">            &lt;li v-for=&#34;item in list5&#34; </span><span style="color:#062873;font-weight:bold">:key</span><span style="color:#4070a0">=&#34;item&#34;</span>&gt;{{<span style="color:#4070a0">item</span>}}&lt;/<span style="color:#062873;font-weight:bold">li</span>&gt;
-</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#062873;font-weight:bold">ol</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">import</span> {dateFormat} from <span style="color:#4070a0">&#39;@/components/JS方法库/util/common.js&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
-</span></span><span style="display:flex;"><span>  data () {
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">return</span> {
-</span></span><span style="display:flex;"><span>            list1<span style="color:#666">:</span> [],
-</span></span><span style="display:flex;"><span>            list2<span style="color:#666">:</span> [],
-</span></span><span style="display:flex;"><span>            list3<span style="color:#666">:</span> [],
-</span></span><span style="display:flex;"><span>            list4<span style="color:#666">:</span> [],
-</span></span><span style="display:flex;"><span>            list5<span style="color:#666">:</span> []
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    created(){
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.composeList12()
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.composeList34()
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.composeList5()
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
-</span></span><span style="display:flex;"><span>            <span style="color:#60a0b0;font-style:italic">// DOM 更新了
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>            console.log(<span style="color:#4070a0">&#39;[7]同步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
-</span></span><span style="display:flex;"><span>            console.log(<span style="color:#4070a0">&#39;——————————同步视图更新完成——————————&#39;</span>)
-</span></span><span style="display:flex;"><span>        })
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>    methods<span style="color:#666">:</span> {
-</span></span><span style="display:flex;"><span>        composeList12() {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">let</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10000</span>; i<span style="color:#666">++</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">this</span>.$set(<span style="color:#007020;font-weight:bold">this</span>.list1, i, <span style="color:#4070a0">&#39;I am a 测试信息～～啦啦啦&#39;</span> <span style="color:#666">+</span> i)
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>            console.log(<span style="color:#4070a0">&#39;——————————开始更新同步数据——————————&#39;</span>)
-</span></span><span style="display:flex;"><span>            console.log(<span style="color:#4070a0">&#39;[1]同步数据更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">let</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10000</span>; i<span style="color:#666">++</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">this</span>.$set(<span style="color:#007020;font-weight:bold">this</span>.list2, i, <span style="color:#4070a0">&#39;I am a 测试信息～～啦啦啦&#39;</span> <span style="color:#666">+</span> i)
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>            console.log(<span style="color:#4070a0">&#39;[2]同步数据更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
-</span></span><span style="display:flex;"><span>                <span style="color:#60a0b0;font-style:italic">// DOM 更新了
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>                console.log(<span style="color:#4070a0">&#39;[1][2]同步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
-</span></span><span style="display:flex;"><span>            })
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        composeList34() {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">let</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10000</span>; i<span style="color:#666">++</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">this</span>.$set(<span style="color:#007020;font-weight:bold">this</span>.list3, i, <span style="color:#4070a0">&#39;I am a 测试信息～～啦啦啦&#39;</span> <span style="color:#666">+</span> i)
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>            console.log(<span style="color:#4070a0">&#39;[3]同步数据更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
-</span></span><span style="display:flex;"><span>                <span style="color:#60a0b0;font-style:italic">// DOM 更新了
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>                console.log(<span style="color:#4070a0">&#39;[3]同步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
-</span></span><span style="display:flex;"><span>            })
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            setTimeout(<span style="color:#007020;font-weight:bold">this</span>.setTimeout1, <span style="color:#40a070">0</span>)
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        setTimeout1() {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">let</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10000</span>; i<span style="color:#666">++</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">this</span>.$set(<span style="color:#007020;font-weight:bold">this</span>.list4, i, <span style="color:#4070a0">&#39;I am a 测试信息～～啦啦啦&#39;</span> <span style="color:#666">+</span> i)
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>            console.log(<span style="color:#4070a0">&#39;——————————开始更新异步数据——————————&#39;</span>)
-</span></span><span style="display:flex;"><span>            console.log(<span style="color:#4070a0">&#39;[4]异步数据更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
-</span></span><span style="display:flex;"><span>                <span style="color:#60a0b0;font-style:italic">// DOM 更新了
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>                console.log(<span style="color:#4070a0">&#39;[4]异步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
-</span></span><span style="display:flex;"><span>            })
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        composeList5() {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
-</span></span><span style="display:flex;"><span>                <span style="color:#60a0b0;font-style:italic">// DOM 更新了
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>                console.log(<span style="color:#4070a0">&#39;[5]同步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
-</span></span><span style="display:flex;"><span>            })
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            setTimeout(<span style="color:#007020;font-weight:bold">this</span>.setTimeout2, <span style="color:#40a070">0</span>)
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        setTimeout2() {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">let</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10000</span>; i<span style="color:#666">++</span>) {
-</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">this</span>.$set(<span style="color:#007020;font-weight:bold">this</span>.list5, i, <span style="color:#4070a0">&#39;I am a 测试信息～～啦啦啦&#39;</span> <span style="color:#666">+</span> i)
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>            console.log(<span style="color:#4070a0">&#39;[6]异步数据更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
-</span></span><span style="display:flex;"><span>                <span style="color:#60a0b0;font-style:italic">// DOM 更新了
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>                console.log(<span style="color:#4070a0">&#39;[6]异步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
-</span></span><span style="display:flex;"><span>                console.log(<span style="color:#4070a0">&#39;——————————异步视图更新完成——————————&#39;</span>)
-</span></span><span style="display:flex;"><span>            })
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
-</span></span></code></pre></div><p>运行结果如下：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vue" data-lang="vue">&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
+    &lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;content&#34;</span>&gt;
+        &lt;<span style="color:#062873;font-weight:bold">ul</span>&gt;
+            &lt;<span style="color:#062873;font-weight:bold">li</span> <span style="color:#062873;font-weight:bold">v-for</span><span style="color:#4070a0">=&#34;item in list1&#34; :key=&#34;item&#34;&gt;{{item}}&lt;/li&gt;
+</span><span style="color:#4070a0">        &lt;/ul&gt;
+</span><span style="color:#4070a0">        &lt;ul&gt;
+</span><span style="color:#4070a0">       	    &lt;li v-for=&#34;item in list2&#34; :key=&#34;item&#34;&gt;{{item}}&lt;/li&gt;
+</span><span style="color:#4070a0">        &lt;/ul&gt;
+</span><span style="color:#4070a0">        &lt;ol&gt;
+</span><span style="color:#4070a0">            &lt;li v-for=&#34;item in list3&#34; :key=&#34;item&#34;&gt;{{item}}&lt;/li&gt;
+</span><span style="color:#4070a0">        &lt;/ol&gt;
+</span><span style="color:#4070a0">        &lt;ol&gt;
+</span><span style="color:#4070a0">            &lt;li v-for=&#34;item in list4&#34; :key=&#34;item&#34;&gt;{{item}}&lt;/li&gt;
+</span><span style="color:#4070a0">        &lt;/ol&gt;
+</span><span style="color:#4070a0">        &lt;ol&gt;
+</span><span style="color:#4070a0">            &lt;li v-for=&#34;item in list5&#34; </span><span style="color:#062873;font-weight:bold">:key</span><span style="color:#4070a0">=&#34;item&#34;</span>&gt;{{<span style="color:#4070a0">item</span>}}&lt;/<span style="color:#062873;font-weight:bold">li</span>&gt;
+        &lt;/<span style="color:#062873;font-weight:bold">ol</span>&gt;
+    &lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
+
+&lt;<span style="color:#062873;font-weight:bold">script</span>&gt;
+<span style="color:#007020;font-weight:bold">import</span> {dateFormat} from <span style="color:#4070a0">&#39;@/components/JS方法库/util/common.js&#39;</span>
+<span style="color:#007020;font-weight:bold">export</span> <span style="color:#007020;font-weight:bold">default</span> {
+  data () {
+        <span style="color:#007020;font-weight:bold">return</span> {
+            list1<span style="color:#666">:</span> [],
+            list2<span style="color:#666">:</span> [],
+            list3<span style="color:#666">:</span> [],
+            list4<span style="color:#666">:</span> [],
+            list5<span style="color:#666">:</span> []
+        }
+    },
+    created(){
+        <span style="color:#007020;font-weight:bold">this</span>.composeList12()
+        <span style="color:#007020;font-weight:bold">this</span>.composeList34()
+        <span style="color:#007020;font-weight:bold">this</span>.composeList5()
+        <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
+            <span style="color:#60a0b0;font-style:italic">// DOM 更新了
+</span><span style="color:#60a0b0;font-style:italic"></span>            console.log(<span style="color:#4070a0">&#39;[7]同步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
+            console.log(<span style="color:#4070a0">&#39;——————————同步视图更新完成——————————&#39;</span>)
+        })
+    },
+ 
+    methods<span style="color:#666">:</span> {
+        composeList12() {
+            <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">let</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10000</span>; i<span style="color:#666">++</span>) {
+                <span style="color:#007020;font-weight:bold">this</span>.$set(<span style="color:#007020;font-weight:bold">this</span>.list1, i, <span style="color:#4070a0">&#39;I am a 测试信息～～啦啦啦&#39;</span> <span style="color:#666">+</span> i)
+            }
+            console.log(<span style="color:#4070a0">&#39;——————————开始更新同步数据——————————&#39;</span>)
+            console.log(<span style="color:#4070a0">&#39;[1]同步数据更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
+
+            <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">let</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10000</span>; i<span style="color:#666">++</span>) {
+                <span style="color:#007020;font-weight:bold">this</span>.$set(<span style="color:#007020;font-weight:bold">this</span>.list2, i, <span style="color:#4070a0">&#39;I am a 测试信息～～啦啦啦&#39;</span> <span style="color:#666">+</span> i)
+            }
+            console.log(<span style="color:#4070a0">&#39;[2]同步数据更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
+
+            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
+                <span style="color:#60a0b0;font-style:italic">// DOM 更新了
+</span><span style="color:#60a0b0;font-style:italic"></span>                console.log(<span style="color:#4070a0">&#39;[1][2]同步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
+            })
+        },
+        composeList34() {
+            <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">let</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10000</span>; i<span style="color:#666">++</span>) {
+                <span style="color:#007020;font-weight:bold">this</span>.$set(<span style="color:#007020;font-weight:bold">this</span>.list3, i, <span style="color:#4070a0">&#39;I am a 测试信息～～啦啦啦&#39;</span> <span style="color:#666">+</span> i)
+            }
+            console.log(<span style="color:#4070a0">&#39;[3]同步数据更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
+
+            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
+                <span style="color:#60a0b0;font-style:italic">// DOM 更新了
+</span><span style="color:#60a0b0;font-style:italic"></span>                console.log(<span style="color:#4070a0">&#39;[3]同步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
+            })
+
+            setTimeout(<span style="color:#007020;font-weight:bold">this</span>.setTimeout1, <span style="color:#40a070">0</span>)
+        },
+        setTimeout1() {
+            <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">let</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10000</span>; i<span style="color:#666">++</span>) {
+                <span style="color:#007020;font-weight:bold">this</span>.$set(<span style="color:#007020;font-weight:bold">this</span>.list4, i, <span style="color:#4070a0">&#39;I am a 测试信息～～啦啦啦&#39;</span> <span style="color:#666">+</span> i)
+            }
+            console.log(<span style="color:#4070a0">&#39;——————————开始更新异步数据——————————&#39;</span>)
+            console.log(<span style="color:#4070a0">&#39;[4]异步数据更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
+
+            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
+                <span style="color:#60a0b0;font-style:italic">// DOM 更新了
+</span><span style="color:#60a0b0;font-style:italic"></span>                console.log(<span style="color:#4070a0">&#39;[4]异步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
+            })
+        },
+        composeList5() {
+            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
+                <span style="color:#60a0b0;font-style:italic">// DOM 更新了
+</span><span style="color:#60a0b0;font-style:italic"></span>                console.log(<span style="color:#4070a0">&#39;[5]同步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
+            })
+
+            setTimeout(<span style="color:#007020;font-weight:bold">this</span>.setTimeout2, <span style="color:#40a070">0</span>)
+        },
+        setTimeout2() {
+            <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">let</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> <span style="color:#40a070">10000</span>; i<span style="color:#666">++</span>) {
+                <span style="color:#007020;font-weight:bold">this</span>.$set(<span style="color:#007020;font-weight:bold">this</span>.list5, i, <span style="color:#4070a0">&#39;I am a 测试信息～～啦啦啦&#39;</span> <span style="color:#666">+</span> i)
+            }
+            console.log(<span style="color:#4070a0">&#39;[6]异步数据更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
+
+            <span style="color:#007020;font-weight:bold">this</span>.$nextTick(<span style="color:#007020;font-weight:bold">function</span>() {
+                <span style="color:#60a0b0;font-style:italic">// DOM 更新了
+</span><span style="color:#60a0b0;font-style:italic"></span>                console.log(<span style="color:#4070a0">&#39;[6]异步视图更新 - &#39;</span> <span style="color:#666">+</span> dateFormat(<span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Date</span>() ,<span style="color:#4070a0">&#39;yyyy-MM-dd hh:mm:ss&#39;</span>),<span style="color:#007020">document</span>.querySelectorAll(<span style="color:#4070a0">&#39;li&#39;</span>).length)
+                console.log(<span style="color:#4070a0">&#39;——————————异步视图更新完成——————————&#39;</span>)
+            })
+        },
+    }
+}
+&lt;/<span style="color:#062873;font-weight:bold">script</span>&gt;
+</code></pre></div><p>运行结果如下：</p>
 <p><img src="/img/Vue2-nextTick/%E5%AE%9E%E4%BE%8B.png" alt=""></p>
 <ul>
 <li>

@@ -17,15 +17,12 @@
 视图（View）：视图部分，通常指html等用来对用户展示的一部分
 控制器（Controller）：负责根据用户从&amp;quot;视图层&amp;quot;输入的指令，选取&amp;quot;数据层&amp;quot;中的数据，然后对其进行相应的操作，产生最终结果
 视图模型（ViewModel）：由前端开发人员组织生成和维护的视图数据层。在这一层，前端开发者对从后端获取的 Model 数据进行转换处理，做二次封装，以生成符合 View 层使用预期的视图数据模型。需要注意的是 ViewModel 所封装出来的数据模型包括视图的状态和行为两部分，而 Model 层的数据模型是只包含状态的，比如页面的这一块展示什么，那一块展示什么这些都属于视图状态（展示），而页面加载进来时发生什么，点击这一块发生什么，这一块滚动时发生什么这些都属于视图行为（交互），视图状态和行为都封装在了 ViewModel 里。这样的封装使得 ViewModel 可以完整地去描述 View 层。由于实现了双向绑定，ViewModel 的内容会实时展现在 View 层，这是激动人心的，因为前端开发者再也不必低效又麻烦地通过操纵 DOM 去更新视图，MVVM 框架已经把最脏最累的一块做好了，我们开发者只需要处理和维护 ViewModel，更新数据视图就会自动得到相应更新，真正实现数据驱动开发。看到了吧，View 层展现的不是 Model 层的数据，而是 ViewModel 的数据，由 ViewModel 负责与 Model 层交互，这就完全解耦了 View 层和 Model 层，这个解耦是至关重要的，它是前后端分离方案实施的重要一环
-MVC 用户端操作View ，Js监听事件绑定DOM数据，传送指令到 Controller Controller 完成业务逻辑后，要求 Model 改变数据状态 Model 将新的数据发送到 View，通过JS操作DOM为View赋值，用户得到反馈 如果前端没有框架，只使用原生的html+js，MVC模式可以这样理解：
-将html看成view
-js看成controller，负责处理用户与应用的交互，响应对view的操作（对事件的监听），调用Model对数据进行操作，完成model与view的同步（根据model的改变，通过选择器对view进行操作）
-将js的ajax当做Model，也就是数据层，通过ajax从服务器获取数据
-MVVM 就像分析MVC是如何合理分配工作的一样，我们需要数据所以有了M，我们需要界面所以有了V，而我们需要找一个地方把M赋值给V来显示，所以有了C，然而我们忽略了一个很重要的操作：数据解析。在MVC出生的年代，手机APP的数据往往都比较简单，没有现在那么复杂，所以那时的数据解析很可能一步就解决了，所以既然有这样一个问题要处理，而面向对象的思想就是用类和对象来解决问题，显然V和M早就被定义死了，它们都不应该处理“解析数据”的问题，理所应当的，“解析数据”这个问题就交给C来完成了。而现在的手机App功能越来越复杂，数据结构也越来越复杂，所以数据解析也就没那么简单了。如果我们继续按照MVC的设计思路，将数据解析的部分放到了Controller里面，那么Controller就将变得相当臃肿。还有相当重要的一点：Controller被设计出来并不是处理数据解析的。1、管理自己的生命周期；2、处理Controller之间的跳转；3、实现Controller容器。这里面根本没有“数据解析”这一项，所以显然，数据解析也不应该由Controller来完成。那么我们的MVC中，M、V、C都不应该处理数据解析，那么由谁来呢？这个问题实际上在面向对象的时候相当好回答：既然目前没有类能够处理这个问题，那么就创建一个新的类出来解决不就好了？所以我们聪明的开发者们就专门为数据解析创建出了一个新的类：ViewModel。这就是MVVM的诞生
-用户端操作View，ViewModel监听视图变化，触发绑定事件 ViewModel组织好数据，请求服务端处理业务逻辑调用Model层操作数据 服务端处理完数据及逻辑后，要求 Model 改变数据状态 ViewModel组装结果数据后自动绑定到View层，用户得到反馈 思考 ViewModel和Controller的区别
-Controller所要担任的任务更加全面，包括了很多的业务逻辑。而ViewModel则简化甚至剔除了业务逻辑，主要的工作就只是把Model中的数据组装成适合View使用的数据
-前端MVVM对比MVC的优点
-MVC开发者在代码中大量调用相同的 DOM API, 处理繁琐 ，操作冗余，使得代码难以维护</description>
+MVC  用户端操作View ，Js监听事件绑定DOM数据，传送指令到 Controller Controller 完成业务逻辑后，要求 Model 改变数据状态 Model 将新的数据发送到 View，通过JS操作DOM为View赋值，用户得到反馈   如果前端没有框架，只使用原生的html+js，MVC模式可以这样理解：
+  将html看成view
+  js看成controller，负责处理用户与应用的交互，响应对view的操作（对事件的监听），调用Model对数据进行操作，完成model与view的同步（根据model的改变，通过选择器对view进行操作）
+  将js的ajax当做Model，也就是数据层，通过ajax从服务器获取数据
+   MVVM 就像分析MVC是如何合理分配工作的一样，我们需要数据所以有了M，我们需要界面所以有了V，而我们需要找一个地方把M赋值给V来显示，所以有了C，然而我们忽略了一个很重要的操作：数据解析。在MVC出生的年代，手机APP的数据往往都比较简单，没有现在那么复杂，所以那时的数据解析很可能一步就解决了，所以既然有这样一个问题要处理，而面向对象的思想就是用类和对象来解决问题，显然V和M早就被定义死了，它们都不应该处理“解析数据”的问题，理所应当的，“解析数据”这个问题就交给C来完成了。而现在的手机App功能越来越复杂，数据结构也越来越复杂，所以数据解析也就没那么简单了。如果我们继续按照MVC的设计思路，将数据解析的部分放到了Controller里面，那么Controller就将变得相当臃肿。还有相当重要的一点：Controller被设计出来并不是处理数据解析的。1、管理自己的生命周期；2、处理Controller之间的跳转；3、实现Controller容器。这里面根本没有“数据解析”这一项，所以显然，数据解析也不应该由Controller来完成。那么我们的MVC中，M、V、C都不应该处理数据解析，那么由谁来呢？这个问题实际上在面向对象的时候相当好回答：既然目前没有类能够处理这个问题，那么就创建一个新的类出来解决不就好了？所以我们聪明的开发者们就专门为数据解析创建出了一个新的类：ViewModel。这就是MVVM的诞生
+ 用户端操作View，ViewModel监听视图变化，触发绑定事件 ViewModel组织好数据，请求服务端处理业务逻辑调用Model层操作数据 服务端处理完数据及逻辑后，要求 Model 改变数据状态 ViewModel组装结果数据后自动绑定到View层，用户得到反馈  思考   ViewModel和Controller的区别</description>
     </item>
     
     <item>
@@ -38,10 +35,10 @@ MVC开发者在代码中大量调用相同的 DOM API, 处理繁琐 ，操作冗
 但是如果想要匹配特殊字符的话，就要使用元字符\， 它是转义字符字符，顾名思义，就是让其后续的字符失去其本来的含义。举个例子：
 我想匹配*这个符号，由于*这个符号本身是个特殊字符，所以我要利用转义元字符\来让它失去其本来的含义
 /\*/ 如果本来这个字符不是特殊字符，使用转义符号就会让它拥有特殊的含义。我们常常需要匹配一些特殊字符，比如空格，制表符，回车，换行等, 而这些就需要我们使用转义字符来匹配
-特殊字符 正则表达式 换行符 \n 换页符 \f 回车符 \r 空白符 \s 制表符 \t 垂直制表符 \v 回退符 [\b] // \s代表匹配空格，abc为匹配&amp;#39;abc&amp;#39;字符串 const reg = /\sabc/ console.log(reg.test(&amp;#39; abc&amp;#39;)) // true 多个字符 单个字符的映射关系是一对一的，即正则表达式的被用来筛选匹配的字符只有一个。而这显然是不够的，只要引入集合区间和通配符的方式就可以实现一对多的匹配了。
+   特殊字符 正则表达式     换行符 \n   换页符 \f   回车符 \r   空白符 \s   制表符 \t   垂直制表符 \v   回退符 [\b]    // \s代表匹配空格，abc为匹配&amp;#39;abc&amp;#39;字符串 const reg = /\sabc/ console.log(reg.test(&amp;#39; abc&amp;#39;)) // true 多个字符 单个字符的映射关系是一对一的，即正则表达式的被用来筛选匹配的字符只有一个。而这显然是不够的，只要引入集合区间和通配符的方式就可以实现一对多的匹配了。
 在正则表达式里，集合的定义方式是使用中括号[和]。如/[123]/这个正则就能同时匹配1,2,3三个字符。那如果我想匹配所有的数字怎么办呢？从0写到9显然太过低效，所以元字符-就可以用来表示区间范围，利用/[0-9]/就能匹配所有的数字, /[a-z]/则可以匹配所有的英文小写字母。
 即便有了集合和区间的定义方式，如果要同时匹配多个字符也还是要一一列举，这是低效的。所以在正则表达式里衍生了一批用来同时匹配多个字符的简便正则表达式
-匹配区间 正则表达式 除了换行符之外的任何字符 . 单个数字, [0-9] \d 除了[0-9] \D 包括下划线在内的单个字符，[A-Za-z0-9_] \w 非单字字符 \W 匹配空白字符,包括空格、制表符、换页符和换行符 \s 匹配非空白字符 \S // \d代表匹配0-9的数字，[a-z]为匹配所有小写字母 const reg = /\d[a-z]/ console.log(reg.test(&amp;#39;1a2b&amp;#39;)) // true 数量匹配quantifiers 要实现多个字符的匹配我们只要多次循环，重复使用我们的之前的正则规则就可以了。根据循环次数的多与少，我可以分为0次，1次，多次，特定次</description>
+   匹配区间 正则表达式     除了换行符之外的任何字符 .</description>
     </item>
     
     <item>
@@ -56,13 +53,13 @@ MVC开发者在代码中大量调用相同的 DOM API, 处理繁琐 ，操作冗
 同步 所有的任务都处在同一队列中，不可以插队，一个任务执行完接着开始执行下一个，相对于浏览器而言，同步的效率过低
 异步 将一个任务放入到异步队列中，当这个任务执行完成之后，再从异步队列中提取出来，插队到同步队列中，拿到异步任务的结果，可以提升代码执行的效率，不需要因为一个耗时长的代码而一直等待
 回调函数 ajax(url, () =&amp;gt; { // 处理逻辑 }) 假设多个请求存在依赖性，可能就会写出如下代码：
-ajax(url, () =&amp;gt; { // 处理逻辑 ajax(url1, () =&amp;gt; { // 处理逻辑 ajax(url2, () =&amp;gt; { // 处理逻辑 }) }) }) 优点：解决了同步的问题
+ajax(url, () =&amp;gt; { // 处理逻辑  ajax(url1, () =&amp;gt; { // 处理逻辑  ajax(url2, () =&amp;gt; { // 处理逻辑  }) }) }) 优点：解决了同步的问题
 缺点：回调地狱，不能用 try catch 捕获错误，不能 return
 事件监听 这种方式下，异步任务的执行不取决于代码的顺序，而取决于某个事件是否发生
 下面是两个函数f1和f2，编程的意图是f2必须等到f1执行完成，才能执行
 f1方法执行完，通过$emit发送一个事件doSomething（vue写法）
-f1(){ // ... // 发送事件 this.$emit(&amp;#39;doSomething&amp;#39;, {data:&amp;#39;data&amp;#39;}) } 通过$on接收事件
-// 接收事件 this.$on(doSomething, (res) =&amp;gt; { if (res) { this.f2() } }) 优点：比较容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，而且可以&amp;quot;去耦合&amp;quot;，有利于实现模块化</description>
+f1(){ // ...  // 发送事件  this.$emit(&amp;#39;doSomething&amp;#39;, {data:&amp;#39;data&amp;#39;}) } 通过$on接收事件
+// 接收事件 this.$on(doSomething, (res) =&amp;gt; { if (res) { this.</description>
     </item>
     
     <item>
@@ -71,17 +68,17 @@ f1(){ // ... // 发送事件 this.$emit(&amp;#39;doSomething&amp;#39;, {data:&am
       <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/</guid>
-      <description>this的指向 在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象
-看几个简单的例子:this指向
+      <description>this的指向  在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象
+ 看几个简单的例子:this指向
 改变this的指向 var name = &amp;#34;windowsName&amp;#34;; var a = { name : &amp;#34;Cherry&amp;#34;, func1: function () { console.log(this.name) }, func2: function () { setTimeout( function () { this.func1() },100) } } a.func2() // this.func1 is not a function 在不使用箭头函数的情况下，是会报错的，因为最后调用setTimeout的对象是 window，但是在 window 中并没有 func1 函数
 我们在改变 this 指向这一节将把这个例子作为 demo 进行改造
 箭头函数 先看箭头函数和普通函数的重要区别：
-1、没有自己的this、super、arguments和new.target绑定
+ 1、没有自己的this、super、arguments和new.target绑定
 2、不能使用new来调用
 3、没有原型对象
 4、不可以改变this的绑定
 5、形参名称不能重复
-箭头函数的 this 始终指向函数定义时的 this，而非执行时，箭头函数需要记着这句话：“箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined”</description>
+ 箭头函数的 this 始终指向函数定义时的 this，而非执行时，箭头函数需要记着这句话：“箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined”</description>
     </item>
     
     <item>
@@ -91,18 +88,18 @@ f1(){ // ... // 发送事件 this.$emit(&amp;#39;doSomething&amp;#39;, {data:&am
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-eventloop%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</guid>
       <description>概念 JavaScript 是一门单线程语言，即同一时间只能执行一个任务，即代码执行是同步并且阻塞的
-举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务
-只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：setTimeout
+ 举例：这就像只有一个窗口的银行，客户需要一个一个排队办理业务
+ 只能同步执行肯定是有问题的，所以 JS 有了一个用来实现异步的函数：setTimeout
 Event Loop 就是为了确保 异步代码 可以在 同步代码 执行后继续执行的
 队列（Queue） 队列是一种FIFO(First In, First Out) 的数据结构，它的特点就是先进先出
-举例：生活中最常见的例子就是排队，排在队伍最前面的人最先被提供服务
-栈（Stack） 栈是一种 LIFO（Last In, First Out）的数据结构，特点即后进先出
-样例：大家都吃过桶装薯片吧~薯片在包装的时候只能从顶部放入，而吃的时候也只能从顶部拿出，这就叫后进先出
-调用栈（Call Stack） 调用栈本质上当然还是个栈，关键在于它里面装的东西，是一个个待执行的函数
+ 举例：生活中最常见的例子就是排队，排在队伍最前面的人最先被提供服务
+ 栈（Stack） 栈是一种 LIFO（Last In, First Out）的数据结构，特点即后进先出
+ 样例：大家都吃过桶装薯片吧~薯片在包装的时候只能从顶部放入，而吃的时候也只能从顶部拿出，这就叫后进先出
+ 调用栈（Call Stack） 调用栈本质上当然还是个栈，关键在于它里面装的东西，是一个个待执行的函数
 Event Loop 会一直检查 Call Stack 中是否有函数需要执行，如果有，就从栈顶依次执行。同时，如果执行的过程中发现其他函数，继续入栈然后执行
 先拿两个函数来说：
-栈空 现在执行到一个函数A，函数A入栈 函数A 又调用了函数B，函数B入栈 函数B执行完后出栈 然后继续执行函数A，执行完后A也出栈 栈空 看一段代码：
-const bar = () =&amp;gt; console.log(&amp;#39;bar&amp;#39;) const baz = () =&amp;gt; console.log(&amp;#39;baz&amp;#39;) const foo = () =&amp;gt; { console.log(&amp;#39;foo&amp;#39;) bar() baz() } foo() 这段代码在 调用栈中的运行顺序如下图：</description>
+ 栈空 现在执行到一个函数A，函数A入栈 函数A 又调用了函数B，函数B入栈 函数B执行完后出栈 然后继续执行函数A，执行完后A也出栈 栈空  看一段代码：
+const bar = () =&amp;gt; console.log(&amp;#39;bar&amp;#39;) const baz = () =&amp;gt; console.log(&amp;#39;baz&amp;#39;) const foo = () =&amp;gt; { console.</description>
     </item>
     
     <item>
@@ -133,16 +130,16 @@ document.getElementById(&amp;#34;second&amp;#34;).addEventListener(&amp;#34;clic
       <description>概述 含义 1995年，同源政策由 Netscape 公司引入浏览器。目前，所有浏览器都实行这个政策
 最初，它的含义是指，A网页设置的 Cookie，B网页不能打开，除非这两个网页&amp;quot;同源&amp;quot;
 所谓&amp;quot;同源&amp;quot;指的是&amp;quot;三个相同&amp;quot;
-协议相同 域名相同 端口相同 常见跨域场景
+  协议相同 域名相同 端口相同   常见跨域场景
 目的 同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。
 设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。如果其他网站可以读取A网站的 Cookie，会发生什么？
 很显然，如果 Cookie 包含隐私（比如存款总额），这些信息就会泄漏。更可怕的是，Cookie 往往用来保存用户的登录状态，如果用户没有退出登录，其他网站就可以冒充用户，为所欲为。因为浏览器同时还规定，提交表单不受同源政策的限制
 由此可见，&amp;ldquo;同源政策&amp;quot;是必需的，否则 Cookie 可以共享，互联网就毫无安全可言了
-限制范围 Cookie、LocalStorage 和 IndexDB 无法读取 DOM 无法获得 AJAX 请求不能发送 解决方案 CORS CORS 即是指跨域资源共享。它允许浏览器向非同源服务器，发出 Ajax 请求，从而克服了 Ajax 只能同源使用的限制。这种方式的跨域主要是在后端进行设置
+限制范围   Cookie、LocalStorage 和 IndexDB 无法读取 DOM 无法获得 AJAX 请求不能发送   解决方案 CORS CORS 即是指跨域资源共享。它允许浏览器向非同源服务器，发出 Ajax 请求，从而克服了 Ajax 只能同源使用的限制。这种方式的跨域主要是在后端进行设置
 这种方式的关键是后端进行设置，即是后端开启 Access-Control-Allow-Origin 为*或对应的origin就可以实现跨域
 cors.html
 let xhr = new XMLHttpRequest() xhr.open(&amp;#39;GET&amp;#39;, &amp;#39;http://localhost:8002/request&amp;#39;) xhr.send(null) server.js
-const express = require(&amp;#39;express&amp;#39;) const app = express() app.use((req, res, next) =&amp;gt; { res.header(&amp;#39;Access-Control-Allow-Origin&amp;#39;, &amp;#39;http://127.0.0.1:5500&amp;#39;) // 设置允许哪个域访问 next() }) app.</description>
+const express = require(&amp;#39;express&amp;#39;) const app = express() app.use((req, res, next) =&amp;gt; { res.</description>
     </item>
     
     <item>
@@ -153,9 +150,9 @@ const express = require(&amp;#39;express&amp;#39;) const app = express() app.use
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81/</guid>
       <description>防抖 概念 任务频繁触发的情况下，只有任务触发的间隔超过制定的时间间隔的时候，任务才会被执行
 将一段时间内连续的多次触发转化为一次触发。
-应用场景 用户在输入框中连续输入一串字符后，只会在输入完后去执行最后一次的查询ajax请求，这样可以有效减少请求次数，节约请求资源；
-window的resize、scroll事件，不断地调整浏览器的窗口大小、或者滚动时会触发对应事件，防抖让其只触发一次；
-实例 非立即执行版 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&amp;#34;&amp;gt; &amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;ie=edge&amp;#34;&amp;gt; &amp;lt;title&amp;gt;防抖&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;button id=&amp;#34;debounce&amp;#34;&amp;gt;点我防抖！&amp;lt;/button&amp;gt; &amp;lt;script&amp;gt; window.onload = function() { // 1、获取这个按钮，并绑定事件 var myDebounce = document.getElementById(&amp;#34;debounce&amp;#34;); myDebounce.addEventListener(&amp;#34;click&amp;#34;, debounce(sayDebounce)); } // 2、防抖功能函数，接受传参 function debounce(fn) { // 4、创建一个标记用来存放定时器的返回值 let timeout = null; return function() { // 5、每次当用户点击/输入的时候，把前一个定时器清除 clearTimeout(timeout); // 6、然后创建一个新的 setTimeout， // 这样就能保证点击按钮后的 interval 间隔内 // 如果用户还点击了的话，就不会执行 fn 函数 timeout = setTimeout(() =&amp;gt; { fn.</description>
+应用场景   用户在输入框中连续输入一串字符后，只会在输入完后去执行最后一次的查询ajax请求，这样可以有效减少请求次数，节约请求资源；
+  window的resize、scroll事件，不断地调整浏览器的窗口大小、或者滚动时会触发对应事件，防抖让其只触发一次；
+  实例   非立即执行版 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no&amp;#34;&amp;gt; &amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;ie=edge&amp;#34;&amp;gt; &amp;lt;title&amp;gt;防抖&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;button id=&amp;#34;debounce&amp;#34;&amp;gt;点我防抖！&amp;lt;/button&amp;gt; &amp;lt;script&amp;gt; window.onload = function() { // 1、获取这个按钮，并绑定事件  var myDebounce = document.getElementById(&amp;#34;debounce&amp;#34;); myDebounce.addEventListener(&amp;#34;click&amp;#34;, debounce(sayDebounce)); } // 2、防抖功能函数，接受传参  function debounce(fn) { // 4、创建一个标记用来存放定时器的返回值  let timeout = null; return function() { // 5、每次当用户点击/输入的时候，把前一个定时器清除  clearTimeout(timeout); // 6、然后创建一个新的 setTimeout，  // 这样就能保证点击按钮后的 interval 间隔内  // 如果用户还点击了的话，就不会执行 fn 函数  timeout = setTimeout(() =&amp;gt; { fn.</description>
     </item>
     
     <item>
@@ -164,14 +161,14 @@ window的resize、scroll事件，不断地调整浏览器的窗口大小、或�
       <pubDate>Thu, 24 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E5%8E%9F%E5%9E%8B%E9%93%BE/</guid>
-      <description>原型 理解原型对象 无论什么时候，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。在默认情况下，所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。
+      <description>原型   理解原型对象 无论什么时候，只要创建了一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。在默认情况下，所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。
 使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。换句话说不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型对象中
-function Person() {} Person.prototype.name = &amp;#39;Nicholas&amp;#39; Person.prototype.age = 19 Person.prototype.sayName = function () { console.log(this.name) } let person1 = new Person() person1.sayName() // 输出：Nicholas let person2 = new Person() person2.sayName() // 输出：Nicholas console.log(person1.sayName == person2.sayName) // 输出：true 我们将sayName()方法和所有属性直接添加到Person的prototype属性中，构造函数变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说，person1和person2访问的都是同一组属性和同一个sayName()函数
+function Person() {} Person.prototype.name = &amp;#39;Nicholas&amp;#39; Person.prototype.age = 19 Person.prototype.sayName = function () { console.log(this.name) } let person1 = new Person() person1.sayName() // 输出：Nicholas  let person2 = new Person() person2.sayName() // 输出：Nicholas  console.log(person1.sayName == person2.sayName) // 输出：true 我们将sayName()方法和所有属性直接添加到Person的prototype属性中，构造函数变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但与构造函数模式不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说，person1和person2访问的都是同一组属性和同一个sayName()函数
 创建了自定义构造函数之后，其原型对象默认只会取得constructor属性，至于其它方法，则都是从Object继承而来。当调用构造函数创建一个新实例后，该实例内部将包含一个指针（内部属性）____proto____指向构造函数的原型对象，需要明确的是，这个连接存在与实例和构造函数的原型之间，而不是存在与实例与构造函数之间
 上图展示了Person构造函数、Person的原型属性以及Person现有两个实例之间的关系。在此，Person.prototype指向了原型对象，而Person.prototype.constructor又指回了Person。原型对象中除了包含constructor属性之外，还包括后来添加的其它属性。Person的每个实例person1和person2都包含一个内部属性____proto____，该属性仅仅指向了Person.prototype，换句话说，它们与构造函数没有直接关系。此外，要格外注意的是，虽然这两个实例都不包含属性和方法，但我们却可以调用person1.sayName。这是通过查找对象属性的过程来实现的
-原型搜索机制 每当代码读取某个对象的某个属性时，都会执行一次搜索，目标是具有给定名字的属性。搜索首先从对象的实例本身开始。如果在实例中找到了具有给定名字的实现，则返回该属性的值，如果没有找到，则继续搜索指针指向的原型对象，在原型对象中查找给定名字的属性。如果在原型对象中找到了这个属性，则返回该属性的值。也就是说，在我们调用person.sayName()的时候，会先后执行两次搜索。首先，解析器会问：&amp;ldquo;实例person1有sayName属性吗？&amp;ldquo;答：&amp;ldquo;没有。&amp;ldquo;然后，它继续搜索，再问：&amp;ldquo;person1的原型有sayName属性吗？&amp;ldquo;答：&amp;ldquo;有。&amp;ldquo;于是，他就读取那个保存在原型对象中的函数。当我们调用person2.sayName()时，将会重现相同的搜索过程，得到相同的结果。而正是多个对象实例共享原型所保存的属性和方法的基本原理
-注意事项 虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型的值。如果我们在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性，该属性将会屏蔽原型中的那个属性
-function Person() {} Person.prototype.name = &amp;#39;Nicholas&amp;#39; Person.prototype.age = 19 Person.prototype.sayName = function () { console.log(this.name) } let person1 = new Person() let person2 = new Person() person1.</description>
+  原型搜索机制 每当代码读取某个对象的某个属性时，都会执行一次搜索，目标是具有给定名字的属性。搜索首先从对象的实例本身开始。如果在实例中找到了具有给定名字的实现，则返回该属性的值，如果没有找到，则继续搜索指针指向的原型对象，在原型对象中查找给定名字的属性。如果在原型对象中找到了这个属性，则返回该属性的值。也就是说，在我们调用person.sayName()的时候，会先后执行两次搜索。首先，解析器会问：&amp;ldquo;实例person1有sayName属性吗？&amp;ldquo;答：&amp;ldquo;没有。&amp;ldquo;然后，它继续搜索，再问：&amp;ldquo;person1的原型有sayName属性吗？&amp;ldquo;答：&amp;ldquo;有。&amp;ldquo;于是，他就读取那个保存在原型对象中的函数。当我们调用person2.sayName()时，将会重现相同的搜索过程，得到相同的结果。而正是多个对象实例共享原型所保存的属性和方法的基本原理
+  注意事项 虽然可以通过对象实例访问保存在原型中的值，但却不能通过对象实例重写原型的值。如果我们在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，那我们就在实例中创建该属性，该属性将会屏蔽原型中的那个属性
+function Person() {} Person.prototype.name = &amp;#39;Nicholas&amp;#39; Person.prototype.age = 19 Person.prototype.sayName = function () { console.</description>
     </item>
     
     <item>
@@ -180,20 +177,19 @@ function Person() {} Person.prototype.name = &amp;#39;Nicholas&amp;#39; Person.p
       <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-%E9%97%AD%E5%8C%85/</guid>
-      <description>概念 变量的作用域 要理解闭包，首先必须理解Javascript特殊的变量作用域
+      <description>概念   变量的作用域 要理解闭包，首先必须理解Javascript特殊的变量作用域
 变量的作用域无非就是两种：全局变量和局部变量
 Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量
 var n=999 function f1(){ alert(n) } f1() // 999 在函数外部无法读取函数内的局部变量
-function f1(){ var n=999 } alert(n); // error 闭包的描述 闭包就是能够读取其他函数内部变量的函数
+function f1(){ var n=999 } alert(n); // error   闭包的描述 闭包就是能够读取其他函数内部变量的函数
 由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成&amp;quot;定义在一个函数内部的函数&amp;quot;
 所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁，f2函数，就是闭包
-function f1(){ var n=999 function f2(){ alert(n) } return f2 } var result = f1() result() // 999 闭包优缺点 优点：
-希望一个变量长期驻扎在内存中
-避免全局变量的污染
-私有成员的存在
-缺点：闭包会使变量始终保存在内存中，如果不当使用会增大内存消耗
-应用场景 匿名自执行函数 我们知道所有的变量，如果不加上var关键字，则默认的会添加到全局对象的属性上去，这样的临时变量加入全局对象有很多坏处，比如：别的函数可能误用这些变量；造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链上遍历的)。除了每次使用变量都是用var关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，比如UI的初始化，那么我们可以使用闭包
-var data= { table : [], tree : {} }; (function(dm){ for(var i = 0; i &amp;lt; dm.</description>
+function f1(){ var n=999 function f2(){ alert(n) } return f2 } var result = f1() result() // 999   闭包优缺点 优点：
+  希望一个变量长期驻扎在内存中
+  避免全局变量的污染
+  私有成员的存在
+  缺点：闭包会使变量始终保存在内存中，如果不当使用会增大内存消耗
+  应用场景   匿名自执行函数 我们知道所有的变量，如果不加上var关键字，则默认的会添加到全局对象的属性上去，这样的临时变量加入全局对象有很多坏处，比如：别的函数可能误用这些变量；造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链上遍历的)。除了每次使用变量都是用var关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，比如UI的初始化，那么我们可以使用闭包</description>
     </item>
     
   </channel>

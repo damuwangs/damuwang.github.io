@@ -834,32 +834,32 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <p>要理解闭包，首先必须理解Javascript特殊的变量作用域</p>
 <p>变量的作用域无非就是两种：全局变量和局部变量</p>
 <p>Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> n<span style="color:#666">=</span><span style="color:#40a070">999</span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> f1(){
-</span></span><span style="display:flex;"><span>	alert(n)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>f1() <span style="color:#60a0b0;font-style:italic">// 999
-</span></span></span></code></pre></div><p>在函数外部无法读取函数内的局部变量</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> f1(){
-</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">var</span> n<span style="color:#666">=</span><span style="color:#40a070">999</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>alert(n); <span style="color:#60a0b0;font-style:italic">// error
-</span></span></span></code></pre></div></li>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> n<span style="color:#666">=</span><span style="color:#40a070">999</span>
+<span style="color:#007020;font-weight:bold">function</span> f1(){
+	alert(n)
+}
+f1() <span style="color:#60a0b0;font-style:italic">// 999
+</span></code></pre></div><p>在函数外部无法读取函数内的局部变量</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">function</span> f1(){
+	<span style="color:#007020;font-weight:bold">var</span> n<span style="color:#666">=</span><span style="color:#40a070">999</span>
+}
+alert(n); <span style="color:#60a0b0;font-style:italic">// error
+</span></code></pre></div></li>
 <li>
 <h2 id="闭包的描述">闭包的描述</h2>
 <p>闭包就是能够读取其他函数内部变量的函数</p>
 <p>由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成&quot;定义在一个函数内部的函数&quot;</p>
 <p>所以，在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁，f2函数，就是闭包</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> f1(){
-</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">var</span> n<span style="color:#666">=</span><span style="color:#40a070">999</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">function</span> f2(){
-</span></span><span style="display:flex;"><span>    	alert(n)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>　　<span style="color:#007020;font-weight:bold">return</span> f2
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> result <span style="color:#666">=</span> f1()
-</span></span><span style="display:flex;"><span>result() <span style="color:#60a0b0;font-style:italic">// 999
-</span></span></span></code></pre></div></li>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">function</span> f1(){
+	<span style="color:#007020;font-weight:bold">var</span> n<span style="color:#666">=</span><span style="color:#40a070">999</span>
+	<span style="color:#007020;font-weight:bold">function</span> f2(){
+      alert(n)
+    }
+　　<span style="color:#007020;font-weight:bold">return</span> f2
+}
+<span style="color:#007020;font-weight:bold">var</span> result <span style="color:#666">=</span> f1()
+result() <span style="color:#60a0b0;font-style:italic">// 999
+</span></code></pre></div></li>
 <li>
 <h2 id="闭包优缺点">闭包优缺点</h2>
 <p>优点：</p>
@@ -882,180 +882,180 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <li>
 <h2 id="匿名自执行函数">匿名自执行函数</h2>
 <p>我们知道所有的变量，如果不加上var关键字，则默认的会添加到全局对象的属性上去，这样的临时变量加入全局对象有很多坏处，比如：别的函数可能误用这些变量；造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链上遍历的)。除了每次使用变量都是用var关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，比如UI的初始化，那么我们可以使用闭包</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> data<span style="color:#666">=</span> {    
-</span></span><span style="display:flex;"><span>    table <span style="color:#666">:</span> [],    
-</span></span><span style="display:flex;"><span>    tree <span style="color:#666">:</span> {}    
-</span></span><span style="display:flex;"><span>};    
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>(<span style="color:#007020;font-weight:bold">function</span>(dm){    
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">for</span>(<span style="color:#007020;font-weight:bold">var</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> dm.table.rows; i<span style="color:#666">++</span>){    
-</span></span><span style="display:flex;"><span>       <span style="color:#007020;font-weight:bold">var</span> row <span style="color:#666">=</span> dm.table.rows[i]  
-</span></span><span style="display:flex;"><span>       <span style="color:#007020;font-weight:bold">for</span>(<span style="color:#007020;font-weight:bold">var</span> j <span style="color:#666">=</span> <span style="color:#40a070">0</span>; j <span style="color:#666">&lt;</span> row.cells; i<span style="color:#666">++</span>){    
-</span></span><span style="display:flex;"><span>           drawCell(i, j)
-</span></span><span style="display:flex;"><span>       }    
-</span></span><span style="display:flex;"><span>    }    
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>})(data);   
-</span></span></code></pre></div><p>我们创建了一个匿名的函数，并立即执行它，由于外部无法引用它内部的变量，因此在函数执行完后会立刻释放资源，关键是不污染全局对象</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> data<span style="color:#666">=</span> {    
+    table <span style="color:#666">:</span> [],    
+    tree <span style="color:#666">:</span> {}    
+};    
+
+(<span style="color:#007020;font-weight:bold">function</span>(dm){    
+    <span style="color:#007020;font-weight:bold">for</span>(<span style="color:#007020;font-weight:bold">var</span> i <span style="color:#666">=</span> <span style="color:#40a070">0</span>; i <span style="color:#666">&lt;</span> dm.table.rows; i<span style="color:#666">++</span>){    
+       <span style="color:#007020;font-weight:bold">var</span> row <span style="color:#666">=</span> dm.table.rows[i]  
+       <span style="color:#007020;font-weight:bold">for</span>(<span style="color:#007020;font-weight:bold">var</span> j <span style="color:#666">=</span> <span style="color:#40a070">0</span>; j <span style="color:#666">&lt;</span> row.cells; i<span style="color:#666">++</span>){    
+           drawCell(i, j)
+       }    
+    }    
+
+})(data);   
+</code></pre></div><p>我们创建了一个匿名的函数，并立即执行它，由于外部无法引用它内部的变量，因此在函数执行完后会立刻释放资源，关键是不污染全局对象</p>
 </li>
 <li>
 <h2 id="结果缓存">结果缓存</h2>
 <p>我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象，每次调用都会花费很长时间，那么我们就需要将计算出来的值存储起来，当调用这个函数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> CachedSearchBox <span style="color:#666">=</span> (<span style="color:#007020;font-weight:bold">function</span>(){    
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">var</span> cache <span style="color:#666">=</span> {}
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> {    
-</span></span><span style="display:flex;"><span>       attachSearchBox <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>(dsid){    
-</span></span><span style="display:flex;"><span>	       <span style="color:#60a0b0;font-style:italic">//如果结果在缓存中
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>           <span style="color:#007020;font-weight:bold">if</span>(dsid <span style="color:#007020;font-weight:bold">in</span> cache){   
-</span></span><span style="display:flex;"><span>              <span style="color:#60a0b0;font-style:italic">//直接返回缓存中的对象
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>              <span style="color:#007020;font-weight:bold">return</span> cache[dsid]    
-</span></span><span style="display:flex;"><span>           }    
-</span></span><span style="display:flex;"><span>           <span style="color:#60a0b0;font-style:italic">//新建 
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>           <span style="color:#007020;font-weight:bold">var</span> fsb <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> uikit.webctrl.SearchBox(dsid)   
-</span></span><span style="display:flex;"><span>		  <span style="color:#60a0b0;font-style:italic">//更新缓存
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>           cache[dsid] <span style="color:#666">=</span> fsb
-</span></span><span style="display:flex;"><span>           <span style="color:#007020;font-weight:bold">return</span> fsb     
-</span></span><span style="display:flex;"><span>       }  
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>})()
-</span></span><span style="display:flex;"><span>CachedSearchBox.attachSearchBox(<span style="color:#4070a0">&#34;input&#34;</span>)
-</span></span></code></pre></div><p>这样我们在第二次调用的时候，就会从缓存中读取到该对象</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> CachedSearchBox <span style="color:#666">=</span> (<span style="color:#007020;font-weight:bold">function</span>(){    
+    <span style="color:#007020;font-weight:bold">var</span> cache <span style="color:#666">=</span> {}
+    <span style="color:#007020;font-weight:bold">return</span> {    
+       attachSearchBox <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>(dsid){    
+         <span style="color:#60a0b0;font-style:italic">//如果结果在缓存中
+</span><span style="color:#60a0b0;font-style:italic"></span>           <span style="color:#007020;font-weight:bold">if</span>(dsid <span style="color:#007020;font-weight:bold">in</span> cache){   
+              <span style="color:#60a0b0;font-style:italic">//直接返回缓存中的对象
+</span><span style="color:#60a0b0;font-style:italic"></span>              <span style="color:#007020;font-weight:bold">return</span> cache[dsid]    
+           }    
+           <span style="color:#60a0b0;font-style:italic">//新建 
+</span><span style="color:#60a0b0;font-style:italic"></span>           <span style="color:#007020;font-weight:bold">var</span> fsb <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> uikit.webctrl.SearchBox(dsid)   
+        <span style="color:#60a0b0;font-style:italic">//更新缓存
+</span><span style="color:#60a0b0;font-style:italic"></span>           cache[dsid] <span style="color:#666">=</span> fsb
+           <span style="color:#007020;font-weight:bold">return</span> fsb     
+       }  
+    }
+})()
+CachedSearchBox.attachSearchBox(<span style="color:#4070a0">&#34;input&#34;</span>)
+</code></pre></div><p>这样我们在第二次调用的时候，就会从缓存中读取到该对象</p>
 </li>
 <li>
 <h2 id="减少全局变量的污染">减少全局变量的污染</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//abc为外部匿名函数的返回值
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> abc <span style="color:#666">=</span> (<span style="color:#007020;font-weight:bold">function</span>(){      
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> <span style="color:#40a070">1</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">function</span>(){
-</span></span><span style="display:flex;"><span>        a<span style="color:#666">++</span>
-</span></span><span style="display:flex;"><span>        alert(a)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>})()
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//2 调用一次abc函数，其实是调用里面内部函数的返回值  
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>abc()  
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//3
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>abc() 
-</span></span></code></pre></div></li>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#60a0b0;font-style:italic">//abc为外部匿名函数的返回值
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">var</span> abc <span style="color:#666">=</span> (<span style="color:#007020;font-weight:bold">function</span>(){      
+    <span style="color:#007020;font-weight:bold">var</span> a <span style="color:#666">=</span> <span style="color:#40a070">1</span>
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">function</span>(){
+        a<span style="color:#666">++</span>
+        alert(a)
+    }
+})()
+<span style="color:#60a0b0;font-style:italic">//2 调用一次abc函数，其实是调用里面内部函数的返回值  
+</span><span style="color:#60a0b0;font-style:italic"></span>abc()  
+<span style="color:#60a0b0;font-style:italic">//3
+</span><span style="color:#60a0b0;font-style:italic"></span>abc() 
+</code></pre></div></li>
 <li>
 <h2 id="封装">封装</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> person <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>(){    
-</span></span><span style="display:flex;"><span>    <span style="color:#60a0b0;font-style:italic">//变量作用域为函数内部，外部无法访问    
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;default&#34;</span>;              
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> {    
-</span></span><span style="display:flex;"><span>       getName <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>(){    
-</span></span><span style="display:flex;"><span>           <span style="color:#007020;font-weight:bold">return</span> name;    
-</span></span><span style="display:flex;"><span>       },    
-</span></span><span style="display:flex;"><span>       setName <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>(newName){    
-</span></span><span style="display:flex;"><span>           name <span style="color:#666">=</span> newName  
-</span></span><span style="display:flex;"><span>       }    
-</span></span><span style="display:flex;"><span>    }    
-</span></span><span style="display:flex;"><span>}() 
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">// 直接访问，结果为undefined         
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>print(person.name) 
-</span></span><span style="display:flex;"><span>print(person.getName())  
-</span></span><span style="display:flex;"><span>person.setName(<span style="color:#4070a0">&#34;abruzzi&#34;</span>)   
-</span></span><span style="display:flex;"><span>print(person.getName()) 
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>得到结果如下<span style="">：</span>  
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">undefined</span>  
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">default</span>  
-</span></span><span style="display:flex;"><span>abruzzi  
-</span></span></code></pre></div></li>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">var</span> person <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>(){    
+    <span style="color:#60a0b0;font-style:italic">//变量作用域为函数内部，外部无法访问    
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;default&#34;</span>;              
+    <span style="color:#007020;font-weight:bold">return</span> {    
+       getName <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>(){    
+           <span style="color:#007020;font-weight:bold">return</span> name;    
+       },    
+       setName <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>(newName){    
+           name <span style="color:#666">=</span> newName  
+       }    
+    }    
+}() 
+<span style="color:#60a0b0;font-style:italic">// 直接访问，结果为undefined         
+</span><span style="color:#60a0b0;font-style:italic"></span>print(person.name) 
+print(person.getName())  
+person.setName(<span style="color:#4070a0">&#34;abruzzi&#34;</span>)   
+print(person.getName()) 
+
+得到结果如下<span style="">：</span>  
+<span style="color:#007020;font-weight:bold">undefined</span>  
+<span style="color:#007020;font-weight:bold">default</span>  
+abruzzi  
+</code></pre></div></li>
 <li>
 <h2 id="实现类和继承">实现类和继承</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> Person(){    
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;default&#34;</span>       
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> {    
-</span></span><span style="display:flex;"><span>       getName <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>(){    
-</span></span><span style="display:flex;"><span>           <span style="color:#007020;font-weight:bold">return</span> name;    
-</span></span><span style="display:flex;"><span>       },    
-</span></span><span style="display:flex;"><span>       setName <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>(newName){    
-</span></span><span style="display:flex;"><span>           name <span style="color:#666">=</span> newName;    
-</span></span><span style="display:flex;"><span>       }    
-</span></span><span style="display:flex;"><span>    }    
-</span></span><span style="display:flex;"><span>}   
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> p <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Person()
-</span></span><span style="display:flex;"><span>p.setName(<span style="color:#4070a0">&#34;Tom&#34;</span>)
-</span></span><span style="display:flex;"><span>alert(p.getName())
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> Jack <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>(){}
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//继承自Person
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>Jack.prototype <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Person()
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//添加私有方法
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>Jack.prototype.Say <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>(){
-</span></span><span style="display:flex;"><span>	alert(<span style="color:#4070a0">&#34;Hello,my name is Jack&#34;</span>)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> j <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Jack()
-</span></span><span style="display:flex;"><span>j.setName(<span style="color:#4070a0">&#34;Jack&#34;</span>)
-</span></span><span style="display:flex;"><span>j.Say()
-</span></span><span style="display:flex;"><span>alert(j.getName())
-</span></span></code></pre></div><p>我们定义了Person，它就像一个类，我们new一个Person对象，访问它的方法。下面我们定义了Jack，继承Person，并添加自己的方法。</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">function</span> Person(){    
+    <span style="color:#007020;font-weight:bold">var</span> name <span style="color:#666">=</span> <span style="color:#4070a0">&#34;default&#34;</span>       
+    <span style="color:#007020;font-weight:bold">return</span> {    
+       getName <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>(){    
+           <span style="color:#007020;font-weight:bold">return</span> name;    
+       },    
+       setName <span style="color:#666">:</span> <span style="color:#007020;font-weight:bold">function</span>(newName){    
+           name <span style="color:#666">=</span> newName;    
+       }    
+    }    
+}   
+
+<span style="color:#007020;font-weight:bold">var</span> p <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Person()
+p.setName(<span style="color:#4070a0">&#34;Tom&#34;</span>)
+alert(p.getName())
+
+<span style="color:#007020;font-weight:bold">var</span> Jack <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>(){}
+<span style="color:#60a0b0;font-style:italic">//继承自Person
+</span><span style="color:#60a0b0;font-style:italic"></span>Jack.prototype <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Person()
+<span style="color:#60a0b0;font-style:italic">//添加私有方法
+</span><span style="color:#60a0b0;font-style:italic"></span>Jack.prototype.Say <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span>(){
+	alert(<span style="color:#4070a0">&#34;Hello,my name is Jack&#34;</span>)
+}
+<span style="color:#007020;font-weight:bold">var</span> j <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> Jack()
+j.setName(<span style="color:#4070a0">&#34;Jack&#34;</span>)
+j.Say()
+alert(j.getName())
+</code></pre></div><p>我们定义了Person，它就像一个类，我们new一个Person对象，访问它的方法。下面我们定义了Jack，继承Person，并添加自己的方法。</p>
 </li>
 <li>
 <h2 id="settimeout传参">setTimeout传参</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>setTimeout(<span style="color:#007020;font-weight:bold">function</span>(param){
-</span></span><span style="display:flex;"><span>    alert(param)
-</span></span><span style="display:flex;"><span>},<span style="color:#40a070">1000</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">//通过闭包可以实现传参效果
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">function</span> func(param){
-</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">function</span>(){
-</span></span><span style="display:flex;"><span>		alert(param)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> f1 <span style="color:#666">=</span> func(<span style="color:#40a070">1</span>)
-</span></span><span style="display:flex;"><span>setTimeout(f1,<span style="color:#40a070">1000</span>)
-</span></span></code></pre></div></li>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">setTimeout(<span style="color:#007020;font-weight:bold">function</span>(param){
+    alert(param)
+},<span style="color:#40a070">1000</span>)
+
+<span style="color:#60a0b0;font-style:italic">//通过闭包可以实现传参效果
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">function</span> func(param){
+	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">function</span>(){
+      alert(param)
+	}
+}
+<span style="color:#007020;font-weight:bold">var</span> f1 <span style="color:#666">=</span> func(<span style="color:#40a070">1</span>)
+setTimeout(f1,<span style="color:#40a070">1000</span>)
+</code></pre></div></li>
 <li>
 <h2 id="为节点循环绑定click事件">为节点循环绑定click事件</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> count() {
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">var</span> arr <span style="color:#666">=</span> []
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">var</span> i<span style="color:#666">=</span><span style="color:#40a070">1</span>; i<span style="color:#666">&lt;=</span><span style="color:#40a070">3</span>; i<span style="color:#666">++</span>) {
-</span></span><span style="display:flex;"><span>        arr.push(<span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">return</span> i <span style="color:#666">*</span> i
-</span></span><span style="display:flex;"><span>        })
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> arr
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> results <span style="color:#666">=</span> count()
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> f1 <span style="color:#666">=</span> results[<span style="color:#40a070">0</span>]
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> f2 <span style="color:#666">=</span> results[<span style="color:#40a070">1</span>]
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> f3 <span style="color:#666">=</span> results[<span style="color:#40a070">2</span>]
-</span></span></code></pre></div><p>在上面的例子中，每次循环，都创建了一个新的函数，然后，把创建的3个函数都添加到一个Array中返回了。</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">function</span> count() {
+    <span style="color:#007020;font-weight:bold">var</span> arr <span style="color:#666">=</span> []
+    <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">var</span> i<span style="color:#666">=</span><span style="color:#40a070">1</span>; i<span style="color:#666">&lt;=</span><span style="color:#40a070">3</span>; i<span style="color:#666">++</span>) {
+        arr.push(<span style="color:#007020;font-weight:bold">function</span> () {
+            <span style="color:#007020;font-weight:bold">return</span> i <span style="color:#666">*</span> i
+        })
+    }
+    <span style="color:#007020;font-weight:bold">return</span> arr
+}
+
+<span style="color:#007020;font-weight:bold">var</span> results <span style="color:#666">=</span> count()
+<span style="color:#007020;font-weight:bold">var</span> f1 <span style="color:#666">=</span> results[<span style="color:#40a070">0</span>]
+<span style="color:#007020;font-weight:bold">var</span> f2 <span style="color:#666">=</span> results[<span style="color:#40a070">1</span>]
+<span style="color:#007020;font-weight:bold">var</span> f3 <span style="color:#666">=</span> results[<span style="color:#40a070">2</span>]
+</code></pre></div><p>在上面的例子中，每次循环，都创建了一个新的函数，然后，把创建的3个函数都添加到一个Array中返回了。</p>
 <p>你可能认为调用f1()，f2()和f3()结果应该是 <code>1 4 9</code>， 但实际结果是：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>f1() <span style="color:#60a0b0;font-style:italic">// 16
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>f2() <span style="color:#60a0b0;font-style:italic">// 16
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>f3() <span style="color:#60a0b0;font-style:italic">// 16
-</span></span></span></code></pre></div><p>全部都是16！原因就在于返回的函数引用了变量i，但它并非立刻执行。等到3个函数都返回时，它们所引用的变量i已经变成了4，因此最终结果为16</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">f1() <span style="color:#60a0b0;font-style:italic">// 16
+</span><span style="color:#60a0b0;font-style:italic"></span>f2() <span style="color:#60a0b0;font-style:italic">// 16
+</span><span style="color:#60a0b0;font-style:italic"></span>f3() <span style="color:#60a0b0;font-style:italic">// 16
+</span></code></pre></div><p>全部都是16！原因就在于返回的函数引用了变量i，但它并非立刻执行。等到3个函数都返回时，它们所引用的变量i已经变成了4，因此最终结果为16</p>
 <p><strong>返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量</strong></p>
 <p>如果一定要引用循环变量怎么办？方法是再创建一个函数，用该函数的参数绑定循环变量当前的值，无论该循环变量后续如何更改，已绑定到函数参数的值不变：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">function</span> count() {
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">var</span> arr <span style="color:#666">=</span> []
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">var</span> i<span style="color:#666">=</span><span style="color:#40a070">1</span>; i<span style="color:#666">&lt;=</span><span style="color:#40a070">3</span>; i<span style="color:#666">++</span>) {
-</span></span><span style="display:flex;"><span>        arr.push((<span style="color:#007020;font-weight:bold">function</span> (n) {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>                <span style="color:#007020;font-weight:bold">return</span> n <span style="color:#666">*</span> n
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        })(i))
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> arr
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> results <span style="color:#666">=</span> count()
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> f1 <span style="color:#666">=</span> results[<span style="color:#40a070">0</span>]
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> f2 <span style="color:#666">=</span> results[<span style="color:#40a070">1</span>]
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">var</span> f3 <span style="color:#666">=</span> results[<span style="color:#40a070">2</span>]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>f1() <span style="color:#60a0b0;font-style:italic">// 1
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>f2() <span style="color:#60a0b0;font-style:italic">// 4
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>f3() <span style="color:#60a0b0;font-style:italic">// 9
-</span></span></span></code></pre></div><p>注意这里用了一个“创建一个匿名函数并立刻执行”的语法：</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>(<span style="color:#007020;font-weight:bold">function</span> (x) {
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> x <span style="color:#666">*</span> x
-</span></span><span style="display:flex;"><span>})(<span style="color:#40a070">3</span>) <span style="color:#60a0b0;font-style:italic">// 9
-</span></span></span></code></pre></div></li>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#007020;font-weight:bold">function</span> count() {
+    <span style="color:#007020;font-weight:bold">var</span> arr <span style="color:#666">=</span> []
+    <span style="color:#007020;font-weight:bold">for</span> (<span style="color:#007020;font-weight:bold">var</span> i<span style="color:#666">=</span><span style="color:#40a070">1</span>; i<span style="color:#666">&lt;=</span><span style="color:#40a070">3</span>; i<span style="color:#666">++</span>) {
+        arr.push((<span style="color:#007020;font-weight:bold">function</span> (n) {
+            <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">function</span> () {
+                <span style="color:#007020;font-weight:bold">return</span> n <span style="color:#666">*</span> n
+            }
+        })(i))
+    }
+    <span style="color:#007020;font-weight:bold">return</span> arr
+}
+
+<span style="color:#007020;font-weight:bold">var</span> results <span style="color:#666">=</span> count()
+<span style="color:#007020;font-weight:bold">var</span> f1 <span style="color:#666">=</span> results[<span style="color:#40a070">0</span>]
+<span style="color:#007020;font-weight:bold">var</span> f2 <span style="color:#666">=</span> results[<span style="color:#40a070">1</span>]
+<span style="color:#007020;font-weight:bold">var</span> f3 <span style="color:#666">=</span> results[<span style="color:#40a070">2</span>]
+
+f1() <span style="color:#60a0b0;font-style:italic">// 1
+</span><span style="color:#60a0b0;font-style:italic"></span>f2() <span style="color:#60a0b0;font-style:italic">// 4
+</span><span style="color:#60a0b0;font-style:italic"></span>f3() <span style="color:#60a0b0;font-style:italic">// 9
+</span></code></pre></div><p>注意这里用了一个“创建一个匿名函数并立刻执行”的语法：</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">(<span style="color:#007020;font-weight:bold">function</span> (x) {
+    <span style="color:#007020;font-weight:bold">return</span> x <span style="color:#666">*</span> x
+})(<span style="color:#40a070">3</span>) <span style="color:#60a0b0;font-style:italic">// 9
+</span></code></pre></div></li>
 </ul>
 <h1 id="参考资料">参考资料</h1>
 <blockquote>

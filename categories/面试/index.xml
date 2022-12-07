@@ -13,13 +13,13 @@
       <pubDate>Tue, 08 Feb 2022 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2022%E5%B9%B43%E6%9C%88/</guid>
-      <description>JavaScript 移动端事件延迟 原因：移动端 click 事件会有 300ms 的延时，原因是移动端屏幕双击会缩放(double tap to zoom) 页面
-禁用缩放： 浏览器禁用默认的双击缩放行为并且去掉300ms 的点击延迟 &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;user-scalable=no&amp;#34;&amp;gt; 利用touch事件自己封装这个事件解决300ms 延迟 原理就是：
+      <description>JavaScript   移动端事件延迟 原因：移动端 click 事件会有 300ms 的延时，原因是移动端屏幕双击会缩放(double tap to zoom) 页面
+ 禁用缩放： 浏览器禁用默认的双击缩放行为并且去掉300ms 的点击延迟  &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;user-scalable=no&amp;#34;&amp;gt; 利用touch事件自己封装这个事件解决300ms 延迟  原理就是：
 当我们手指触摸屏幕，记录当前触摸时间
 当我们手指离开屏幕， 用离开的时间减去触摸的时间
 如果时间小于150ms，并且没有滑动过屏幕， 那么我们就定义为点击
 代码如下:
-//封装tap，解决click 300ms 延时 function tap (obj, callback) { var isMove = false; var startTime = 0; // 记录触摸时候的时间变量 obj.addEventListener(&amp;#39;touchstart&amp;#39;, function (e) { startTime = Date.now(); // 记录触摸时间 }); obj.addEventListener(&amp;#39;touchmove&amp;#39;, function (e) { isMove = true; // 看看是否有滑动，有滑动算拖拽，不算点击 }); obj.addEventListener(&amp;#39;touchend&amp;#39;, function (e) { // 如果手指触摸和离开时间小于150ms 算点击 if (!</description>
+//封装tap，解决click 300ms 延时 function tap (obj, callback) { var isMove = false; var startTime = 0; // 记录触摸时候的时间变量  obj.addEventListener(&amp;#39;touchstart&amp;#39;, function (e) { startTime = Date.now(); // 记录触摸时间  }); obj.addEventListener(&amp;#39;touchmove&amp;#39;, function (e) { isMove = true; // 看看是否有滑动，有滑动算拖拽，不算点击  }); obj.</description>
     </item>
     
     <item>
@@ -28,47 +28,15 @@
       <pubDate>Wed, 16 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/%E9%9D%A2%E8%AF%95-2021%E5%B9%B42%E6%9C%88/</guid>
-      <description>JavaScript 跨域 JavaScript-跨域
-get、post区别 get参数url可见，post参数url不可见 通过拼接url进行传递参数，post通过body体传递参数 get请求可以缓存，post请求不可以缓存 get请求页面后退时不产生影响、post请求页面后退时会重新提交请求 get一般传输数据大小不超过2k-4k，post请求传输数据的大小可配置 数据类型 单类型：String、Number、boolean、null、undefined
-引用类型：object、function、array、Date、RegExp
-值传递和引用传递 基本类型复制后两个变量完全独立，一方改变都不会影响另一方
-引用类型复制的时引用，之后的任何一方改变都会映射到另一方
-闭包 JavaScript-闭包
-箭头函数的好处 简洁
-不会改变this本来的绑定
-事件的冒泡和捕获 JavaScript-事件冒泡、事件捕获和事件委托
-节流和防抖 JavaScript-防抖、节流
-dom加载过程中ready和load的区别 Ready：页面HTML文档解析完成但图片等媒体文件加载完成之前执行 load：完全加载完成之后执行
-字符串反转 面试-2021年2月-字符串反转
-slice、splice的区别 面试-2021年2月-slice、splice的区别
-深拷贝和浅拷贝 概念：深拷贝和浅拷贝是只针对Object和Array这样的引用数据类型的。
-浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。
-浅拷贝：assign()、concat()、slice()
-深拷贝：
-JSON.parse(JSON.stringify())
-手写递归方法
-递归方法实现深度克隆原理：遍历对象、数组直到里边都是基本数据类型，然后再去复制，就是深度拷贝
-面试-2021年2月-深拷贝
-同步和异步 JavaScript-异步解决方案
-缓存 cookie sessionStorage和localstorage
-存储大小
-cookie数据大小不能超过4K
-sessionStorage和localStorage可以达到5M或更大
-有效时间
-localstorage：浏览器关闭后数据不丢失除非主动删除数据
-sessionStorage：数据在当前浏览器窗口关闭后自动删除
-cookie： 过期时间未到一直有效，即使窗口或浏览器关闭
-数据与服务器之间的交互方式
-cookie：数据会自动传递到服务器，服务器也可以写cookie到客户端
-sessionStorage和localstorage：仅本地保存，不会发给服务端
-统计数组中出现最多字符 面试-2021年2月-统计数组中出现最多字符
-判断是不是数组 面试-2021年2月-判断是不是数组
-Promise 概念：解决异步编程的一种方法，替代多层嵌套的回调，Promise是一个构造函数，用域封装异步操作并可以获得成功或失败的结果
-Promise all：将多个Promise实例包装成一个新的Promise实例，当所有状态都变成成功时all的状态才变为成功，如果其中一个状态为失败则返回失败结果
-执行顺序问题
-面试-2021年2月-Promise
-原型链 JavaScript-原型链
-this指向 JavaScript-this指向</description>
+      <description>JavaScript   跨域 JavaScript-跨域
+     get、post区别  get参数url可见，post参数url不可见 通过拼接url进行传递参数，post通过body体传递参数 get请求可以缓存，post请求不可以缓存 get请求页面后退时不产生影响、post请求页面后退时会重新提交请求 get一般传输数据大小不超过2k-4k，post请求传输数据的大小可配置       数据类型   单类型：String、Number、boolean、null、undefined
+  引用类型：object、function、array、Date、RegExp
+       值传递和引用传递   基本类型复制后两个变量完全独立，一方改变都不会影响另一方
+  引用类型复制的时引用，之后的任何一方改变都会映射到另一方
+       闭包 JavaScript-闭包
+     箭头函数的好处   简洁
+  不会改变this本来的绑定
+       事件的冒泡和捕获 JavaScript-事件冒泡、事件捕获和事件委托</description>
     </item>
     
   </channel>

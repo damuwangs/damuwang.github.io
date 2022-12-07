@@ -630,165 +630,165 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </ol>
 <h1 id="权限实现">权限实现</h1>
 <p>用户登录成功时会调用GetMenuInfo，获取当前登录账户的所有权限，并将权限放入全局状态和缓存</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @description: 查询当前登录用户权限数据
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @param {object} data 登录返回token
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @return {promise}
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> */</span>
-</span></span><span style="display:flex;"><span>GetMenuInfo<span style="color:#666">:</span> ({ commit }, data) =&gt; {
-</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Promise</span>((resolve, reject) =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">let</span> subData <span style="color:#666">=</span> {
-</span></span><span style="display:flex;"><span>        	<span style="color:#4070a0">&#39;tk&#39;</span><span style="color:#666">:</span> data.v.token
-</span></span><span style="display:flex;"><span>      	}
-</span></span><span style="display:flex;"><span>      	<span style="color:#60a0b0;font-style:italic">// 请求服务端返回当前登录用户的权限数据
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>      	base.getMenuInfo(subData).then(response =&gt; {
-</span></span><span style="display:flex;"><span>        	<span style="color:#60a0b0;font-style:italic">// 保存system到state中
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        	commit(<span style="color:#4070a0">&#39;SET_SYSTEMS&#39;</span>, response.data.v.SystemList)
-</span></span><span style="display:flex;"><span>        	storage.setLocalStorage(<span style="color:#4070a0">&#39;SYSTEMS&#39;</span>, response.data.v.SystemList)
-</span></span><span style="display:flex;"><span>        	<span style="color:#60a0b0;font-style:italic">// 保存menu到state中
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        	commit(<span style="color:#4070a0">&#39;SET_MENUS&#39;</span>, response.data.v.MenuList)
-</span></span><span style="display:flex;"><span>        	storage.setLocalStorage(<span style="color:#4070a0">&#39;MENUS&#39;</span>, response.data.v.MenuList)
-</span></span><span style="display:flex;"><span>        	<span style="color:#60a0b0;font-style:italic">// 保存function到state中
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        	commit(<span style="color:#4070a0">&#39;SET_FUNCTIONS&#39;</span>, response.data.v.FunctionList)
-</span></span><span style="display:flex;"><span>        	storage.setLocalStorage(<span style="color:#4070a0">&#39;FUNCTIONS&#39;</span>, response.data.v.FunctionList)
-</span></span><span style="display:flex;"><span>        	resolve()
-</span></span><span style="display:flex;"><span>     	 }).<span style="color:#007020;font-weight:bold">catch</span>(error =&gt; {
-</span></span><span style="display:flex;"><span>        	reject(error)
-</span></span><span style="display:flex;"><span>      	})
-</span></span><span style="display:flex;"><span>    })
-</span></span></code></pre></div><p>退出时会清空所有全局状态和缓存</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#60a0b0;font-style:italic">/**
+</span><span style="color:#60a0b0;font-style:italic"> * @description: 查询当前登录用户权限数据
+</span><span style="color:#60a0b0;font-style:italic"> * @param {object} data 登录返回token
+</span><span style="color:#60a0b0;font-style:italic"> * @return {promise}
+</span><span style="color:#60a0b0;font-style:italic"> */</span>
+GetMenuInfo<span style="color:#666">:</span> ({ commit }, data) =&gt; {
+	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">new</span> <span style="color:#007020">Promise</span>((resolve, reject) =&gt; {
+        <span style="color:#007020;font-weight:bold">let</span> subData <span style="color:#666">=</span> {
+        	<span style="color:#4070a0">&#39;tk&#39;</span><span style="color:#666">:</span> data.v.token
+      	}
+      	<span style="color:#60a0b0;font-style:italic">// 请求服务端返回当前登录用户的权限数据
+</span><span style="color:#60a0b0;font-style:italic"></span>      	base.getMenuInfo(subData).then(response =&gt; {
+        	<span style="color:#60a0b0;font-style:italic">// 保存system到state中
+</span><span style="color:#60a0b0;font-style:italic"></span>        	commit(<span style="color:#4070a0">&#39;SET_SYSTEMS&#39;</span>, response.data.v.SystemList)
+        	storage.setLocalStorage(<span style="color:#4070a0">&#39;SYSTEMS&#39;</span>, response.data.v.SystemList)
+        	<span style="color:#60a0b0;font-style:italic">// 保存menu到state中
+</span><span style="color:#60a0b0;font-style:italic"></span>        	commit(<span style="color:#4070a0">&#39;SET_MENUS&#39;</span>, response.data.v.MenuList)
+        	storage.setLocalStorage(<span style="color:#4070a0">&#39;MENUS&#39;</span>, response.data.v.MenuList)
+        	<span style="color:#60a0b0;font-style:italic">// 保存function到state中
+</span><span style="color:#60a0b0;font-style:italic"></span>        	commit(<span style="color:#4070a0">&#39;SET_FUNCTIONS&#39;</span>, response.data.v.FunctionList)
+        	storage.setLocalStorage(<span style="color:#4070a0">&#39;FUNCTIONS&#39;</span>, response.data.v.FunctionList)
+        	resolve()
+     	 }).<span style="color:#007020;font-weight:bold">catch</span>(error =&gt; {
+        	reject(error)
+      	})
+    })
+</code></pre></div><p>退出时会清空所有全局状态和缓存</p>
 <h2 id="菜单权限">菜单权限</h2>
 <p>系统左侧菜单用的element_ui的menu导航</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">&lt;!--router：使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转--&gt;</span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">el-menu</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#4070a0">:default-active</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;activeIndex&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#4070a0">:collapse</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;toggle&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#4070a0">mode</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;vertical&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#4070a0">router</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#4070a0">:unique-opened</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;true&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#4070a0">:collapse-transition</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;false&#34;</span>
-</span></span><span style="display:flex;"><span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#062873;font-weight:bold">submenu</span> <span style="color:#4070a0">:menu</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;menuData&#34;</span> /&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">el-menu</span>&gt;
-</span></span></code></pre></div><p>这里从全局中获取菜单数据并组合成如下格式，也就是menuData传给子组件</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>        <span style="color:#062873;font-weight:bold">&#34;SysId&#34;</span>:<span style="color:#4070a0">&#34;AirTickets&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#062873;font-weight:bold">&#34;SysName&#34;</span>:<span style="color:#4070a0">&#34;机票&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#062873;font-weight:bold">&#34;PlatFormType&#34;</span>:<span style="color:#4070a0">&#34;ManagementSystems&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#062873;font-weight:bold">&#34;SortNo&#34;</span>:<span style="color:#40a070">20</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#062873;font-weight:bold">&#34;DefaultIcon&#34;</span>:<span style="color:#4070a0">&#34;sxiconmg-flight&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#062873;font-weight:bold">&#34;DefaultUrl&#34;</span>:<span style="color:#4070a0">&#34;http://localhost:8080/&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#062873;font-weight:bold">&#34;path&#34;</span>:<span style="color:#4070a0">&#34;/AirTickets&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#062873;font-weight:bold">&#34;name&#34;</span>:<span style="color:#4070a0">&#34;机票&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#062873;font-weight:bold">&#34;children&#34;</span>:[
-</span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;SysId&#34;</span>:<span style="color:#4070a0">&#34;AirTickets&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;MenuId&#34;</span>:<span style="color:#4070a0">&#34;AirTicketsOrder&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;MenuName&#34;</span>:<span style="color:#4070a0">&#34;机票订单&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;ParentId&#34;</span>:<span style="color:#4070a0">&#34;0&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;SortNo&#34;</span>:<span style="color:#4070a0">&#34;10&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;path&#34;</span>:<span style="color:#4070a0">&#34;AirTicketsOrder&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;name&#34;</span>:<span style="color:#4070a0">&#34;机票订单&#34;</span>
-</span></span><span style="display:flex;"><span>            },
-</span></span><span style="display:flex;"><span>            {
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;SysId&#34;</span>:<span style="color:#4070a0">&#34;AirTickets&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;MenuId&#34;</span>:<span style="color:#4070a0">&#34;AirticketsAnalysis&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;MenuName&#34;</span>:<span style="color:#4070a0">&#34;票号解析&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;ParentId&#34;</span>:<span style="color:#4070a0">&#34;0&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;SortNo&#34;</span>:<span style="color:#4070a0">&#34;3&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;path&#34;</span>:<span style="color:#4070a0">&#34;AirticketsAnalysis&#34;</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#062873;font-weight:bold">&#34;name&#34;</span>:<span style="color:#4070a0">&#34;票号解析&#34;</span>
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        ]
-</span></span><span style="display:flex;"><span>    }<span style="">,</span>
-</span></span></code></pre></div><p>在子组件中递归显示所有子菜单</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;menu-wrapper&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>    	&lt;<span style="color:#062873;font-weight:bold">template</span> <span style="color:#4070a0">v-for</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;item in menu&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>	    	<span style="color:#60a0b0;font-style:italic">&lt;!-- 只有一级菜单 --&gt;</span>
-</span></span><span style="display:flex;"><span>      		&lt;<span style="color:#062873;font-weight:bold">el-menu-item</span>
-</span></span><span style="display:flex;"><span>        		<span style="color:#4070a0">v-if</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;!item.children &amp;&amp; !item.hidden&#34;</span>
-</span></span><span style="display:flex;"><span>        		<span style="color:#4070a0">:key</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;item.path&#34;</span>
-</span></span><span style="display:flex;"><span>        		<span style="color:#4070a0">:index</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;parent ? parent + &#39;/&#39; + item.path : item.path&#34;</span>
-</span></span><span style="display:flex;"><span>      		&gt;
-</span></span><span style="display:flex;"><span>        		&lt;<span style="color:#062873;font-weight:bold">i</span> <span style="color:#4070a0">:class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;[&#39;iconfont&#39;, item.DefaultIcon]&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">i</span>&gt;
-</span></span><span style="display:flex;"><span>        		&lt;<span style="color:#062873;font-weight:bold">span</span> <span style="color:#4070a0">slot</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;title&#34;</span>&gt;{{ item.name }}&lt;/<span style="color:#062873;font-weight:bold">span</span>&gt;
-</span></span><span style="display:flex;"><span>			&lt;/<span style="color:#062873;font-weight:bold">el-menu-item</span>&gt;
-</span></span><span style="display:flex;"><span>			<span style="color:#60a0b0;font-style:italic">&lt;!-- 多级菜单 --&gt;</span>
-</span></span><span style="display:flex;"><span>			&lt;<span style="color:#062873;font-weight:bold">el-submenu</span>
-</span></span><span style="display:flex;"><span>				<span style="color:#4070a0">v-if</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;item.children &amp;&amp; !item.hidden&#34;</span>
-</span></span><span style="display:flex;"><span>				<span style="color:#4070a0">:key</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;item.path&#34;</span>
-</span></span><span style="display:flex;"><span>				<span style="color:#4070a0">:index</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;parent ? parent + &#39;/&#39; + item.path : item.path&#34;</span>
-</span></span><span style="display:flex;"><span>              &gt;
-</span></span><span style="display:flex;"><span>				&lt;<span style="color:#062873;font-weight:bold">template</span> <span style="color:#4070a0">slot</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;title&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>					&lt;<span style="color:#062873;font-weight:bold">i</span> <span style="color:#4070a0">:class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;[&#39;iconfont&#39;, item.DefaultIcon]&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">i</span>&gt;
-</span></span><span style="display:flex;"><span>					&lt;<span style="color:#062873;font-weight:bold">span</span>&gt;{{ item.name }}&lt;/<span style="color:#062873;font-weight:bold">span</span>&gt;
-</span></span><span style="display:flex;"><span>				&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span><span style="display:flex;"><span>				<span style="color:#60a0b0;font-style:italic">&lt;!-- 递归 --&gt;</span>
-</span></span><span style="display:flex;"><span>				&lt;<span style="color:#062873;font-weight:bold">sidebar-item</span>
-</span></span><span style="display:flex;"><span>					<span style="color:#4070a0">:menu</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;item.children&#34;</span>
-</span></span><span style="display:flex;"><span>					<span style="color:#4070a0">:parent</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;parent ? parent + &#39;/&#39; + item.path : item.path&#34;</span>
-</span></span><span style="display:flex;"><span>				/&gt;
-</span></span><span style="display:flex;"><span>			&lt;/<span style="color:#062873;font-weight:bold">el-submenu</span>&gt;
-</span></span><span style="display:flex;"><span>    	&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span><span style="display:flex;"><span>  	&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
-</span></span></code></pre></div><p>预览如下</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#60a0b0;font-style:italic">&lt;!--router：使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转--&gt;</span>
+&lt;<span style="color:#062873;font-weight:bold">el-menu</span>
+    <span style="color:#4070a0">:default-active</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;activeIndex&#34;</span>
+    <span style="color:#4070a0">:collapse</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;toggle&#34;</span>
+    <span style="color:#4070a0">mode</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;vertical&#34;</span>
+    <span style="color:#4070a0">router</span>
+    <span style="color:#4070a0">:unique-opened</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;true&#34;</span>
+    <span style="color:#4070a0">:collapse-transition</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;false&#34;</span>
+&gt;
+    &lt;<span style="color:#062873;font-weight:bold">submenu</span> <span style="color:#4070a0">:menu</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;menuData&#34;</span> /&gt;
+&lt;/<span style="color:#062873;font-weight:bold">el-menu</span>&gt;
+</code></pre></div><p>这里从全局中获取菜单数据并组合成如下格式，也就是menuData传给子组件</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+        <span style="color:#062873;font-weight:bold">&#34;SysId&#34;</span>:<span style="color:#4070a0">&#34;AirTickets&#34;</span>,
+        <span style="color:#062873;font-weight:bold">&#34;SysName&#34;</span>:<span style="color:#4070a0">&#34;机票&#34;</span>,
+        <span style="color:#062873;font-weight:bold">&#34;PlatFormType&#34;</span>:<span style="color:#4070a0">&#34;ManagementSystems&#34;</span>,
+        <span style="color:#062873;font-weight:bold">&#34;SortNo&#34;</span>:<span style="color:#40a070">20</span>,
+        <span style="color:#062873;font-weight:bold">&#34;DefaultIcon&#34;</span>:<span style="color:#4070a0">&#34;sxiconmg-flight&#34;</span>,
+        <span style="color:#062873;font-weight:bold">&#34;DefaultUrl&#34;</span>:<span style="color:#4070a0">&#34;http://localhost:8080/&#34;</span>,
+        <span style="color:#062873;font-weight:bold">&#34;path&#34;</span>:<span style="color:#4070a0">&#34;/AirTickets&#34;</span>,
+        <span style="color:#062873;font-weight:bold">&#34;name&#34;</span>:<span style="color:#4070a0">&#34;机票&#34;</span>,
+        <span style="color:#062873;font-weight:bold">&#34;children&#34;</span>:[
+            {
+                <span style="color:#062873;font-weight:bold">&#34;SysId&#34;</span>:<span style="color:#4070a0">&#34;AirTickets&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;MenuId&#34;</span>:<span style="color:#4070a0">&#34;AirTicketsOrder&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;MenuName&#34;</span>:<span style="color:#4070a0">&#34;机票订单&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;ParentId&#34;</span>:<span style="color:#4070a0">&#34;0&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;SortNo&#34;</span>:<span style="color:#4070a0">&#34;10&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;path&#34;</span>:<span style="color:#4070a0">&#34;AirTicketsOrder&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;name&#34;</span>:<span style="color:#4070a0">&#34;机票订单&#34;</span>
+            },
+            {
+                <span style="color:#062873;font-weight:bold">&#34;SysId&#34;</span>:<span style="color:#4070a0">&#34;AirTickets&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;MenuId&#34;</span>:<span style="color:#4070a0">&#34;AirticketsAnalysis&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;MenuName&#34;</span>:<span style="color:#4070a0">&#34;票号解析&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;ParentId&#34;</span>:<span style="color:#4070a0">&#34;0&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;SortNo&#34;</span>:<span style="color:#4070a0">&#34;3&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;path&#34;</span>:<span style="color:#4070a0">&#34;AirticketsAnalysis&#34;</span>,
+                <span style="color:#062873;font-weight:bold">&#34;name&#34;</span>:<span style="color:#4070a0">&#34;票号解析&#34;</span>
+            }
+        ]
+    }<span style="">,</span>
+</code></pre></div><p>在子组件中递归显示所有子菜单</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">template</span>&gt;
+	&lt;<span style="color:#062873;font-weight:bold">div</span> <span style="color:#4070a0">class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;menu-wrapper&#34;</span>&gt;
+    	&lt;<span style="color:#062873;font-weight:bold">template</span> <span style="color:#4070a0">v-for</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;item in menu&#34;</span>&gt;
+	    	<span style="color:#60a0b0;font-style:italic">&lt;!-- 只有一级菜单 --&gt;</span>
+      		&lt;<span style="color:#062873;font-weight:bold">el-menu-item</span>
+        		<span style="color:#4070a0">v-if</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;!item.children &amp;&amp; !item.hidden&#34;</span>
+        		<span style="color:#4070a0">:key</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;item.path&#34;</span>
+        		<span style="color:#4070a0">:index</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;parent ? parent + &#39;/&#39; + item.path : item.path&#34;</span>
+      		&gt;
+        		&lt;<span style="color:#062873;font-weight:bold">i</span> <span style="color:#4070a0">:class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;[&#39;iconfont&#39;, item.DefaultIcon]&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">i</span>&gt;
+        		&lt;<span style="color:#062873;font-weight:bold">span</span> <span style="color:#4070a0">slot</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;title&#34;</span>&gt;{{ item.name }}&lt;/<span style="color:#062873;font-weight:bold">span</span>&gt;
+			&lt;/<span style="color:#062873;font-weight:bold">el-menu-item</span>&gt;
+			<span style="color:#60a0b0;font-style:italic">&lt;!-- 多级菜单 --&gt;</span>
+			&lt;<span style="color:#062873;font-weight:bold">el-submenu</span>
+				<span style="color:#4070a0">v-if</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;item.children &amp;&amp; !item.hidden&#34;</span>
+				<span style="color:#4070a0">:key</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;item.path&#34;</span>
+				<span style="color:#4070a0">:index</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;parent ? parent + &#39;/&#39; + item.path : item.path&#34;</span>
+              &gt;
+				&lt;<span style="color:#062873;font-weight:bold">template</span> <span style="color:#4070a0">slot</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;title&#34;</span>&gt;
+					&lt;<span style="color:#062873;font-weight:bold">i</span> <span style="color:#4070a0">:class</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;[&#39;iconfont&#39;, item.DefaultIcon]&#34;</span>&gt;&lt;/<span style="color:#062873;font-weight:bold">i</span>&gt;
+					&lt;<span style="color:#062873;font-weight:bold">span</span>&gt;{{ item.name }}&lt;/<span style="color:#062873;font-weight:bold">span</span>&gt;
+				&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
+				<span style="color:#60a0b0;font-style:italic">&lt;!-- 递归 --&gt;</span>
+				&lt;<span style="color:#062873;font-weight:bold">sidebar-item</span>
+					<span style="color:#4070a0">:menu</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;item.children&#34;</span>
+					<span style="color:#4070a0">:parent</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;parent ? parent + &#39;/&#39; + item.path : item.path&#34;</span>
+				/&gt;
+			&lt;/<span style="color:#062873;font-weight:bold">el-submenu</span>&gt;
+    	&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
+  	&lt;/<span style="color:#062873;font-weight:bold">div</span>&gt;
+&lt;/<span style="color:#062873;font-weight:bold">template</span>&gt;
+</code></pre></div><p>预览如下</p>
 <p><img src="/img/Vue2-%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/%E5%B7%A6%E4%BE%A7%E8%8F%9C%E5%8D%95.png" alt=""></p>
 <h2 id="按钮权限">按钮权限</h2>
 <p>公共方法中提供了过滤当前所在功能按钮权限的方法</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @description: 数组过滤（匹配某菜单下所有方法）
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @param {string} sysId 系统ID
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @param {string} menuId 菜单ID
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @return {array} 某一菜单下的所有Function
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> */</span>
-</span></span><span style="display:flex;"><span><span style="color:#007020;font-weight:bold">const</span> filterarr <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span> (sysId, menuId) {
-</span></span><span style="display:flex;"><span>  <span style="color:#60a0b0;font-style:italic">// 获取缓存中所有的FUNCTION
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">let</span> array <span style="color:#666">=</span> JSON.parse(localStorage.getItem(<span style="color:#4070a0">&#39;management-FUNCTIONS&#39;</span>)) <span style="color:#666">||</span> []
-</span></span><span style="display:flex;"><span>  <span style="color:#60a0b0;font-style:italic">// 根据传入系统和菜单唯一标识，返回当前功能的所有按钮
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">let</span> newArr <span style="color:#666">=</span> array.filter(item =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#007020;font-weight:bold">return</span> item.SysId <span style="color:#666">===</span> sysId <span style="color:#666">&amp;&amp;</span> item.MenuId <span style="color:#666">===</span> menuId
-</span></span><span style="display:flex;"><span>  })
-</span></span><span style="display:flex;"><span>  <span style="color:#007020;font-weight:bold">return</span> newArr
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>这里以系统中任一功能演示</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @description: 绑定当前功能页面的按钮权限
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @param {*}
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @return {*}
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> */</span>
-</span></span><span style="display:flex;"><span>getFunc () {
-</span></span><span style="display:flex;"><span>	<span style="color:#007020;font-weight:bold">let</span> pagefunc <span style="color:#666">=</span> filterarr(<span style="color:#4070a0">&#39;SysManagement&#39;</span>, <span style="color:#4070a0">&#39;EmployeeManagement&#39;</span>)
-</span></span><span style="display:flex;"><span>    pagefunc.forEach((item) =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">if</span> (item.FunctionId <span style="color:#666">===</span> <span style="color:#4070a0">&#39;SaveEmployee&#39;</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.isAddFuc <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span> <span style="color:#60a0b0;font-style:italic">// 新增按钮是否显示
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>            <span style="color:#007020;font-weight:bold">this</span>.addFuc <span style="color:#666">=</span> item <span style="color:#60a0b0;font-style:italic">// 新增api信息
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">if</span> (item.FunctionId <span style="color:#666">===</span> <span style="color:#4070a0">&#39;UpdateEmployee&#39;</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.isUpdateFuc <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span> <span style="color:#60a0b0;font-style:italic">// 修改按钮是否显示
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>            <span style="color:#007020;font-weight:bold">this</span>.updateFuc <span style="color:#666">=</span> item <span style="color:#60a0b0;font-style:italic">// 修改api信息
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#007020;font-weight:bold">if</span> (item.FunctionId <span style="color:#666">===</span> <span style="color:#4070a0">&#39;GetEmployeeEntity&#39;</span>) {
-</span></span><span style="display:flex;"><span>            <span style="color:#007020;font-weight:bold">this</span>.isViewFuc <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span> <span style="color:#60a0b0;font-style:italic">// 查看按钮是否显示
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>            <span style="color:#007020;font-weight:bold">this</span>.viewFuc <span style="color:#666">=</span> item <span style="color:#60a0b0;font-style:italic">// 查看api信息
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"></span>        }
-</span></span><span style="display:flex;"><span>    })
-</span></span><span style="display:flex;"><span>},
-</span></span></code></pre></div><p>按钮显示需要加上v-if判断权限</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#062873;font-weight:bold">el-button</span> <span style="color:#4070a0">v-if</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;isAddFuc&#34;</span> <span style="">@</span><span style="color:#4070a0">click</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;bindEdit(&#39;add&#39;)&#34;</span>&gt;添加&lt;/<span style="color:#062873;font-weight:bold">el-button</span>&gt;
-</span></span></code></pre></div><p>发送请求时不用重新定义api</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @description: 查询当前登录用户权限数据
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @param {object} data 接口请求参数
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @param {string} ServiceName 接口服务名称（一个平台对应一个服务）
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @param {string} ApiName 接口名称
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> * @return {*}
-</span></span></span><span style="display:flex;"><span><span style="color:#60a0b0;font-style:italic"> */</span>
-</span></span><span style="display:flex;"><span>base.commonFuc(data, <span style="color:#007020;font-weight:bold">this</span>.addFuc.ServiceName, <span style="color:#007020;font-weight:bold">this</span>.addFuc.ApiName).then((res) =&gt; {
-</span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>})
-</span></span></code></pre></div><h1 id="注意">注意</h1>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#60a0b0;font-style:italic">/**
+</span><span style="color:#60a0b0;font-style:italic"> * @description: 数组过滤（匹配某菜单下所有方法）
+</span><span style="color:#60a0b0;font-style:italic"> * @param {string} sysId 系统ID
+</span><span style="color:#60a0b0;font-style:italic"> * @param {string} menuId 菜单ID
+</span><span style="color:#60a0b0;font-style:italic"> * @return {array} 某一菜单下的所有Function
+</span><span style="color:#60a0b0;font-style:italic"> */</span>
+<span style="color:#007020;font-weight:bold">const</span> filterarr <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">function</span> (sysId, menuId) {
+  <span style="color:#60a0b0;font-style:italic">// 获取缓存中所有的FUNCTION
+</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">let</span> array <span style="color:#666">=</span> JSON.parse(localStorage.getItem(<span style="color:#4070a0">&#39;management-FUNCTIONS&#39;</span>)) <span style="color:#666">||</span> []
+  <span style="color:#60a0b0;font-style:italic">// 根据传入系统和菜单唯一标识，返回当前功能的所有按钮
+</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">let</span> newArr <span style="color:#666">=</span> array.filter(item =&gt; {
+    <span style="color:#007020;font-weight:bold">return</span> item.SysId <span style="color:#666">===</span> sysId <span style="color:#666">&amp;&amp;</span> item.MenuId <span style="color:#666">===</span> menuId
+  })
+  <span style="color:#007020;font-weight:bold">return</span> newArr
+}
+</code></pre></div><p>这里以系统中任一功能演示</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#60a0b0;font-style:italic">/**
+</span><span style="color:#60a0b0;font-style:italic"> * @description: 绑定当前功能页面的按钮权限
+</span><span style="color:#60a0b0;font-style:italic"> * @param {*}
+</span><span style="color:#60a0b0;font-style:italic"> * @return {*}
+</span><span style="color:#60a0b0;font-style:italic"> */</span>
+getFunc () {
+	<span style="color:#007020;font-weight:bold">let</span> pagefunc <span style="color:#666">=</span> filterarr(<span style="color:#4070a0">&#39;SysManagement&#39;</span>, <span style="color:#4070a0">&#39;EmployeeManagement&#39;</span>)
+    pagefunc.forEach((item) =&gt; {
+        <span style="color:#007020;font-weight:bold">if</span> (item.FunctionId <span style="color:#666">===</span> <span style="color:#4070a0">&#39;SaveEmployee&#39;</span>) {
+            <span style="color:#007020;font-weight:bold">this</span>.isAddFuc <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span> <span style="color:#60a0b0;font-style:italic">// 新增按钮是否显示
+</span><span style="color:#60a0b0;font-style:italic"></span>            <span style="color:#007020;font-weight:bold">this</span>.addFuc <span style="color:#666">=</span> item <span style="color:#60a0b0;font-style:italic">// 新增api信息
+</span><span style="color:#60a0b0;font-style:italic"></span>        }
+        <span style="color:#007020;font-weight:bold">if</span> (item.FunctionId <span style="color:#666">===</span> <span style="color:#4070a0">&#39;UpdateEmployee&#39;</span>) {
+            <span style="color:#007020;font-weight:bold">this</span>.isUpdateFuc <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span> <span style="color:#60a0b0;font-style:italic">// 修改按钮是否显示
+</span><span style="color:#60a0b0;font-style:italic"></span>            <span style="color:#007020;font-weight:bold">this</span>.updateFuc <span style="color:#666">=</span> item <span style="color:#60a0b0;font-style:italic">// 修改api信息
+</span><span style="color:#60a0b0;font-style:italic"></span>        }
+        <span style="color:#007020;font-weight:bold">if</span> (item.FunctionId <span style="color:#666">===</span> <span style="color:#4070a0">&#39;GetEmployeeEntity&#39;</span>) {
+            <span style="color:#007020;font-weight:bold">this</span>.isViewFuc <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">true</span> <span style="color:#60a0b0;font-style:italic">// 查看按钮是否显示
+</span><span style="color:#60a0b0;font-style:italic"></span>            <span style="color:#007020;font-weight:bold">this</span>.viewFuc <span style="color:#666">=</span> item <span style="color:#60a0b0;font-style:italic">// 查看api信息
+</span><span style="color:#60a0b0;font-style:italic"></span>        }
+    })
+},
+</code></pre></div><p>按钮显示需要加上v-if判断权限</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#062873;font-weight:bold">el-button</span> <span style="color:#4070a0">v-if</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;isAddFuc&#34;</span> <span style="">@</span><span style="color:#4070a0">click</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;bindEdit(&#39;add&#39;)&#34;</span>&gt;添加&lt;/<span style="color:#062873;font-weight:bold">el-button</span>&gt;
+</code></pre></div><p>发送请求时不用重新定义api</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#60a0b0;font-style:italic">/**
+</span><span style="color:#60a0b0;font-style:italic"> * @description: 查询当前登录用户权限数据
+</span><span style="color:#60a0b0;font-style:italic"> * @param {object} data 接口请求参数
+</span><span style="color:#60a0b0;font-style:italic"> * @param {string} ServiceName 接口服务名称（一个平台对应一个服务）
+</span><span style="color:#60a0b0;font-style:italic"> * @param {string} ApiName 接口名称
+</span><span style="color:#60a0b0;font-style:italic"> * @return {*}
+</span><span style="color:#60a0b0;font-style:italic"> */</span>
+base.commonFuc(data, <span style="color:#007020;font-weight:bold">this</span>.addFuc.ServiceName, <span style="color:#007020;font-weight:bold">this</span>.addFuc.ApiName).then((res) =&gt; {
+    ...
+})
+</code></pre></div><h1 id="注意">注意</h1>
 <ol>
 <li>权限菜单的跳转是根据系统和菜单维护的编号与router中配置的路由匹配的，需要保持一致</li>
 </ol>
