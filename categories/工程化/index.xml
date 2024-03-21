@@ -6,15 +6,24 @@
     <description>Recent content in 工程化 on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://damuwangs.github.io/categories/%E5%B7%A5%E7%A8%8B%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://damuwangs.github.io/categories/%E5%B7%A5%E7%A8%8B%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>chrome-浏览器插件</title>
+      <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/chrome-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Thu, 09 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/chrome-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6/</guid>
+      <description>概念 简称为浏览器扩展程序，顾名思义，就是能让浏览器扩展更多功能的一种程序，俗称插件。安装文件一般在50KB-5M之间，秒安装即刻体验，可以理解成是浏览器版的小程序。 浏览器插件的主要作用是扩展浏览器的功能、丰富浏览体验、满足不同的功能需求。很多浏览器都有丰富的插件，应用功能非常广泛，另外程序员还可以开发特定的浏览器插件。常见的功能：屏蔽网页广告、美化网页、购物比价、抢票、网页导出PDF、划词翻译、翻墙上网、采集图片等等。
+安装与配置 插件 注意 </description>
+    </item>
+    
     <item>
       <title>Webpack4-基础与配置</title>
       <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/webpack4-%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Mon, 21 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/webpack4-%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%85%8D%E7%BD%AE/</guid>
-      <description>概念 安装与配置 插件 权限实现 用户登录成功时会调用GetMenuInfo，获取当前登录账户的所有权限，并将权限放入全局状态和缓存
-/** * @description: 查询当前登录用户权限数据 * @param {object} data 登录返回token * @return {promise} */ GetMenuInfo: ({ commit }, data) =&amp;gt; { return new Promise((resolve, reject) =&amp;gt; { let subData = { &amp;#39;tk&amp;#39;: data.v.token } // 请求服务端返回当前登录用户的权限数据  base.getMenuInfo(subData).then(response =&amp;gt; { // 保存system到state中  commit(&amp;#39;SET_SYSTEMS&amp;#39;, response.data.v.SystemList) storage.setLocalStorage(&amp;#39;SYSTEMS&amp;#39;, response.data.v.SystemList) // 保存menu到state中  commit(&amp;#39;SET_MENUS&amp;#39;, response.data.v.MenuList) storage.setLocalStorage(&amp;#39;MENUS&amp;#39;, response.data.v.MenuList) // 保存function到state中  commit(&amp;#39;SET_FUNCTIONS&amp;#39;, response.data.v.FunctionList) storage.setLocalStorage(&amp;#39;FUNCTIONS&amp;#39;, response.data.v.FunctionList) resolve() }).catch(error =&amp;gt; { reject(error) }) }) 退出时会清空所有全局状态和缓存</description>
+      <description>概念 安装与配置 插件 注意 </description>
     </item>
     
   </channel>

@@ -5,332 +5,9 @@
     <description>Recent content on DaMuWang</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Feb 2023 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://damuwangs.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    
-        <item>
-        <title>JavaScript-this指向</title>
-        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/</link>
-        <pubDate>Tue, 31 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/ -&lt;h1 id=&#34;this的指向&#34;&gt;this的指向&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;在 ES5 中，其实 this 的指向，始终坚持一个原理：this 永远指向最后调用它的那个对象&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;看几个简单的例子:&lt;a href=&#34;https://codepen.io/damuwangs/pen/OJgMPxe?editors=0012&#34;&gt;this指向&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;改变this的指向&#34;&gt;改变this的指向&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;;
-
-&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; {
-    name &lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
-
-    func1&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-        console.log(&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.name)     
-    },
-
-    func2&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-        setTimeout(  &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-            &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.func1()
-        },&lt;span style=&#34;color:#40a070&#34;&gt;100&lt;/span&gt;)
-    }
-}
-
-a.func2()     &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// this.func1 is not a function
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在不使用箭头函数的情况下，是会报错的，因为最后调用setTimeout的对象是 window，但是在 window 中并没有 func1 函数&lt;/p&gt;
-&lt;p&gt;我们在改变 this 指向这一节将把这个例子作为 demo 进行改造&lt;/p&gt;
-&lt;h2 id=&#34;箭头函数&#34;&gt;箭头函数&lt;/h2&gt;
-&lt;p&gt;先看箭头函数和普通函数的重要区别：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1、没有自己的this、super、arguments和new.target绑定&lt;/p&gt;
-&lt;p&gt;2、不能使用new来调用&lt;/p&gt;
-&lt;p&gt;3、没有原型对象&lt;/p&gt;
-&lt;p&gt;4、不可以改变this的绑定&lt;/p&gt;
-&lt;p&gt;5、形参名称不能重复&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;箭头函数的 this 始终指向函数定义时的 this，而非执行时，箭头函数需要记着这句话：“箭头函数中没有 this 绑定，必须通过查找作用域链来决定其值，如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this，否则，this 为 undefined”&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;
-&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; {
-    name &lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
-
-    func1&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-        console.log(&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.name)     
-    },
-
-    func2&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-        setTimeout( () =&amp;gt; {
-            &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.func1()
-        },&lt;span style=&#34;color:#40a070&#34;&gt;100&lt;/span&gt;)
-    }
-}
-
-a.func2()     &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// Cherry
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;函数内部使用_this--this&#34;&gt;函数内部使用_this = this&lt;/h2&gt;
-&lt;p&gt;先将调用这个函数的对象保存在变量_this中，然后在函数中都使用这个_this，这样_this就不会改变了&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;;
-
-&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; {
-    name &lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
-    
-    func1&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-        console.log(&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.name)     
-    },
-    
-    func2&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-        &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#40a070&#34;&gt;_&lt;/span&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;
-        setTimeout( &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt;() {
-            &lt;span style=&#34;color:#40a070&#34;&gt;_&lt;/span&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.func1()
-        },&lt;span style=&#34;color:#40a070&#34;&gt;100&lt;/span&gt;)
-    }
-}
-
-a.func2()       &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// Cherry
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个例子中，在 func2 中，首先设置var _this = this，这里的this 是调用func2的对象 a，为了防止在func2中的 setTimeout 被 window 调用而导致的在 setTimeout 中的 this 为 window。我们将this(指向变量 a)赋值给一个变量 _this，这样，在func2中我们使用this就是指向对象 a 了。&lt;/p&gt;
-&lt;h2 id=&#34;使用applycallbind&#34;&gt;使用apply、call、bind&lt;/h2&gt;
-&lt;h3 id=&#34;使用-apply&#34;&gt;使用 apply&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; {
-    name &lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
-
-    func1&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-        console.log(&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.name)
-    },
-
-    func2&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-        setTimeout(  &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-            &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.func1()
-        }.apply(a),&lt;span style=&#34;color:#40a070&#34;&gt;100&lt;/span&gt;)
-    }
-}
-
-a.func2()            &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// Cherry
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;使用-call&#34;&gt;使用 call&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;    &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; {
-        name &lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
-
-        func1&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-            console.log(&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.name)
-        },
-
-        func2&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-            setTimeout(  &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-                &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.func1()
-            }.call(a),&lt;span style=&#34;color:#40a070&#34;&gt;100&lt;/span&gt;)
-        }
-    }
-
-    a.func2()            &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// Cherry
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;使用-bind&#34;&gt;使用 bind&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;    &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; {
-        name &lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
-
-        func1&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-            console.log(&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.name)
-        },
-
-        func2&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-            setTimeout(  &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; () {
-                &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.func1()
-            }.bind(a)(),&lt;span style=&#34;color:#40a070&#34;&gt;100&lt;/span&gt;)
-        }
-    }
-
-    a.func2()            &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// Cherry
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;applycallbind区别&#34;&gt;apply、call、bind区别&lt;/h2&gt;
-&lt;p&gt;其实 apply 和 call 基本类似，他们的区别只是传入的参数不同。所以 apply 和 call 的区别是 call 方法接受的是若干个参数列表，而 apply 接收的是一个包含多个参数的数组&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://link.juejin.cn?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FFunction%2Fapply&#34;&gt;MDN&lt;/a&gt;中定义 apply 如下&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;apply() 方法调用一个函数, 其具有一个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数&lt;/p&gt;
-&lt;p&gt;语法：fun.apply(thisArg, [argsArray])&lt;/p&gt;
-&lt;p&gt;参数：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;thisArg：在 fun 函数运行时指定的 this 值&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;argsArray：一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call&#34;&gt;MDN&lt;/a&gt;中定义call如下&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;call()方法使用一个指定的this值和单独给出的一个或多个参数来调用一个函数&lt;/p&gt;
-&lt;p&gt;语法：function.call(thisArg, arg1, arg2, &amp;hellip;)&lt;/p&gt;
-&lt;p&gt;参数：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;thisArg：在function函数运行时使用的this值&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;arg1, arg2, &amp;hellip;：指定的参数列表&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;p&gt;我们先来将刚刚的例子使用 bind 试一下&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt;{
-    name &lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
-    fn &lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; (a,b) {
-        console.log( a &lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt; b)
-    }
-}
-
-&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; b &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; a.fn;
-b.bind(a,&lt;span style=&#34;color:#40a070&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#40a070&#34;&gt;2&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我们会发现并没有输出，&lt;a href=&#34;https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind&#34;&gt;MDN&lt;/a&gt;中定义bind如下&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;创建一个新的函数, 当被调用时，将其this关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;所以我们可以看出，bind 是创建一个新的函数，我们必须要手动去调用&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt;{
-	name &lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;,
-	fn &lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; (a,b) {
-    	console.log( a &lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt; b)
-    }
-}
-
-&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; b &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; a.fn
-b.bind(a,&lt;span style=&#34;color:#40a070&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#40a070&#34;&gt;2&lt;/span&gt;)()           &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// 3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;js中的函数调用&#34;&gt;JS中的函数调用&lt;/h1&gt;
-&lt;h3 id=&#34;普通函数调用模式&#34;&gt;普通函数调用模式&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;windowsName&amp;#34;&lt;/span&gt;
-&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; a() {
-	&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;
-	console.log(&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.name)          &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// windowsName
-&lt;/span&gt;&lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;&lt;/span&gt;}
-a()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样一个最简单的函数，不属于任何一个对象，就是一个函数，这样的情况在 JavaScript 的在浏览器中的非严格模式默认是属于全局对象 window 的，在严格模式，就是 undefined&lt;/p&gt;
-&lt;p&gt;但这是一个全局的函数，很容易产生命名冲突，所以不建议这样使用&lt;/p&gt;
-&lt;h3 id=&#34;对象中的函数方法调用模式&#34;&gt;对象中的函数（方法）调用模式&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; name &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#39;window&amp;#39;&lt;/span&gt;
-&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; doSth &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt;(){
-    console.log(&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.name)
-}
-&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; student &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; {
-    name&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#39;若川&amp;#39;&lt;/span&gt;,
-    doSth&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; doSth,
-    other&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; {
-        name&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#39;other&amp;#39;&lt;/span&gt;,
-        doSth&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; doSth,
-    }
-}
-student.doSth() &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// &amp;#39;若川&amp;#39;
-&lt;/span&gt;&lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;&lt;/span&gt;student.other.doSth() &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// &amp;#39;other&amp;#39;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;callapplybind模式&#34;&gt;call、apply、bind模式&lt;/h3&gt;
-&lt;p&gt;同上&lt;a href=&#34;http://localhost:1313/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/#%E4%BD%BF%E7%94%A8applycallbind&#34;&gt;使用apply、call、bind&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;构造函数调用模式&#34;&gt;构造函数调用模式&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果函数调用前使用了 new 关键字, 则是调用了构造函数
-这看起来就像创建了新的函数，但实际上 JavaScript 函数是重新创建的对象：&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// 构造函数:
-&lt;/span&gt;&lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; myFunction(arg1, arg2) {
-    &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.firstName &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; arg1
-    &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.lastName  &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; arg2
-}
-
-&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;new&lt;/span&gt; myFunction(&lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Li&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;);
-a.lastName  &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// 返回 &amp;#34;Cherry&amp;#34;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这就有要说另一个面试经典问题：new 的过程了，(ಥ_ಥ)
-这里就简单的来看一下 new 的过程吧：
-伪代码表示：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; a &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;new&lt;/span&gt; myFunction(&lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Li&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;);
-
-&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;new&lt;/span&gt; myFunction{
-    &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; obj &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; {};
-    obj.&lt;span style=&#34;color:#40a070&#34;&gt;__&lt;/span&gt;proto__ &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; myFunction.prototype;
-    &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; result &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; myFunction.call(obj,&lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Li&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#34;Cherry&amp;#34;&lt;/span&gt;);
-    &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;typeof&lt;/span&gt; result &lt;span style=&#34;color:#666&#34;&gt;===&lt;/span&gt; &lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#39;obj&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;?&lt;/span&gt; result &lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; obj;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;创建一个空对象 obj&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;将新创建的空对象的隐式原型指向其构造函数的显示原型&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;使用 call 改变 this 的指向&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;如果无返回值或者返回一个非对象值，则将 obj 返回作为新对象；&lt;/p&gt;
-&lt;p&gt;如果返回值是一个新对象的话那么直接直接返回该对象&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;所以我们可以看到，在 new 的过程中，我们是使用 call 改变了 this 的指向。&lt;/p&gt;
-&lt;h3 id=&#34;原型链中的调用模式&#34;&gt;原型链中的调用模式&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt; Student(name){
-    &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.name &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; name
-}
-&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;var&lt;/span&gt; s1 &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;new&lt;/span&gt; Student(&lt;span style=&#34;color:#4070a0&#34;&gt;&amp;#39;若川&amp;#39;&lt;/span&gt;)
-Student.prototype.doSth &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;function&lt;/span&gt;(){
-    console.log(&lt;span style=&#34;color:#007020;font-weight:bold&#34;&gt;this&lt;/span&gt;.name)
-}
-s1.doSth() &lt;span style=&#34;color:#60a0b0;font-style:italic&#34;&gt;// &amp;#39;若川&amp;#39;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;箭头函数调用模式&#34;&gt;箭头函数调用模式&lt;/h3&gt;
-&lt;p&gt;同上&lt;a href=&#34;http://localhost:1313/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0&#34;&gt;箭头函数&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.ruanyifeng.com/blog/2018/06/javascript-this.html&#34;&gt;JavaScript 的 this 原理&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903496253177863&#34;&gt;this、apply、call、bind&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/6844903746984476686#heading-13&#34;&gt;面试官问：JS的this指向&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/javascript-this%E6%8C%87%E5%90%91/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>关于热量消耗与营养摄入的思考</title>
-        <link>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%83%AD%E9%87%8F%E6%B6%88%E8%80%97%E4%B8%8E%E8%90%A5%E5%85%BB%E6%91%84%E5%85%A5%E7%9A%84%E6%80%9D%E8%80%83/</link>
-        <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
-        
-        <guid>https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%83%AD%E9%87%8F%E6%B6%88%E8%80%97%E4%B8%8E%E8%90%A5%E5%85%BB%E6%91%84%E5%85%A5%E7%9A%84%E6%80%9D%E8%80%83/</guid>
-        <description>DaMuWang https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%83%AD%E9%87%8F%E6%B6%88%E8%80%97%E4%B8%8E%E8%90%A5%E5%85%BB%E6%91%84%E5%85%A5%E7%9A%84%E6%80%9D%E8%80%83/ -&lt;h1 id=&#34;概念&#34;&gt;概念&lt;/h1&gt;
-&lt;p&gt;减脂的基本原理其实非常的简单，日常总热量的摄入要小于总热量的消耗，造成热量亏空，为了达到能量收支的平衡，体内储存的脂肪就会氧化消耗来填补缺失的热量，长此以往，体内储存的脂肪就会被消耗得越来越少&lt;/p&gt;
-&lt;p&gt;人体一天的能量消耗主要有四个方面：基础代谢、体力活动、食物热效应以及生长发育&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;减肥=摄入热量-消耗热量=吃下食物的热量-（基础代谢热量+运动消耗热量）&lt;/p&gt;
-&lt;p&gt;一天最好是有300~500Kcal以上的热量差。但不要一下子超过800Kcal&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;基础代谢（BRM）&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;男性基础代谢率=67+13.73×体重(kg)+5×身高(cm)-6.9×年龄&lt;/p&gt;
-&lt;p&gt;我目前：身高173、体重72、年龄27，按此公式计算出的基础代谢为1734Kcal&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;每日消耗总量（TDEE）=基础代谢 x 活动程度&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;活动程度影响的因素比较多，针对不同人群的运动情况也是有所不同的。数值如下：&lt;/p&gt;
-&lt;p&gt;久坐族/无运动习惯者：1.2&lt;/p&gt;
-&lt;p&gt;轻度运动者/一周一至三天运动：1.375&lt;/p&gt;
-&lt;p&gt;中度运动者/一周三至五天运动：1.55（大部分健身爱好者）&lt;/p&gt;
-&lt;p&gt;激烈运动者/一周六至七天运动：1.725&lt;/p&gt;
-&lt;p&gt;超激烈运动者/体力活的工作/一天训练两次：1.9&lt;/p&gt;
-&lt;h2 id=&#34;饮食&#34;&gt;饮食&lt;/h2&gt;
-&lt;p&gt;各营养素与热量摄入总量的百分比为：碳水40%，蛋白质30%，脂肪30%&lt;/p&gt;
-&lt;h1 id=&#34;总结&#34;&gt;总结&lt;/h1&gt;
-&lt;p&gt;我目前身高173cm、体重72kg、年龄27&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;每日消耗总量为1734x1.55=2687.7&lt;/p&gt;
-&lt;p&gt;因为查询出来的结果各不相同，保守将我的每日总消耗记为2500Kcal&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;我的每日总消耗为2500Kcal，那么每天固定要摄入2500Kcal热量的食物。然后靠运动来消耗掉400Kcal&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;健身一小时大约会消耗400Kcal的热量&lt;/p&gt;
-&lt;p&gt;那么总消耗2900，摄入2500，这样每天400Kcal的能量缺口就可以达到减脂的目的&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;那么2500Kcal分配到每日的饮食中是怎么样一个概念，在保证营养均衡的前提下，每天需要摄入1000Kcal碳水、750Kcal蛋白质、750Kcal脂肪&lt;/p&gt;
-&lt;h1 id=&#34;参考资料&#34;&gt;参考资料&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/99655482&#34;&gt;如何尽可能准确的算出你的BMR和TDEE&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://m.medsci.cn/scale/show.do?id=ff9b2285b4&#34;&gt;BMR计算器&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://tdeecalculator.net/&#34;&gt;TDEE计算器&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-- https://damuwangs.github.io/posts/%E6%80%9D%E8%80%83/%E5%85%B3%E4%BA%8E%E7%83%AD%E9%87%8F%E6%B6%88%E8%80%97%E4%B8%8E%E8%90%A5%E5%85%BB%E6%91%84%E5%85%A5%E7%9A%84%E6%80%9D%E8%80%83/ - </description>
-        </item>
     
     
     
@@ -1529,6 +1206,96 @@ iframe.src &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=
 &lt;/li&gt;
 &lt;/ul&gt;
 - https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-css/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Demo-Vue</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/</link>
+        <pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/ -&lt;ul&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;规范&#34;&gt;规范&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;组件&#34;&gt;组件&lt;/h1&gt;
+&lt;h2 id=&#34;-element-ui表单httpscodepeniodamuwangspenjjnbybw&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/JjNByBW&#34;&gt;Element-UI表单&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;路由&#34;&gt;路由&lt;/h1&gt;
+&lt;h2 id=&#34;-vue-demo-路由httpscodesandboxiosvue-demo-lu-you-qhgtt&#34;&gt;-&lt;a href=&#34;https://codesandbox.io/s/vue-demo-lu-you-qhgtt&#34;&gt;Vue-Demo-路由&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;状态缓存&#34;&gt;状态、缓存&lt;/h1&gt;
+&lt;h2 id=&#34;-vue-demo-状态缓存httpscodesandboxiosvue-demo-zhuang-tai-huan-cun-sl8i8z&#34;&gt;-&lt;a href=&#34;https://codesandbox.io/s/vue-demo-zhuang-tai-huan-cun-sl8i8z&#34;&gt;Vue-Demo-状态、缓存&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;方法封装&#34;&gt;方法封装&lt;/h1&gt;
+&lt;h2 id=&#34;-axios封装http工具类httpscodepeniodamuwangspenexxgmww&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/ExXGmww&#34;&gt;axios封装Http工具类&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;数据字典&#34;&gt;数据字典&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;自定义指令&#34;&gt;自定义指令&lt;/h1&gt;
+&lt;h2 id=&#34;-防抖httpscodepeniodamuwangspenmdmjwre&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/mdmjwre&#34;&gt;防抖&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;-节流httpscodepeniodamuwangspenjompwgv&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/jOmpwgv&#34;&gt;节流&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;css&#34;&gt;CSS&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;第三方插件&#34;&gt;第三方插件&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;打包&#34;&gt;打包&lt;/h1&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-vue/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Demo-JavaScript</title>
+        <link>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-javascript/</link>
+        <pubDate>Mon, 02 Aug 2021 00:00:00 +0000</pubDate>
+        
+        <guid>https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-javascript/</guid>
+        <description>DaMuWang https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-javascript/ -&lt;ul&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;日期时间&#34;&gt;日期、时间&lt;/h1&gt;
+&lt;h2 id=&#34;-日期格式化httpscodepeniodamuwangspenrwvjeyb&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/RwVJeYb&#34;&gt;日期格式化&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;-日期计算httpscodepeniodamuwangspenvymrqkneditors0012&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/vYmrQKN?editors=0012&#34;&gt;日期计算&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;-获取当前日期000000到235959httpscodepeniodamuwangspenporvwgr&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/porvWGR&#34;&gt;获取当前日期00:00:00到23:59:59&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;校验&#34;&gt;校验&lt;/h1&gt;
+&lt;h2 id=&#34;-身份证校验httpscodepeniodamuwangspenjomkdqqeditors0012&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/jOmKdqq?editors=0012&#34;&gt;身份证校验&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;-邮箱校验httpscodepeniodamuwangspenzekjbvy&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/ZEKjBvy&#34;&gt;邮箱校验&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;-电话校验httpscodepeniodamuwangspenrwvbkapeditors0012&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/RwVBKaP?editors=0012&#34;&gt;电话校验&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;字符串&#34;&gt;字符串&lt;/h1&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;数字&#34;&gt;数字&lt;/h1&gt;
+&lt;h2 id=&#34;-数字转汉字大写httpscodepeniodamuwangspeneywjggpeditors0012&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/eYWjgGP?editors=0012&#34;&gt;数字转汉字大写&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;数组&#34;&gt;数组&lt;/h1&gt;
+&lt;h2 id=&#34;-数组去重httpscodepeniopeneditors0012&#34;&gt;-&lt;a href=&#34;https://codepen.io/pen/?editors=0012&#34;&gt;数组去重&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;-计算数组重复元素httpscodepeniodamuwangspenyzvjnmneditors0012&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/YzVjNmN?editors=0012&#34;&gt;计算数组重复元素&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;-深拷贝httpscodepeniodamuwangspennwjbjereditors0012&#34;&gt;-&lt;a href=&#34;https://codepen.io/damuwangs/pen/NWjBjer?editors=0012&#34;&gt;深拷贝&lt;/a&gt;&lt;/h2&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;h1 id=&#34;算法&#34;&gt;算法&lt;/h1&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+- https://damuwangs.github.io/posts/%E7%BC%96%E7%A8%8B/demo-javascript/ - </description>
         </item>
     
     
